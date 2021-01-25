@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name ProjetChambreFroide)(type Legacy)(uri C:/Users/elian/Desktop/Projet/Électrique/ProjetChambreFroide.lib)(options "")(descr ""))
+  (lib (name Module-Central-rescue)(type Legacy)(uri "${KIPRJMOD}/Module Central-rescue.lib")(options "")(descr ""))
+)
