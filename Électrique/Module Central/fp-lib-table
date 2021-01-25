@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name "Module Central")(type KiCad)(uri "C:/Users/elian/Desktop/Projet/Électrique/Module Central")(options "")(descr ""))
+  (lib (name modules)(type KiCad)(uri G:/KiCad/share/kicad/modules)(options "")(descr ""))
+  (lib (name Électrique)(type KiCad)(uri C:/Users/elian/Desktop/Électrique)(options "")(descr ""))
+)
