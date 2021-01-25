@@ -1,16 +1,15 @@
-1908-J49SML-F-G-G-K-16M0TR-ND	CRYSTAL 16MHZ 		0.40$ 		QTÉ****
-ATMEGA328P-AU-ND				MCU 8BIT			3.04$		
-931-1360-ND						Connecteur SMA		4.29$		
-1568-1394-ND					modem LoRa			8.77$
-CP-037A-ND						Power Barrel		0.80$
-2151-RST-W1B6-10808-22M-FY-001-ND	Antenne			6.84$
-A113321-ND						Bornier à vis		1.66$
-LM2937IMP-3.3TR-ND				Regulateur 3.3V		3.86$
-ATMEGA328P-AU-ND				Microcontrolleur	3.11$
-151-1206-2-ND					Prise USB			0.77$
-478-7800-1-ND					Diode Schhotky		0.51$
-2057-EB147A-03-C-ND				Terminal block		1.02$
-DS18B20-ND						Thermomètre OneWire	
+1908-J49SML-F-G-G-K-16M0TR-ND	CRYSTAL 16MHZ 		0.40$ 		1
+ATMEGA328P-AU-ND				MCU 8BIT			3.04$		1
+931-1360-ND						Connecteur SMA		4.29$		1
+1568-1394-ND					modem LoRa			8.77$		1
+CP-037A-ND						Power Barrel		0.80$		1
+2151-RST-W1B6-10808-22M-FY-001-ND	Antenne			6.84$		1
+A113321-ND						Bornier à vis		1.66$		4
+LM2937IMP-3.3TR-ND				Regulateur 3.3V		3.86$		1
+151-1206-2-ND					Prise USB			0.77$		1
+478-7800-1-ND					Diode Schhotky		0.51$		2
+768-1007-2-ND					USB-UART			6.63$		1
+DS18B20-ND						Thermomètre OneWire				1
 
 
 C 	0.1		0805	7
@@ -26,5 +25,7 @@ R 	1M		0805	1
 R 	20		0805	2
 R 	10 		0805	1
 R	4.7K	0805	1
+
+
 
 
