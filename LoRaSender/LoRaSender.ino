@@ -7,7 +7,7 @@
 #include <LoRa.h> 
 
 // Data wire is plugged into digital pin 2 on the Arduino 
-#define ONE_WIRE_BUS  2 
+#define ONE_WIRE_BUS  4 
 
 //define the pins used by the transceiver module
 #define ss 10
@@ -64,24 +64,19 @@ void setup(void)
 void loop(void) 
 {
   // Send command to all the sensors for temperature conversion 
-  sensors.requestTemperatures();  
-  
-  //byte [LONGEUR_TRAME] trame; // trame : SOH, idModule x8, dataEntier, dataDecimal, checkSum
-   
+  sensors.requestTemperatures();     
 
   // Display temperature from each sensor 
-
   for (int i = 0;  i < deviceCount;  i++) 
   { 
-    str = str + String(sensors.getTempCByIndex(i))+ ", ";
+    str = "Sensor " + String(i) + " : " + String(sensors.getTempCByIndex(i))+ "oC";
+    Serial.print("Sending packet: ");
+    Serial.println(str);
+    //Send LoRa packet to receiver
+    LoRa.beginPacket();
+    LoRa.print(str);
+    LoRa.endPacket();
+    str = "";
   } 
-  Serial.print("Sending packet: ");
-
-  //Send LoRa packet to receiver
-  LoRa.beginPacket();
-  LoRa.print(str);
-  LoRa.endPacket();
-  str = "";
-  delay(10000);
-
+  delay(1000);
 } 
