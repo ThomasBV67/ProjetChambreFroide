@@ -1,8 +1,10 @@
 /*********
+ * Ce programme sert de serveur de réception pour des trames LoRa
   Modified from the examples of the Arduino LoRa library
   More resources: https://randomnerdtutorials.com
 *********/
 
+// Librairies nécessaires pour utiliser le module LoRa
 #include <SPI.h>
 #include <LoRa.h>
 
