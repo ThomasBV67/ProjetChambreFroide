@@ -10,6 +10,7 @@
 
     <Grid>
         <Button x:Name="btn1" Content="Button" Height="293" Width="560" Click="Button_Click" HorizontalAlignment="Center"/>
+        <Button x:Name="Btn_Elian" Content="Button" Margin="0,97,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="83" Width="560"/>
 
     </Grid>
 </Page>
