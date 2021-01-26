@@ -35,7 +35,7 @@ namespace TestPi
             }
             else 
             {
-                btn1.Content = "hey boy";
+                btn1.Content = "hey brotha";
             }
         }
     }
