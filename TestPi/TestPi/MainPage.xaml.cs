@@ -27,16 +27,5 @@ namespace TestPi
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if(btn1.Content.ToString() != "hey girl")
-            {
-                btn1.Content = "hey girl";
-            }
-            else 
-            {
-                btn1.Content = "hey brotha";
-            }
-        }
     }
 }
