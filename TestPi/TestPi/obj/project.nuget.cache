@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/Wtwh9oyxm9S0JRMMUYJwnhXnhZpKfH/3vtWy50iDbF+LLpXiDI35jnyXJMH4NR5GCsrTEMSc6ooniRE7vuTrg==",
+  "dgSpecHash": "41cemwDJoyjMIes0AgDynBu06OZRMnRV4kMCQXpJ9APRSWVOpkm1/5w/dLFH91exoMahSGmob+tHsev+tZ7HDQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Thomas\\Desktop\\Cegep\\Final\\ProjetChambreFroide\\TestPi\\TestPi\\TestPi.csproj",
   "expectedPackageFiles": [
@@ -26,7 +26,11 @@
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.net.native.compiler\\2.2.8-rel-28605-00\\runtime.win10-x86.microsoft.net.native.compiler.2.2.8-rel-28605-00.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.net.native.sharedlibrary\\2.2.7-rel-28605-00\\runtime.win10-x86.microsoft.net.native.sharedlibrary.2.2.7-rel-28605-00.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\\2.2.10\\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk.2.2.10.nupkg.sha512",
-    "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\\6.2.10\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform.6.2.10.nupkg.sha512"
+    "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\\6.2.10\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform.6.2.10.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\winrtxamltoolkit\\2.3.0\\winrtxamltoolkit.2.3.0.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\winrtxamltoolkit.controls.datavisualization\\2.3.0\\winrtxamltoolkit.controls.datavisualization.2.3.0.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\winrtxamltoolkit.controls.datavisualization.uwp\\2.3.0\\winrtxamltoolkit.controls.datavisualization.uwp.2.3.0.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\winrtxamltoolkit.uwp\\2.3.0\\winrtxamltoolkit.uwp.2.3.0.nupkg.sha512"
   ],
   "logs": []
 }

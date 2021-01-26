@@ -15,7 +15,6 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
       <RootProperty Name="HorizontalAlignment" />
-      <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="TestPi.MainPage" />
   </Roots.RootTypes>
