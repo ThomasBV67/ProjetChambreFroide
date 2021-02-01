@@ -12,9 +12,18 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormTempCourantes : Form
     {
+        GroupBox[] m_pannauxPrincipaux = new GroupBox[];
+
         public FormTempCourantes()
         {
             InitializeComponent();
+        }
+
+        private void FormTempCourantes_Load(object sender, EventArgs e)
+        {
+            Control ctrlSuivant;
+
+
         }
     }
 }
