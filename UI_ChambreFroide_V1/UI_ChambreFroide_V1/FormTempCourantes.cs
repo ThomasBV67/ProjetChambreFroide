@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UI_ChambreFroide_V1
 {
-    public partial class Form1 : Form
+    public partial class FormTempCourantes : Form
     {
-        public Form1()
+        public FormTempCourantes()
         {
             InitializeComponent();
         }
