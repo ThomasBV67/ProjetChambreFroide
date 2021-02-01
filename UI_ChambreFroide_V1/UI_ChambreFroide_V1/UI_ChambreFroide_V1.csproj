@@ -46,14 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormConfig.Designer.cs">
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTempCourantes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTempCourantes.Designer.cs">
+      <DependentUpon>FormTempCourantes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHistorique.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHistorique.Designer.cs">
+      <DependentUpon>FormHistorique.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormConfig.resx">
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHistorique.resx">
+      <DependentUpon>FormHistorique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTempCourantes.resx">
+      <DependentUpon>FormTempCourantes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
