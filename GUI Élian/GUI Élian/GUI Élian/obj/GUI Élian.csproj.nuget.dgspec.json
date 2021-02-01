@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Documents\\Projet Chambre froide\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\GUI Élian.csproj": {}
+    "C:\\Users\\elian\\Desktop\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\GUI Élian.csproj": {}
   },
   "projects": {
-    "F:\\Documents\\Projet Chambre froide\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\GUI Élian.csproj": {
+    "C:\\Users\\elian\\Desktop\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\GUI Élian.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Documents\\Projet Chambre froide\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\GUI Élian.csproj",
+        "projectUniqueName": "C:\\Users\\elian\\Desktop\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\GUI Élian.csproj",
         "projectName": "GUI Élian",
-        "projectPath": "F:\\Documents\\Projet Chambre froide\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\GUI Élian.csproj",
+        "projectPath": "C:\\Users\\elian\\Desktop\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\GUI Élian.csproj",
         "packagesPath": "C:\\Users\\elian\\.nuget\\packages\\",
-        "outputPath": "F:\\Documents\\Projet Chambre froide\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\obj\\",
+        "outputPath": "C:\\Users\\elian\\Desktop\\ProjetChambreFroide\\GUI Élian\\GUI Élian\\GUI Élian\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\elian\\AppData\\Roaming\\NuGet\\NuGet.Config",

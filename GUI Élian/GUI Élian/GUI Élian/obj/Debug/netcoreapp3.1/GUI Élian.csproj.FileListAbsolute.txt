@@ -13,3 +13,19 @@ F:\Documents\Projet Chambre froide\ProjetChambreFroide\GUI Élian\GUI Élian\GUI
 F:\Documents\Projet Chambre froide\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.pdb
 F:\Documents\Projet Chambre froide\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.genruntimeconfig.cache
 F:\Documents\Projet Chambre froide\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI_Élian.MenuPrincipal.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\bin\Debug\netcoreapp3.1\GUI Élian.exe
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\bin\Debug\netcoreapp3.1\GUI Élian.deps.json
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\bin\Debug\netcoreapp3.1\GUI Élian.runtimeconfig.json
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\bin\Debug\netcoreapp3.1\GUI Élian.runtimeconfig.dev.json
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\bin\Debug\netcoreapp3.1\GUI Élian.dll
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\bin\Debug\netcoreapp3.1\GUI Élian.pdb
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.csprojAssemblyReference.cache
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI_Élian.Form1.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI_Élian.MenuPrincipal.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.csproj.GenerateResource.cache
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.AssemblyInfoInputs.cache
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.AssemblyInfo.cs
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.csproj.CoreCompileInputs.cache
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.dll
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.pdb
+C:\Users\elian\Desktop\ProjetChambreFroide\GUI Élian\GUI Élian\GUI Élian\obj\Debug\netcoreapp3.1\GUI Élian.genruntimeconfig.cache
