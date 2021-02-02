@@ -1,0 +1,11 @@
+1908-J49SML-F-G-G-K-16M0TR-ND	CRYSTAL 16MHZ 		0.40$ 		10
+ATMEGA328P-AU-ND				MCU 8BIT			3.04$		10
+931-1360-ND						Connecteur SMA		4.29$		10
+1568-1394-ND					modem LoRa			8.77$		10
+CP-037A-ND						Power Barrel		0.80$		10
+2151-RST-W1B6-10808-22M-FY-001-ND	Antenne			6.84$		10
+A113321-ND						Bornier à vis		1.66$		40
+LM2937IMP-3.3TR-ND				Regulateur 3.3V		3.86$		10
+151-1206-2-ND					Prise USB			0.77$		10
+478-7800-1-ND					Diode Schhotky		0.51$		20
+768-1007-2-ND					USB-UART			6.63$		10
