@@ -34,82 +34,50 @@ namespace UI_ChambreFroide_V1
                 m_listButtons.Add(newBtn);
             }
         }
+        /// <summary>
+        /// Cette fonction met à jour la liste de capteurs
+        /// </summary>
         public void updateListeCapteurs()
         {
-            // We use these three SQLite objects:
+            // Objets qui seront utilisés pour la connection à la db SQlite
 
-            SQLiteConnection sqlite_conn;
+            SQLiteConnection db_conn;
+            SQLiteCommand db_command;
+            SQLiteDataAdapter db_dataAdapt;
 
-            SQLiteCommand sqlite_cmd;
-
-            SQLiteDataAdapter sqlite_adapt;
-
-            SQLiteDataReader sqlite_datareader;
-
-
-            // Trouve le fichier de db
+            // Trouve le path de la db en utilisant le path relatif
 
             string exeFile = (new System.Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
-
             string exeDir = Path.GetDirectoryName(exeFile);
-
             string fullPath = Path.Combine(exeDir, "..\\..\\dbTestProjet.db");
-
             string pathDB = "DataSource=" + fullPath;
 
+            // Connection à la db
 
-            // create a new database connection:
-            
-            sqlite_conn = new SQLiteConnection(pathDB);
-
-
-
-            // open the connection:
-
-            sqlite_conn.Open();
-
-
+            db_conn = new SQLiteConnection(pathDB);
+            db_conn.Open();
 
             // create a new SQL command:
 
-            sqlite_cmd = sqlite_conn.CreateCommand();
+            db_command = db_conn.CreateCommand();
 
 
             // build a SQL-Query :
 
-            sqlite_cmd.CommandText = "SELECT * FROM Capteurs";
+            db_command.CommandText = "SELECT * FROM Capteurs";
 
             DataTable dt = new DataTable();
 
-            //sqlite_adapt(sqlite_cmd)
+            db_dataAdapt = new SQLiteDataAdapter(db_command);
 
             // Now the SQLiteCommand object can give us a DataReader-Object:
 
-            sqlite_datareader = sqlite_cmd.ExecuteReader();
-
-
-
-            // The SQLiteDataReader allows us to run through the result lines:
-
-            while (sqlite_datareader.Read()) // Read() returns true if there is still a result line to read
-
-            {
-
-                // Print out the content of the text field:
-
-                //System.Console.WriteLine( sqlite_datareader["text"] );
-
-
-
-                string myreader = sqlite_datareader.GetString(0);
-
-                MessageBox.Show(myreader);
-
-            }
+            db_dataAdapt.Fill(dt);
+            dataGridView1.DataSource= dt;
 
             // We are ready, now lets cleanup and close our connection:
 
-            sqlite_conn.Close();
+            db_conn.Close();
 
         }
 
