@@ -39,8 +39,6 @@ namespace UI_ChambreFroide_V1
                     m_RTB_temp[(int)(i / 2)] = (RichTextBox)ctrlSuivant;
                     m_RTB_temp[(int)(i / 2)].Text = "ND";
                 }
-                
-                
             }
         }
 
