@@ -12,7 +12,9 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormTempCourantes : Form
     {
-     //   GroupBox[] m_pannauxPrincipaux = new GroupBox[];
+        const int NB_BOITES_AFFICHAGE = 15;
+        Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
+        RichTextBox[] m_RTB_temp = new RichTextBox[NB_BOITES_AFFICHAGE];
 
         public FormTempCourantes()
         {
@@ -22,6 +24,24 @@ namespace UI_ChambreFroide_V1
         private void FormTempCourantes_Load(object sender, EventArgs e)
         {
             Control ctrlSuivant;
+            ctrlSuivant = panelTemp;
+
+            for(int i = 0; i < NB_BOITES_AFFICHAGE*2; i++)
+            {
+                ctrlSuivant = GetNextControl(ctrlSuivant, true);
+                if (i % 2 == 0)
+                {
+                    m_label_pieces[(int)i / 2] = (Label)ctrlSuivant;
+                    m_label_pieces[(int)i / 2].Text = "Capteur #" + Convert.ToString((int)(i / 2) + 1);
+                }
+                else
+                {
+                    m_RTB_temp[(int)(i / 2)] = (RichTextBox)ctrlSuivant;
+                    m_RTB_temp[(int)(i / 2)].Text = "ND";
+                }
+                
+                
+            }
         }
 
         private void b_historique_Click(object sender, EventArgs e)
