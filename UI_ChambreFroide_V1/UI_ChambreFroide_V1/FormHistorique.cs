@@ -12,6 +12,7 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormHistorique : Form
     {
+        public FormTempCourantes objFormTempCourantes;
         public FormHistorique()
         {
             InitializeComponent();
