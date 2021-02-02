@@ -29,24 +29,26 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnUpdateCapteurs = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnUpdateCapteurs
             // 
-            this.button1.Location = new System.Drawing.Point(81, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnUpdateCapteurs.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnUpdateCapteurs.Location = new System.Drawing.Point(563, 77);
+            this.btnUpdateCapteurs.Name = "btnUpdateCapteurs";
+            this.btnUpdateCapteurs.Size = new System.Drawing.Size(74, 40);
+            this.btnUpdateCapteurs.TabIndex = 0;
+            this.btnUpdateCapteurs.Text = "Update liste capteurs";
+            this.btnUpdateCapteurs.UseVisualStyleBackColor = true;
+            this.btnUpdateCapteurs.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormChoixCapteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnUpdateCapteurs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormChoixCapteur";
             this.Text = "Form1";
@@ -57,6 +59,6 @@ namespace UI_ChambreFroide_V1
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUpdateCapteurs;
     }
 }
