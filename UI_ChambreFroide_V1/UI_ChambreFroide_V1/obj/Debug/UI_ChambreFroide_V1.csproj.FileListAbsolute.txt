@@ -24,3 +24,12 @@ C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CoreCompileInputs.cache
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.dll
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.dll
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.xml
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.xml

@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI_ChambreFroide_V1.Properties;
+using System.IO;
+using System.Reflection;
 
 namespace UI_ChambreFroide_V1
 {
@@ -40,11 +42,25 @@ namespace UI_ChambreFroide_V1
 
             SQLiteCommand sqlite_cmd;
 
+            SQLiteDataAdapter sqlite_adapt;
+
             SQLiteDataReader sqlite_datareader;
 
-            // create a new database connection:
 
-            sqlite_conn = new SQLiteConnection("Data Source=database.db;Version=3;New=True;Compress=True;");
+            // Trouve le fichier de db
+
+            string exeFile = (new System.Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
+
+            string exeDir = Path.GetDirectoryName(exeFile);
+
+            string fullPath = Path.Combine(exeDir, "..\\..\\dbTestProjet.db");
+
+            string pathDB = "DataSource=" + fullPath;
+
+
+            // create a new database connection:
+            
+            sqlite_conn = new SQLiteConnection(pathDB);
 
 
 
@@ -59,15 +75,13 @@ namespace UI_ChambreFroide_V1
             sqlite_cmd = sqlite_conn.CreateCommand();
 
 
+            // build a SQL-Query :
 
+            sqlite_cmd.CommandText = "SELECT * FROM Capteurs";
 
-            // But how do we read something out of our table ?
+            DataTable dt = new DataTable();
 
-            // First lets build a SQL-Query again:
-
-            sqlite_cmd.CommandText = "SELECT * FROM test";
-
-
+            //sqlite_adapt(sqlite_cmd)
 
             // Now the SQLiteCommand object can give us a DataReader-Object:
 
@@ -99,7 +113,7 @@ namespace UI_ChambreFroide_V1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnUpdateCapteurs_Click(object sender, EventArgs e)
         {
             updateListeCapteurs();
         }

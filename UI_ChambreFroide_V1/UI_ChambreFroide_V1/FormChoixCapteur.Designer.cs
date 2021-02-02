@@ -35,13 +35,13 @@ namespace UI_ChambreFroide_V1
             // btnUpdateCapteurs
             // 
             this.btnUpdateCapteurs.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnUpdateCapteurs.Location = new System.Drawing.Point(563, 77);
+            this.btnUpdateCapteurs.Location = new System.Drawing.Point(409, 218);
             this.btnUpdateCapteurs.Name = "btnUpdateCapteurs";
-            this.btnUpdateCapteurs.Size = new System.Drawing.Size(74, 40);
+            this.btnUpdateCapteurs.Size = new System.Drawing.Size(143, 86);
             this.btnUpdateCapteurs.TabIndex = 0;
             this.btnUpdateCapteurs.Text = "Update liste capteurs";
             this.btnUpdateCapteurs.UseVisualStyleBackColor = true;
-            this.btnUpdateCapteurs.Click += new System.EventHandler(this.button1_Click);
+            this.btnUpdateCapteurs.Click += new System.EventHandler(this.btnUpdateCapteurs_Click);
             // 
             // FormChoixCapteur
             // 
