@@ -498,7 +498,7 @@ NoConn ~ 5950 4850
 NoConn ~ 5950 4950
 Text Notes 6150 5050 0    50   ~ 0
 Port D garde meme numéro de pin que Arduino
-Text Notes 7950 6250 0    50   ~ 0
+Text Notes 8700 6300 0    50   ~ 0
 Témoins lumineux facultatifs
 NoConn ~ 9800 3200
 NoConn ~ 9800 3300
@@ -690,4 +690,31 @@ Wire Wire Line
 	10350 3300 10500 3300
 Text GLabel 10350 3000 1    50   Input ~ 0
 3V3
+$Comp
+L Device:LED D105
+U 1 1 60196B8A
+P 8100 5950
+F 0 "D105" V 8139 5832 50  0000 R CNN
+F 1 "TA" V 8048 5832 50  0000 R CNN
+F 2 "Diode_SMD:D_0805_2012Metric" H 8100 5950 50  0001 C CNN
+F 3 "~" H 8100 5950 50  0001 C CNN
+	1    8100 5950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R106
+U 1 1 60196B90
+P 8100 6250
+F 0 "R106" H 8170 6296 50  0000 L CNN
+F 1 "330" H 8170 6205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 8030 6250 50  0001 C CNN
+F 3 "~" H 8100 6250 50  0001 C CNN
+	1    8100 6250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8100 6400 7700 6400
+Connection ~ 7700 6400
+Text GLabel 8100 5800 1    50   Input ~ 0
+5V
 $EndSCHEMATC

@@ -293,7 +293,7 @@ TX
 Text GLabel 6750 3500 2    50   Input ~ 0
 DTR
 Text Notes 4150 2450 0    50   ~ 0
-Section facultative à l'exception du port USB et de la diode rattachée au port.\nSection utilisée uniquement pour prototypage, permet un changement de programme plus facile.
+Section facultative\nSection utilisée uniquement pour prototypage, permet un changement de programme plus facile.
 $Comp
 L power:PWR_FLAG #FLG0201
 U 1 1 600CD3F1
