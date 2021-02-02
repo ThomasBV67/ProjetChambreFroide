@@ -23,7 +23,9 @@ namespace UI_ChambreFroide_V1
             {
                 String newCap = "";
                 newCap = "Capteur " + i;
-                // m_listCapteurs.Add();
+                Button newBtn = new Button();
+                newBtn.Text
+                m_listCapteurs.Add(newBtn);
             }
         }
     }

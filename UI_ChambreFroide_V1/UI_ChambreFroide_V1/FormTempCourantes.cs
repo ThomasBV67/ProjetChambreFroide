@@ -26,12 +26,8 @@ namespace UI_ChambreFroide_V1
 
         private void b_historique_Click(object sender, EventArgs e)
         {
-            var frm = new FormHistorique();
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
-            frm.FormClosing += delegate { this.Show(); };
-            frm.Show();
-            this.Hide();
+            FormHistorique objFormHistorique = new FormHistorique();
+            objFormHistorique.Show();
         }
     }
 }
