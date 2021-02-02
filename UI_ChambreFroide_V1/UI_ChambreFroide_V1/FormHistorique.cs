@@ -16,5 +16,15 @@ namespace UI_ChambreFroide_V1
         {
             InitializeComponent();
         }
+
+        private void btnSelectCapteur_Click(object sender, EventArgs e)
+        {
+            var frm = new FormChoixCapteur();
+            frm.Location = this.Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.FormClosing += delegate { this.Show(); };
+            frm.Show();
+            this.Hide();
+        }
     }
 }

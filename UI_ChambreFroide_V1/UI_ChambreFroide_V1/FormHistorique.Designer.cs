@@ -73,6 +73,7 @@ namespace UI_ChambreFroide_V1
             this.btnSelectCapteur.TabIndex = 3;
             this.btnSelectCapteur.Text = "Sélection du capteur";
             this.btnSelectCapteur.UseVisualStyleBackColor = true;
+            this.btnSelectCapteur.Click += new System.EventHandler(this.btnSelectCapteur_Click);
             // 
             // FormHistorique
             // 

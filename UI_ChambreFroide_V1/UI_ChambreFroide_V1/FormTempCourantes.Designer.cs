@@ -89,6 +89,7 @@ namespace UI_ChambreFroide_V1
             this.b_historique.TabIndex = 38;
             this.b_historique.Text = "Historique";
             this.b_historique.UseVisualStyleBackColor = true;
+            this.b_historique.Click += new System.EventHandler(this.b_historique_Click);
             // 
             // richTextBox10
             // 
