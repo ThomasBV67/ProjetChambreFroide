@@ -4,7 +4,7 @@
 
 // Data wire is plugged into port 2 on the Arduino 
 
-#define ONE_WIRE_BUS 2 
+#define ONE_WIRE_BUS 4
 
   
 
@@ -93,6 +93,7 @@ void loop(void)
 void printAddress(DeviceAddress deviceAddress) 
 
 {  
+  //Serial.println((int)deviceAddress, HEX);
 
   for (uint8_t i = 0; i < 8; i++) 
 

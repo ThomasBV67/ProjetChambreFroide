@@ -41,7 +41,7 @@ void setup() {
    // Change sync word (0xF3) to match the receiver
   // The sync word assures you don't get LoRa messages from other LoRa transceivers
   // ranges from 0-0xFF
-  LoRa.setSyncWord(0xF3);
+  LoRa.setSyncWord(0x45);
   Serial.println("LoRa Initializing OK!");
 }
 
@@ -51,8 +51,7 @@ void loop() {
 
   //Send LoRa packet to receiver
   LoRa.beginPacket();
-  LoRa.print("good bye ");
-  LoRa.print(counter);
+  LoRa.print("getAddr");
   LoRa.endPacket();
 
   counter++;
