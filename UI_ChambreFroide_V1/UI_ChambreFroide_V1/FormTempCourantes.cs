@@ -47,5 +47,11 @@ namespace UI_ChambreFroide_V1
             FormHistorique objFormHistorique = new FormHistorique();
             objFormHistorique.Show();
         }
+
+        private void b_config_Click(object sender, EventArgs e)
+        {
+            FormConfig objFormConfig = new FormConfig();
+            objFormConfig.Show();
+        }
     }
 }

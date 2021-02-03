@@ -38,6 +38,7 @@ namespace UI_ChambreFroide_V1
             this.niv_avertissement = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_decouverte = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,11 +53,12 @@ namespace UI_ChambreFroide_V1
             this.ensemble,
             this.niv_avertissement,
             this.niv_alerte});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 10);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(929, 714);
+            this.dataGridView1.Size = new System.Drawing.Size(697, 580);
             this.dataGridView1.TabIndex = 0;
             // 
             // ID
@@ -113,22 +115,34 @@ namespace UI_ChambreFroide_V1
             // 
             // b_decouverte
             // 
-            this.b_decouverte.Location = new System.Drawing.Point(1065, 81);
+            this.b_decouverte.Location = new System.Drawing.Point(799, 60);
+            this.b_decouverte.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_decouverte.Name = "b_decouverte";
-            this.b_decouverte.Size = new System.Drawing.Size(189, 79);
+            this.b_decouverte.Size = new System.Drawing.Size(142, 64);
             this.b_decouverte.TabIndex = 1;
             this.b_decouverte.Text = "Découvrir le réseau";
             this.b_decouverte.UseVisualStyleBackColor = true;
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(799, 484);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(142, 64);
+            this.btnBack.TabIndex = 2;
+            this.btnBack.Text = "Retour";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // FormConfig
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1365, 738);
+            this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.b_decouverte);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormConfig";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -148,5 +162,6 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.DataGridViewTextBoxColumn niv_avertissement;
         private System.Windows.Forms.DataGridViewTextBoxColumn niv_alerte;
         private System.Windows.Forms.Button b_decouverte;
+        private System.Windows.Forms.Button btnBack;
     }
 }
