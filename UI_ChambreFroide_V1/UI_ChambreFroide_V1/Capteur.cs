@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Classe contenant les informations données par la table Capteurs de la db
+    /// </summary>
     public class Capteur
     {
         public String name, addr, group;

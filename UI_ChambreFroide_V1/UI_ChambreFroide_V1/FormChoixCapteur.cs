@@ -25,6 +25,7 @@ namespace UI_ChambreFroide_V1
         {
             InitializeComponent();
 
+            // Section pour ajouter les boutons en fonction des capteurs connectés
             for (int i = 0; i < m_listCapteurs.Count; i++)
             {
                 String newCap = "";
@@ -57,28 +58,24 @@ namespace UI_ChambreFroide_V1
             db_conn = new SQLiteConnection(pathDB);
             db_conn.Open();
 
-            // create a new SQL command:
+            // crée un objet de commande:
 
             db_command = db_conn.CreateCommand();
 
-
-            // build a SQL-Query :
+            // ajout de la commande pour aller chercher les capteurs:
 
             db_command.CommandText = "SELECT * FROM Capteurs";
 
+            // On rempli une dataTable avec le contenu de la table Capteurs
+
             DataTable dt = new DataTable();
-
             db_dataAdapt = new SQLiteDataAdapter(db_command);
-
-            // Now the SQLiteCommand object can give us a DataReader-Object:
-
             db_dataAdapt.Fill(dt);
             dataGridView1.DataSource= dt;
 
-            // We are ready, now lets cleanup and close our connection:
+            // Fin de connexion
 
             db_conn.Close();
-
         }
 
         private void btnUpdateCapteurs_Click(object sender, EventArgs e)
