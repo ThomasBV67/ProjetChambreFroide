@@ -25,17 +25,8 @@ namespace UI_ChambreFroide_V1
         public FormChoixCapteur()
         {
             InitializeComponent();
-
-            // Section pour ajouter les boutons en fonction des capteurs connectés
-            for (int i = 0; i < m_listCapteurs.Count; i++)
-            {
-                String newCap = "";
-                newCap = "Capteur " + i;
-                Button newBtn = new Button();
-                newBtn.Text = m_listCapteurs[i].name;
-                m_listButtons.Add(newBtn);
-            }
         }
+        
         /// <summary>
         /// Cette fonction met à jour la liste de capteurs
         /// </summary>
@@ -73,6 +64,8 @@ namespace UI_ChambreFroide_V1
             db_dataAdapt = new SQLiteDataAdapter(db_command);
             db_dataAdapt.Fill(dt);
             dataGridViewCapteurs.DataSource= dt;
+
+            dataGridViewCapteurs.AutoResizeColumns();
 
             // Fin de connexion
 
@@ -112,6 +105,11 @@ namespace UI_ChambreFroide_V1
         private void btnSelect_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void FormChoixCapteur_Load(object sender, EventArgs e)
+        {
+            updateListeCapteurs();
         }
     }
 }

@@ -124,6 +124,7 @@ namespace UI_ChambreFroide_V1
             this.Name = "FormChoixCapteur";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormChoixCapteur_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCapteurs)).EndInit();
             this.ResumeLayout(false);
 
