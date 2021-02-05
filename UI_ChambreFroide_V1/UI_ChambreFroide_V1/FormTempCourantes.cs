@@ -51,6 +51,7 @@ namespace UI_ChambreFroide_V1
         private void b_config_Click(object sender, EventArgs e)
         {
             FormConfig objFormConfig = new FormConfig();
+            objFormConfig.pagePrincipale = this;
             objFormConfig.Show();
         }
     }

@@ -29,6 +29,7 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.b_historique = new System.Windows.Forms.Button();
             this.b_config = new System.Windows.Forms.Button();
             this.b_suivant = new System.Windows.Forms.Button();
@@ -65,6 +66,7 @@ namespace UI_ChambreFroide_V1
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.panelTemp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,7 +151,7 @@ namespace UI_ChambreFroide_V1
             this.panelTemp.Controls.Add(this.label1);
             this.panelTemp.Controls.Add(this.richTextBox1);
             this.panelTemp.Location = new System.Drawing.Point(9, 11);
-            this.panelTemp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTemp.Margin = new System.Windows.Forms.Padding(2);
             this.panelTemp.Name = "panelTemp";
             this.panelTemp.Size = new System.Drawing.Size(1006, 409);
             this.panelTemp.TabIndex = 40;
@@ -169,7 +171,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox11.Location = new System.Drawing.Point(784, 307);
-            this.richTextBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox11.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox11.Name = "richTextBox11";
             this.richTextBox11.Size = new System.Drawing.Size(124, 73);
             this.richTextBox11.TabIndex = 29;
@@ -190,7 +192,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox12.Location = new System.Drawing.Point(616, 307);
-            this.richTextBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox12.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox12.Name = "richTextBox12";
             this.richTextBox12.Size = new System.Drawing.Size(124, 73);
             this.richTextBox12.TabIndex = 27;
@@ -211,7 +213,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox13.Location = new System.Drawing.Point(443, 307);
-            this.richTextBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox13.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox13.Name = "richTextBox13";
             this.richTextBox13.Size = new System.Drawing.Size(124, 73);
             this.richTextBox13.TabIndex = 25;
@@ -232,7 +234,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox14.Location = new System.Drawing.Point(270, 307);
-            this.richTextBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox14.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox14.Name = "richTextBox14";
             this.richTextBox14.Size = new System.Drawing.Size(124, 73);
             this.richTextBox14.TabIndex = 23;
@@ -253,7 +255,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox15.Location = new System.Drawing.Point(95, 307);
-            this.richTextBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox15.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox15.Name = "richTextBox15";
             this.richTextBox15.Size = new System.Drawing.Size(124, 73);
             this.richTextBox15.TabIndex = 21;
@@ -274,7 +276,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox6.Location = new System.Drawing.Point(784, 184);
-            this.richTextBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox6.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox6.Name = "richTextBox6";
             this.richTextBox6.Size = new System.Drawing.Size(124, 73);
             this.richTextBox6.TabIndex = 19;
@@ -295,7 +297,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox7.Location = new System.Drawing.Point(616, 184);
-            this.richTextBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox7.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox7.Name = "richTextBox7";
             this.richTextBox7.Size = new System.Drawing.Size(124, 73);
             this.richTextBox7.TabIndex = 17;
@@ -316,7 +318,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox8.Location = new System.Drawing.Point(443, 184);
-            this.richTextBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox8.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox8.Name = "richTextBox8";
             this.richTextBox8.Size = new System.Drawing.Size(124, 73);
             this.richTextBox8.TabIndex = 15;
@@ -337,7 +339,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox9.Location = new System.Drawing.Point(270, 184);
-            this.richTextBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox9.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox9.Name = "richTextBox9";
             this.richTextBox9.Size = new System.Drawing.Size(124, 73);
             this.richTextBox9.TabIndex = 13;
@@ -358,7 +360,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox10.Location = new System.Drawing.Point(95, 184);
-            this.richTextBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox10.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox10.Name = "richTextBox10";
             this.richTextBox10.Size = new System.Drawing.Size(124, 73);
             this.richTextBox10.TabIndex = 11;
@@ -379,7 +381,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox5.Location = new System.Drawing.Point(784, 68);
-            this.richTextBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox5.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.Size = new System.Drawing.Size(124, 73);
             this.richTextBox5.TabIndex = 9;
@@ -400,7 +402,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox4.Location = new System.Drawing.Point(616, 68);
-            this.richTextBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox4.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox4.Name = "richTextBox4";
             this.richTextBox4.Size = new System.Drawing.Size(124, 73);
             this.richTextBox4.TabIndex = 7;
@@ -421,7 +423,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox3.Location = new System.Drawing.Point(443, 68);
-            this.richTextBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox3.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(124, 73);
             this.richTextBox3.TabIndex = 5;
@@ -442,7 +444,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox2.Location = new System.Drawing.Point(270, 68);
-            this.richTextBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(124, 73);
             this.richTextBox2.TabIndex = 3;
@@ -463,7 +465,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox1.Location = new System.Drawing.Point(95, 68);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(124, 73);
             this.richTextBox1.TabIndex = 1;
@@ -530,6 +532,7 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        public System.IO.Ports.SerialPort serialPort1;
     }
 }
 

@@ -39,7 +39,13 @@ namespace UI_ChambreFroide_V1
             this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_decouverte = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.b_configSerie = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.infoPortActuel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.etatPortActuel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.b_ouvertureFermeturePort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -54,11 +60,11 @@ namespace UI_ChambreFroide_V1
             this.niv_avertissement,
             this.niv_alerte});
             this.dataGridView1.Location = new System.Drawing.Point(9, 10);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(697, 580);
+            this.dataGridView1.Size = new System.Drawing.Size(717, 550);
             this.dataGridView1.TabIndex = 0;
             // 
             // ID
@@ -116,7 +122,7 @@ namespace UI_ChambreFroide_V1
             // b_decouverte
             // 
             this.b_decouverte.Location = new System.Drawing.Point(799, 60);
-            this.b_decouverte.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_decouverte.Margin = new System.Windows.Forms.Padding(2);
             this.b_decouverte.Name = "b_decouverte";
             this.b_decouverte.Size = new System.Drawing.Size(142, 64);
             this.b_decouverte.TabIndex = 1;
@@ -134,11 +140,57 @@ namespace UI_ChambreFroide_V1
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // b_configSerie
+            // 
+            this.b_configSerie.Location = new System.Drawing.Point(799, 308);
+            this.b_configSerie.Name = "b_configSerie";
+            this.b_configSerie.Size = new System.Drawing.Size(142, 62);
+            this.b_configSerie.TabIndex = 3;
+            this.b_configSerie.Text = "Configuration du port série";
+            this.b_configSerie.UseVisualStyleBackColor = true;
+            this.b_configSerie.Click += new System.EventHandler(this.b_configSerie_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoPortActuel,
+            this.etatPortActuel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 578);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // infoPortActuel
+            // 
+            this.infoPortActuel.Name = "infoPortActuel";
+            this.infoPortActuel.Size = new System.Drawing.Size(118, 17);
+            this.infoPortActuel.Text = "toolStripStatusLabel1";
+            // 
+            // etatPortActuel
+            // 
+            this.etatPortActuel.Name = "etatPortActuel";
+            this.etatPortActuel.Size = new System.Drawing.Size(118, 17);
+            this.etatPortActuel.Text = "toolStripStatusLabel2";
+            // 
+            // b_ouvertureFermeturePort
+            // 
+            this.b_ouvertureFermeturePort.Location = new System.Drawing.Point(799, 377);
+            this.b_ouvertureFermeturePort.Name = "b_ouvertureFermeturePort";
+            this.b_ouvertureFermeturePort.Size = new System.Drawing.Size(142, 58);
+            this.b_ouvertureFermeturePort.TabIndex = 5;
+            this.b_ouvertureFermeturePort.Text = "Ouvrir le port";
+            this.b_ouvertureFermeturePort.UseVisualStyleBackColor = true;
+            this.b_ouvertureFermeturePort.Click += new System.EventHandler(this.b_ouvertureFermeturePort_Click);
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.b_ouvertureFermeturePort);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.b_configSerie);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.b_decouverte);
             this.Controls.Add(this.dataGridView1);
@@ -147,7 +199,10 @@ namespace UI_ChambreFroide_V1
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -163,5 +218,10 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.DataGridViewTextBoxColumn niv_alerte;
         private System.Windows.Forms.Button b_decouverte;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button b_configSerie;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel infoPortActuel;
+        private System.Windows.Forms.ToolStripStatusLabel etatPortActuel;
+        private System.Windows.Forms.Button b_ouvertureFermeturePort;
     }
 }
