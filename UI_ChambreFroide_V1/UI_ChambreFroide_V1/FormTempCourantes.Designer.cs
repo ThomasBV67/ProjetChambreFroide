@@ -471,6 +471,10 @@ namespace UI_ChambreFroide_V1
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "-XX°";
             // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.getLoRa);
+            // 
             // FormTempCourantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

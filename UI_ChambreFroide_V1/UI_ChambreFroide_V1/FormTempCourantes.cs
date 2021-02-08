@@ -17,10 +17,20 @@ namespace UI_ChambreFroide_V1
         RichTextBox[] m_RTB_temp = new RichTextBox[NB_BOITES_AFFICHAGE];
         public List<Capteur> lst_Capteurs = new List<Capteur>();
 
+        String retourSerie = "";
+
+        public delegate void monProtoDelegate();//définir prototype de fonction... paramètres d'entrée et de retour
+        monProtoDelegate objDelegate;//on se déclare un objet delegate. (i.e. un pointeur de fonction ayant ce prototype)
+
+
         public FormTempCourantes()
         {
             InitializeComponent();
+
+            objDelegate = delegate_getLoRa;
         }
+
+        
 
         private void FormTempCourantes_Load(object sender, EventArgs e)
         {
@@ -55,6 +65,16 @@ namespace UI_ChambreFroide_V1
             objFormConfig.pagePrincipale = this;
             objFormConfig.temoinOuverture();
             objFormConfig.Show();
+        }
+        private void delegate_getLoRa()
+        {
+            MessageBox.Show(retourSerie);
+        }
+
+        private void getLoRa(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            retourSerie = serialPort1.ReadExisting();
+            BeginInvoke(objDelegate);
         }
     }
 }

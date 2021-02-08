@@ -111,7 +111,7 @@ namespace UI_ChambreFroide_V1
         {
             if (pagePrincipale.serialPort1.IsOpen)
             {
-
+                pagePrincipale.serialPort1.WriteLine("1getAddr");
             }
             else
             {
