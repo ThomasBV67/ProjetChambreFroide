@@ -12,10 +12,10 @@ namespace UI_ChambreFroide_V1
 {
     public class AccesDB
     {
-        public AccesDB()
-        {
-
-        }
+        /// <summary>
+        /// Cette fonction retourne la liste de tous les capteurs dans la dataBase
+        /// </summary>
+        /// <returns></returns>
         public static List<Capteur> GetCapteurs()
         {
             using(IDbConnection conn = new SQLiteConnection(GetConnectionString()))
@@ -25,10 +25,16 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Cette fonction retourne la liste de tous les capteurs connectés qui n'ont pas encore 
+        /// été mis en place dans le système
+        /// </summary>
+        /// <returns></returns>
         public static List<Capteur> GetUnsetCapteurs()
         {
             List<Capteur> capteurs = new List<Capteur>();
             capteurs = GetCapteurs();
+
             foreach(Capteur cap in capteurs)
             {
                 if(cap.Set == 1)
@@ -39,10 +45,15 @@ namespace UI_ChambreFroide_V1
             return capteurs;
         }
 
+        /// <summary>
+        /// Cette fonction retourne la liste de tous les capteurs mis en place dans le systeme
+        /// </summary>
+        /// <returns></returns>
         public static List<Capteur> GetSetCapteurs()
         {
             List<Capteur> capteurs = new List<Capteur>();
             capteurs = GetCapteurs();
+
             foreach (Capteur cap in capteurs)
             {
                 if (cap.Set == 0)
@@ -53,13 +64,32 @@ namespace UI_ChambreFroide_V1
             return capteurs;
         }
 
-        public static void AddNewCapteur(Capteur cap)
+        /// <summary>
+        /// Cette fonction vérifie si un capteur donné est dans la dataBase. Si il est présent, 
+        /// elle retourne false. Si le capteur n'est pas présent, elle l'ajoute à la dataBase
+        /// </summary>
+        /// <param name="newCap"></param>
+        /// <returns></returns>
+        public static bool AddNewCapteur(Capteur newCap)
         {
+            List<Capteur> capteurs = new List<Capteur>();
+            capteurs = GetCapteurs();
+
+            foreach (Capteur cap in capteurs)
+            {
+                if (newCap.Address == cap.Address)
+                {
+                    return false;
+                }
+            }
+
             using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
             {
-                conn.Execute("INSERT INTO Capteurs (Id, Module, Index, Set, AlertLow, AlertHigh, Name, Address, Group) " +
-                    "values (@Id, @Module, @Index, @Set, @AlertLow, @AlertHigh, @Name, @Address, @Group)", cap);
+                conn.Execute("INSERT INTO Capteurs (Module, Index, Set, Address) " +
+                    "values (@Module, @Index, @Set, @Address)", newCap);
             }
+
+            return true;
         }
         
         public static void SetCapteur(Capteur cap)
