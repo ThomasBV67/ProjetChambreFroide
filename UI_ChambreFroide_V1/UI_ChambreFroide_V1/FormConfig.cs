@@ -107,5 +107,16 @@ namespace UI_ChambreFroide_V1
             }
             temoinOuverture();
         }
+        private void b_decouverte_Click(object sender, EventArgs e)
+        {
+            if (pagePrincipale.serialPort1.IsOpen)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Le port série doit etre ouvert");
+            }
+        }
     }
 }
