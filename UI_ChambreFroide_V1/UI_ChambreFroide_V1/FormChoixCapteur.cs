@@ -56,7 +56,7 @@ namespace UI_ChambreFroide_V1
 
             // ajout de la commande pour aller chercher les capteurs:
 
-            db_command.CommandText = "SELECT * FROM Capteurs";
+            db_command.CommandText = "SELECT * FROM Capteurs WHERE ";
 
             // On rempli une dataTable avec le contenu de la table Capteurs
 

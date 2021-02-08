@@ -11,19 +11,21 @@ namespace UI_ChambreFroide_V1
     /// </summary>
     public class Capteur
     {
-        public String name, addr, group;
-        public float alertLow, alertHigh;
-        public int module, index;
+        public String Name, Address, Group;
+        public float AlertLow, AlertHigh;
+        public int Id, Module, Index, Set;
 
-        public Capteur(String addrCap, String nameCap, float alertLowCap, float alertHighCap, String groupCap, int moduleCap, int indexCap)
+        public Capteur(int idCap, String addrCap, int setCap, String nameCap, float alertLowCap, float alertHighCap, String groupCap, int moduleCap, int indexCap)
         {
-            name = nameCap;
-            addr = addrCap;
-            alertLow = alertLowCap;
-            alertHigh = alertHighCap;
-            group = groupCap;
-            module = moduleCap;
-            index = indexCap;
+            Id = idCap;
+            Address = addrCap;
+            Set = setCap;
+            Name = nameCap;
+            AlertLow = alertLowCap;
+            AlertHigh = alertHighCap;
+            Group = groupCap;
+            Module = moduleCap;
+            Index = indexCap;
         }
     }
 }
