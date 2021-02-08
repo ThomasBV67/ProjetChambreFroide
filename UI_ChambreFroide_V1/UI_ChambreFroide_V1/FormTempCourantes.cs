@@ -19,7 +19,7 @@ namespace UI_ChambreFroide_V1
 
         String retourSerie = "";
 
-        public delegate void monProtoDelegate();//définir prototype de fonction... paramètres d'entrée et de retour
+        private delegate void monProtoDelegate();//définir prototype de fonction... paramètres d'entrée et de retour
         monProtoDelegate objDelegate;//on se déclare un objet delegate. (i.e. un pointeur de fonction ayant ce prototype)
 
 
@@ -68,12 +68,29 @@ namespace UI_ChambreFroide_V1
         }
         private void delegate_getLoRa()
         {
+            String[] capteursModule = new String[20];
+            int nbCapteurs = 0;
+
+            for (int i = 0; i < retourSerie.Length; i++)//compte le nombre de capteurs sur le module interrogé
+            {
+                if (retourSerie.Substring(i, 1) == "#")
+                    nbCapteurs++;
+            }
+
+            for(int i = 0; i < nbCapteurs; i++)
+            {
+                lst_Capteurs.Add(new Capteur());
+            }
+            
+
+            capteursModule = retourSerie.Split('#');
+            
             MessageBox.Show(retourSerie);
         }
 
         private void getLoRa(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            retourSerie = serialPort1.ReadExisting();
+            retourSerie = serialPort1.ReadLine();
             BeginInvoke(objDelegate);
         }
     }

@@ -72,7 +72,7 @@ void loop(void) {
             if (Thermometer[j] < 0x10) addresse += String(0);
             addresse += String(Thermometer[j], HEX); 
           }
-          addresse += "\n";
+          addresse += "#";
         }
         LoRa.beginPacket();
         LoRa.print(addresse);
