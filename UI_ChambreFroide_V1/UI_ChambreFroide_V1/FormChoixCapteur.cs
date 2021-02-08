@@ -32,8 +32,11 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         public void updateListeCapteurs()
         {
-            // Objets qui seront utilisés pour la connection à la db SQlite
+            m_listCapteurs = AccesDB.GetCapteurs();
 
+            dataGridViewCapteurs.DataSource = m_listCapteurs;
+            // Objets qui seront utilisés pour la connection à la db SQlite
+            /*
             SQLiteConnection db_conn;
             SQLiteCommand db_command;
             SQLiteDataAdapter db_dataAdapt;
@@ -70,6 +73,8 @@ namespace UI_ChambreFroide_V1
             // Fin de connexion
 
             db_conn.Close();
+            */
+
         }
 
         private void btnUpdateCapteurs_Click(object sender, EventArgs e)
