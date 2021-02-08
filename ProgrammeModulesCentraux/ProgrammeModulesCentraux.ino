@@ -62,22 +62,20 @@ void loop(void) {
       String LoRaData = LoRa.readString();
       if(LoRaData == (NUM_MODULE + "getAddr\n")){
         Serial.println("Requete d'addressage...");
+        addresse = "";
         for (int i = 0;  i < deviceCount;  i++) 
         { 
           sensors.getAddress(Thermometer, i); 
-          addresse = "";
+          
           for(int j=0; j<=7; j++)
           {
             if (Thermometer[j] < 0x10) addresse += String(0);
             addresse += String(Thermometer[j], HEX); 
           }
-          Serial.println(addresse);
-          LoRa.beginPacket();
-          LoRa.print(addresse);
-          LoRa.endPacket();
+          addresse += "\n";
         }
         LoRa.beginPacket();
-        LoRa.print("FIN");
+        LoRa.print(addresse);
         LoRa.endPacket();
       }else if(LoRaData.startsWith(NUM_MODULE + "getTemp-")){
         LoRaData.replace(NUM_MODULE + "getTemp-", "");
