@@ -34,10 +34,10 @@ namespace UI_ChambreFroide_V1
         {
             
             Capteur cap = new Capteur();
-            cap.Address = "AB 23";
-            cap.Set = 0;
+            cap.Address = "AB 23 G3 33 BB C9";
+            cap.Ready = 0;
             cap.Module = 2;
-            cap.Index = 5;
+            cap.ModuleIndex = 5;
             AccesDB.AddNewCapteur(cap);
             m_listCapteurs = AccesDB.GetCapteurs();
             dataGridViewCapteurs.DataSource = m_listCapteurs;
@@ -62,7 +62,7 @@ namespace UI_ChambreFroide_V1
             updateListeCapteurs();
             foreach (Capteur cap in m_listCapteurs)
             {
-                if (capToSet.Address == cap.Address && cap.Set == 0)
+                if (capToSet.Address == cap.Address && cap.Ready == 0)
                 {
                     AccesDB.SetCapteur(capToSet);
                 }

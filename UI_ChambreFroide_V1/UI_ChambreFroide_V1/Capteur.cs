@@ -22,6 +22,6 @@ namespace UI_ChambreFroide_V1
     {
         public String Name, Address, Group;
         public double AlertLow, AlertHigh;
-        public int Id, Module, Index, Ready;
+        public int Id, Module, ModuleIndex, Ready;
     }
 }

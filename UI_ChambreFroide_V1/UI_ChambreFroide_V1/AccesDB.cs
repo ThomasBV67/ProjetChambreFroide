@@ -83,10 +83,27 @@ namespace UI_ChambreFroide_V1
                 }
             }
 
-            using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
+            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
             {
-                //conn.Execute("INSERT INTO Capteurs(Address, Ready, Module, Index) VALUES (@Address, @Ready, @Module, @Index)", newCap);
-                conn.Execute("INSERT INTO Capteurs (Address, Ready, Module, Index) VALUES ('ab cd', 0, 1, 1)");
+                SQLiteCommand sqlite_cmd;
+                conn.Open();
+                sqlite_cmd = conn.CreateCommand();
+                sqlite_cmd.CommandText = "INSERT INTO Capteurs(Address, Ready, Module, ModuleIndex) VALUES (@Address, @Ready, @Module, @ModuleIndex)";
+
+                sqlite_cmd.Parameters.Add("@Address", DbType.String, -1);
+                sqlite_cmd.Parameters["@Address"].Value = newCap.Address;
+
+                sqlite_cmd.Parameters.Add("@Ready", DbType.Int64, -1);
+                sqlite_cmd.Parameters["@Ready"].Value = newCap.Ready;
+
+                sqlite_cmd.Parameters.Add("@Module", DbType.Int64, -1);
+                sqlite_cmd.Parameters["@Module"].Value = newCap.Module;
+
+                sqlite_cmd.Parameters.Add("@ModuleIndex", DbType.Int64, -1);
+                sqlite_cmd.Parameters["@ModuleIndex"].Value = newCap.ModuleIndex;
+
+                sqlite_cmd.ExecuteNonQuery();
+                conn.Close();
             }
 
             return true;
