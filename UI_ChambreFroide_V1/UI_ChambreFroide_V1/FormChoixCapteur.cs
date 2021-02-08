@@ -19,21 +19,14 @@ namespace UI_ChambreFroide_V1
         public List<Button> m_listButtons = new List<Button>();
         public int m_nbCapteurs = 0;
 
+        public int dataGridSelectedIndex = 0;
         public List<Capteur> m_listCapteurs = new List<Capteur>();
 
         public FormChoixCapteur()
         {
             InitializeComponent();
-
-            for (int i = 0; i < m_listCapteurs.Count; i++)
-            {
-                String newCap = "";
-                newCap = "Capteur " + i;
-                Button newBtn = new Button();
-                newBtn.Text = m_listCapteurs[i].name;
-                m_listButtons.Add(newBtn);
-            }
         }
+        
         /// <summary>
         /// Cette fonction met à jour la liste de capteurs
         /// </summary>
@@ -57,31 +50,64 @@ namespace UI_ChambreFroide_V1
             db_conn = new SQLiteConnection(pathDB);
             db_conn.Open();
 
-            // create a new SQL command:
+            // crée un objet de commande:
 
             db_command = db_conn.CreateCommand();
 
+            // ajout de la commande pour aller chercher les capteurs:
 
-            // build a SQL-Query :
+            db_command.CommandText = "SELECT * FROM Capteurs WHERE ";
 
-            db_command.CommandText = "SELECT * FROM Capteurs";
+            // On rempli une dataTable avec le contenu de la table Capteurs
 
             DataTable dt = new DataTable();
-
             db_dataAdapt = new SQLiteDataAdapter(db_command);
-
-            // Now the SQLiteCommand object can give us a DataReader-Object:
-
             db_dataAdapt.Fill(dt);
-            dataGridView1.DataSource= dt;
+            dataGridViewCapteurs.DataSource= dt;
 
-            // We are ready, now lets cleanup and close our connection:
+            dataGridViewCapteurs.AutoResizeColumns();
+
+            // Fin de connexion
 
             db_conn.Close();
-
         }
 
         private void btnUpdateCapteurs_Click(object sender, EventArgs e)
+        {
+            updateListeCapteurs();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            if(dataGridSelectedIndex>0)
+            {
+                dataGridViewCapteurs.Rows[dataGridSelectedIndex].Selected = false;
+                dataGridSelectedIndex--;
+                dataGridViewCapteurs.Rows[dataGridSelectedIndex].Selected = true;
+            }
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (dataGridSelectedIndex < dataGridViewCapteurs.Rows.Count-1)
+            {
+                dataGridViewCapteurs.Rows[dataGridSelectedIndex].Selected = false;
+                dataGridSelectedIndex++;
+                dataGridViewCapteurs.Rows[dataGridSelectedIndex].Selected = true;
+            }
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void FormChoixCapteur_Load(object sender, EventArgs e)
         {
             updateListeCapteurs();
         }

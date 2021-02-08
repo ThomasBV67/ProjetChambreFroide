@@ -20,12 +20,13 @@ namespace UI_ChambreFroide_V1
 
         private void btnSelectCapteur_Click(object sender, EventArgs e)
         {
-            var frm = new FormChoixCapteur();
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
-            frm.FormClosing += delegate { this.Show(); };
-            frm.Show();
-            this.Hide();
+            FormChoixCapteur objFormChoixCapteur = new FormChoixCapteur();
+            objFormChoixCapteur.Show();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
