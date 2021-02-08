@@ -81,4 +81,16 @@ C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreF
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.dll
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.dll
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.dll
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.xml
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.xml
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.xml
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Configuration.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache

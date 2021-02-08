@@ -52,6 +52,7 @@ namespace UI_ChambreFroide_V1
         {
             FormConfig objFormConfig = new FormConfig();
             objFormConfig.pagePrincipale = this;
+            objFormConfig.temoinOuverture();
             objFormConfig.Show();
         }
     }
