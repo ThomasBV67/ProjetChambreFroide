@@ -37,7 +37,7 @@ namespace UI_ChambreFroide_V1
 
             foreach(Capteur cap in capteurs)
             {
-                if(cap.Set == 1)
+                if(cap.Ready == 1)
                 {
                     capteurs.Remove(cap);
                 }
@@ -56,7 +56,7 @@ namespace UI_ChambreFroide_V1
 
             foreach (Capteur cap in capteurs)
             {
-                if (cap.Set == 0)
+                if (cap.Ready == 0)
                 {
                     capteurs.Remove(cap);
                 }
@@ -83,10 +83,27 @@ namespace UI_ChambreFroide_V1
                 }
             }
 
-            using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
+            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
             {
-                conn.Execute("INSERT INTO Capteurs (Module, Index, Set, Address) " +
-                    "values (@Module, @Index, @Set, @Address)", newCap);
+                SQLiteCommand sqlite_cmd;
+                conn.Open();
+                sqlite_cmd = conn.CreateCommand();
+                sqlite_cmd.CommandText = "INSERT INTO Capteurs(Address, Ready, Module, ModuleIndex) VALUES (@Address, @Ready, @Module, @ModuleIndex)";
+
+                sqlite_cmd.Parameters.Add("@Address", DbType.String, -1);
+                sqlite_cmd.Parameters["@Address"].Value = newCap.Address;
+
+                sqlite_cmd.Parameters.Add("@Ready", DbType.Int64, -1);
+                sqlite_cmd.Parameters["@Ready"].Value = newCap.Ready;
+
+                sqlite_cmd.Parameters.Add("@Module", DbType.Int64, -1);
+                sqlite_cmd.Parameters["@Module"].Value = newCap.Module;
+
+                sqlite_cmd.Parameters.Add("@ModuleIndex", DbType.Int64, -1);
+                sqlite_cmd.Parameters["@ModuleIndex"].Value = newCap.ModuleIndex;
+
+                sqlite_cmd.ExecuteNonQuery();
+                conn.Close();
             }
 
             return true;
