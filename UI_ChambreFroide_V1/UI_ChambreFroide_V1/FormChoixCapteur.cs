@@ -32,8 +32,14 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         public void updateListeCapteurs()
         {
+            
+            Capteur cap = new Capteur();
+            cap.Address = "AB 23";
+            cap.Set = 0;
+            cap.Module = 2;
+            cap.Index = 5;
+            AccesDB.AddNewCapteur(cap);
             m_listCapteurs = AccesDB.GetCapteurs();
-
             dataGridViewCapteurs.DataSource = m_listCapteurs;
 
         }

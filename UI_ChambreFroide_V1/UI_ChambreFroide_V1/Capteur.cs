@@ -16,12 +16,12 @@ namespace UI_ChambreFroide_V1
     /// Id : Id dans la dataBase
     /// Module : # du module duquel vient le capteur
     /// Index : Index du capteur dans le module
-    /// Set : Indique si le capteur à déja été setup par l'usager.
+    /// Ready : Indique si le capteur à déja été setup par l'usager.
     /// </summary>
     public class Capteur
     {
         public String Name, Address, Group;
         public double AlertLow, AlertHigh;
-        public int Id, Module, Index, Set;
+        public int Id, Module, Index, Ready;
     }
 }

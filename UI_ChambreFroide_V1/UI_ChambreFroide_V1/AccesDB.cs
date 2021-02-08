@@ -37,7 +37,7 @@ namespace UI_ChambreFroide_V1
 
             foreach(Capteur cap in capteurs)
             {
-                if(cap.Set == 1)
+                if(cap.Ready == 1)
                 {
                     capteurs.Remove(cap);
                 }
@@ -56,7 +56,7 @@ namespace UI_ChambreFroide_V1
 
             foreach (Capteur cap in capteurs)
             {
-                if (cap.Set == 0)
+                if (cap.Ready == 0)
                 {
                     capteurs.Remove(cap);
                 }
@@ -85,8 +85,8 @@ namespace UI_ChambreFroide_V1
 
             using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
             {
-                conn.Execute("INSERT INTO Capteurs (Module, Index, Set, Address) " +
-                    "values (@Module, @Index, @Set, @Address)", newCap);
+                //conn.Execute("INSERT INTO Capteurs(Address, Ready, Module, Index) VALUES (@Address, @Ready, @Module, @Index)", newCap);
+                conn.Execute("INSERT INTO Capteurs (Address, Ready, Module, Index) VALUES ('ab cd', 0, 1, 1)");
             }
 
             return true;
