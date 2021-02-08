@@ -35,46 +35,32 @@ namespace UI_ChambreFroide_V1
             m_listCapteurs = AccesDB.GetCapteurs();
 
             dataGridViewCapteurs.DataSource = m_listCapteurs;
-            // Objets qui seront utilisés pour la connection à la db SQlite
-            /*
-            SQLiteConnection db_conn;
-            SQLiteCommand db_command;
-            SQLiteDataAdapter db_dataAdapt;
 
-            // Trouve le path de la db en utilisant le path relatif
+        }
 
-            string exeFile = (new System.Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
-            string exeDir = Path.GetDirectoryName(exeFile);
-            string fullPath = Path.Combine(exeDir, "..\\..\\dbTestProjet.db");
-            string pathDB = "DataSource=" + fullPath;
+        private void addCapteur(Capteur newCap)
+        {
+            updateListeCapteurs();
+            foreach(Capteur cap in m_listCapteurs)
+            {
+                if(newCap.Address==cap.Address)
+                {
+                    return;
+                }
+            }
+            AccesDB.AddNewCapteur(newCap);
+        }
 
-            // Connection à la db
-
-            db_conn = new SQLiteConnection(pathDB);
-            db_conn.Open();
-
-            // crée un objet de commande:
-
-            db_command = db_conn.CreateCommand();
-
-            // ajout de la commande pour aller chercher les capteurs:
-
-            db_command.CommandText = "SELECT * FROM Capteurs WHERE ";
-
-            // On rempli une dataTable avec le contenu de la table Capteurs
-
-            DataTable dt = new DataTable();
-            db_dataAdapt = new SQLiteDataAdapter(db_command);
-            db_dataAdapt.Fill(dt);
-            dataGridViewCapteurs.DataSource= dt;
-
-            dataGridViewCapteurs.AutoResizeColumns();
-
-            // Fin de connexion
-
-            db_conn.Close();
-            */
-
+        private void setCapteur(Capteur capToSet)
+        {
+            updateListeCapteurs();
+            foreach (Capteur cap in m_listCapteurs)
+            {
+                if (capToSet.Address == cap.Address && cap.Set == 0)
+                {
+                    AccesDB.SetCapteur(capToSet);
+                }
+            }
         }
 
         private void btnUpdateCapteurs_Click(object sender, EventArgs e)
