@@ -12,6 +12,10 @@ namespace UI_ChambreFroide_V1
 {
     public class AccesDB
     {
+        public AccesDB()
+        {
+
+        }
         public static List<Capteur> GetCapteurs()
         {
             using(IDbConnection conn = new SQLiteConnection(GetConnectionString()))
