@@ -22,7 +22,7 @@ namespace UI_ChambreFroide_V1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void b_configSerie_Click(object sender, EventArgs e)
@@ -118,5 +118,11 @@ namespace UI_ChambreFroide_V1
                 MessageBox.Show("Le port série doit etre ouvert");
             }
         }
+
+        public void MAJListe()
+        {
+
+        }
+
     }
 }

@@ -23,5 +23,14 @@ namespace UI_ChambreFroide_V1
         public String Name, Address, Group;
         public double AlertLow, AlertHigh;
         public int Id, Module, Index, Set;
+
+        public Capteur(String pAddresse, int pModule, int pIndex)
+        {
+            Address = pAddresse;
+            Module = pModule;
+            Index = pIndex;
+        }
+        public Capteur() { }
     }
+    
 }

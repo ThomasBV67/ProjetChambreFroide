@@ -29,14 +29,7 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ensemble = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.niv_avertissement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listeCapteurs = new System.Windows.Forms.DataGridView();
             this.b_decouverte = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.b_configSerie = new System.Windows.Forms.Button();
@@ -44,14 +37,21 @@ namespace UI_ChambreFroide_V1
             this.infoPortActuel = new System.Windows.Forms.ToolStripStatusLabel();
             this.etatPortActuel = new System.Windows.Forms.ToolStripStatusLabel();
             this.b_ouvertureFermeturePort = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ensemble = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.niv_avertissement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.listeCapteurs)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // listeCapteurs
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.listeCapteurs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listeCapteurs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.goupe,
             this.numero,
@@ -59,65 +59,13 @@ namespace UI_ChambreFroide_V1
             this.ensemble,
             this.niv_avertissement,
             this.niv_alerte});
-            this.dataGridView1.Location = new System.Drawing.Point(9, 10);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(717, 550);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Thermomètre";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 125;
-            // 
-            // goupe
-            // 
-            this.goupe.HeaderText = "Numéro de Groupe";
-            this.goupe.MinimumWidth = 6;
-            this.goupe.Name = "goupe";
-            this.goupe.ReadOnly = true;
-            this.goupe.Width = 125;
-            // 
-            // numero
-            // 
-            this.numero.HeaderText = "Numéro de Sous-Groupe";
-            this.numero.MinimumWidth = 6;
-            this.numero.Name = "numero";
-            this.numero.ReadOnly = true;
-            this.numero.Width = 125;
-            // 
-            // nom
-            // 
-            this.nom.HeaderText = "Nom de pièce";
-            this.nom.MinimumWidth = 6;
-            this.nom.Name = "nom";
-            this.nom.Width = 125;
-            // 
-            // ensemble
-            // 
-            this.ensemble.HeaderText = "Ensemble";
-            this.ensemble.MinimumWidth = 6;
-            this.ensemble.Name = "ensemble";
-            this.ensemble.Width = 125;
-            // 
-            // niv_avertissement
-            // 
-            this.niv_avertissement.HeaderText = "Niveau d\'avertissement";
-            this.niv_avertissement.MinimumWidth = 6;
-            this.niv_avertissement.Name = "niv_avertissement";
-            this.niv_avertissement.Width = 125;
-            // 
-            // niv_alerte
-            // 
-            this.niv_alerte.HeaderText = "Niveau d\'alerte";
-            this.niv_alerte.MinimumWidth = 6;
-            this.niv_alerte.Name = "niv_alerte";
-            this.niv_alerte.Width = 125;
+            this.listeCapteurs.Location = new System.Drawing.Point(9, 10);
+            this.listeCapteurs.Margin = new System.Windows.Forms.Padding(2);
+            this.listeCapteurs.Name = "listeCapteurs";
+            this.listeCapteurs.RowHeadersWidth = 51;
+            this.listeCapteurs.RowTemplate.Height = 24;
+            this.listeCapteurs.Size = new System.Drawing.Size(717, 550);
+            this.listeCapteurs.TabIndex = 0;
             // 
             // b_decouverte
             // 
@@ -184,6 +132,58 @@ namespace UI_ChambreFroide_V1
             this.b_ouvertureFermeturePort.UseVisualStyleBackColor = true;
             this.b_ouvertureFermeturePort.Click += new System.EventHandler(this.b_ouvertureFermeturePort_Click);
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "Thermomètre";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 125;
+            // 
+            // goupe
+            // 
+            this.goupe.HeaderText = "Numéro de Groupe";
+            this.goupe.MinimumWidth = 6;
+            this.goupe.Name = "goupe";
+            this.goupe.ReadOnly = true;
+            this.goupe.Width = 80;
+            // 
+            // numero
+            // 
+            this.numero.HeaderText = "Numéro de Sous-Groupe";
+            this.numero.MinimumWidth = 6;
+            this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
+            this.numero.Width = 80;
+            // 
+            // nom
+            // 
+            this.nom.HeaderText = "Nom de pièce";
+            this.nom.MinimumWidth = 6;
+            this.nom.Name = "nom";
+            this.nom.Width = 125;
+            // 
+            // ensemble
+            // 
+            this.ensemble.HeaderText = "Ensemble";
+            this.ensemble.MinimumWidth = 6;
+            this.ensemble.Name = "ensemble";
+            this.ensemble.Width = 125;
+            // 
+            // niv_avertissement
+            // 
+            this.niv_avertissement.HeaderText = "Niveau d\'avertissement";
+            this.niv_avertissement.MinimumWidth = 6;
+            this.niv_avertissement.Name = "niv_avertissement";
+            this.niv_avertissement.Width = 80;
+            // 
+            // niv_alerte
+            // 
+            this.niv_alerte.HeaderText = "Niveau d\'alerte";
+            this.niv_alerte.MinimumWidth = 6;
+            this.niv_alerte.Name = "niv_alerte";
+            this.niv_alerte.Width = 50;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,12 +194,12 @@ namespace UI_ChambreFroide_V1
             this.Controls.Add(this.b_configSerie);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.b_decouverte);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.listeCapteurs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormConfig";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listeCapteurs)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -208,15 +208,6 @@ namespace UI_ChambreFroide_V1
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn goupe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ensemble;
-        private System.Windows.Forms.DataGridViewTextBoxColumn niv_avertissement;
-        private System.Windows.Forms.DataGridViewTextBoxColumn niv_alerte;
         private System.Windows.Forms.Button b_decouverte;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button b_configSerie;
@@ -224,5 +215,13 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.ToolStripStatusLabel infoPortActuel;
         private System.Windows.Forms.ToolStripStatusLabel etatPortActuel;
         private System.Windows.Forms.Button b_ouvertureFermeturePort;
+        public System.Windows.Forms.DataGridView listeCapteurs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn goupe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ensemble;
+        private System.Windows.Forms.DataGridViewTextBoxColumn niv_avertissement;
+        private System.Windows.Forms.DataGridViewTextBoxColumn niv_alerte;
     }
 }

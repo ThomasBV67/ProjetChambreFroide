@@ -17,6 +17,8 @@ namespace UI_ChambreFroide_V1
         RichTextBox[] m_RTB_temp = new RichTextBox[NB_BOITES_AFFICHAGE];
         public List<Capteur> lst_Capteurs = new List<Capteur>();
 
+        FormConfig objFormConfig = new FormConfig();
+
         String retourSerie = "";
 
         private delegate void monProtoDelegate();//définir prototype de fonction... paramètres d'entrée et de retour
@@ -28,6 +30,8 @@ namespace UI_ChambreFroide_V1
             InitializeComponent();
 
             objDelegate = delegate_getLoRa;
+            objFormConfig.Hide();
+            objFormConfig.pagePrincipale = this;
         }
 
         
@@ -61,8 +65,6 @@ namespace UI_ChambreFroide_V1
 
         private void b_config_Click(object sender, EventArgs e)
         {
-            FormConfig objFormConfig = new FormConfig();
-            objFormConfig.pagePrincipale = this;
             objFormConfig.temoinOuverture();
             objFormConfig.Show();
         }
@@ -70,6 +72,7 @@ namespace UI_ChambreFroide_V1
         {
             String[] capteursModule = new String[20];
             int nbCapteurs = 0;
+            bool existe = false;
 
             for (int i = 0; i < retourSerie.Length; i++)//compte le nombre de capteurs sur le module interrogé
             {
@@ -77,14 +80,35 @@ namespace UI_ChambreFroide_V1
                     nbCapteurs++;
             }
 
-            for(int i = 0; i < nbCapteurs; i++)
-            {
-                lst_Capteurs.Add(new Capteur());
-            }
-            
-
             capteursModule = retourSerie.Split('#');
-            
+
+            for (int i = 0; i < nbCapteurs; i++)
+            {
+                lst_Capteurs.Add(new Capteur(capteursModule[i], 1, i));
+            }
+
+
+            for (int i = 0; i < nbCapteurs; i++)
+            {
+                for (int j = 0; j < objFormConfig.listeCapteurs.Rows.Count; j++)
+                {
+                    if ((string)objFormConfig.listeCapteurs.Rows[j].Cells[0].Value == lst_Capteurs[i].Address.ToUpper())//Si existe déjà dans la grille
+                    {
+                        existe = true;
+                    }
+                }
+                if (!existe)
+                {
+                    objFormConfig.listeCapteurs.Rows.Insert(0);
+                    objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[i].Address.ToUpper();
+                    objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[i].Module;
+                    objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[i].Index;
+                }
+
+                existe = false;
+            }
+                
+
             MessageBox.Show(retourSerie);
         }
 
