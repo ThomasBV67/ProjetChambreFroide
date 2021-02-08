@@ -15,6 +15,7 @@ namespace UI_ChambreFroide_V1
         public double AlertLow, AlertHigh;
         public int Id, Module, Index, Set;
 
+        /*
         public Capteur(int idCap, String addrCap, int setCap, String nameCap, double alertLowCap, double alertHighCap, String groupCap, int moduleCap, int indexCap)
         {
             Id = idCap;
@@ -27,5 +28,6 @@ namespace UI_ChambreFroide_V1
             Module = moduleCap;
             Index = indexCap;
         }
+        */
     }
 }
