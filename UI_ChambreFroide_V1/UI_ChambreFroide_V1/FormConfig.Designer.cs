@@ -128,6 +128,7 @@ namespace UI_ChambreFroide_V1
             this.b_decouverte.TabIndex = 1;
             this.b_decouverte.Text = "Découvrir le réseau";
             this.b_decouverte.UseVisualStyleBackColor = true;
+            this.b_decouverte.Click += new System.EventHandler(this.b_decouverte_Click);
             // 
             // btnBack
             // 

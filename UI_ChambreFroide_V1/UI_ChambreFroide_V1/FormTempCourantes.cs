@@ -15,6 +15,7 @@ namespace UI_ChambreFroide_V1
         const int NB_BOITES_AFFICHAGE = 15;
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
         RichTextBox[] m_RTB_temp = new RichTextBox[NB_BOITES_AFFICHAGE];
+        public List<Capteur> lst_Capteurs = new List<Capteur>();
 
         public FormTempCourantes()
         {
