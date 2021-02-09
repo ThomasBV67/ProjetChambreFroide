@@ -28,8 +28,6 @@ C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_C
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.dll
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.EF6.dll
-C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.Linq.dll
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.xml
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.xml
@@ -93,3 +91,7 @@ C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreF
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Configuration.resources
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\dbTestProjet.db
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.dll
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.xml

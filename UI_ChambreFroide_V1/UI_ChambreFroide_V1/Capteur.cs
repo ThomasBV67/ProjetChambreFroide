@@ -16,21 +16,44 @@ namespace UI_ChambreFroide_V1
     /// Id : Id dans la dataBase
     /// Module : # du module duquel vient le capteur
     /// Index : Index du capteur dans le module
-    /// Set : Indique si le capteur à déja été setup par l'usager.
+    /// Ready : Indique si le capteur à déja été setup par l'usager.
     /// </summary>
     public class Capteur
     {
-        public String Name, Address, Group;
+        public String Name, Address, GroupCapteur;
         public double AlertLow, AlertHigh;
-        public int Id, Module, Index, Set;
+        public int Id, Module, ModuleIndex, Ready;
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="pAddresse"></param>
+        /// <param name="pModule"></param>
+        /// <param name="pIndex"></param>
         public Capteur(String pAddresse, int pModule, int pIndex)
         {
             Address = pAddresse;
             Module = pModule;
-            Index = pIndex;
+            ModuleIndex = pIndex;
         }
+
         public Capteur() { }
+        
+        /// <summary>
+        /// Cette fonction permet de passer un capteur non-implémenté au système d'être implémenté
+        /// en lui ajoutant un nom, un groupe et des niveaux d'alertes
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <param name="pGroup"></param>
+        /// <param name="pAlertHigh"></param>
+        /// <param name="pAlertLow"></param>
+        public void InitCapteur(String pName, String pGroupCapteur, double pAlertHigh, double pAlertLow)
+        {
+            Name = pName;
+            GroupCapteur = pGroupCapteur;
+            AlertHigh = pAlertHigh;
+            AlertLow = pAlertLow;
+        }
     }
     
 }
