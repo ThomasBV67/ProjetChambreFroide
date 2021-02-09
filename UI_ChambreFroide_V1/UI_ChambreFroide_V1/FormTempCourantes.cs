@@ -71,36 +71,39 @@ namespace UI_ChambreFroide_V1
             objFormConfig.temoinOuverture();
             objFormConfig.Show();
         }
+        /// <summary>
+        /// Interprète les commandes reçues en série
+        /// </summary>
         private void delegate_getLoRa()
         {
             String[] capteursModule = new String[20];
             int nbCapteurs = 0;
             bool existe = false;
 
-            if (decouverteEnCours)
+            if (decouverteEnCours)//Si en mode découverte
             {
-                t_timeoutScan.Stop();
+                t_timeoutScan.Stop();//pas de timeout possible
                 nbModules++;
                 for (int i = 0; i < retourSerie.Length; i++)//compte le nombre de capteurs sur le module interrogé
                 {
-                    if (retourSerie.Substring(i, 1) == "#")
+                    if (retourSerie.Substring(i, 1) == "#")//compte le nb. de capteurs présents
                         nbCapteurs++;
                 }
 
-                capteursModule = retourSerie.Split('#');
+                capteursModule = retourSerie.Split('#');//divise le message d'entrée par capteurs
 
                 for (int i = 0; i < nbCapteurs; i++)//Capteurs à ajouter
                 {
                     for (int j = 0; j < lst_Capteurs.Count; j++)//Lit la liste
                     {
-                        if(lst_Capteurs[j].Address == capteursModule[i])
+                        if(lst_Capteurs[j].Address == capteursModule[i])//Si déjà présent dans la liste, est à ignorer
                         {
                             existe = true;
                         }
                     }
-                    if (!existe)
+                    if (!existe)//si n'existe pas déjà
                     {
-                        lst_Capteurs.Add(new Capteur(capteursModule[i], nbModules-1, i));
+                        lst_Capteurs.Add(new Capteur(capteursModule[i], nbModules-1, i));//nouvel objet et ajout dans la grille
                         objFormConfig.listeCapteurs.Rows.Insert(0);
                         objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[lst_Capteurs.Count - 1].Address.ToUpper();
                         objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[lst_Capteurs.Count - 1].Module;
@@ -108,53 +111,40 @@ namespace UI_ChambreFroide_V1
                     }
                     existe = false;
                 }
-                /*
-                for (int i = 0; i < nbCapteurs; i++)
-                {
-                    for (int j = 0; j < objFormConfig.listeCapteurs.Rows.Count; j++)
-                    {
-                        if ((string)objFormConfig.listeCapteurs.Rows[j].Cells[0].Value == lst_Capteurs[i].Address.ToUpper())//Si existe déjà dans la grille
-                        {
-                            existe = true;
-                        }
-                    }
-                    if (!existe)
-                    {
-                        objFormConfig.listeCapteurs.Rows.Insert(0);
-                        objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[i].Address.ToUpper();
-                        objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[i].Module;
-                        objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[i].ModuleIndex;
-                    }
-
-                    existe = false;
-                }
-                */
-                objFormConfig.scanModule(nbModules);
+                objFormConfig.scanModule(nbModules);//Lit le prochain module
             }
         }
-
+        /// <summary>
+        /// Lecture du port série
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void getLoRa(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             retourSerie = serialPort1.ReadLine();
             BeginInvoke(objDelegate);
         }
-
+        /// <summary>
+        /// Timeout correspodant à la fin de la découverte du réseau
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void t_timeoutScan_Tick(object sender, EventArgs e)
         {
-            nbModules = 1;
-            t_timeoutScan.Stop();
+            nbModules = 1;//reset du nombre de module découvert
+            t_timeoutScan.Stop();//Arret du timer
             decouverteEnCours = false;
             MessageBox.Show("Découverte terminée");
         }
 
         public void MAJLabels()
         {
-            for (int i = 0; i < lst_Capteurs.Count; i++)
+            for (int i = 0; i < lst_Capteurs.Count; i++)//Ajoute les noms aux objets
             {
                 lst_Capteurs[i].Name = (string)objFormConfig.listeCapteurs.Rows[i].Cells[3].Value;
             }
 
-            for (int i = 0; i < NB_BOITES_AFFICHAGE; i++)
+            for (int i = 0; i < NB_BOITES_AFFICHAGE; i++)//Affiche les noms existants sinon, mets ND
             {
                 try
                 {
