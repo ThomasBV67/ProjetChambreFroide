@@ -12,6 +12,9 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormHistorique : Form
     {
+        public String selectedName;
+        public bool selectedIsGroup;
+
         public FormTempCourantes objFormTempCourantes;
         public FormHistorique()
         {
@@ -20,8 +23,15 @@ namespace UI_ChambreFroide_V1
 
         private void btnSelectCapteur_Click(object sender, EventArgs e)
         {
-            FormChoixCapteur objFormChoixCapteur = new FormChoixCapteur();
-            objFormChoixCapteur.Show();
+            using (var form = new FormChoixCapteur())
+            {
+                var result = form.ShowDialog();
+                if(result == DialogResult.OK)
+                {
+                    selectedName = form.Name;
+                    selectedIsGroup = form.isGroup;
+                }
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)

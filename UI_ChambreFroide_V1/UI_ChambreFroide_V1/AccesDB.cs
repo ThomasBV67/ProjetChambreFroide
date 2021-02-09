@@ -32,17 +32,17 @@ namespace UI_ChambreFroide_V1
         /// <returns></returns>
         public static List<Capteur> GetUnsetCapteurs()
         {
-            List<Capteur> capteurs = new List<Capteur>();
+            List<Capteur> capteurs, setCapteurs = new List<Capteur>();
             capteurs = GetCapteurs();
 
             foreach(Capteur cap in capteurs)
             {
-                if(cap.Ready == 1)
+                if(cap.Ready == 0)
                 {
-                    capteurs.Remove(cap);
+                    setCapteurs.Add(cap);
                 }
             }
-            return capteurs;
+            return setCapteurs;
         }
 
         /// <summary>
@@ -51,17 +51,17 @@ namespace UI_ChambreFroide_V1
         /// <returns></returns>
         public static List<Capteur> GetSetCapteurs()
         {
-            List<Capteur> capteurs = new List<Capteur>();
+            List<Capteur> capteurs, setCapteurs = new List<Capteur>();
             capteurs = GetCapteurs();
 
             foreach (Capteur cap in capteurs)
             {
-                if (cap.Ready == 0)
+                if (cap.Ready == 1)
                 {
-                    capteurs.Remove(cap);
+                    setCapteurs.Add(cap);
                 }
             }
-            return capteurs;
+            return setCapteurs;
         }
 
         /// <summary>
@@ -145,8 +145,27 @@ namespace UI_ChambreFroide_V1
             }
             return true;
         }
-        
-        
+
+        public static List<String> GetGroups()
+        {
+            List<String> temp1, temp2 = new List<String>();
+
+            using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
+            {
+                var output = conn.Query<String>("SELECT DISTINCT GroupCapteur FROM Capteurs");
+                temp1 = output.ToList();
+                foreach(String str in temp1)
+                {
+                    if(str != null)
+                    {
+                        temp2.Add(str);
+                    }
+                }
+                return temp2;
+            }
+        }
+
+
 
         /// <summary>
         /// Cette fonction permet d'avoir acces au connection string de la db
