@@ -19,13 +19,21 @@ namespace UI_ChambreFroide_V1
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Ferme la page en mettant à jour les labels d'affichage de la page 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             pagePrincipale.MAJLabels();
             this.Hide();
         }
-
+        /// <summary>
+        /// Ouvre une boite de dialogue qui permet de configurer le port série
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_configSerie_Click(object sender, EventArgs e)
         {
             Configuration config = new Configuration(pagePrincipale.serialPort1.PortName, pagePrincipale.serialPort1.BaudRate, pagePrincipale.serialPort1.DataBits, pagePrincipale.serialPort1.Parity, pagePrincipale.serialPort1.StopBits);
@@ -76,6 +84,9 @@ namespace UI_ChambreFroide_V1
 
             }
         }
+        /// <summary>
+        /// MAJ de la barre d'état du port série dans le bas de la page de config
+        /// </summary>
         public void temoinOuverture()
         {//affiche les parametres appliqués au port série
             infoPortActuel.Text = pagePrincipale.serialPort1.PortName + ";" + Convert.ToString(pagePrincipale.serialPort1.BaudRate) + ";" + Convert.ToString(pagePrincipale.serialPort1.Parity) + ";" + Convert.ToString(pagePrincipale.serialPort1.DataBits) + ";" + Convert.ToString(pagePrincipale.serialPort1.StopBits);
@@ -93,7 +104,11 @@ namespace UI_ChambreFroide_V1
                 b_ouvertureFermeturePort.Text = "Ouvrir le port";
             }
         }
-
+        /// <summary>
+        /// Ouvre et ferme le port série
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_ouvertureFermeturePort_Click(object sender, EventArgs e)
         {
             if (pagePrincipale.serialPort1.IsOpen)
@@ -108,6 +123,11 @@ namespace UI_ChambreFroide_V1
             }
             temoinOuverture();
         }
+        /// <summary>
+        /// Envoie la première commande de get Addr. au module via série
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_decouverte_Click(object sender, EventArgs e)
         {
             if (pagePrincipale.serialPort1.IsOpen)
@@ -120,7 +140,10 @@ namespace UI_ChambreFroide_V1
                 MessageBox.Show("Le port série doit etre ouvert");
             }
         }
-
+        /// <summary>
+        /// Envoie la requete d'addressage au module spécifié puis démarre le timer de timeout
+        /// </summary>
+        /// <param name="module"></param>
         public void scanModule(int module)
         {
             pagePrincipale.serialPort1.WriteLine(Convert.ToString(module) + "getAddr");
