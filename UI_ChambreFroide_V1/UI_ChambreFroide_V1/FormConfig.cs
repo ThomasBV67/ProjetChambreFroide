@@ -22,6 +22,7 @@ namespace UI_ChambreFroide_V1
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            pagePrincipale.MAJLabels();
             this.Hide();
         }
 
@@ -111,6 +112,7 @@ namespace UI_ChambreFroide_V1
         {
             if (pagePrincipale.serialPort1.IsOpen)
             {
+                pagePrincipale.decouverteEnCours = true;
                 scanModule(1);
             }
             else
@@ -122,8 +124,12 @@ namespace UI_ChambreFroide_V1
         public void scanModule(int module)
         {
             pagePrincipale.serialPort1.WriteLine(Convert.ToString(module) + "getAddr");
-
+            pagePrincipale.t_timeoutScan.Start();
         }
 
+        private void valeurChangeTableau(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
     }
 }
