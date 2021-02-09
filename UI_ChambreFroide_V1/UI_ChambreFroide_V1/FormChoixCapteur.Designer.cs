@@ -35,13 +35,14 @@ namespace UI_ChambreFroide_V1
             this.btnSelect = new System.Windows.Forms.Button();
             this.listBoxChoixCapteur = new System.Windows.Forms.ListBox();
             this.btnGroupName = new System.Windows.Forms.Button();
+            this.labelTitre = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnBack
             // 
             this.btnBack.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(813, 438);
+            this.btnBack.Location = new System.Drawing.Point(845, 439);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(143, 86);
             this.btnBack.TabIndex = 2;
@@ -53,7 +54,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUp.Location = new System.Drawing.Point(813, 150);
+            this.btnUp.Location = new System.Drawing.Point(845, 149);
             this.btnUp.Name = "btnUp";
             this.btnUp.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnUp.Size = new System.Drawing.Size(143, 86);
@@ -66,7 +67,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDown.Location = new System.Drawing.Point(813, 334);
+            this.btnDown.Location = new System.Drawing.Point(845, 333);
             this.btnDown.Name = "btnDown";
             this.btnDown.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnDown.Size = new System.Drawing.Size(143, 86);
@@ -79,7 +80,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelect.Location = new System.Drawing.Point(813, 242);
+            this.btnSelect.Location = new System.Drawing.Point(845, 241);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnSelect.Size = new System.Drawing.Size(143, 86);
@@ -90,19 +91,19 @@ namespace UI_ChambreFroide_V1
             // 
             // listBoxChoixCapteur
             // 
-            this.listBoxChoixCapteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxChoixCapteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxChoixCapteur.FormattingEnabled = true;
-            this.listBoxChoixCapteur.ItemHeight = 31;
-            this.listBoxChoixCapteur.Location = new System.Drawing.Point(22, 12);
+            this.listBoxChoixCapteur.ItemHeight = 42;
+            this.listBoxChoixCapteur.Location = new System.Drawing.Point(36, 117);
             this.listBoxChoixCapteur.Name = "listBoxChoixCapteur";
-            this.listBoxChoixCapteur.Size = new System.Drawing.Size(727, 531);
+            this.listBoxChoixCapteur.Size = new System.Drawing.Size(771, 424);
             this.listBoxChoixCapteur.TabIndex = 6;
             // 
             // btnGroupName
             // 
             this.btnGroupName.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnGroupName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGroupName.Location = new System.Drawing.Point(813, 44);
+            this.btnGroupName.Location = new System.Drawing.Point(845, 43);
             this.btnGroupName.Name = "btnGroupName";
             this.btnGroupName.Size = new System.Drawing.Size(143, 86);
             this.btnGroupName.TabIndex = 7;
@@ -110,11 +111,22 @@ namespace UI_ChambreFroide_V1
             this.btnGroupName.UseVisualStyleBackColor = true;
             this.btnGroupName.Click += new System.EventHandler(this.btnGroupName_Click);
             // 
+            // labelTitre
+            // 
+            this.labelTitre.AutoSize = true;
+            this.labelTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitre.Location = new System.Drawing.Point(23, 19);
+            this.labelTitre.Name = "labelTitre";
+            this.labelTitre.Size = new System.Drawing.Size(784, 73);
+            this.labelTitre.TabIndex = 8;
+            this.labelTitre.Text = "Choix du capteur à étudier";
+            // 
             // FormChoixCapteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 572);
+            this.Controls.Add(this.labelTitre);
             this.Controls.Add(this.btnGroupName);
             this.Controls.Add(this.listBoxChoixCapteur);
             this.Controls.Add(this.btnSelect);
@@ -127,6 +139,7 @@ namespace UI_ChambreFroide_V1
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormChoixCapteur_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,5 +150,6 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.ListBox listBoxChoixCapteur;
         private System.Windows.Forms.Button btnGroupName;
+        private System.Windows.Forms.Label labelTitre;
     }
 }

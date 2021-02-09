@@ -28,7 +28,7 @@ namespace UI_ChambreFroide_V1
                 var result = form.ShowDialog();
                 if(result == DialogResult.OK)
                 {
-                    selectedName = form.Name;
+                    selectedName = form.returnName;
                     selectedIsGroup = form.isGroup;
                 }
             }
