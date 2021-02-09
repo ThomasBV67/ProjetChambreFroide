@@ -29,34 +29,13 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnUpdateCapteurs = new System.Windows.Forms.Button();
-            this.dataGridViewCapteurs = new System.Windows.Forms.DataGridView();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCapteurs)).BeginInit();
+            this.listBoxChoixCapteur = new System.Windows.Forms.ListBox();
+            this.btnGroupName = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnUpdateCapteurs
-            // 
-            this.btnUpdateCapteurs.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnUpdateCapteurs.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateCapteurs.Location = new System.Drawing.Point(813, 34);
-            this.btnUpdateCapteurs.Name = "btnUpdateCapteurs";
-            this.btnUpdateCapteurs.Size = new System.Drawing.Size(143, 86);
-            this.btnUpdateCapteurs.TabIndex = 0;
-            this.btnUpdateCapteurs.Text = "Mise à jour de la liste de capteurs";
-            this.btnUpdateCapteurs.UseVisualStyleBackColor = true;
-            this.btnUpdateCapteurs.Click += new System.EventHandler(this.btnUpdateCapteurs_Click);
-            // 
-            // dataGridViewCapteurs
-            // 
-            this.dataGridViewCapteurs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCapteurs.Location = new System.Drawing.Point(51, 34);
-            this.dataGridViewCapteurs.Name = "dataGridViewCapteurs";
-            this.dataGridViewCapteurs.Size = new System.Drawing.Size(711, 490);
-            this.dataGridViewCapteurs.TabIndex = 1;
             // 
             // btnBack
             // 
@@ -74,7 +53,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUp.Location = new System.Drawing.Point(813, 145);
+            this.btnUp.Location = new System.Drawing.Point(813, 150);
             this.btnUp.Name = "btnUp";
             this.btnUp.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnUp.Size = new System.Drawing.Size(143, 86);
@@ -87,7 +66,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDown.Location = new System.Drawing.Point(813, 329);
+            this.btnDown.Location = new System.Drawing.Point(813, 334);
             this.btnDown.Name = "btnDown";
             this.btnDown.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnDown.Size = new System.Drawing.Size(143, 86);
@@ -100,7 +79,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelect.Location = new System.Drawing.Point(813, 237);
+            this.btnSelect.Location = new System.Drawing.Point(813, 242);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnSelect.Size = new System.Drawing.Size(143, 86);
@@ -109,34 +88,54 @@ namespace UI_ChambreFroide_V1
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
+            // listBoxChoixCapteur
+            // 
+            this.listBoxChoixCapteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxChoixCapteur.FormattingEnabled = true;
+            this.listBoxChoixCapteur.ItemHeight = 31;
+            this.listBoxChoixCapteur.Location = new System.Drawing.Point(22, 12);
+            this.listBoxChoixCapteur.Name = "listBoxChoixCapteur";
+            this.listBoxChoixCapteur.Size = new System.Drawing.Size(727, 531);
+            this.listBoxChoixCapteur.TabIndex = 6;
+            // 
+            // btnGroupName
+            // 
+            this.btnGroupName.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnGroupName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGroupName.Location = new System.Drawing.Point(813, 44);
+            this.btnGroupName.Name = "btnGroupName";
+            this.btnGroupName.Size = new System.Drawing.Size(143, 86);
+            this.btnGroupName.TabIndex = 7;
+            this.btnGroupName.Text = "Groupes";
+            this.btnGroupName.UseVisualStyleBackColor = true;
+            this.btnGroupName.Click += new System.EventHandler(this.btnGroupName_Click);
+            // 
             // FormChoixCapteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 572);
+            this.Controls.Add(this.btnGroupName);
+            this.Controls.Add(this.listBoxChoixCapteur);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.dataGridViewCapteurs);
-            this.Controls.Add(this.btnUpdateCapteurs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormChoixCapteur";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormChoixCapteur_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCapteurs)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnUpdateCapteurs;
-        private System.Windows.Forms.DataGridView dataGridViewCapteurs;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.ListBox listBoxChoixCapteur;
+        private System.Windows.Forms.Button btnGroupName;
     }
 }

@@ -16,11 +16,11 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormChoixCapteur : Form
     { 
-        public List<Button> m_listButtons = new List<Button>();
-        public int m_nbCapteurs = 0;
-
-        public int dataGridSelectedIndex = 0;
+        public List<String> m_listGroups = new List<String>();
         public List<Capteur> m_listCapteurs = new List<Capteur>();
+
+        public string Name { get; set; }
+        public bool isGroup { get; set; }
 
         public FormChoixCapteur()
         {
@@ -31,59 +31,83 @@ namespace UI_ChambreFroide_V1
         /// Cette fonction met à jour la liste de capteurs
         /// </summary>
         public void updateListeCapteurs()
-        {
-            
-            Capteur cap = new Capteur();
-            cap.Address = "AB 23 G3 33 BB C9 DD KK";
-            cap.Ready = 0;
-            cap.Module = 2;
-            cap.ModuleIndex = 5;
-            AccesDB.AddNewCapteur(cap);
-            m_listCapteurs = AccesDB.GetCapteurs();
-            dataGridViewCapteurs.DataSource = m_listCapteurs;
-            cap.InitCapteur("Cuisine 1", "Cuisine", 25.5, 15.3);
-            AccesDB.SetCapteur(cap);
-            dataGridViewCapteurs.DataSource = m_listCapteurs;
-        }
-
-        private void btnUpdateCapteurs_Click(object sender, EventArgs e)
-        {
-            updateListeCapteurs();
+        { 
+            m_listCapteurs = AccesDB.GetSetCapteurs();
+            foreach(Capteur cap in m_listCapteurs)
+            {
+                listBoxChoixCapteur.Items.Add(cap.Name);
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
-
+        
         private void btnUp_Click(object sender, EventArgs e)
         {
-            if(dataGridSelectedIndex>0)
+            if (listBoxChoixCapteur.SelectedIndex > 0)
             {
-                dataGridViewCapteurs.Rows[dataGridSelectedIndex].Selected = false;
-                dataGridSelectedIndex--;
-                dataGridViewCapteurs.Rows[dataGridSelectedIndex].Selected = true;
+                listBoxChoixCapteur.SelectedIndex -= 1;
             }
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            if (dataGridSelectedIndex < dataGridViewCapteurs.Rows.Count-1)
+            
+            if (listBoxChoixCapteur.SelectedIndex < listBoxChoixCapteur.Items.Count-1)
             {
-                dataGridViewCapteurs.Rows[dataGridSelectedIndex].Selected = false;
-                dataGridSelectedIndex++;
-                dataGridViewCapteurs.Rows[dataGridSelectedIndex].Selected = true;
+                listBoxChoixCapteur.SelectedIndex += 1;
             }
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            this.Hide();
+
+            this.Name = listBoxChoixCapteur.SelectedItem.ToString();
+            if(btnGroupName.Text == "Groupes")
+            {
+                this.isGroup = false;
+            }
+            else
+            {
+                this.isGroup = true;
+            }
+            
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void FormChoixCapteur_Load(object sender, EventArgs e)
         {
             updateListeCapteurs();
+        }
+
+        private void btnGroupName_Click(object sender, EventArgs e)
+        {
+
+            listBoxChoixCapteur.Items.Clear();
+
+            if (btnGroupName.Text == "Groupes")
+            {
+                btnGroupName.Text = "Noms";
+
+                m_listGroups = AccesDB.GetGroups();
+
+                foreach (String str in m_listGroups)
+                {
+                    listBoxChoixCapteur.Items.Add(str);
+                }
+            }
+            else
+            {
+                btnGroupName.Text = "Groupes";
+
+                foreach (Capteur cap in m_listCapteurs)
+                { 
+                    listBoxChoixCapteur.Items.Add(cap.Name);
+                }
+            }
         }
     }
 }
