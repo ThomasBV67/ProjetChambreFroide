@@ -34,39 +34,16 @@ namespace UI_ChambreFroide_V1
         {
             
             Capteur cap = new Capteur();
-            cap.Address = "AB 23 G3 33 BB C9";
+            cap.Address = "AB 23 G3 33 BB C9 DD KK";
             cap.Ready = 0;
             cap.Module = 2;
             cap.ModuleIndex = 5;
             AccesDB.AddNewCapteur(cap);
             m_listCapteurs = AccesDB.GetCapteurs();
             dataGridViewCapteurs.DataSource = m_listCapteurs;
-
-        }
-
-        private void addCapteur(Capteur newCap)
-        {
-            updateListeCapteurs();
-            foreach(Capteur cap in m_listCapteurs)
-            {
-                if(newCap.Address==cap.Address)
-                {
-                    return;
-                }
-            }
-            AccesDB.AddNewCapteur(newCap);
-        }
-
-        private void setCapteur(Capteur capToSet)
-        {
-            updateListeCapteurs();
-            foreach (Capteur cap in m_listCapteurs)
-            {
-                if (capToSet.Address == cap.Address && cap.Ready == 0)
-                {
-                    AccesDB.SetCapteur(capToSet);
-                }
-            }
+            cap.InitCapteur("Cuisine 1", "Cuisine", 25.5, 15.3);
+            AccesDB.SetCapteur(cap);
+            dataGridViewCapteurs.DataSource = m_listCapteurs;
         }
 
         private void btnUpdateCapteurs_Click(object sender, EventArgs e)

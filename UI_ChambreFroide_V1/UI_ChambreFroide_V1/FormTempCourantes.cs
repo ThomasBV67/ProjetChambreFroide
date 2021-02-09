@@ -102,7 +102,7 @@ namespace UI_ChambreFroide_V1
                     objFormConfig.listeCapteurs.Rows.Insert(0);
                     objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[i].Address.ToUpper();
                     objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[i].Module;
-                    objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[i].Index;
+                    objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[i].ModuleIndex;
                 }
 
                 existe = false;

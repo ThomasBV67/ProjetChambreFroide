@@ -109,12 +109,41 @@ namespace UI_ChambreFroide_V1
             return true;
         }
         
-        public static void SetCapteur(Capteur cap)
+        public static bool SetCapteur(Capteur capToSet)
         {
-            using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
+            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
             {
+                //try
+                //{
+                    SQLiteCommand sqlite_cmd;
+                    conn.Open();
+                    sqlite_cmd = conn.CreateCommand();
+                    sqlite_cmd.CommandText = "UPDATE Capteurs SET Name = @Name, GroupCapteur = @GroupCapteur, AlertHigh = @AlertHigh, AlertLow = @AlertLow, Ready = 1 WHERE Id = @Id";
 
+                    sqlite_cmd.Parameters.Add("@Name", DbType.String, -1);
+                    sqlite_cmd.Parameters["@Name"].Value = capToSet.Name;
+
+                    sqlite_cmd.Parameters.Add("@GroupCapteur", DbType.String, -1);
+                    sqlite_cmd.Parameters["@GroupCapteur"].Value = capToSet.GroupCapteur;
+
+                    sqlite_cmd.Parameters.Add("@AlertHigh", DbType.Double, -1);
+                    sqlite_cmd.Parameters["@AlertHigh"].Value = capToSet.AlertHigh;
+
+                    sqlite_cmd.Parameters.Add("@AlertLow", DbType.Double, -1);
+                    sqlite_cmd.Parameters["@AlertLow"].Value = capToSet.AlertLow;
+
+                    sqlite_cmd.Parameters.Add("@Id", DbType.Int64, -1);
+                    sqlite_cmd.Parameters["@Id"].Value = capToSet.Id;
+
+                    sqlite_cmd.ExecuteNonQuery();
+                    conn.Close();
+               /* }
+                catch
+                {
+                    return false;
+                }*/
             }
+            return true;
         }
         
         
