@@ -27,15 +27,15 @@ namespace UI_ChambreFroide_V1
 
         /// <summary>
         /// Cette fonction retourne la liste de tous les capteurs connectés qui n'ont pas encore 
-        /// été mis en place dans le système
+        /// été mis en place dans le système (pas de nom / alertes)
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Retourne la liste des capteurs non-initialisés </returns>
         public static List<Capteur> GetUnsetCapteurs()
         {
             List<Capteur> capteurs, setCapteurs = new List<Capteur>();
-            capteurs = GetCapteurs();
+            capteurs = GetCapteurs(); // get la liste complete
 
-            foreach(Capteur cap in capteurs)
+            foreach(Capteur cap in capteurs) // filtre la liste
             {
                 if(cap.Ready == 0)
                 {
@@ -48,13 +48,13 @@ namespace UI_ChambreFroide_V1
         /// <summary>
         /// Cette fonction retourne la liste de tous les capteurs mis en place dans le systeme
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Retourne la liste des capteurs initialisés </returns>
         public static List<Capteur> GetSetCapteurs()
         {
             List<Capteur> capteurs, setCapteurs = new List<Capteur>();
-            capteurs = GetCapteurs();
+            capteurs = GetCapteurs(); // get la liste complete
 
-            foreach (Capteur cap in capteurs)
+            foreach (Capteur cap in capteurs) // filtre la liste
             {
                 if (cap.Ready == 1)
                 {
@@ -68,14 +68,14 @@ namespace UI_ChambreFroide_V1
         /// Cette fonction vérifie si un capteur donné est dans la dataBase. Si il est présent, 
         /// elle retourne false. Si le capteur n'est pas présent, elle l'ajoute à la dataBase
         /// </summary>
-        /// <param name="newCap"></param>
+        /// <param name="newCap"> Objet capteur qui contient minimalement une adresse, un numéro de module et un numéro d'index sur le module </param>
         /// <returns></returns>
         public static bool AddNewCapteur(Capteur newCap)
         {
             List<Capteur> capteurs = new List<Capteur>();
-            capteurs = GetCapteurs();
+            capteurs = GetCapteurs(); // Get la liste des capteurs
 
-            foreach (Capteur cap in capteurs)
+            foreach (Capteur cap in capteurs)   // Vérifie si le capteur existe déja
             {
                 if (newCap.Address == cap.Address)
                 {
@@ -83,18 +83,18 @@ namespace UI_ChambreFroide_V1
                 }
             }
 
-            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
+            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
             {
                 SQLiteCommand sqlite_cmd;
                 conn.Open();
+
+                // Crée la commande SQL
                 sqlite_cmd = conn.CreateCommand();
-                sqlite_cmd.CommandText = "INSERT INTO Capteurs(Address, Ready, Module, ModuleIndex) VALUES (@Address, @Ready, @Module, @ModuleIndex)";
+                sqlite_cmd.CommandText = "INSERT INTO Capteurs(Address, Ready, Module, ModuleIndex) VALUES (@Address, 0, @Module, @ModuleIndex)";
 
+                // Set les valeurs à celles voulues
                 sqlite_cmd.Parameters.Add("@Address", DbType.String, -1);
-                sqlite_cmd.Parameters["@Address"].Value = newCap.Address;
-
-                sqlite_cmd.Parameters.Add("@Ready", DbType.Int64, -1);
-                sqlite_cmd.Parameters["@Ready"].Value = newCap.Ready;
+                sqlite_cmd.Parameters["@Address"].Value = newCap.Address; 
 
                 sqlite_cmd.Parameters.Add("@Module", DbType.Int64, -1);
                 sqlite_cmd.Parameters["@Module"].Value = newCap.Module;
@@ -105,16 +105,20 @@ namespace UI_ChambreFroide_V1
                 sqlite_cmd.ExecuteNonQuery();
                 conn.Close();
             }
-
             return true;
         }
         
+        /// <summary>
+        /// Cette fonction permet d'ajouter un nom, un groupe et des niveaux d'alerte à un capteur non-initialisé
+        /// </summary>
+        /// <param name="capToSet"></param>
+        /// <returns></returns>
         public static bool SetCapteur(Capteur capToSet)
         {
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
             {
-                //try
-                //{
+                try
+                {
                     SQLiteCommand sqlite_cmd;
                     conn.Open();
                     sqlite_cmd = conn.CreateCommand();
@@ -137,11 +141,39 @@ namespace UI_ChambreFroide_V1
 
                     sqlite_cmd.ExecuteNonQuery();
                     conn.Close();
-               /* }
+                }
                 catch
                 {
                     return false;
-                }*/
+                }
+            }
+            return true;
+        }
+
+        public static bool ChangeName(Capteur capToSet)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
+            {
+                try
+                {
+                    SQLiteCommand sqlite_cmd;
+                    conn.Open();
+                    sqlite_cmd = conn.CreateCommand();
+                    sqlite_cmd.CommandText = "UPDATE Capteurs SET Name = @Name WHERE Id = @Id";
+
+                    sqlite_cmd.Parameters.Add("@Name", DbType.String, -1);
+                    sqlite_cmd.Parameters["@Name"].Value = capToSet.Name;
+
+                    sqlite_cmd.Parameters.Add("@Id", DbType.Int64, -1);
+                    sqlite_cmd.Parameters["@Id"].Value = capToSet.Id;
+
+                    sqlite_cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                catch
+                {
+                    return false;
+                }
             }
             return true;
         }

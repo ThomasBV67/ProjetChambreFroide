@@ -19,7 +19,7 @@ namespace UI_ChambreFroide_V1
         public List<String> m_listGroups = new List<String>();
         public List<Capteur> m_listCapteurs = new List<Capteur>();
 
-        public string Name { get; set; }
+        public string returnName { get; set; }
         public bool isGroup { get; set; }
 
         public FormChoixCapteur()
@@ -64,7 +64,7 @@ namespace UI_ChambreFroide_V1
         private void btnSelect_Click(object sender, EventArgs e)
         {
 
-            this.Name = listBoxChoixCapteur.SelectedItem.ToString();
+            this.returnName = listBoxChoixCapteur.SelectedItem.ToString();
             if(btnGroupName.Text == "Groupes")
             {
                 this.isGroup = false;
@@ -91,6 +91,7 @@ namespace UI_ChambreFroide_V1
             if (btnGroupName.Text == "Groupes")
             {
                 btnGroupName.Text = "Noms";
+                labelTitre.Text = "Choix du groupe à étudier";
 
                 m_listGroups = AccesDB.GetGroups();
 
@@ -102,6 +103,7 @@ namespace UI_ChambreFroide_V1
             else
             {
                 btnGroupName.Text = "Groupes";
+                labelTitre.Text = "Choix du capteur à étudier";
 
                 foreach (Capteur cap in m_listCapteurs)
                 { 
