@@ -111,7 +111,7 @@ namespace UI_ChambreFroide_V1
         {
             if (pagePrincipale.serialPort1.IsOpen)
             {
-                pagePrincipale.serialPort1.WriteLine("1getAddr");
+                scanModule(1);
             }
             else
             {
@@ -119,8 +119,9 @@ namespace UI_ChambreFroide_V1
             }
         }
 
-        public void MAJListe()
+        public void scanModule(int module)
         {
+            pagePrincipale.serialPort1.WriteLine(Convert.ToString(module) + "getAddr");
 
         }
 
