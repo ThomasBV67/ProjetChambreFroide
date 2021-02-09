@@ -16,11 +16,11 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormChoixCapteur : Form
     { 
-        public List<String> m_listGroups = new List<String>();
-        public List<Capteur> m_listCapteurs = new List<Capteur>();
+        public List<String> m_listGroups = new List<String>(); // Liste de tous les groupes présents dans la db
+        public List<Capteur> m_listCapteurs = new List<Capteur>();  // Liste de tous les capteurs initialisés
 
-        public string returnName { get; set; }
-        public bool isGroup { get; set; }
+        public string returnName { get; set; }  // Propriété utilisée pour transferer le nom du capteur ou du groupe choisis au form précédent
+        public bool isGroup { get; set; }       // Propriété utilisée pour savoir si le nom transféré est un nom de capteur ou de groupe
 
         public FormChoixCapteur()
         {
@@ -39,11 +39,21 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Retour au form précédent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
         
+        /// <summary>
+        /// Appuyer sur le bouton UP monte la ligne sélectionnée de 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUp_Click(object sender, EventArgs e)
         {
             if (listBoxChoixCapteur.SelectedIndex > 0)
@@ -52,6 +62,11 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Appuyer sur le bouton DOWN baisse la ligne sélectionnée de 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDown_Click(object sender, EventArgs e)
         {
             
@@ -61,6 +76,11 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Le bouton SELECT envoie le nom du capteur ou du groupe sélectionné au form précédent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSelect_Click(object sender, EventArgs e)
         {
 
@@ -78,17 +98,26 @@ namespace UI_ChambreFroide_V1
             this.Close();
         }
 
+        /// <summary>
+        /// Update la liste des capteurs lorque le form charge
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormChoixCapteur_Load(object sender, EventArgs e)
         {
             updateListeCapteurs();
         }
 
+        /// <summary>
+        /// Ce bouton permet de changer la sélection de capteur en sélection de groupe et vice-versa.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGroupName_Click(object sender, EventArgs e)
         {
-
             listBoxChoixCapteur.Items.Clear();
 
-            if (btnGroupName.Text == "Groupes")
+            if (btnGroupName.Text == "Groupes") // passe en mode groupe
             {
                 btnGroupName.Text = "Noms";
                 labelTitre.Text = "Choix du groupe à étudier";
@@ -100,7 +129,7 @@ namespace UI_ChambreFroide_V1
                     listBoxChoixCapteur.Items.Add(str);
                 }
             }
-            else
+            else // Passe en mode capteur
             {
                 btnGroupName.Text = "Groupes";
                 labelTitre.Text = "Choix du capteur à étudier";

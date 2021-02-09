@@ -60,10 +60,17 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Ouvre le form permettant d'avoir acces à l'historique des températures
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_historique_Click(object sender, EventArgs e)
         {
-            FormHistorique objFormHistorique = new FormHistorique();
-            objFormHistorique.Show();
+            using (var form = new FormHistorique())
+            {
+                var result = form.ShowDialog();
+            }
         }
 
         private void b_config_Click(object sender, EventArgs e)

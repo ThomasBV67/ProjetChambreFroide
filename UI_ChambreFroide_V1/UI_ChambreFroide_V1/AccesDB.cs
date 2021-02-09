@@ -150,6 +150,11 @@ namespace UI_ChambreFroide_V1
             return true;
         }
 
+        /// <summary>
+        /// Cette fonction permet de changer le nom d'un capteur dans la base de donnée
+        /// </summary>
+        /// <param name="capToSet"></param>
+        /// <returns></returns>
         public static bool ChangeName(Capteur capToSet)
         {
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
@@ -178,6 +183,10 @@ namespace UI_ChambreFroide_V1
             return true;
         }
 
+        /// <summary>
+        /// Cette fonction retourne une liste de string contenant les noms des groupes présents dans la database
+        /// </summary>
+        /// <returns></returns>
         public static List<String> GetGroups()
         {
             List<String> temp1, temp2 = new List<String>();

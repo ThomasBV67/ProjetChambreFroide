@@ -12,15 +12,20 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormHistorique : Form
     {
-        public String selectedName;
+        public String selectedName; // variables ayant une valeur donnée par le form de choix de capteur
         public bool selectedIsGroup;
 
-        public FormTempCourantes objFormTempCourantes;
         public FormHistorique()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Appuyer sur le bouton de choix de capteur ouvre le form de choix de capteur. Lorque le form
+        /// se ferme avec le bouton select, on reçoit le capteur ou groupe qui à été selectionné.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSelectCapteur_Click(object sender, EventArgs e)
         {
             using (var form = new FormChoixCapteur())
@@ -34,6 +39,11 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Retourn au form précédent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();

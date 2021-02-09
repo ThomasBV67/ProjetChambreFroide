@@ -15,7 +15,7 @@ namespace UI_ChambreFroide_V1
     /// AlertHigh : Température maximale permise avant qu'une alerte ne soit lancée
     /// Id : Id dans la dataBase
     /// Module : # du module duquel vient le capteur
-    /// Index : Index du capteur dans le module
+    /// ModuleIndex : Index du capteur dans le module
     /// Ready : Indique si le capteur à déja été setup par l'usager.
     /// </summary>
     public class Capteur
