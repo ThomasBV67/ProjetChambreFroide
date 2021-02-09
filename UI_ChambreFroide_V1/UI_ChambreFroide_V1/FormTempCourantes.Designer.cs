@@ -67,6 +67,7 @@ namespace UI_ChambreFroide_V1
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.t_timeoutScan = new System.Windows.Forms.Timer(this.components);
             this.panelTemp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -475,6 +476,11 @@ namespace UI_ChambreFroide_V1
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.getLoRa);
             // 
+            // t_timeoutScan
+            // 
+            this.t_timeoutScan.Interval = 2000;
+            this.t_timeoutScan.Tick += new System.EventHandler(this.t_timeoutScan_Tick);
+            // 
             // FormTempCourantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -537,6 +543,7 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         public System.IO.Ports.SerialPort serialPort1;
+        public System.Windows.Forms.Timer t_timeoutScan;
     }
 }
 

@@ -5,7 +5,7 @@
 #include <SPI.h>
 #include <LoRa.h>
 
-String NUM_MODULE = "1";
+String NUM_MODULE = "2";
 
 //define the pins used by the transceiver module
 #define ss 10

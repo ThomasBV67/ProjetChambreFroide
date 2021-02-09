@@ -12,6 +12,9 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormTempCourantes : Form
     {
+        public bool decouverteEnCours = false;
+        int nbModules = 1;
+
         const int NB_BOITES_AFFICHAGE = 15;
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
         RichTextBox[] m_RTB_temp = new RichTextBox[NB_BOITES_AFFICHAGE];
@@ -52,7 +55,7 @@ namespace UI_ChambreFroide_V1
                 else
                 {
                     m_RTB_temp[(int)(i / 2)] = (RichTextBox)ctrlSuivant;
-                    m_RTB_temp[(int)(i / 2)].Text = "ND";
+                    m_RTB_temp[(int)(i / 2)].Text = "--";
                 }
             }
         }
@@ -74,48 +77,94 @@ namespace UI_ChambreFroide_V1
             int nbCapteurs = 0;
             bool existe = false;
 
-            for (int i = 0; i < retourSerie.Length; i++)//compte le nombre de capteurs sur le module interrogé
+            if (decouverteEnCours)
             {
-                if (retourSerie.Substring(i, 1) == "#")
-                    nbCapteurs++;
-            }
-
-            capteursModule = retourSerie.Split('#');
-
-            for (int i = 0; i < nbCapteurs; i++)
-            {
-                lst_Capteurs.Add(new Capteur(capteursModule[i], 1, i));
-            }
-
-
-            for (int i = 0; i < nbCapteurs; i++)
-            {
-                for (int j = 0; j < objFormConfig.listeCapteurs.Rows.Count; j++)
+                t_timeoutScan.Stop();
+                nbModules++;
+                for (int i = 0; i < retourSerie.Length; i++)//compte le nombre de capteurs sur le module interrogé
                 {
-                    if ((string)objFormConfig.listeCapteurs.Rows[j].Cells[0].Value == lst_Capteurs[i].Address.ToUpper())//Si existe déjà dans la grille
+                    if (retourSerie.Substring(i, 1) == "#")
+                        nbCapteurs++;
+                }
+
+                capteursModule = retourSerie.Split('#');
+
+                for (int i = 0; i < nbCapteurs; i++)//Capteurs à ajouter
+                {
+                    for (int j = 0; j < lst_Capteurs.Count; j++)//Lit la liste
                     {
-                        existe = true;
+                        if(lst_Capteurs[j].Address == capteursModule[i])
+                        {
+                            existe = true;
+                        }
                     }
+                    if (!existe)
+                    {
+                        lst_Capteurs.Add(new Capteur(capteursModule[i], nbModules-1, i));
+                        objFormConfig.listeCapteurs.Rows.Insert(0);
+                        objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[lst_Capteurs.Count - 1].Address.ToUpper();
+                        objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[lst_Capteurs.Count - 1].Module;
+                        objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[lst_Capteurs.Count - 1].ModuleIndex;
+                    }
+                    existe = false;
                 }
-                if (!existe)
+                /*
+                for (int i = 0; i < nbCapteurs; i++)
                 {
-                    objFormConfig.listeCapteurs.Rows.Insert(0);
-                    objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[i].Address.ToUpper();
-                    objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[i].Module;
-                    objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[i].ModuleIndex;
+                    for (int j = 0; j < objFormConfig.listeCapteurs.Rows.Count; j++)
+                    {
+                        if ((string)objFormConfig.listeCapteurs.Rows[j].Cells[0].Value == lst_Capteurs[i].Address.ToUpper())//Si existe déjà dans la grille
+                        {
+                            existe = true;
+                        }
+                    }
+                    if (!existe)
+                    {
+                        objFormConfig.listeCapteurs.Rows.Insert(0);
+                        objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[i].Address.ToUpper();
+                        objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[i].Module;
+                        objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[i].ModuleIndex;
+                    }
+
+                    existe = false;
                 }
-
-                existe = false;
+                */
+                objFormConfig.scanModule(nbModules);
             }
-                
-
-            MessageBox.Show(retourSerie);
         }
 
         private void getLoRa(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             retourSerie = serialPort1.ReadLine();
             BeginInvoke(objDelegate);
+        }
+
+        private void t_timeoutScan_Tick(object sender, EventArgs e)
+        {
+            nbModules = 1;
+            t_timeoutScan.Stop();
+            decouverteEnCours = false;
+            MessageBox.Show("Découverte terminée");
+        }
+
+        public void MAJLabels()
+        {
+            for (int i = 0; i < lst_Capteurs.Count; i++)
+            {
+                lst_Capteurs[i].Name = (string)objFormConfig.listeCapteurs.Rows[i].Cells[3].Value;
+            }
+
+            for (int i = 0; i < NB_BOITES_AFFICHAGE; i++)
+            {
+                try
+                {
+                    m_label_pieces[i].Text = lst_Capteurs[i].Name;
+                }
+                catch
+                {
+                    m_label_pieces[i].Text = "ND";
+                }
+            }
         }
     }
 }

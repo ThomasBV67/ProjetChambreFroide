@@ -30,13 +30,6 @@ namespace UI_ChambreFroide_V1
         private void InitializeComponent()
         {
             this.listeCapteurs = new System.Windows.Forms.DataGridView();
-            this.b_decouverte = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.b_configSerie = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.infoPortActuel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.etatPortActuel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.b_ouvertureFermeturePort = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,12 +37,23 @@ namespace UI_ChambreFroide_V1
             this.ensemble = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.niv_avertissement = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_decouverte = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.b_configSerie = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.infoPortActuel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.etatPortActuel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.b_ouvertureFermeturePort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.listeCapteurs)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listeCapteurs
             // 
+            this.listeCapteurs.AllowUserToAddRows = false;
+            this.listeCapteurs.AllowUserToOrderColumns = true;
+            this.listeCapteurs.AllowUserToResizeColumns = false;
+            this.listeCapteurs.AllowUserToResizeRows = false;
             this.listeCapteurs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listeCapteurs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -66,6 +70,59 @@ namespace UI_ChambreFroide_V1
             this.listeCapteurs.RowTemplate.Height = 24;
             this.listeCapteurs.Size = new System.Drawing.Size(717, 550);
             this.listeCapteurs.TabIndex = 0;
+            this.listeCapteurs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.valeurChangeTableau);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Thermomètre";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 125;
+            // 
+            // goupe
+            // 
+            this.goupe.HeaderText = "Numéro de Groupe";
+            this.goupe.MinimumWidth = 6;
+            this.goupe.Name = "goupe";
+            this.goupe.ReadOnly = true;
+            this.goupe.Width = 80;
+            // 
+            // numero
+            // 
+            this.numero.HeaderText = "Numéro de Sous-Groupe";
+            this.numero.MinimumWidth = 6;
+            this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
+            this.numero.Width = 80;
+            // 
+            // nom
+            // 
+            this.nom.HeaderText = "Nom de pièce";
+            this.nom.MinimumWidth = 6;
+            this.nom.Name = "nom";
+            this.nom.Width = 125;
+            // 
+            // ensemble
+            // 
+            this.ensemble.HeaderText = "Ensemble";
+            this.ensemble.MinimumWidth = 6;
+            this.ensemble.Name = "ensemble";
+            this.ensemble.Width = 125;
+            // 
+            // niv_avertissement
+            // 
+            this.niv_avertissement.HeaderText = "Niveau d\'avertissement";
+            this.niv_avertissement.MinimumWidth = 6;
+            this.niv_avertissement.Name = "niv_avertissement";
+            this.niv_avertissement.Width = 80;
+            // 
+            // niv_alerte
+            // 
+            this.niv_alerte.HeaderText = "Niveau d\'alerte";
+            this.niv_alerte.MinimumWidth = 6;
+            this.niv_alerte.Name = "niv_alerte";
+            this.niv_alerte.Width = 50;
             // 
             // b_decouverte
             // 
@@ -131,58 +188,6 @@ namespace UI_ChambreFroide_V1
             this.b_ouvertureFermeturePort.Text = "Ouvrir le port";
             this.b_ouvertureFermeturePort.UseVisualStyleBackColor = true;
             this.b_ouvertureFermeturePort.Click += new System.EventHandler(this.b_ouvertureFermeturePort_Click);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Thermomètre";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 125;
-            // 
-            // goupe
-            // 
-            this.goupe.HeaderText = "Numéro de Groupe";
-            this.goupe.MinimumWidth = 6;
-            this.goupe.Name = "goupe";
-            this.goupe.ReadOnly = true;
-            this.goupe.Width = 80;
-            // 
-            // numero
-            // 
-            this.numero.HeaderText = "Numéro de Sous-Groupe";
-            this.numero.MinimumWidth = 6;
-            this.numero.Name = "numero";
-            this.numero.ReadOnly = true;
-            this.numero.Width = 80;
-            // 
-            // nom
-            // 
-            this.nom.HeaderText = "Nom de pièce";
-            this.nom.MinimumWidth = 6;
-            this.nom.Name = "nom";
-            this.nom.Width = 125;
-            // 
-            // ensemble
-            // 
-            this.ensemble.HeaderText = "Ensemble";
-            this.ensemble.MinimumWidth = 6;
-            this.ensemble.Name = "ensemble";
-            this.ensemble.Width = 125;
-            // 
-            // niv_avertissement
-            // 
-            this.niv_avertissement.HeaderText = "Niveau d\'avertissement";
-            this.niv_avertissement.MinimumWidth = 6;
-            this.niv_avertissement.Name = "niv_avertissement";
-            this.niv_avertissement.Width = 80;
-            // 
-            // niv_alerte
-            // 
-            this.niv_alerte.HeaderText = "Niveau d\'alerte";
-            this.niv_alerte.MinimumWidth = 6;
-            this.niv_alerte.Name = "niv_alerte";
-            this.niv_alerte.Width = 50;
             // 
             // FormConfig
             // 
