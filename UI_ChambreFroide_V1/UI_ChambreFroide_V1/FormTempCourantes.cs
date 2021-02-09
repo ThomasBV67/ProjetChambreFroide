@@ -110,6 +110,8 @@ namespace UI_ChambreFroide_V1
                         objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[lst_Capteurs.Count - 1].ModuleIndex;
                     }
                     existe = false;
+
+                    AccesDB.AddNewCapteur(lst_Capteurs[lst_Capteurs.Count - 1]); // Essai d'ajouter le capteur à la db
                 }
                 objFormConfig.scanModule(nbModules);//Lit le prochain module
             }
