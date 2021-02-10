@@ -18,6 +18,7 @@ namespace UI_ChambreFroide_V1
         public FormConfig()
         {
             InitializeComponent();
+
         }
         /// <summary>
         /// Ferme la page en mettant à jour les labels d'affichage de la page 1
@@ -26,7 +27,7 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            pagePrincipale.MAJLabels();
+            pagePrincipale.MAJListeCapteurs();
             this.Hide();
         }
         /// <summary>
@@ -153,6 +154,13 @@ namespace UI_ChambreFroide_V1
         private void valeurChangeTableau(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        private void FormConfig_Load(object sender, EventArgs e)
+        {
+            pagePrincipale.serialPort1.BaudRate = 115200;
+            pagePrincipale.serialPort1.PortName = "COM5";
+            b_ouvertureFermeturePort_Click(sender, e);
         }
     }
 }

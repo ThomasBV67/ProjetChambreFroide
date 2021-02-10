@@ -13,7 +13,10 @@ namespace UI_ChambreFroide_V1
     public partial class FormTempCourantes : Form
     {
         public bool decouverteEnCours = false;
+        int capteurEnCours = 0;
         int nbModules = 1;
+
+        int tempsAttente = 20;
 
         const int NB_BOITES_AFFICHAGE = 15;
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
@@ -113,6 +116,33 @@ namespace UI_ChambreFroide_V1
                 }
                 objFormConfig.scanModule(nbModules);//Lit le prochain module
             }
+            else
+            {
+                t_timeoutScan.Stop();
+                m_RTB_temp[capteurEnCours].Text = retourSerie;
+                if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) < lst_Capteurs[capteurEnCours].AlertLow)
+                {
+                    m_RTB_temp[capteurEnCours].BackColor = Color.LightGreen;
+                }else if(Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertHigh)
+                {
+                    m_RTB_temp[capteurEnCours].BackColor = Color.Red;
+                }
+                else if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertLow)
+                {
+                    m_RTB_temp[capteurEnCours].BackColor = Color.Yellow;
+                }
+
+                capteurEnCours++;
+                if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)
+                {
+                    reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
+                }
+                else
+                {
+                    t_checkTemps.Start();
+                    tempsAttente = 20;
+                }
+            }
         }
         /// <summary>
         /// Lecture du port série
@@ -131,17 +161,29 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void t_timeoutScan_Tick(object sender, EventArgs e)
         {
-            nbModules = 1;//reset du nombre de module découvert
-            t_timeoutScan.Stop();//Arret du timer
-            decouverteEnCours = false;
-            MessageBox.Show("Découverte terminée");
+            if (decouverteEnCours)
+            {
+                nbModules = 1;//reset du nombre de module découvert
+                t_timeoutScan.Stop();//Arret du timer
+                decouverteEnCours = false;
+                MessageBox.Show("Découverte terminée");
+            }
+            else
+            {
+
+                startGetTemp();
+            }
+            
         }
 
-        public void MAJLabels()
+        public void MAJListeCapteurs()
         {
             for (int i = 0; i < lst_Capteurs.Count; i++)//Ajoute les noms aux objets
             {
-                lst_Capteurs[i].Name = (string)objFormConfig.listeCapteurs.Rows[i].Cells[3].Value;
+                lst_Capteurs[i].Name = (string)objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[3].Value;//ordre de la grille par rapport à la liste inversé. 
+                //Doit passer pas soustraction pour que les noms correspondent.
+                lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[5].Value);
+                lst_Capteurs[i].AlertHigh = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[6].Value);
             }
 
             for (int i = 0; i < NB_BOITES_AFFICHAGE; i++)//Affiche les noms existants sinon, mets ND
@@ -155,6 +197,30 @@ namespace UI_ChambreFroide_V1
                     m_label_pieces[i].Text = "ND";
                 }
             }
+        }
+
+        private void t_checkTemps_Tick(object sender, EventArgs e)
+        {
+            tempsAttente--;
+            l_tempsRestant.Text = "Temps avant la prochaine mise à jour: " + Convert.ToString(tempsAttente);
+            if (tempsAttente == 0)
+            {
+                startGetTemp();
+            }
+        }
+
+        public void startGetTemp()
+        {
+            capteurEnCours = 0;
+            reqTemp(lst_Capteurs[0].Module, lst_Capteurs[0].ModuleIndex);
+            t_checkTemps.Stop();
+        }
+
+        private void reqTemp(int module, int capteur)
+        {
+            l_tempsRestant.Text = "Mise à jour du capteur # " + Convert.ToString(module) + " : " + Convert.ToString(capteur);
+            serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
+            t_timeoutScan.Start();
         }
     }
 }

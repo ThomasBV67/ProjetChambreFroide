@@ -35,6 +35,8 @@ namespace UI_ChambreFroide_V1
             Address = pAddresse;
             Module = pModule;
             ModuleIndex = pIndex;
+            AlertLow = 0;
+            AlertHigh = 0;
         }
 
         public Capteur() { }

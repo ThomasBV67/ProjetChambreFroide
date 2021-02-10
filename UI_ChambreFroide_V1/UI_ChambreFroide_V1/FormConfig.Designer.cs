@@ -204,6 +204,7 @@ namespace UI_ChambreFroide_V1
             this.Name = "FormConfig";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listeCapteurs)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
