@@ -133,6 +133,7 @@ namespace UI_ChambreFroide_V1
             retourSerie = serialPort1.ReadLine();
             BeginInvoke(objDelegate);
         }
+
         /// <summary>
         /// Timeout correspodant à la fin de la découverte du réseau
         /// </summary>
@@ -146,6 +147,9 @@ namespace UI_ChambreFroide_V1
             MessageBox.Show("Découverte terminée");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void MAJLabels()
         {
             for (int i = 0; i < lst_Capteurs.Count; i++)//Ajoute les noms aux objets

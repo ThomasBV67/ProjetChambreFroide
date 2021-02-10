@@ -88,7 +88,7 @@ namespace UI_ChambreFroide_V1
         /// MAJ de la barre d'état du port série dans le bas de la page de config
         /// </summary>
         public void temoinOuverture()
-        {//affiche les parametres appliqués au port série
+        {   //affiche les parametres appliqués au port série
             infoPortActuel.Text = pagePrincipale.serialPort1.PortName + ";" + Convert.ToString(pagePrincipale.serialPort1.BaudRate) + ";" + Convert.ToString(pagePrincipale.serialPort1.Parity) + ";" + Convert.ToString(pagePrincipale.serialPort1.DataBits) + ";" + Convert.ToString(pagePrincipale.serialPort1.StopBits);
 
             if (pagePrincipale.serialPort1.IsOpen)
