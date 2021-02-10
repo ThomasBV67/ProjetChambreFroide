@@ -211,7 +211,7 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         /// <param name="newCap"></param>
         /// <returns></returns>
-        public static bool EnregistreTempe(String addr, double temp, int alert)
+        public static bool EnregistreTemp(String addr, double temp, int alert)
         {
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
             {

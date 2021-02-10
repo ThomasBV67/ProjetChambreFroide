@@ -124,13 +124,17 @@ namespace UI_ChambreFroide_V1
                 if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) < lst_Capteurs[capteurEnCours].AlertLow)
                 {
                     m_RTB_temp[capteurEnCours].BackColor = Color.LightGreen;
-                }else if(Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertHigh)
+                    AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')),0);
+                }
+                else if(Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertHigh)
                 {
                     m_RTB_temp[capteurEnCours].BackColor = Color.Red;
+                    AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 2);
                 }
                 else if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertLow)
                 {
                     m_RTB_temp[capteurEnCours].BackColor = Color.Yellow;
+                    AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 1);
                 }
 
                 capteurEnCours++;
