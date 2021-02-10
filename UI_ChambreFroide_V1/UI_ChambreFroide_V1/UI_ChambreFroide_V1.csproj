@@ -96,6 +96,7 @@
     <Compile Include="FormHistorique.Designer.cs">
       <DependentUpon>FormHistorique.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesureTemp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Configuration.resx">
