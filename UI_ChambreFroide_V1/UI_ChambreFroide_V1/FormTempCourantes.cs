@@ -111,6 +111,7 @@ namespace UI_ChambreFroide_V1
                         objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[lst_Capteurs.Count - 1].Address.ToUpper();
                         objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[lst_Capteurs.Count - 1].Module;
                         objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[lst_Capteurs.Count - 1].ModuleIndex;
+                        AccesDB.AddNewCapteur(lst_Capteurs[lst_Capteurs.Count - 1]);
                     }
                     existe = false;
                 }

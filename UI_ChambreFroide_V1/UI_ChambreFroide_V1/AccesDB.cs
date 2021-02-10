@@ -206,7 +206,40 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Cette fonction enregistre une entrée de température dans la db
+        /// </summary>
+        /// <param name="newCap"></param>
+        /// <returns></returns>
+        public static bool EnregistreTempe(String addr, double temp, int alert)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
+            {
+                SQLiteCommand sqlite_cmd;
+                conn.Open();
 
+                // Crée la commande SQL
+                sqlite_cmd = conn.CreateCommand();
+                sqlite_cmd.CommandText = "INSERT INTO Historique (Capteur, Temperature, Alert, TimeStamp) VALUES (@Capteur, @Temperature, @Alert, @TimeStamp)";
+
+                // Set les valeurs à celles voulues
+                sqlite_cmd.Parameters.Add("@Capteur", DbType.String, -1);
+                sqlite_cmd.Parameters["@Capteur"].Value = addr;
+
+                sqlite_cmd.Parameters.Add("@Temperature", DbType.Double, -1);
+                sqlite_cmd.Parameters["@Temperature"].Value = temp;
+
+                sqlite_cmd.Parameters.Add("@Alert", DbType.Int64, -1);
+                sqlite_cmd.Parameters["@Alert"].Value = alert;
+
+                sqlite_cmd.Parameters.Add("@TimeStamp", DbType.String, -1);
+                sqlite_cmd.Parameters["@TimeStamp"].Value = DateTime.Now.ToString();
+
+                sqlite_cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            return true;
+        }
 
         /// <summary>
         /// Cette fonction permet d'avoir acces au connection string de la db
