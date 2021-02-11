@@ -16,7 +16,7 @@ namespace UI_ChambreFroide_V1
         int capteurEnCours = 0;
         int nbModules = 1;
 
-        int tempsAttente = 20;
+        int tempsAttente = 40;
 
         const int NB_BOITES_AFFICHAGE = 15;
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
@@ -117,34 +117,42 @@ namespace UI_ChambreFroide_V1
                 }
                 objFormConfig.scanModule(nbModules);//Lit le prochain module
             }
-            else
+            else//est en mode req. temps
             {
-                t_timeoutScan.Stop();
-                m_RTB_temp[capteurEnCours].Text = retourSerie;
-                if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) < lst_Capteurs[capteurEnCours].AlertLow)
-                {
-                    m_RTB_temp[capteurEnCours].BackColor = Color.LightGreen;
-                    AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')),0);
-                }
-                else if(Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertHigh)
-                {
-                    m_RTB_temp[capteurEnCours].BackColor = Color.Red;
-                    AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 2);
-                }
-                else if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertLow)
-                {
-                    m_RTB_temp[capteurEnCours].BackColor = Color.Yellow;
-                    AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 1);
-                }
+                t_timeoutScan.Stop();//arrete le timer de timeout, la réponse est reçue
+                m_RTB_temp[capteurEnCours].Text = retourSerie;//Écrit le retour
 
-                capteurEnCours++;
-                if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)
+                try//Possibilité de car invalide si réponse endommagée
+                {
+                    if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) < lst_Capteurs[capteurEnCours].AlertLow)//Si temp. est ok
+                    {
+                        m_RTB_temp[capteurEnCours].BackColor = Color.LightGreen;
+                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 0);
+                    }
+                    else if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertHigh)//alerte haute
+                    {
+                        m_RTB_temp[capteurEnCours].BackColor = Color.Red;
+                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 2);
+                    }
+                    else if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertLow)//Alerte moyen
+                    {
+                        m_RTB_temp[capteurEnCours].BackColor = Color.Yellow;
+                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 1);
+                    }
+                }
+                catch
+                {
+                    reqFailed();//Si a une réponse invalide, refait la requete
+                }
+                
+                capteurEnCours++;//prochain capteur
+                if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
                 {
                     reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
                 }
                 else
                 {
-                    t_checkTemps.Start();
+                    t_checkTemps.Start();//sinon, redémarre l'atente pour le prochain scan
                     tempsAttente = 20;
                 }
             }
@@ -175,8 +183,7 @@ namespace UI_ChambreFroide_V1
             }
             else
             {
-
-                startGetTemp();
+                reqFailed();
             }
             
         }
@@ -226,6 +233,11 @@ namespace UI_ChambreFroide_V1
             l_tempsRestant.Text = "Mise à jour du capteur # " + Convert.ToString(module) + " : " + Convert.ToString(capteur);
             serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
             t_timeoutScan.Start();
+        }
+
+        private void reqFailed()
+        {
+            reqTemp(lst_Capteurs[--capteurEnCours].Module, lst_Capteurs[--capteurEnCours].ModuleIndex);
         }
     }
 }
