@@ -15,6 +15,7 @@ namespace UI_ChambreFroide_V1
         public bool decouverteEnCours = false;
         int capteurEnCours = 0;
         int nbModules = 1;
+        int nbErr = 0;
 
         int tempsAttente = 40;
 
@@ -81,6 +82,7 @@ namespace UI_ChambreFroide_V1
         {
             String[] capteursModule = new String[20];
             int nbCapteurs = 0;
+            double temperature = 0;
             bool existe = false;
 
             if (decouverteEnCours)//Si en mode découverte
@@ -99,18 +101,20 @@ namespace UI_ChambreFroide_V1
                 {
                     for (int j = 0; j < lst_Capteurs.Count; j++)//Lit la liste
                     {
-                        if(lst_Capteurs[j].Address == capteursModule[i])//Si déjà présent dans la liste, est à ignorer
+                        if (lst_Capteurs[j].Address == capteursModule[i])//Si déjà présent dans la liste, est à ignorer
                         {
                             existe = true;
                         }
                     }
                     if (!existe)//si n'existe pas déjà
                     {
-                        lst_Capteurs.Add(new Capteur(capteursModule[i], nbModules-1, i));//nouvel objet et ajout dans la grille
+                        lst_Capteurs.Add(new Capteur(capteursModule[i], nbModules - 1, i));//nouvel objet et ajout dans la grille
                         objFormConfig.listeCapteurs.Rows.Insert(0);
                         objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[lst_Capteurs.Count - 1].Address.ToUpper();
                         objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[lst_Capteurs.Count - 1].Module;
                         objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[lst_Capteurs.Count - 1].ModuleIndex;
+                        objFormConfig.listeCapteurs.Rows[0].Cells[5].Value = "5";
+                        objFormConfig.listeCapteurs.Rows[0].Cells[6].Value = "10";
                         AccesDB.AddNewCapteur(lst_Capteurs[lst_Capteurs.Count - 1]);
                     }
                     existe = false;
@@ -120,40 +124,43 @@ namespace UI_ChambreFroide_V1
             else//est en mode req. temps
             {
                 t_timeoutScan.Stop();//arrete le timer de timeout, la réponse est reçue
-                m_RTB_temp[capteurEnCours].Text = retourSerie;//Écrit le retour
+                temperature = receptTemp(retourSerie, capteurEnCours);
+                
 
-                try//Possibilité de car invalide si réponse endommagée
+                if (temperature != -127)//Si code d'erreur
                 {
-                    if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) < lst_Capteurs[capteurEnCours].AlertLow)//Si temp. est ok
+                    m_RTB_temp[capteurEnCours].Text = Convert.ToString(Math.Round(temperature, 1)) + "°";//Écrit la temp. dans sa case
+                    m_label_pieces[capteurEnCours].Text = m_label_pieces[capteurEnCours].Text.Replace("*", "");//Supprime le marqueur d'erreur si présent
+                    if (temperature < lst_Capteurs[capteurEnCours].AlertLow)//Si temp. est ok
                     {
                         m_RTB_temp[capteurEnCours].BackColor = Color.LightGreen;
-                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 0);
+                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 0);
                     }
-                    else if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertHigh)//alerte haute
+                    else if (temperature >= lst_Capteurs[capteurEnCours].AlertHigh)//alerte haute
                     {
                         m_RTB_temp[capteurEnCours].BackColor = Color.Red;
-                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 2);
+                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 2);
                     }
-                    else if (Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')) >= lst_Capteurs[capteurEnCours].AlertLow)//Alerte moyen
+                    else if (temperature >= lst_Capteurs[capteurEnCours].AlertLow)//Alerte moyen
                     {
                         m_RTB_temp[capteurEnCours].BackColor = Color.Yellow;
-                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, Convert.ToDouble(m_RTB_temp[capteurEnCours].Text.Replace('.', ',')), 1);
+                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 1);
                     }
+
+                    capteurEnCours++;//prochain capteur
+                    if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
+                    {
+                        reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
+                    }
+                    else
+                    {
+                        demarreTimerTemp();
+                    }
+                    
                 }
-                catch
+                else//Réponse invalide, erreur
                 {
-                    reqFailed();//Si a une réponse invalide, refait la requete
-                }
-                
-                capteurEnCours++;//prochain capteur
-                if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
-                {
-                    reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
-                }
-                else
-                {
-                    t_checkTemps.Start();//sinon, redémarre l'atente pour le prochain scan
-                    tempsAttente = 20;
+                    reqFailed();
                 }
             }
         }
@@ -183,7 +190,7 @@ namespace UI_ChambreFroide_V1
             }
             else
             {
-                reqFailed();
+                reqFailed();//Aucune réponse, erreur
             }
             
         }
@@ -234,10 +241,67 @@ namespace UI_ChambreFroide_V1
             serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
             t_timeoutScan.Start();
         }
-
+        /// <summary>
+        /// Tente une nouvelle requete de température jusqu'à concurence de 3. Apres 3, le capteur est passé
+        /// et sa case de température est marqué (*) pour signifier qu'une erreur est survenue à la précédente lecture
+        /// </summary>
         private void reqFailed()
         {
-            reqTemp(lst_Capteurs[--capteurEnCours].Module, lst_Capteurs[--capteurEnCours].ModuleIndex);
+            t_timeoutScan.Stop();
+            nbErr++;
+            if (nbErr < 3)//3 tentatives
+            {
+                reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
+            }
+            else//Apres 3mets une * au titre
+            {
+                if (!m_label_pieces[capteurEnCours].Text.Contains("*"))
+                {
+                    m_label_pieces[capteurEnCours].Text += "*";
+                }
+                nbErr = 0;
+
+                if (++capteurEnCours >= lst_Capteurs.Count)//Si est à la fin de la liste, redémarre l'attente
+                {
+                    demarreTimerTemp();
+                }
+                else//sinon démarre la lecture du prochain capteur
+                {
+                    reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Vérifie la validité de la valeur de température, si est valide, retopurne la température. Sinon retourne -127 pour signifier l'erreur
+        /// </summary>
+        /// <param name="retour"></param>
+        /// <param name="capteur"></param>
+        /// <returns></returns>
+        private double receptTemp(String retour, int capteur)
+        {
+            String[] trame = new String[20];
+            trame = retour.Split('#');
+            try
+            {
+                if (lst_Capteurs[capteur].Address == trame[1].Trim())
+                {
+                    return Convert.ToDouble(trame[0].Replace('.', ','));
+                }
+            }
+            catch{}
+            
+            return -127;
+        }
+        private void demarreTimerTemp()
+        {
+            t_checkTemps.Start();//sinon, redémarre l'atente pour le prochain scan
+            tempsAttente = 20;
+        }
+
+        private void lireMaintenant(object sender, EventArgs e)
+        {
+            tempsAttente = 1;
         }
     }
 }

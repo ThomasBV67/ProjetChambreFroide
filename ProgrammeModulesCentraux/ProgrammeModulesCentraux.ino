@@ -77,13 +77,26 @@ void loop(void) {
         LoRa.beginPacket();
         LoRa.print(addresse);
         LoRa.endPacket();
+        
       }else if(LoRaData.startsWith(NUM_MODULE + "getTemp-")){
+        addresse = "";
         LoRaData.replace(NUM_MODULE + "getTemp-", "");
         LoRaData.trim();
         Serial.println(LoRaData.toInt());
         sensors.requestTemperatures();
+
+        addresse += (String)sensors.getTempCByIndex(LoRaData.toInt());
+        addresse += "#";
+
+        sensors.getAddress(Thermometer, LoRaData.toInt());
+        for(int i=0; i<=7; i++)
+          {
+            if (Thermometer[i] < 0x10) addresse += String(0);
+            addresse += String(Thermometer[i], HEX); 
+          }
+        
         LoRa.beginPacket();
-        LoRa.print(sensors.getTempCByIndex(LoRaData.toInt()));
+        LoRa.print(addresse);
         LoRa.endPacket();
         
       }
