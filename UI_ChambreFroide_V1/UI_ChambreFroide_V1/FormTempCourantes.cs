@@ -284,7 +284,7 @@ namespace UI_ChambreFroide_V1
             trame = retour.Split('#');
             try
             {
-                if (lst_Capteurs[capteur].Address == trame[1].Trim())
+                if (lst_Capteurs[capteur].Address == trame[1].Trim())//L'adresse du capteur agit comme checksum
                 {
                     return Convert.ToDouble(trame[0].Replace('.', ','));
                 }
