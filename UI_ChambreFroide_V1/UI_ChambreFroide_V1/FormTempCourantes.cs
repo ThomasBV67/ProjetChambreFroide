@@ -134,6 +134,7 @@ namespace UI_ChambreFroide_V1
 
                 if (temperature != -127)//Si code d'erreur
                 {
+                    nbErr = 0;
                     m_RTB_temp[capteurEnCours].Text = Convert.ToString(Math.Round(temperature, 1)) + "°";//Écrit la temp. dans sa case
                     m_label_pieces[capteurEnCours].Text = m_label_pieces[capteurEnCours].Text.Replace("*", "");//Supprime le marqueur d'erreur si présent
                     if (temperature < lst_Capteurs[capteurEnCours].AlertLow)//Si temp. est ok
