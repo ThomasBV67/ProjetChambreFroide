@@ -128,45 +128,47 @@ namespace UI_ChambreFroide_V1
             }
             else//est en mode req. temps
             {
-                t_timeoutScan.Stop();//arrete le timer de timeout, la réponse est reçue
-                temperature = receptTemp(retourSerie, capteurEnCours);
-                
-
-                if (temperature != -127)//Si code d'erreur
+                if (!t_checkTemps.Enabled)//Pour éviter de reçevoir des messages qui viennent de sources inconnues sans que le programme ne soit pret (Messages aléatopires qui arrivent à tout moment)
                 {
-                    nbErr = 0;
-                    m_RTB_temp[capteurEnCours].Text = Convert.ToString(Math.Round(temperature, 1)) + "°";//Écrit la temp. dans sa case
-                    m_label_pieces[capteurEnCours].Text = m_label_pieces[capteurEnCours].Text.Replace("*", "");//Supprime le marqueur d'erreur si présent
-                    if (temperature < lst_Capteurs[capteurEnCours].AlertLow)//Si temp. est ok
-                    {
-                        m_RTB_temp[capteurEnCours].BackColor = Color.LightGreen;
-                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 0);
-                    }
-                    else if (temperature >= lst_Capteurs[capteurEnCours].AlertHigh)//alerte haute
-                    {
-                        m_RTB_temp[capteurEnCours].BackColor = Color.Red;
-                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 2);
-                    }
-                    else if (temperature >= lst_Capteurs[capteurEnCours].AlertLow)//Alerte moyen
-                    {
-                        m_RTB_temp[capteurEnCours].BackColor = Color.Yellow;
-                        AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 1);
-                    }
+                    t_timeoutScan.Stop();//arrete le timer de timeout, la réponse est reçue
+                    temperature = receptTemp(retourSerie, capteurEnCours);
 
-                    capteurEnCours++;//prochain capteur
-                    if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
+                    if (temperature != -127)//Si code d'erreur
                     {
-                        reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
+                        nbErr = 0;
+                        m_RTB_temp[capteurEnCours].Text = Convert.ToString(Math.Round(temperature, 1)) + "°";//Écrit la temp. dans sa case
+                        m_label_pieces[capteurEnCours].Text = m_label_pieces[capteurEnCours].Text.Replace("*", "");//Supprime le marqueur d'erreur si présent
+                        if (temperature < lst_Capteurs[capteurEnCours].AlertLow)//Si temp. est ok
+                        {
+                            m_RTB_temp[capteurEnCours].BackColor = Color.LightGreen;
+                            AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 0);
+                        }
+                        else if (temperature >= lst_Capteurs[capteurEnCours].AlertHigh)//alerte haute
+                        {
+                            m_RTB_temp[capteurEnCours].BackColor = Color.Red;
+                            AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 2);
+                        }
+                        else if (temperature >= lst_Capteurs[capteurEnCours].AlertLow)//Alerte moyen
+                        {
+                            m_RTB_temp[capteurEnCours].BackColor = Color.Yellow;
+                            AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 1);
+                        }
+
+                        capteurEnCours++;//prochain capteur
+                        if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
+                        {
+                            reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
+                        }
+                        else
+                        {
+                            demarreTimerTemp();
+                        }
+
                     }
-                    else
+                    else//Réponse invalide, erreur
                     {
-                        demarreTimerTemp();
+                        reqFailed();
                     }
-                    
-                }
-                else//Réponse invalide, erreur
-                {
-                    reqFailed();
                 }
             }
         }
