@@ -70,6 +70,9 @@ namespace UI_ChambreFroide_V1
             this.t_timeoutScan = new System.Windows.Forms.Timer(this.components);
             this.t_checkTemps = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.panelTemp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,7 +118,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.l_tempsRestant.AutoSize = true;
             this.l_tempsRestant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.l_tempsRestant.Location = new System.Drawing.Point(120, 550);
+            this.l_tempsRestant.Location = new System.Drawing.Point(114, 550);
             this.l_tempsRestant.Name = "l_tempsRestant";
             this.l_tempsRestant.Size = new System.Drawing.Size(329, 24);
             this.l_tempsRestant.TabIndex = 35;
@@ -499,11 +502,41 @@ namespace UI_ChambreFroide_V1
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.lireMaintenant);
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(19, 503);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 13);
+            this.label16.TabIndex = 42;
+            this.label16.Text = "label16";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(19, 516);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(41, 13);
+            this.label17.TabIndex = 43;
+            this.label17.Text = "label17";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(19, 529);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(41, 13);
+            this.label18.TabIndex = 44;
+            this.label18.Text = "label18";
+            // 
             // FormTempCourantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.b_historique);
             this.Controls.Add(this.b_config);
@@ -565,6 +598,9 @@ namespace UI_ChambreFroide_V1
         public System.Windows.Forms.Timer t_timeoutScan;
         private System.Windows.Forms.Timer t_checkTemps;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
 

@@ -17,6 +17,11 @@ namespace UI_ChambreFroide_V1
         int nbModules = 1;
         int nbErr = 0;
 
+        ///////////////////////////////////////Marqueurs temporaires
+        int e = 0;
+        int eCrit = 0;
+        int nbCycles = 0;
+
         int tempsAttente = 40;
 
         const int NB_BOITES_AFFICHAGE = 15;
@@ -230,6 +235,7 @@ namespace UI_ChambreFroide_V1
 
         public void startGetTemp()
         {
+            label18.Text = "Combre de cycles : " + Convert.ToString(++nbCycles);
             capteurEnCours = 0;
             reqTemp(lst_Capteurs[0].Module, lst_Capteurs[0].ModuleIndex);
             t_checkTemps.Stop();
@@ -249,6 +255,7 @@ namespace UI_ChambreFroide_V1
         {
             t_timeoutScan.Stop();
             nbErr++;
+            e++;
             if (nbErr < 3)//3 tentatives
             {
                 reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
@@ -260,6 +267,7 @@ namespace UI_ChambreFroide_V1
                     m_label_pieces[capteurEnCours].Text += "*";
                 }
                 nbErr = 0;
+                eCrit++;
 
                 if (++capteurEnCours >= lst_Capteurs.Count)//Si est à la fin de la liste, redémarre l'attente
                 {
@@ -270,6 +278,8 @@ namespace UI_ChambreFroide_V1
                     reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
                 }
             }
+            label16.Text = "Erreurs : " + Convert.ToString(e);
+            label17.Text = "Erreurs Critiques : " + Convert.ToString(eCrit);
         }
 
         /// <summary>
