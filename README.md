@@ -9,9 +9,6 @@ Contient tout les fichiers et dossiers en lien avec la partie électronique du p
 #### getAdressesCapteurs
 Contient le projet arduino de test unitaire pour obtenir l'adresse des capteurs de températures.
 
-#### GUI Élian
-Contient le projet Visual Studio d'ébauche d'interface d'Élian.
-
 #### LoRaSender
 Contient le projet arduino de test unitaire d'envoi de trames LoRa.
 
