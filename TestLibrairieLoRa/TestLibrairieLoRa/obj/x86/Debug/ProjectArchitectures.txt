@@ -1,1 +1,0 @@
-C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\TestLibrairieLoRa\TestLibrairieLoRa\TestLibrairieLoRa.csproj;x86

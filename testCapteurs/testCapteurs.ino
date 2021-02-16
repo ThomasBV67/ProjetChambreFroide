@@ -1,3 +1,12 @@
+/*
+  testCapteurs
+  Ce programme permet de tester l'aquisition de température des capteurs DS18B20 et d'envoyer 
+  ces informations par des trames personalisées sur le port série.
+ 
+  modifié le 26 janvier 2021
+  par Thomas Bureau-Viens
+ */
+ 
 #include <OneWire.h> 
 #include <DallasTemperature.h> 
 
@@ -32,11 +41,8 @@ void setup(void)
 } 
 
 void loop(void) 
-
 {  
-  char tempEntier, tempDecimal;
-  unsigned char address[8];
-  String tempon;
+  char tempEntier, tempDecimal; // Variables tempon pour séparer la température en entier et décimale
   byte trame[12] = {};
   
   // Send command to all the sensors for temperature conversion 
@@ -51,20 +57,26 @@ void loop(void)
     
     tempEntier = (char)g_tempC;
     tempDecimal = (g_tempC-tempEntier)*100;
-    
+
+    // Ajout du bit SOH à la trame
     trame[0] = 0x01;
-    
+
+    // Ajout de l'adresse du capteur à la trame
     for(int i = 0; i<8; i++)
     {
       trame[i+1] = Thermometer[i];
       g_checkSum = g_checkSum + Thermometer[i];
     }
-    
+
+    // Ajout de la température à la trame
     trame[9]=(byte)tempEntier; 
     g_checkSum += tempEntier;
     trame[10] = (byte)tempDecimal; 
     g_checkSum += tempDecimal;
+
+    // Finalisation du CheckSum
     trame[11] = g_checkSum%0x100;
+
     
     for(int j = 0; j<12 ; j++)
     {
