@@ -1,5 +1,12 @@
+/*
+  getAdressesCapteurs
+  Ce programme permet à un arduino, connecté à un ou des capteurs de température DS18B20, d'afficher
+  l'adresse de chaque capteur connecté à celui-ci sur le port série.
+ 
+  modifié le 25 janvier 2021
+  par Thomas Bureau-Viens
+ */
 #include <OneWire.h> 
-
 #include <DallasTemperature.h> 
 
 // Data wire is plugged into port 2 on the Arduino 
@@ -61,7 +68,7 @@ void setup(void)
   Serial.println(""); 
 
    
-
+  // Print les adresses sur le port série
   Serial.println("Printing addresses..."); 
 
   for (int i = 0;  i < deviceCount;  i++) 
@@ -83,13 +90,14 @@ void setup(void)
 } 
 
   
-
+// rien dans le loop
 void loop(void) 
-
 {} 
 
   
-
+/*
+ * Cette fonction print en HEX chaque byte de l'adresse du capteur envoyé en parametre
+ */
 void printAddress(DeviceAddress deviceAddress) 
 
 {  
