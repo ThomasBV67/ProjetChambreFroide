@@ -158,8 +158,8 @@ namespace UI_ChambreFroide_V1
 
         private void FormConfig_Load(object sender, EventArgs e)
         {
-            pagePrincipale.serialPort1.BaudRate = 115200;
-            pagePrincipale.serialPort1.PortName = "COM7";
+            pagePrincipale.serialPort1.BaudRate = 9600;
+            pagePrincipale.serialPort1.PortName = "COM3";
             b_ouvertureFermeturePort_Click(sender, e);
         }
     }
