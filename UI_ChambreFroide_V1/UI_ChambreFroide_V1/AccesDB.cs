@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Cette classe permet d'avoir acces à la database SQLite3 du projet.
+    /// </summary>
     public class AccesDB
     {
         /// <summary>
@@ -121,9 +124,12 @@ namespace UI_ChambreFroide_V1
                 {
                     SQLiteCommand sqlite_cmd;
                     conn.Open();
+
+                    // Crée la commande SQL
                     sqlite_cmd = conn.CreateCommand();
                     sqlite_cmd.CommandText = "UPDATE Capteurs SET Name = @Name, GroupCapteur = @GroupCapteur, AlertHigh = @AlertHigh, AlertLow = @AlertLow, Ready = 1 WHERE Id = @Id";
 
+                    // Set les valeurs à celles voulues
                     sqlite_cmd.Parameters.Add("@Name", DbType.String, -1);
                     sqlite_cmd.Parameters["@Name"].Value = capToSet.Name;
 
@@ -161,11 +167,14 @@ namespace UI_ChambreFroide_V1
             {
                 try
                 {
-                    SQLiteCommand sqlite_cmd;
                     conn.Open();
+
+                    // Cré une commande SQL
+                    SQLiteCommand sqlite_cmd;
                     sqlite_cmd = conn.CreateCommand();
                     sqlite_cmd.CommandText = "UPDATE Capteurs SET Name = @Name WHERE Id = @Id";
 
+                    // Set les valeurs à celles voulues
                     sqlite_cmd.Parameters.Add("@Name", DbType.String, -1);
                     sqlite_cmd.Parameters["@Name"].Value = capToSet.Name;
 
@@ -189,12 +198,15 @@ namespace UI_ChambreFroide_V1
         /// <returns></returns>
         public static List<String> GetGroups()
         {
-            List<String> temp1, temp2 = new List<String>();
+            List<String> temp1, temp2 = new List<String>(); // 2 listes pour pouvoir filtrer facilement le contenu 
 
             using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
             {
+                // Get tous les groupes uniques
                 var output = conn.Query<String>("SELECT DISTINCT GroupCapteur FROM Capteurs");
                 temp1 = output.ToList();
+
+                // Retire le groupe NULL si il est présent
                 foreach(String str in temp1)
                 {
                     if(str != null)
@@ -202,6 +214,8 @@ namespace UI_ChambreFroide_V1
                         temp2.Add(str);
                     }
                 }
+
+                // Retourne la liste de groupes
                 return temp2;
             }
         }
@@ -242,7 +256,7 @@ namespace UI_ChambreFroide_V1
         }
 
         /// <summary>
-        /// Cette fonction permet d'avoir acces au connection string de la db
+        /// Cette fonction permet d'avoir acces au connection string de la db (contient le path du fichier .db
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

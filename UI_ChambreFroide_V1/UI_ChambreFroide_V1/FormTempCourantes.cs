@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Ce form est le form principal de l'application. Sur ce form on peut voir en léger différé les températures des
+    /// capteurs de températures. On peut accéder à l'historique et à la configuration des capteurs à partir de ce form.
+    /// </summary>
     public partial class FormTempCourantes : Form
     {
         public bool decouverteEnCours = false;

@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Ce form permet de détecter tous les capteurs présents dans le systeme et d'avoir accès au configurateur du port série.
+    /// </summary>
     public partial class FormConfig : Form
     {
-
         public FormTempCourantes pagePrincipale;
 
         public FormConfig()
@@ -20,6 +22,7 @@ namespace UI_ChambreFroide_V1
             InitializeComponent();
 
         }
+
         /// <summary>
         /// Ferme la page en mettant à jour les labels d'affichage de la page 1
         /// </summary>
@@ -30,6 +33,7 @@ namespace UI_ChambreFroide_V1
             pagePrincipale.MAJListeCapteurs();
             this.Hide();
         }
+
         /// <summary>
         /// Ouvre une boite de dialogue qui permet de configurer le port série
         /// </summary>
@@ -85,6 +89,7 @@ namespace UI_ChambreFroide_V1
 
             }
         }
+
         /// <summary>
         /// MAJ de la barre d'état du port série dans le bas de la page de config
         /// </summary>
@@ -105,6 +110,7 @@ namespace UI_ChambreFroide_V1
                 b_ouvertureFermeturePort.Text = "Ouvrir le port";
             }
         }
+
         /// <summary>
         /// Ouvre et ferme le port série
         /// </summary>
@@ -124,6 +130,7 @@ namespace UI_ChambreFroide_V1
             }
             temoinOuverture();
         }
+
         /// <summary>
         /// Envoie la première commande de get Addr. au module via série
         /// </summary>
@@ -141,6 +148,7 @@ namespace UI_ChambreFroide_V1
                 MessageBox.Show("Le port série doit etre ouvert");
             }
         }
+
         /// <summary>
         /// Envoie la requete d'addressage au module spécifié puis démarre le timer de timeout
         /// </summary>

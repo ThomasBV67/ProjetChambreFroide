@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Ce form permet d'accéder à un historique de températures lié à un capteur ou un groupe de capteurs.
+    /// La sélection se fait via le bouton Sélection du capteur.
+    /// </summary>
     public partial class FormHistorique : Form
     {
         public String selectedName; // variables ayant une valeur donnée par le form de choix de capteur

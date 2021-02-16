@@ -14,6 +14,10 @@ using System.Reflection;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Ce form permet de sélectionner la source qui sera utilisée pour l'affichage de l'historique.
+    /// Cette source peut être soit un capteur en particulier ou un groupe de capteurs.
+    /// </summary>
     public partial class FormChoixCapteur : Form
     { 
         public List<String> m_listGroups = new List<String>(); // Liste de tous les groupes présents dans la db

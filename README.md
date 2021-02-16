@@ -30,9 +30,6 @@ Contient le projet arduino utilisé pour tester la réception de trames LoRa.
 #### TestSender
 Contient le projet arduino utilisé pour tester l'envoi de trames LoRa.
 
-#### testUnitaireLoRaReceiver
-Contient le projet arduino utilisé pour tester la réception de trames LoRa.
-
 #### UI_ChambreFroide_V1
 Contient le projet principal Visual Studio.
 
