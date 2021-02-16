@@ -10,7 +10,7 @@ int counter = 0;
 
 void setup() {
   //initialize Serial Monitor
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial);
   
   //setup LoRa transceiver module
