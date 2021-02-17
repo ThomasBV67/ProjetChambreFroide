@@ -14,12 +14,17 @@ namespace UI_ChambreFroide_V1
     {
 
         public FormTempCourantes pagePrincipale;
+        FormModifCapteur objFormModifCapteur = new FormModifCapteur();
+        int selectedIndex = 0;
 
         public FormConfig()
         {
             InitializeComponent();
 
+            objFormModifCapteur.Hide();
+
         }
+
         /// <summary>
         /// Ferme la page en mettant à jour les labels d'affichage de la page 1
         /// </summary>
@@ -30,6 +35,7 @@ namespace UI_ChambreFroide_V1
             pagePrincipale.MAJListeCapteurs();
             this.Hide();
         }
+
         /// <summary>
         /// Ouvre une boite de dialogue qui permet de configurer le port série
         /// </summary>
@@ -85,6 +91,7 @@ namespace UI_ChambreFroide_V1
 
             }
         }
+
         /// <summary>
         /// MAJ de la barre d'état du port série dans le bas de la page de config
         /// </summary>
@@ -105,6 +112,7 @@ namespace UI_ChambreFroide_V1
                 b_ouvertureFermeturePort.Text = "Ouvrir le port";
             }
         }
+
         /// <summary>
         /// Ouvre et ferme le port série
         /// </summary>
@@ -124,6 +132,7 @@ namespace UI_ChambreFroide_V1
             }
             temoinOuverture();
         }
+
         /// <summary>
         /// Envoie la première commande de get Addr. au module via série
         /// </summary>
@@ -151,16 +160,56 @@ namespace UI_ChambreFroide_V1
             pagePrincipale.t_timeoutScan.Start();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void valeurChangeTableau(object sender, DataGridViewCellEventArgs e)
         {
             
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormConfig_Load(object sender, EventArgs e)
         {
-            pagePrincipale.serialPort1.BaudRate = 9600;
-            pagePrincipale.serialPort1.PortName = "COM3";
+            pagePrincipale.serialPort1.BaudRate = 115200;
+            pagePrincipale.serialPort1.PortName = "COM15";
             b_ouvertureFermeturePort_Click(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void b_modifyCapteur_Click(object sender, EventArgs e)
+        {
+            objFormModifCapteur.Show();
+            if(objFormModifCapteur.DialogResult == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void b_up_Click(object sender, EventArgs e)
+        {
+            if(selectedIndex>0)
+            {
+
+            }
+        }
+
+        private void b_down_Click(object sender, EventArgs e)
+        {
+            if(selectedIndex < listeCapteurs.Rows.Count-1)
+            {
+
+            }
         }
     }
 }

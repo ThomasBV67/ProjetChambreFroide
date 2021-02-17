@@ -84,6 +84,12 @@
     <Compile Include="FormConfig.Designer.cs">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModifCapteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifCapteur.Designer.cs">
+      <DependentUpon>FormModifCapteur.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTempCourantes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistorique.resx">
       <DependentUpon>FormHistorique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModifCapteur.resx">
+      <DependentUpon>FormModifCapteur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTempCourantes.resx">
       <DependentUpon>FormTempCourantes.cs</DependentUpon>
