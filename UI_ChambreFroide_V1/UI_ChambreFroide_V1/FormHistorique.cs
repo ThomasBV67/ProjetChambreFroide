@@ -19,9 +19,13 @@ namespace UI_ChambreFroide_V1
         public String selectedName; // variables ayant une valeur donnée par le form de choix de capteur
         public bool selectedIsGroup;
 
+        FormChoixCapteur objFormChoixCapteur = new FormChoixCapteur();
+
         public FormHistorique()
         {
             InitializeComponent();
+
+            objFormChoixCapteur.Hide();
         }
 
         /// <summary>
@@ -32,14 +36,11 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void btnSelectCapteur_Click(object sender, EventArgs e)
         {
-            using (var form = new FormChoixCapteur())
+            objFormChoixCapteur.Show();
+            if(objFormChoixCapteur.DialogResult == DialogResult.OK)
             {
-                var result = form.ShowDialog();
-                if(result == DialogResult.OK)
-                {
-                    selectedName = form.returnName;
-                    selectedIsGroup = form.isGroup;
-                }
+                selectedName = objFormChoixCapteur.returnName;
+                selectedIsGroup = objFormChoixCapteur.isGroup;
             }
         }
 
@@ -50,7 +51,7 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Hide();
         }
     }
 }
