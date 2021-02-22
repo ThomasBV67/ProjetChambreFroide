@@ -24,7 +24,6 @@ namespace UI_ChambreFroide_V1
             InitializeComponent();
 
             objFormModifCapteur.Hide();
-
         }
 
         /// <summary>
@@ -192,6 +191,11 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void b_modifyCapteur_Click(object sender, EventArgs e)
         {
+            objFormModifCapteur.m_name = listeCapteurs.Rows[selectedIndex].Cells[3].Value.ToString();
+            objFormModifCapteur.m_group = listeCapteurs.Rows[selectedIndex].Cells[4].Value.ToString();
+            //objFormModifCapteur.m_warning = listeCapteurs.Rows[selectedIndex].Cells[5].Value;
+            //objFormModifCapteur.m_alert = listeCapteurs.Rows[selectedIndex].Cells[6].Value.ToString();
+
             objFormModifCapteur.Show();
             if(objFormModifCapteur.DialogResult == DialogResult.OK)
             {
@@ -203,7 +207,9 @@ namespace UI_ChambreFroide_V1
         {
             if(selectedIndex>0)
             {
-
+                listeCapteurs.Rows[selectedIndex].Selected = false;
+                selectedIndex--;
+                listeCapteurs.Rows[selectedIndex].Selected = true;
             }
         }
 
@@ -211,7 +217,9 @@ namespace UI_ChambreFroide_V1
         {
             if(selectedIndex < listeCapteurs.Rows.Count-1)
             {
-
+                listeCapteurs.Rows[selectedIndex].Selected = false;
+                selectedIndex++;
+                listeCapteurs.Rows[selectedIndex].Selected = true;
             }
         }
     }
