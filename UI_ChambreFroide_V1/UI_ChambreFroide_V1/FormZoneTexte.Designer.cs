@@ -40,6 +40,8 @@ namespace UI_ChambreFroide_V1
             this.tbModif.Name = "tbModif";
             this.tbModif.Size = new System.Drawing.Size(812, 62);
             this.tbModif.TabIndex = 0;
+            this.tbModif.Enter += new System.EventHandler(this.tbModif_Enter);
+            this.tbModif.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbModif_KeyPress);
             // 
             // btnConfirm
             // 
@@ -50,6 +52,7 @@ namespace UI_ChambreFroide_V1
             this.btnConfirm.TabIndex = 1;
             this.btnConfirm.Text = "Confirmer";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // FormZoneTexte
             // 

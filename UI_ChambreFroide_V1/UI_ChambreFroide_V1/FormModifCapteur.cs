@@ -14,13 +14,15 @@ namespace UI_ChambreFroide_V1
     {
         public String m_name = "", m_group = "";
         public double m_warning = 0.0, m_alert = 0.0;
+        public enum properties { name, group, warning, alert };
+        FormZoneTexte objFormZoneTexte = new FormZoneTexte();
 
         public FormModifCapteur()
         {
             InitializeComponent();
+
+            objFormZoneTexte.Hide();
         }
-
-
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
@@ -42,19 +44,23 @@ namespace UI_ChambreFroide_V1
 
         private void btnModifWarning_Click(object sender, EventArgs e)
         {
-
+            objFormZoneTexte.currentProp = (FormZoneTexte.properties)properties.warning;
+            objFormZoneTexte.Show();
         }
         private void btnModifAlerte_Click(object sender, EventArgs e)
         {
-
+            objFormZoneTexte.currentProp = (FormZoneTexte.properties)properties.alert;
+            objFormZoneTexte.Show();
         }
         private void btnModifNom_Click(object sender, EventArgs e)
         {
-
+            objFormZoneTexte.currentProp = (FormZoneTexte.properties)properties.name;
+            objFormZoneTexte.Show();
         }
         private void btnModifGroupe_Click(object sender, EventArgs e)
         {
-
+            objFormZoneTexte.currentProp = (FormZoneTexte.properties)properties.group;
+            objFormZoneTexte.Show();
         }
     }
 }
