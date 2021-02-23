@@ -41,7 +41,7 @@ namespace UI_ChambreFroide_V1
             this.b_modifyCapteur = new System.Windows.Forms.Button();
             this.b_down = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ensemble = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,7 +60,7 @@ namespace UI_ChambreFroide_V1
             this.listeCapteurs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listeCapteurs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
-            this.goupe,
+            this.groupe,
             this.numero,
             this.nom,
             this.ensemble,
@@ -190,13 +190,13 @@ namespace UI_ChambreFroide_V1
             this.ID.ReadOnly = true;
             this.ID.Width = 125;
             // 
-            // goupe
+            // groupe
             // 
-            this.goupe.HeaderText = "Numéro de Groupe";
-            this.goupe.MinimumWidth = 6;
-            this.goupe.Name = "goupe";
-            this.goupe.ReadOnly = true;
-            this.goupe.Width = 80;
+            this.groupe.HeaderText = "Numéro de Groupe";
+            this.groupe.MinimumWidth = 6;
+            this.groupe.Name = "groupe";
+            this.groupe.ReadOnly = true;
+            this.groupe.Width = 80;
             // 
             // numero
             // 
@@ -274,7 +274,7 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.Button b_modifyCapteur;
         private System.Windows.Forms.Button b_down;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn goupe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn groupe;
         private System.Windows.Forms.DataGridViewTextBoxColumn numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn ensemble;

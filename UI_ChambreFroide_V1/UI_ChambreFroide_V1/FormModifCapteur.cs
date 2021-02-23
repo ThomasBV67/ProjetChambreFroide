@@ -12,19 +12,46 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormModifCapteur : Form
     {
-        public String m_name, m_group;
-        public double m_warning, m_alert;
+        public String m_name = "", m_group = "";
+        public double m_warning = 0.0, m_alert = 0.0;
 
         public FormModifCapteur()
+        {
+            InitializeComponent();
+        }
+
+
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            Hide();
+        }
+
+        private void FormModifCapteur_Load(object sender, EventArgs e)
         {
             lbNom.Text = "Nom : " + m_name;
             lbGroupe.Text = "Groupe : " + m_group;
             lbWarning.Text = "Niveau d'avertissement : " + m_warning.ToString() + "oC";
             lbAlerte.Text = "Niveau d'alerte : " + m_alert.ToString() + "oC";
-
-            InitializeComponent();
         }
 
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+        }
+
+        private void btnModifWarning_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnModifAlerte_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnModifNom_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btnModifGroupe_Click(object sender, EventArgs e)
         {
 

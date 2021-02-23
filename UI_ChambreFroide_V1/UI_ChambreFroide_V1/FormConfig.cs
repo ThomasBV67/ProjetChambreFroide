@@ -191,15 +191,30 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void b_modifyCapteur_Click(object sender, EventArgs e)
         {
-            objFormModifCapteur.m_name = listeCapteurs.Rows[selectedIndex].Cells[3].Value.ToString();
-            objFormModifCapteur.m_group = listeCapteurs.Rows[selectedIndex].Cells[4].Value.ToString();
-            //objFormModifCapteur.m_warning = listeCapteurs.Rows[selectedIndex].Cells[5].Value;
-            //objFormModifCapteur.m_alert = listeCapteurs.Rows[selectedIndex].Cells[6].Value.ToString();
+            if (listeCapteurs.Rows[selectedIndex].Cells[3].Value != null)
+            {
+                objFormModifCapteur.m_name = listeCapteurs.Rows[selectedIndex].Cells[3].Value.ToString();
+            }
+            if (listeCapteurs.Rows[selectedIndex].Cells[4].Value != null)
+            {
+                objFormModifCapteur.m_group = listeCapteurs.Rows[selectedIndex].Cells[4].Value.ToString();
+            }
+            if (listeCapteurs.Rows[selectedIndex].Cells[5].Value != null)
+            {
+                objFormModifCapteur.m_warning = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[5].Value);
+            }
+            if (listeCapteurs.Rows[selectedIndex].Cells[6].Value != null)
+            {
+                objFormModifCapteur.m_alert = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[6].Value);
+            }
 
             objFormModifCapteur.Show();
             if(objFormModifCapteur.DialogResult == DialogResult.OK)
             {
-
+                listeCapteurs.Rows[selectedIndex].Cells[3].Value = objFormModifCapteur.m_name;
+                listeCapteurs.Rows[selectedIndex].Cells[4].Value = objFormModifCapteur.m_group;
+                listeCapteurs.Rows[selectedIndex].Cells[5].Value = objFormModifCapteur.m_warning;
+                listeCapteurs.Rows[selectedIndex].Cells[6].Value = objFormModifCapteur.m_alert;
             }
         }
 
