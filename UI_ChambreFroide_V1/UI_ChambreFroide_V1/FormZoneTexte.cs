@@ -27,11 +27,21 @@ namespace UI_ChambreFroide_V1
         {
             try
             {
-                Process.Start(@"c:\Temp\OSK.exe");
+                //Kill all on screen keyboards
+                Process[] oskProcessArray = Process.GetProcessesByName("TabTip");
+                foreach (Process onscreenProcess in oskProcessArray)
+                {
+                    onscreenProcess.Kill();
+                }
+
+                string progFiles = @"C:\Program Files\Common Files\Microsoft Shared\ink";
+                string onScreenKeyboardPath = System.IO.Path.Combine(progFiles, "TabTip.exe");
+                Process onScreenKeyboardProc = Process.Start(onScreenKeyboardPath);
             }
             catch (Exception error)
             {
                 string err = error.ToString();
+                MessageBox.Show(err);
             }
             tbModif.Focus();
         }
