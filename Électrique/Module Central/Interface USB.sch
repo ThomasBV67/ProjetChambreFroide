@@ -39,10 +39,6 @@ Wire Wire Line
 Connection ~ 5650 2800
 Wire Wire Line
 	5650 2700 5650 2800
-Wire Wire Line
-	2550 3500 3300 3500
-Wire Wire Line
-	2550 3400 3300 3400
 $Comp
 L Interface_USB:FT232RL U?
 U 1 1 600862B8
@@ -188,7 +184,7 @@ L Device:C C203
 U 1 1 6008B005
 P 6600 3500
 F 0 "C203" V 6450 3500 50  0000 C CNN
-F 1 "0.01" V 6750 3550 50  0000 C CNN
+F 1 "0.1" V 6750 3550 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric" H 6638 3350 50  0001 C CNN
 F 3 "~" H 6600 3500 50  0001 C CNN
 	1    6600 3500
@@ -212,85 +208,11 @@ F 3 "~" H 6600 3100 50  0001 C CNN
 	1    6600 3100
 	0    1    1    0   
 $EndComp
-$Comp
-L Device:R R201
-U 1 1 6009037F
-P 3450 3400
-F 0 "R201" V 3243 3400 50  0000 C CNN
-F 1 "20" V 3334 3400 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3380 3400 50  0001 C CNN
-F 3 "~" H 3450 3400 50  0001 C CNN
-	1    3450 3400
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R202
-U 1 1 60090785
-P 3450 3500
-F 0 "R202" V 3550 3550 50  0000 C CNN
-F 1 "20" V 3650 3500 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3380 3500 50  0001 C CNN
-F 3 "~" H 3450 3500 50  0001 C CNN
-	1    3450 3500
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	3600 3400 3900 3400
-$Comp
-L Device:C C201
-U 1 1 60091934
-P 3900 3750
-F 0 "C201" H 4015 3796 50  0000 L CNN
-F 1 "47p" H 4015 3705 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 3938 3600 50  0001 C CNN
-F 3 "~" H 3900 3750 50  0001 C CNN
-	1    3900 3750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3600 3500 4200 3500
-$Comp
-L Device:C C202
-U 1 1 60091E2F
-P 4200 3750
-F 0 "C202" H 4315 3796 50  0000 L CNN
-F 1 "47p" H 4315 3705 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 4238 3600 50  0001 C CNN
-F 3 "~" H 4200 3750 50  0001 C CNN
-	1    4200 3750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3900 3600 3900 3400
-Connection ~ 3900 3400
-Wire Wire Line
-	3900 3400 4850 3400
-Wire Wire Line
-	4200 3500 4200 3600
-Connection ~ 4200 3500
-Wire Wire Line
-	4200 3500 4850 3500
-$Comp
-L power:GND #PWR0202
-U 1 1 60092785
-P 4050 3900
-F 0 "#PWR0202" H 4050 3650 50  0001 C CNN
-F 1 "GND" H 4055 3727 50  0000 C CNN
-F 2 "" H 4050 3900 50  0001 C CNN
-F 3 "" H 4050 3900 50  0001 C CNN
-	1    4050 3900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3900 3900 4050 3900
-Connection ~ 4050 3900
-Wire Wire Line
-	4050 3900 4200 3900
 Text GLabel 6750 3100 2    50   Input ~ 0
 RX
 Text GLabel 6450 3200 2    50   Input ~ 0
 TX
-Text GLabel 6750 3500 2    50   Input ~ 0
+Text GLabel 7300 3500 2    50   Input ~ 0
 DTR
 Text Notes 4150 2450 0    50   ~ 0
 Section facultative\nSection utilisée uniquement pour prototypage, permet un changement de programme plus facile.
@@ -307,4 +229,26 @@ F 3 "~" H 7500 2750 50  0001 C CNN
 $EndComp
 Text GLabel 7500 2750 3    50   Input ~ 0
 5V
+$Comp
+L Device:R R?
+U 1 1 60372200
+P 7150 3350
+F 0 "R?" H 7220 3396 50  0000 L CNN
+F 1 "10K" H 7220 3305 50  0000 L CNN
+F 2 "" V 7080 3350 50  0001 C CNN
+F 3 "~" H 7150 3350 50  0001 C CNN
+	1    7150 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6750 3500 7150 3500
+Connection ~ 7150 3500
+Wire Wire Line
+	7150 3500 7300 3500
+Text GLabel 7150 3200 1    50   Input ~ 0
+5V
+Wire Wire Line
+	2550 3400 4850 3400
+Wire Wire Line
+	2550 3500 4850 3500
 $EndSCHEMATC
