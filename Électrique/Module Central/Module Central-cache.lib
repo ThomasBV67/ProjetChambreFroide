@@ -351,11 +351,11 @@ X PD5 9 600 -1000 100 L 50 50 1 1 B
 ENDDRAW
 ENDDEF
 #
-# Module-Central-rescue_RMF95-ProjetChambreFroide
+# Module-Central-rescue_RMF95-ProjetChambreFroide-Module-Central-rescue
 #
-DEF Module-Central-rescue_RMF95-ProjetChambreFroide U 0 40 Y Y 1 F N
+DEF Module-Central-rescue_RMF95-ProjetChambreFroide-Module-Central-rescue U 0 40 Y Y 1 F N
 F0 "U" 0 0 50 H V C CNN
-F1 "Module-Central-rescue_RMF95-ProjetChambreFroide" 0 100 50 H V C CNN
+F1 "Module-Central-rescue_RMF95-ProjetChambreFroide-Module-Central-rescue" 0 100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -398,11 +398,11 @@ X ANT 9 450 -800 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Module-Central-rescue_USB_B_Mini-Connector
+# Module-Central-rescue_USB_B_Mini-Connector-Module-Central-rescue
 #
-DEF Module-Central-rescue_USB_B_Mini-Connector J 0 40 Y Y 1 F N
+DEF Module-Central-rescue_USB_B_Mini-Connector-Module-Central-rescue J 0 40 Y Y 1 F N
 F0 "J" -200 450 50 H V L CNN
-F1 "Module-Central-rescue_USB_B_Mini-Connector" -200 350 50 H V L CNN
+F1 "Module-Central-rescue_USB_B_Mini-Connector-Module-Central-rescue" -200 350 50 H V L CNN
 F2 "" 150 -50 50 H I C CNN
 F3 "" 150 -50 50 H I C CNN
 $FPLIST

@@ -49,7 +49,7 @@ Wire Wire Line
 Wire Wire Line
 	4800 3900 4700 3900
 $Comp
-L Module-Central-rescue:RMF95-ProjetChambreFroide U103
+L Module-Central-rescue:RMF95-ProjetChambreFroide-Module-Central-rescue U103
 U 1 1 600621C7
 P 9350 3100
 F 0 "U103" H 9375 3225 50  0000 C CNN
@@ -449,12 +449,12 @@ $EndComp
 $Comp
 L power:GND #PWR0108
 U 1 1 600BD4CB
-P 6700 6400
-F 0 "#PWR0108" H 6700 6150 50  0001 C CNN
-F 1 "GND" H 6705 6227 50  0000 C CNN
-F 2 "" H 6700 6400 50  0001 C CNN
-F 3 "" H 6700 6400 50  0001 C CNN
-	1    6700 6400
+P 5200 6350
+F 0 "#PWR0108" H 5200 6100 50  0001 C CNN
+F 1 "GND" H 5205 6177 50  0000 C CNN
+F 2 "" H 5200 6350 50  0001 C CNN
+F 3 "" H 5200 6350 50  0001 C CNN
+	1    5200 6350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -694,7 +694,7 @@ Connection ~ 4800 3900
 NoConn ~ 4450 4000
 NoConn ~ 4450 4100
 Wire Wire Line
-	6700 6400 8100 6400
+	5200 6350 5550 6350
 Wire Wire Line
 	8250 3550 8250 3700
 Wire Wire Line
@@ -786,4 +786,14 @@ F 3 "" H 7600 4050 50  0001 C CNN
 	1    7600 4050
 	1    0    0    -1  
 $EndComp
+Connection ~ 5200 6350
+Connection ~ 5550 6350
+Wire Wire Line
+	5550 6350 5850 6350
+Connection ~ 5850 6350
+Wire Wire Line
+	5850 6350 6200 6350
+Connection ~ 6200 6350
+Wire Wire Line
+	6200 6350 6600 6350
 $EndSCHEMATC

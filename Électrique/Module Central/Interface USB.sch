@@ -87,7 +87,7 @@ Wire Wire Line
 	2150 3800 2250 3800
 Connection ~ 2250 3800
 $Comp
-L Module-Central-rescue:USB_B_Mini-Connector J?
+L Module-Central-rescue:USB_B_Mini-Connector-Module-Central-rescue J?
 U 1 1 600862CF
 P 2250 3400
 AR Path="/600862CF" Ref="J?"  Part="1" 
