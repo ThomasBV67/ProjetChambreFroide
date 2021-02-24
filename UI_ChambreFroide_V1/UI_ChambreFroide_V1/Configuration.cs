@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Ce form sert à la configuration du port série pour la communication avec le module LoRa
+    /// </summary>
     public partial class Configuration : Form
     {
         public string m_nom { get; set; }
@@ -19,6 +22,14 @@ namespace UI_ChambreFroide_V1
         public Parity m_parite { get; set; }
         public StopBits m_stopBit { get; set; }
 
+        /// <summary>
+        /// Constructeur du form de configuration. Les valeurs actuelles du port séries sont appliquées aux variables membres équivalentes.
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="baud"></param>
+        /// <param name="dataBits"></param>
+        /// <param name="parite"></param>
+        /// <param name="stpBit"></param>
         public Configuration(String nom, int baud, int dataBits, Parity parite, StopBits stpBit)
         {
             InitializeComponent();
@@ -39,6 +50,12 @@ namespace UI_ChambreFroide_V1
             cb_stop.Text = Convert.ToString(stpBit);
         }
         
+        /// <summary>
+        /// Cette fonction met à jour les ports séries disponibles dans le comboBox si ceux présents
+        /// dans le comboBox ne sont pas les mêmes que ceux détectés par le système.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MAJPorts(object sender, EventArgs e)
         {
             int index = cb_port.SelectedIndex;
@@ -57,7 +74,12 @@ namespace UI_ChambreFroide_V1
             }
         }
         
-
+        /// <summary>
+        /// Lorsque le bouton OK est appuyé, les valeurs affichées dans les comboBox sont appliquées aux 
+        /// variables membres. Celles-ci sont utilisées par le port série dans les autres forms.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_appliquer_Click(object sender, EventArgs e)
         {
             m_nom = cb_port.Text;

@@ -10,16 +10,22 @@ using System.Windows.Forms;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Ce form permet de détecter tous les capteurs présents dans le systeme et d'avoir accès au configurateur du port série.
+    /// </summary>
     public partial class FormConfig : Form
     {
-
         public FormTempCourantes pagePrincipale;
+        FormModifCapteur objFormModifCapteur = new FormModifCapteur();
+        int selectedIndex = 0;
 
         public FormConfig()
         {
             InitializeComponent();
 
+            objFormModifCapteur.Hide();
         }
+
         /// <summary>
         /// Ferme la page en mettant à jour les labels d'affichage de la page 1
         /// </summary>
@@ -30,6 +36,7 @@ namespace UI_ChambreFroide_V1
             pagePrincipale.MAJListeCapteurs();
             this.Hide();
         }
+
         /// <summary>
         /// Ouvre une boite de dialogue qui permet de configurer le port série
         /// </summary>
@@ -85,6 +92,7 @@ namespace UI_ChambreFroide_V1
 
             }
         }
+
         /// <summary>
         /// MAJ de la barre d'état du port série dans le bas de la page de config
         /// </summary>
@@ -105,6 +113,7 @@ namespace UI_ChambreFroide_V1
                 b_ouvertureFermeturePort.Text = "Ouvrir le port";
             }
         }
+
         /// <summary>
         /// Ouvre et ferme le port série
         /// </summary>
@@ -124,6 +133,7 @@ namespace UI_ChambreFroide_V1
             }
             temoinOuverture();
         }
+
         /// <summary>
         /// Envoie la première commande de get Addr. au module via série
         /// </summary>
@@ -141,6 +151,7 @@ namespace UI_ChambreFroide_V1
                 MessageBox.Show("Le port série doit etre ouvert");
             }
         }
+
         /// <summary>
         /// Envoie la requete d'addressage au module spécifié puis démarre le timer de timeout
         /// </summary>
@@ -151,16 +162,80 @@ namespace UI_ChambreFroide_V1
             pagePrincipale.t_timeoutScan.Start();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void valeurChangeTableau(object sender, DataGridViewCellEventArgs e)
         {
             
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormConfig_Load(object sender, EventArgs e)
         {
-            pagePrincipale.serialPort1.BaudRate = 9600;
+            pagePrincipale.serialPort1.BaudRate = 115200;
             pagePrincipale.serialPort1.PortName = "COM3";
             b_ouvertureFermeturePort_Click(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void b_modifyCapteur_Click(object sender, EventArgs e)
+        {
+            if (listeCapteurs.Rows[selectedIndex].Cells[3].Value != null)
+            {
+                objFormModifCapteur.m_name = listeCapteurs.Rows[selectedIndex].Cells[3].Value.ToString();
+            }
+            if (listeCapteurs.Rows[selectedIndex].Cells[4].Value != null)
+            {
+                objFormModifCapteur.m_group = listeCapteurs.Rows[selectedIndex].Cells[4].Value.ToString();
+            }
+            if (listeCapteurs.Rows[selectedIndex].Cells[5].Value != null)
+            {
+                objFormModifCapteur.m_warning = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[5].Value);
+            }
+            if (listeCapteurs.Rows[selectedIndex].Cells[6].Value != null)
+            {
+                objFormModifCapteur.m_alert = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[6].Value);
+            }
+
+            objFormModifCapteur.Show();
+            if(objFormModifCapteur.DialogResult == DialogResult.OK)
+            {
+                listeCapteurs.Rows[selectedIndex].Cells[3].Value = objFormModifCapteur.m_name;
+                listeCapteurs.Rows[selectedIndex].Cells[4].Value = objFormModifCapteur.m_group;
+                listeCapteurs.Rows[selectedIndex].Cells[5].Value = objFormModifCapteur.m_warning;
+                listeCapteurs.Rows[selectedIndex].Cells[6].Value = objFormModifCapteur.m_alert;
+            }
+        }
+
+        private void b_up_Click(object sender, EventArgs e)
+        {
+            if(selectedIndex>0)
+            {
+                listeCapteurs.Rows[selectedIndex].Selected = false;
+                selectedIndex--;
+                listeCapteurs.Rows[selectedIndex].Selected = true;
+            }
+        }
+
+        private void b_down_Click(object sender, EventArgs e)
+        {
+            if(selectedIndex < listeCapteurs.Rows.Count-1)
+            {
+                listeCapteurs.Rows[selectedIndex].Selected = false;
+                selectedIndex++;
+                listeCapteurs.Rows[selectedIndex].Selected = true;
+            }
         }
     }
 }

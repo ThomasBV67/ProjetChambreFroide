@@ -14,6 +14,10 @@ using System.Reflection;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Ce form permet de sélectionner la source qui sera utilisée pour l'affichage de l'historique.
+    /// Cette source peut être soit un capteur en particulier ou un groupe de capteurs.
+    /// </summary>
     public partial class FormChoixCapteur : Form
     { 
         public List<String> m_listGroups = new List<String>(); // Liste de tous les groupes présents dans la db
@@ -25,18 +29,6 @@ namespace UI_ChambreFroide_V1
         public FormChoixCapteur()
         {
             InitializeComponent();
-        }
-        
-        /// <summary>
-        /// Cette fonction met à jour la liste de capteurs
-        /// </summary>
-        public void updateListeCapteurs()
-        { 
-            m_listCapteurs = AccesDB.GetSetCapteurs();
-            foreach(Capteur cap in m_listCapteurs)
-            {
-                listBoxChoixCapteur.Items.Add(cap.Name);
-            }
         }
 
         /// <summary>
@@ -99,13 +91,17 @@ namespace UI_ChambreFroide_V1
         }
 
         /// <summary>
-        /// Update la liste des capteurs lorque le form charge
+        /// Update la liste des capteurs et les affiche dans le listbox lorque le form charge
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FormChoixCapteur_Load(object sender, EventArgs e)
         {
-            updateListeCapteurs();
+            m_listCapteurs = AccesDB.GetSetCapteurs();
+            foreach (Capteur cap in m_listCapteurs)
+            {
+                listBoxChoixCapteur.Items.Add(cap.Name);
+            }
         }
 
         /// <summary>
@@ -119,22 +115,24 @@ namespace UI_ChambreFroide_V1
 
             if (btnGroupName.Text == "Groupes") // passe en mode groupe
             {
-                btnGroupName.Text = "Noms";
+                btnGroupName.Text = "Noms"; // met Noms comme texte dans le bouton
                 labelTitre.Text = "Choix du groupe à étudier";
 
-                m_listGroups = AccesDB.GetGroups();
+                m_listGroups = AccesDB.GetGroups(); // Update la liste de groupes via de la db
 
-                foreach (String str in m_listGroups)
+                foreach (String str in m_listGroups) // Affiche les groupes dans le listbox
                 {
                     listBoxChoixCapteur.Items.Add(str);
                 }
             }
             else // Passe en mode capteur
             {
-                btnGroupName.Text = "Groupes";
+                btnGroupName.Text = "Groupes";// met Groupes comme texte dans le bouton
                 labelTitre.Text = "Choix du capteur à étudier";
 
-                foreach (Capteur cap in m_listCapteurs)
+                m_listCapteurs = AccesDB.GetSetCapteurs(); // Update la liste de capteurs via la db
+
+                foreach (Capteur cap in m_listCapteurs) // Affiche les capteurs dans le listbox
                 { 
                     listBoxChoixCapteur.Items.Add(cap.Name);
                 }

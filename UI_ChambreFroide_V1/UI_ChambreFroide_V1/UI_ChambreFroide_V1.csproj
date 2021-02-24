@@ -84,6 +84,12 @@
     <Compile Include="FormConfig.Designer.cs">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModifCapteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifCapteur.Designer.cs">
+      <DependentUpon>FormModifCapteur.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTempCourantes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     </Compile>
     <Compile Include="FormHistorique.Designer.cs">
       <DependentUpon>FormHistorique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormZoneTexte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormZoneTexte.Designer.cs">
+      <DependentUpon>FormZoneTexte.cs</DependentUpon>
     </Compile>
     <Compile Include="MesureTemp.cs" />
     <Compile Include="Program.cs" />
@@ -111,8 +123,14 @@
     <EmbeddedResource Include="FormHistorique.resx">
       <DependentUpon>FormHistorique.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormModifCapteur.resx">
+      <DependentUpon>FormModifCapteur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTempCourantes.resx">
       <DependentUpon>FormTempCourantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormZoneTexte.resx">
+      <DependentUpon>FormZoneTexte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

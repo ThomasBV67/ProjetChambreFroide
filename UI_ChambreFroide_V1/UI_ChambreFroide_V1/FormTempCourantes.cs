@@ -6,10 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace UI_ChambreFroide_V1
 {
+    /// <summary>
+    /// Ce form est le form principal de l'application. Sur ce form on peut voir en léger différé les températures des
+    /// capteurs de températures. On peut accéder à l'historique et à la configuration des capteurs à partir de ce form.
+    /// </summary>
     public partial class FormTempCourantes : Form
     {
         public bool decouverteEnCours = false;
@@ -28,8 +33,12 @@ namespace UI_ChambreFroide_V1
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
         RichTextBox[] m_RTB_temp = new RichTextBox[NB_BOITES_AFFICHAGE];
         public List<Capteur> lst_Capteurs = new List<Capteur>();
+        public List<Capteur> lst_CapteursDB = new List<Capteur>();
+
 
         FormConfig objFormConfig = new FormConfig();
+        FormHistorique objFormHistorique = new FormHistorique();
+
 
         String retourSerie = "";
 
@@ -43,6 +52,7 @@ namespace UI_ChambreFroide_V1
 
             objDelegate = delegate_getLoRa;
             objFormConfig.Hide();
+            objFormHistorique.Hide();
             objFormConfig.pagePrincipale = this;
         }
 
@@ -71,7 +81,6 @@ namespace UI_ChambreFroide_V1
 
         private void b_historique_Click(object sender, EventArgs e)
         {
-            FormHistorique objFormHistorique = new FormHistorique();
             objFormHistorique.Show();
         }
 
@@ -250,6 +259,7 @@ namespace UI_ChambreFroide_V1
             serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
             t_timeoutScan.Start();
         }
+
         /// <summary>
         /// Tente une nouvelle requete de température jusqu'à concurence de 3. Apres 3, le capteur est passé
         /// et sa case de température est marqué (*) pour signifier qu'une erreur est survenue à la précédente lecture
@@ -299,13 +309,14 @@ namespace UI_ChambreFroide_V1
             {
                 if (lst_Capteurs[capteur].Address == trame[1].Trim())//L'adresse du capteur agit comme checksum
                 {
-                    return Convert.ToDouble(trame[0].Replace('.', ','));
+                    return Convert.ToDouble(trame[0].Replace(".",NumberFormatInfo.CurrentInfo.NumberDecimalSeparator));
                 }
             }
             catch{}
             
             return -127;
         }
+
         private void demarreTimerTemp()
         {
             t_checkTemps.Start();//sinon, redémarre l'atente pour le prochain scan
