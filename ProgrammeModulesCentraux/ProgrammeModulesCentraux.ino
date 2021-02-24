@@ -60,6 +60,7 @@ void loop(void) {
     // read packet
     while (LoRa.available()) {
       String LoRaData = LoRa.readString();
+      Serial.println(LoRaData);
       if(LoRaData == (NUM_MODULE + "getAddr\n")){
         Serial.println("Requete d'addressage...");
         addresse = "";

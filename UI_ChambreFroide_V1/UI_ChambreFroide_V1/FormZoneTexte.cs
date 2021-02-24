@@ -36,7 +36,7 @@ namespace UI_ChambreFroide_V1
 
                 string progFiles = @"C:\Program Files\Common Files\Microsoft Shared\ink";
                 string onScreenKeyboardPath = System.IO.Path.Combine(progFiles, "TabTip.exe");
-                Process onScreenKeyboardProc = Process.Start(onScreenKeyboardPath);
+                Process onScreenKeyboardProc = System.Diagnostics.Process.Start(onScreenKeyboardPath);
             }
             catch (Exception error)
             {
