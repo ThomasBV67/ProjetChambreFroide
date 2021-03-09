@@ -10,6 +10,19 @@ C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_C
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormChoixCapteur.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe.config
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.pdb
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormChoixCapteur.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormConfig.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormHistorique.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormTempCourantes.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Properties.Resources.resources
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.GenerateResource.cache
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CoreCompileInputs.cache
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.dll
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.dll
@@ -38,7 +51,6 @@ F:\Documents\Projet Chambre froide\ProjetChambreFroide\UI_ChambreFroide_V1\UI_Ch
 F:\Documents\Projet Chambre froide\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 F:\Documents\Projet Chambre froide\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
 F:\Documents\Projet Chambre froide\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
-<<<<<<< HEAD
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.dll
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.dll
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.dll
@@ -50,26 +62,6 @@ C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Configuration.resources
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\dbTestProjet.db
-=======
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Configuration.resources
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormChoixCapteur.resources
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormConfig.resources
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormHistorique.resources
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormTempCourantes.resources
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Properties.Resources.resources
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.GenerateResource.cache
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CoreCompileInputs.cache
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\dbTestProjet.db
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe.config
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.pdb
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.dll
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.dll
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.dll
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.xml
->>>>>>> main
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.xml
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Configuration.resources
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\dbTestProjet.db
@@ -81,32 +73,9 @@ F:\Documents\Projet Chambre froide\ProjetChambreFroide\UI_ChambreFroide_V1\UI_Ch
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormModifCapteur.resources
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormZoneTexte.resources
-<<<<<<< HEAD
-=======
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormChoixPlageTemps.resources
-C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormZoneTexte.resources
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\dbTestProjet.db
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe.config
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.pdb
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.dll
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.dll
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.dll
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\Dapper.xml
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.xml
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.xml
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Configuration.resources
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormChoixCapteur.resources
->>>>>>> main
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormChoixPlageTemps.resources
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormConfig.resources
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormHistorique.resources
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormModifCapteur.resources
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormTempCourantes.resources
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormZoneTexte.resources
-<<<<<<< HEAD
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\dbTestProjet.db
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe.config
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe
@@ -132,11 +101,3 @@ C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreF
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
-=======
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Properties.Resources.resources
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.GenerateResource.cache
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CoreCompileInputs.cache
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
->>>>>>> main
