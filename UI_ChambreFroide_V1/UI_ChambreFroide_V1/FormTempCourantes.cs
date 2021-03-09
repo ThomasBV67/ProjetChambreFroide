@@ -57,8 +57,6 @@ namespace UI_ChambreFroide_V1
         {
             InitializeComponent();
 
-           
-
             objDelegate = delegate_getLoRa;
             objFormConfig.Hide();
             objFormHistorique.Hide();
