@@ -30,6 +30,8 @@ namespace UI_ChambreFroide_V1
         int tempsAttente = 40;
 
         const int NB_BOITES_AFFICHAGE = 15;
+
+
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
         RichTextBox[] m_RTB_temp = new RichTextBox[NB_BOITES_AFFICHAGE];
         public List<Capteur> lst_Capteurs = new List<Capteur>();
@@ -54,11 +56,13 @@ namespace UI_ChambreFroide_V1
             objDelegate = delegate_getLoRa;
             objFormConfig.Hide();
             objFormHistorique.Hide();
-            objFormConfig.pagePrincipale = this;
+            objFormConfig.pagePrincipale = this;//Envoi de la page en cours à pa page de config pour que les deux puissent s'échanger des informations
         }
-
-        
-
+        /// <summary>
+        /// Mets tout les labels de noms des pieces et les labels de température dans un tableau. Leur donne ensuite un nom par défaut unique
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormTempCourantes_Load(object sender, EventArgs e)
         {
             Control ctrlSuivant;
@@ -67,40 +71,51 @@ namespace UI_ChambreFroide_V1
             for(int i = 0; i < NB_BOITES_AFFICHAGE*2; i++)
             {
                 ctrlSuivant = GetNextControl(ctrlSuivant, true);
-                if (i % 2 == 0)
+                if (i % 2 == 0)//Selon le tab index, un sur deux est un titre et l'autre est une case de température.
                 {
                     m_label_pieces[(int)i / 2] = (Label)ctrlSuivant;
-                    m_label_pieces[(int)i / 2].Text = "Capteur #" + Convert.ToString((int)(i / 2) + 1);
+                    m_label_pieces[(int)i / 2].Text = "Capteur #" + Convert.ToString((int)(i / 2) + 1);//Nom par défaut
                 }
                 else
                 {
                     m_RTB_temp[(int)(i / 2)] = (RichTextBox)ctrlSuivant;
-                    m_RTB_temp[(int)(i / 2)].Text = "--";
+                    m_RTB_temp[(int)(i / 2)].Text = "--";//Température par défaut
                 }
             }
         }
-
+        /// <summary>
+        /// Devine
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_historique_Click(object sender, EventArgs e)
         {
             objFormHistorique.Show();
         }
 
+        /// <summary>
+        /// Ouvre la page de config et met à jour la barre d'état du port série dans la page de config
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_config_Click(object sender, EventArgs e)
         {
             objFormConfig.temoinOuverture();
             objFormConfig.Show();
         }
         /// <summary>
-        /// Interprète les commandes reçues en série
+        /// Interprète les commandes reçues en série. Est appelé apres chaque réception. La fonction gere la découverte de réseau et la prise de température par deux modes distincts.
         /// </summary>
         private void delegate_getLoRa()
         {
-            String[] capteursModule = new String[20];
-            int nbCapteurs = 0;
-            double temperature = 0;
-            bool existe = false;
+            //Variables mode découverte:
+            String[] capteursModule = new String[20];//Contient un maximum de 20 addresses qui seront retounés par les modules lors de la découverte
+            int nbCapteurs = 0;//Nb de capteurs retournés
+            bool existe = false;//Si un capteur est retourné une seconde fois lors de la découverte.
 
-            debug.Add(retourSerie);
+            //Variable mode retour température
+            double temperature = 0;//temprature retournée
+
             if (decouverteEnCours)//Si en mode découverte
             {
                 t_timeoutScan.Stop();//pas de timeout possible
@@ -115,36 +130,36 @@ namespace UI_ChambreFroide_V1
 
                 for (int i = 0; i < nbCapteurs; i++)//Capteurs à ajouter
                 {
-                    for (int j = 0; j < lst_Capteurs.Count; j++)//Lit la liste
+                    for (int j = 0; j < lst_Capteurs.Count; j++)//Lit la liste à la recherche du capteur à ajouter
                     {
                         if (lst_Capteurs[j].Address == capteursModule[i])//Si déjà présent dans la liste, est à ignorer
                         {
                             existe = true;
                         }
                     }
-                    if (!existe)//si n'existe pas déjà
+                    if (!existe)//si n'existe pas déjà, est ajouté avec les propriétés par défaut
                     {
                         lst_Capteurs.Add(new Capteur(capteursModule[i], nbModules - 1, i));//nouvel objet et ajout dans la grille
                         objFormConfig.listeCapteurs.Rows.Insert(0);
-                        objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[lst_Capteurs.Count - 1].Address.ToUpper();
-                        objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[lst_Capteurs.Count - 1].Module;
-                        objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[lst_Capteurs.Count - 1].ModuleIndex;
-                        objFormConfig.listeCapteurs.Rows[0].Cells[5].Value = "5";
-                        objFormConfig.listeCapteurs.Rows[0].Cells[6].Value = "10";
+                        objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[lst_Capteurs.Count - 1].Address.ToUpper();//Addresse
+                        objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[lst_Capteurs.Count - 1].Module;//Numéro de module
+                        objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[lst_Capteurs.Count - 1].ModuleIndex;//Numéro de capteur
+                        objFormConfig.listeCapteurs.Rows[0].Cells[5].Value = "5";//Valeur avertissement par défaut
+                        objFormConfig.listeCapteurs.Rows[0].Cells[6].Value = "10";//Valeur alerte par défaut
                         AccesDB.AddNewCapteur(lst_Capteurs[lst_Capteurs.Count - 1]);
                     }
                     existe = false;
                 }
                 objFormConfig.scanModule(nbModules);//Lit le prochain module
             }
-            else//est en mode req. temps
+            else//est en mode req. temps.
             {
                 if (!t_checkTemps.Enabled)//Pour éviter de reçevoir des messages qui viennent de sources inconnues sans que le programme ne soit pret (Messages aléatopires qui arrivent à tout moment)
                 {
                     t_timeoutScan.Stop();//arrete le timer de timeout, la réponse est reçue
-                    temperature = receptTemp(retourSerie, capteurEnCours);
+                    temperature = receptTemp(retourSerie, capteurEnCours);//Vérifie la validité de la réponse. Est invalide si -127
 
-                    if (temperature != -127)//Si code d'erreur
+                    if (temperature != -127)//Si aucun code d'erreur
                     {
                         nbErr = 0;
                         m_RTB_temp[capteurEnCours].Text = Convert.ToString(Math.Round(temperature, 1)) + "°";//Écrit la temp. dans sa case
@@ -168,11 +183,11 @@ namespace UI_ChambreFroide_V1
                         capteurEnCours++;//prochain capteur
                         if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
                         {
-                            reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
+                            reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);//Envoie la prochaine requete
                         }
                         else
                         {
-                            demarreTimerTemp();
+                            demarreTimerTemp();//Sinon, est arrivé à la fin et démarre le minuteur pour le prochain scan
                         }
 
                     }
@@ -200,14 +215,14 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void t_timeoutScan_Tick(object sender, EventArgs e)
         {
-            if (decouverteEnCours)
+            if (decouverteEnCours)//Timeout du mode découverte
             {
                 nbModules = 1;//reset du nombre de module découvert
                 t_timeoutScan.Stop();//Arret du timer
                 decouverteEnCours = false;
                 MessageBox.Show("Découverte terminée");
             }
-            else
+            else//Timeout du mode température
             {
                 reqFailed();//Aucune réponse, erreur
             }
