@@ -51,6 +51,7 @@ namespace UI_ChambreFroide_V1
             {
                 m_warning = Convert.ToDouble(objFormZoneTexte.retour);
             }
+            FormModifCapteur_Load(sender, e);
         }
         private void btnModifAlerte_Click(object sender, EventArgs e)
         {
@@ -61,6 +62,7 @@ namespace UI_ChambreFroide_V1
             {
                 m_alert = Convert.ToDouble(objFormZoneTexte.retour);
             }
+            FormModifCapteur_Load(sender, e);
         }
         private void btnModifNom_Click(object sender, EventArgs e)
         {
@@ -71,6 +73,7 @@ namespace UI_ChambreFroide_V1
             {
                 m_name = objFormZoneTexte.retour;
             }
+            FormModifCapteur_Load(sender, e);
         }
         private void btnModifGroupe_Click(object sender, EventArgs e)
         {
@@ -81,6 +84,7 @@ namespace UI_ChambreFroide_V1
             {
                 m_group = objFormZoneTexte.retour;
             }
+            FormModifCapteur_Load(sender, e);
         }
     }
 }
