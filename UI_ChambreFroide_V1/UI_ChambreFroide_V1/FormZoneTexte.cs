@@ -16,6 +16,7 @@ namespace UI_ChambreFroide_V1
         private bool shift = false;
 
         public int mode = 0;
+        public String retour = "";
 
         private List<Button> lst_Boutons = new List<Button>();
 
@@ -71,6 +72,7 @@ namespace UI_ChambreFroide_V1
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            retour = tbModif.Text;
             DialogResult = DialogResult.OK;
         }
 
