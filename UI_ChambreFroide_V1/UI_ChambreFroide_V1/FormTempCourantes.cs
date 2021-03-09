@@ -64,18 +64,6 @@ namespace UI_ChambreFroide_V1
             objFormHistorique.Hide();
             objFormConfig.pagePrincipale = this;//Envoi de la page en cours à pa page de config pour que les deux puissent s'échanger des informations
             
-            objFormZoneTexte.ShowDialog();
-            if(objFormZoneTexte.DialogResult == DialogResult.OK)
-            {
-                //MessageBox.Show(objFormZoneTexte.tbModif.Text);
-            }
-            objFormZoneTexte.chgMode(1);
-            objFormZoneTexte.clearText();
-            objFormZoneTexte.ShowDialog();
-            if (objFormZoneTexte.DialogResult == DialogResult.OK)
-            {
-                //MessageBox.Show(objFormZoneTexte.tbModif.Text);
-            }
         }
         /// <summary>
         /// Mets tout les labels de noms des pieces et les labels de température dans un tableau. Leur donne ensuite un nom par défaut unique

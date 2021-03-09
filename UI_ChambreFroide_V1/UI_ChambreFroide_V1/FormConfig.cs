@@ -208,7 +208,7 @@ namespace UI_ChambreFroide_V1
                 objFormModifCapteur.m_alert = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[6].Value);
             }
 
-            objFormModifCapteur.Show();
+            objFormModifCapteur.ShowDialog();
             if(objFormModifCapteur.DialogResult == DialogResult.OK)
             {
                 listeCapteurs.Rows[selectedIndex].Cells[3].Value = objFormModifCapteur.m_name;
