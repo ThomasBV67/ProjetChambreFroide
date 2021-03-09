@@ -262,7 +262,7 @@ namespace UI_ChambreFroide_V1
 
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
             {
-                String sql = "SELECT * FROM Historique WHERE TimeStamp > @startTime AND TimeStamp < @endTime AND Capteur = @addrCap";
+                String sql = "SELECT * FROM Historique WHERE TimeStamp > '@startTime' AND TimeStamp < '@endTime' AND Capteur = '@addrCap'";
                 SQLiteCommand sqlite_cmd = new SQLiteCommand(sql, conn);
 
                 sqlite_cmd.Parameters.Add("@startTime", DbType.String, -1);
