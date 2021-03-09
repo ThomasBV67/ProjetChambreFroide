@@ -67,14 +67,14 @@ namespace UI_ChambreFroide_V1
             objFormZoneTexte.ShowDialog();
             if(objFormZoneTexte.DialogResult == DialogResult.OK)
             {
-                MessageBox.Show(objFormZoneTexte.tbModif.Text);
+                //MessageBox.Show(objFormZoneTexte.tbModif.Text);
             }
             objFormZoneTexte.chgMode(1);
             objFormZoneTexte.clearText();
             objFormZoneTexte.ShowDialog();
             if (objFormZoneTexte.DialogResult == DialogResult.OK)
             {
-                MessageBox.Show(objFormZoneTexte.tbModif.Text);
+                //MessageBox.Show(objFormZoneTexte.tbModif.Text);
             }
         }
         /// <summary>
