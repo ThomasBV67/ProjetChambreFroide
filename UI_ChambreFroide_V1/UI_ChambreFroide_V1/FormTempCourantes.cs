@@ -291,7 +291,7 @@ namespace UI_ChambreFroide_V1
             t_timeoutScan.Stop();
             nbErr++;
             e++;
-            if (nbErr < 3)//3 tentatives
+            if (nbErr < 4)//3 tentatives
             {
                 reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
             }
