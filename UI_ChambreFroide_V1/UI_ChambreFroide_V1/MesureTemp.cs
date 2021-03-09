@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace UI_ChambreFroide_V1
 {
-    class MesureTemp
+    public class MesureTemp
     {
-        int Id, Alert;
-        String TimeStamp, Capteur;
-        double Temperature;
+        public int Id, Alert;
+        public String TimeStamp, Capteur;
+        public double Temperature;
 
         /// <summary>
         /// Constructeur pour la db
