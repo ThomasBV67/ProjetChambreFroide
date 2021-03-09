@@ -19,6 +19,8 @@ namespace UI_ChambreFroide_V1
         public String selectedName; // variables ayant une valeur donnée par le form de choix de capteur
         public bool selectedIsGroup;
 
+        public enum timeFrameChoice {Day, Week, Month, Other};
+        public timeFrameChoice timeFrame = timeFrameChoice.Day;
         FormChoixCapteur objFormChoixCapteur = new FormChoixCapteur();
 
         public FormHistorique()
@@ -52,6 +54,42 @@ namespace UI_ChambreFroide_V1
         private void btnBack_Click(object sender, EventArgs e)
         {
             Hide();
+        }
+
+        private void FormHistorique_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timeframeBtns_Click(object sender, EventArgs e)
+        {
+            if(sender.Equals(btnLastDay))
+            {
+                timeFrame = timeFrameChoice.Day;
+            }
+            else if(sender.Equals(btnLastWeek))
+            {
+                timeFrame = timeFrameChoice.Week;
+            }
+            else if (sender.Equals(btnLastMonth))
+            {
+                timeFrame = timeFrameChoice.Month;
+            }
+            else if (sender.Equals(btnMoreOptions))
+            {
+                timeFrame = timeFrameChoice.Other;
+            }
+            UpdateGraphique();
+        }
+
+        private void UpdateGraphique()
+        {
+
         }
     }
 }
