@@ -29,9 +29,9 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lbTitreHistorique = new System.Windows.Forms.Label();
             this.chartHistorique = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnSelectCapteur = new System.Windows.Forms.Button();
@@ -40,6 +40,7 @@ namespace UI_ChambreFroide_V1
             this.btnLastDay = new System.Windows.Forms.Button();
             this.btnLastWeek = new System.Windows.Forms.Button();
             this.btnLastMonth = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartHistorique)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,16 +56,16 @@ namespace UI_ChambreFroide_V1
             // 
             // chartHistorique
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartHistorique.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartHistorique.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chartHistorique.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartHistorique.Legends.Add(legend1);
             this.chartHistorique.Location = new System.Drawing.Point(12, 117);
             this.chartHistorique.Name = "chartHistorique";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartHistorique.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartHistorique.Series.Add(series1);
             this.chartHistorique.Size = new System.Drawing.Size(831, 471);
             this.chartHistorique.TabIndex = 2;
             this.chartHistorique.Text = "chart1";
@@ -135,11 +136,20 @@ namespace UI_ChambreFroide_V1
             this.btnLastMonth.UseVisualStyleBackColor = true;
             this.btnLastMonth.Click += new System.EventHandler(this.timeframeBtns_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(33, 133);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(750, 433);
+            this.listBox1.TabIndex = 9;
+            // 
             // FormHistorique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnLastMonth);
             this.Controls.Add(this.btnLastWeek);
             this.Controls.Add(this.btnLastDay);
@@ -168,5 +178,6 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.Button btnLastDay;
         private System.Windows.Forms.Button btnLastWeek;
         private System.Windows.Forms.Button btnLastMonth;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
