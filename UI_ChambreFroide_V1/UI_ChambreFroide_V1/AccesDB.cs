@@ -256,13 +256,13 @@ namespace UI_ChambreFroide_V1
             return true;
         }
 
-        public List<MesureTemp> GetTemperatures(DateTime startTime, DateTime endTime, String addrCap)
+        public List<MesureTemp> GetTemperatures(DateTime startTime, DateTime endTime, string addrCap)
         {
             List<MesureTemp> listTemp = new List<MesureTemp>();
 
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
             {
-                String sql = "SELECT * FROM Historique WHERE TimeStamp > @startTime AND TimeStamp < @endTime";
+                String sql = "SELECT * FROM Historique WHERE TimeStamp > @startTime AND TimeStamp < @endTime AND Capteur = @addrCap";
                 SQLiteCommand sqlite_cmd = new SQLiteCommand(sql, conn);
 
                 sqlite_cmd.Parameters.Add("@startTime", DbType.String, -1);
@@ -271,15 +271,16 @@ namespace UI_ChambreFroide_V1
                 sqlite_cmd.Parameters.Add("@endTime", DbType.String, -1);
                 sqlite_cmd.Parameters["@endTime"].Value = endTime;
 
+                sqlite_cmd.Parameters.Add("@addrCap", DbType.String, -1);
+                sqlite_cmd.Parameters["@addrCap"].Value = addrCap;
+
                 SQLiteDataReader reader = sqlite_cmd.ExecuteReader();
                 foreach(DataRow row in reader)
                 {
-                    //listTemp.Add(new MesureTemp(row[Id]))
+                    listTemp.Add(new MesureTemp(Convert.ToInt32(row["Id"]), Convert.ToString(row["Capteur"]), Convert.ToDouble(row["Temperature"]),
+                        Convert.ToInt32(row["Alert"]), Convert.ToString(row["TimeStamp"])));
                 }
-                
-                //listTemp = output.ToList();
             }
-
             return listTemp;
         }
 

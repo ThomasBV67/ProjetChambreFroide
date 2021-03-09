@@ -19,9 +19,17 @@ namespace UI_ChambreFroide_V1
         public String selectedName; // variables ayant une valeur donnée par le form de choix de capteur
         public bool selectedIsGroup;
 
+        public List<Capteur> listCapteurs = new List<Capteur>();
+        public List<MesureTemp> listTemp = new List<MesureTemp>();
+
         public enum timeFrameChoice {Day, Week, Month, Other};
         public timeFrameChoice timeFrame = timeFrameChoice.Day;
+
         FormChoixCapteur objFormChoixCapteur = new FormChoixCapteur();
+
+        DateTime endTime = DateTime.Now;
+        DateTime startTime = DateTime.Now.AddDays(-1);
+        
 
         public FormHistorique()
         {
@@ -56,11 +64,6 @@ namespace UI_ChambreFroide_V1
             Hide();
         }
 
-        private void FormHistorique_Load(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -71,25 +74,61 @@ namespace UI_ChambreFroide_V1
             if(sender.Equals(btnLastDay))
             {
                 timeFrame = timeFrameChoice.Day;
+                endTime = DateTime.Now;
+                startTime = DateTime.Now.AddDays(-1);
             }
             else if(sender.Equals(btnLastWeek))
             {
                 timeFrame = timeFrameChoice.Week;
+                endTime = DateTime.Now;
+                startTime = DateTime.Now.AddDays(-7);
             }
             else if (sender.Equals(btnLastMonth))
             {
                 timeFrame = timeFrameChoice.Month;
+                endTime = DateTime.Now;
+                startTime = DateTime.Now.AddMonths(-1);
             }
             else if (sender.Equals(btnMoreOptions))
             {
                 timeFrame = timeFrameChoice.Other;
+                endTime = DateTime.Now;
+                startTime = DateTime.Now.AddDays(-1);
             }
             UpdateGraphique();
         }
 
         private void UpdateGraphique()
         {
+            AccesDB accesDB = new AccesDB();
+            listCapteurs = AccesDB.GetSetCapteurs();
 
+            if (selectedIsGroup)
+            {
+                foreach(Capteur cap in listCapteurs)
+                {
+                    if(cap.GroupCapteur == selectedName)
+                    {
+                        listTemp = accesDB.GetTemperatures(endTime, startTime, cap.Address);
+                    }                   
+                }                
+            }
+            else
+            {
+                foreach (Capteur cap in listCapteurs)
+                {
+                    if (cap.Name == selectedName)
+                    {
+                        listTemp = accesDB.GetTemperatures(endTime, startTime, cap.Address);
+                    }
+                }
+            }
+            listBox1.Items.Clear();
+            foreach(MesureTemp temp in listTemp)
+            {
+                listBox1.Items.Add(temp.TimeStamp);
+            }
+            
         }
     }
 }
