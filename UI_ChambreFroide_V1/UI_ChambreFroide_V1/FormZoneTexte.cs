@@ -18,14 +18,30 @@ namespace UI_ChambreFroide_V1
 
         public String modifiedProperty;
 
+        private List<Button> m_listBtn = new List<Button>();
+
+        private String[] LetterKeyboardLine1 = 
+            {"q","w","e","r","t","y","u","i","o","p"};
+
+        private String[] LetterKeyboardLine2 =
+            {"a","s","d","f","g","h","j","k","l"};
+
+        private String[] LetterKeyboardLine3 =
+            {"⇧","z","x","c","v","b","n","m","⇦"};
+
+        private String[] LetterKeyboardLine4 =
+            { "123", "space" };
+
         public FormZoneTexte()
         {
             InitializeComponent();
+
+            MakeLetterKeyboard();
         }
 
         private void FormZoneTexte_Load(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 //Kill all on screen keyboards
                 Process[] oskProcessArray = Process.GetProcessesByName("TabTip");
@@ -43,7 +59,7 @@ namespace UI_ChambreFroide_V1
                 string err = error.ToString();
                 MessageBox.Show(err);
             }
-            tbModif.Focus();
+            tbModif.Focus();*/
         }
 
 
@@ -101,6 +117,34 @@ namespace UI_ChambreFroide_V1
                     e.Handled = true;
                 }
             }
+        }
+
+        private void MakeLetterKeyboard()
+        {
+            DeleteKeyboard();
+            for(int i = 0; i< LetterKeyboardLine1.Length;i++)
+            {
+                Button btn = new Button();
+                btn.Name = "btn"+LetterKeyboardLine1[i];
+                btn.Text = LetterKeyboardLine1[i];
+                btn.Visible = true;
+                btn.Location = new Point(15+i*25,85);
+                btn.Width = 25;
+                btn.Height = 25;
+                btn.Enabled = true;
+                Controls.Add(btn);
+                m_listBtn.Add(btn);
+            }
+        }
+
+        private void MakeNumberKeyboard()
+        {
+            DeleteKeyboard();
+        }
+
+        private void DeleteKeyboard()
+        {
+            m_listBtn.Clear();
         }
     }
 }

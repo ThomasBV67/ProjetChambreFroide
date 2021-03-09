@@ -41,6 +41,7 @@ namespace UI_ChambreFroide_V1
 
 
         String retourSerie = "";
+        List<String> debug = new List<String>();
 
         private delegate void monProtoDelegate();//définir prototype de fonction... paramètres d'entrée et de retour
         monProtoDelegate objDelegate;//on se déclare un objet delegate. (i.e. un pointeur de fonction ayant ce prototype)
@@ -99,6 +100,7 @@ namespace UI_ChambreFroide_V1
             double temperature = 0;
             bool existe = false;
 
+            debug.Add(retourSerie);
             if (decouverteEnCours)//Si en mode découverte
             {
                 t_timeoutScan.Stop();//pas de timeout possible
