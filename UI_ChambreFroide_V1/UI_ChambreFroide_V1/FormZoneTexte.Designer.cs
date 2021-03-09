@@ -71,6 +71,6 @@ namespace UI_ChambreFroide_V1
 
         #endregion
         private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.TextBox tbModif;
+        public System.Windows.Forms.TextBox tbModif;
     }
 }

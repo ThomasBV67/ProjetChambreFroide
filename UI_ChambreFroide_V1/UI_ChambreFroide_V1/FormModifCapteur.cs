@@ -44,19 +44,43 @@ namespace UI_ChambreFroide_V1
 
         private void btnModifWarning_Click(object sender, EventArgs e)
         {
-
+            objFormZoneTexte.chgMode(1);
+            objFormZoneTexte.tbModif.Text = Convert.ToString(m_warning);
+            objFormZoneTexte.ShowDialog();
+            if(objFormZoneTexte.DialogResult == DialogResult.OK)
+            {
+                m_warning = Convert.ToDouble(objFormZoneTexte.retour);
+            }
         }
         private void btnModifAlerte_Click(object sender, EventArgs e)
         {
-
+            objFormZoneTexte.chgMode(1);
+            objFormZoneTexte.tbModif.Text = Convert.ToString(m_alert);
+            objFormZoneTexte.ShowDialog();
+            if (objFormZoneTexte.DialogResult == DialogResult.OK)
+            {
+                m_alert = Convert.ToDouble(objFormZoneTexte.retour);
+            }
         }
         private void btnModifNom_Click(object sender, EventArgs e)
         {
-
+            objFormZoneTexte.chgMode(0);
+            objFormZoneTexte.tbModif.Text = m_name;
+            objFormZoneTexte.ShowDialog();
+            if (objFormZoneTexte.DialogResult == DialogResult.OK)
+            {
+                m_name = objFormZoneTexte.retour;
+            }
         }
         private void btnModifGroupe_Click(object sender, EventArgs e)
         {
-
+            objFormZoneTexte.chgMode(0);
+            objFormZoneTexte.tbModif.Text = Convert.ToString(m_group);
+            objFormZoneTexte.ShowDialog();
+            if (objFormZoneTexte.DialogResult == DialogResult.OK)
+            {
+                m_group = objFormZoneTexte.retour;
+            }
         }
     }
 }
