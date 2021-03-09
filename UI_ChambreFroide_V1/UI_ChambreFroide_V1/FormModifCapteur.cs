@@ -33,8 +33,8 @@ namespace UI_ChambreFroide_V1
         {
             lbNom.Text = "Nom : " + m_name;
             lbGroupe.Text = "Groupe : " + m_group;
-            lbWarning.Text = "Niveau d'avertissement : " + m_warning.ToString() + "oC";
-            lbAlerte.Text = "Niveau d'alerte : " + m_alert.ToString() + "oC";
+            lbWarning.Text = "Niveau d'avertissement : " + m_warning.ToString() + "°";
+            lbAlerte.Text = "Niveau d'alerte : " + m_alert.ToString() + "°";
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -44,23 +44,19 @@ namespace UI_ChambreFroide_V1
 
         private void btnModifWarning_Click(object sender, EventArgs e)
         {
-            objFormZoneTexte.currentProp = (FormZoneTexte.properties)properties.warning;
-            objFormZoneTexte.Show();
+
         }
         private void btnModifAlerte_Click(object sender, EventArgs e)
         {
-            objFormZoneTexte.currentProp = (FormZoneTexte.properties)properties.alert;
-            objFormZoneTexte.Show();
+
         }
         private void btnModifNom_Click(object sender, EventArgs e)
         {
-            objFormZoneTexte.currentProp = (FormZoneTexte.properties)properties.name;
-            objFormZoneTexte.Show();
+
         }
         private void btnModifGroupe_Click(object sender, EventArgs e)
         {
-            objFormZoneTexte.currentProp = (FormZoneTexte.properties)properties.group;
-            objFormZoneTexte.Show();
+
         }
     }
 }

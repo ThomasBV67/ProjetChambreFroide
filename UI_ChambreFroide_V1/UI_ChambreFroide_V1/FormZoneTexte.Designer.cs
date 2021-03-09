@@ -31,7 +31,6 @@ namespace UI_ChambreFroide_V1
         {
             this.tbModif = new System.Windows.Forms.TextBox();
             this.btnConfirm = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbModif
@@ -41,8 +40,6 @@ namespace UI_ChambreFroide_V1
             this.tbModif.Name = "tbModif";
             this.tbModif.Size = new System.Drawing.Size(812, 62);
             this.tbModif.TabIndex = 0;
-            this.tbModif.Enter += new System.EventHandler(this.tbModif_Enter);
-            this.tbModif.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbModif_KeyPress);
             // 
             // btnConfirm
             // 
@@ -55,21 +52,11 @@ namespace UI_ChambreFroide_V1
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 85);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // FormZoneTexte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.tbModif);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -83,9 +70,7 @@ namespace UI_ChambreFroide_V1
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbModif;
         private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox tbModif;
     }
 }
