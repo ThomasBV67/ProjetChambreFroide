@@ -20,10 +20,11 @@ namespace UI_ChambreFroide_V1
         /// <summary>
         /// Contructeur manuel
         /// </summary>
-        public MesureTemp(double newTemperature, String newCapteur, int newAlert)
+        public MesureTemp(int newId, String newCapteur, double newTemperature, int newAlert, String newTimeStamp)
         {
+            Id = newId;
             Alert = newAlert;
-            TimeStamp = DateTime.Now.ToString();
+            TimeStamp = newTimeStamp;
             Capteur = newCapteur;
             Temperature = newTemperature;
         }

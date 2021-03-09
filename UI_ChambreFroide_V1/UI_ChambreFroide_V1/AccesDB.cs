@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -253,6 +254,33 @@ namespace UI_ChambreFroide_V1
                 conn.Close();
             }
             return true;
+        }
+
+        public List<MesureTemp> GetTemperatures(DateTime startTime, DateTime endTime, String addrCap)
+        {
+            List<MesureTemp> listTemp = new List<MesureTemp>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
+            {
+                String sql = "SELECT * FROM Historique WHERE TimeStamp > @startTime AND TimeStamp < @endTime";
+                SQLiteCommand sqlite_cmd = new SQLiteCommand(sql, conn);
+
+                sqlite_cmd.Parameters.Add("@startTime", DbType.String, -1);
+                sqlite_cmd.Parameters["@startTime"].Value = startTime;
+
+                sqlite_cmd.Parameters.Add("@endTime", DbType.String, -1);
+                sqlite_cmd.Parameters["@endTime"].Value = endTime;
+
+                SQLiteDataReader reader = sqlite_cmd.ExecuteReader();
+                foreach(DataRow row in reader)
+                {
+                    //listTemp.Add(new MesureTemp(row[Id]))
+                }
+                
+                //listTemp = output.ToList();
+            }
+
+            return listTemp;
         }
 
         /// <summary>
