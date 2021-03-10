@@ -195,17 +195,33 @@ namespace UI_ChambreFroide_V1
             {
                 objFormModifCapteur.m_name = listeCapteurs.Rows[selectedIndex].Cells[3].Value.ToString();
             }
+            else
+            {
+                objFormModifCapteur.m_name = "";
+            }
             if (listeCapteurs.Rows[selectedIndex].Cells[4].Value != null)
             {
                 objFormModifCapteur.m_group = listeCapteurs.Rows[selectedIndex].Cells[4].Value.ToString();
+            }
+            else
+            {
+                objFormModifCapteur.m_group = "";
             }
             if (listeCapteurs.Rows[selectedIndex].Cells[5].Value != null)
             {
                 objFormModifCapteur.m_warning = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[5].Value);
             }
+            else
+            {
+                objFormModifCapteur.m_warning = 5;
+            }
             if (listeCapteurs.Rows[selectedIndex].Cells[6].Value != null)
             {
                 objFormModifCapteur.m_alert = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[6].Value);
+            }
+            else
+            {
+                objFormModifCapteur.m_alert = 8;
             }
             objFormModifCapteur.FormModifCapteur_Load(sender, e);
             objFormModifCapteur.ShowDialog();
