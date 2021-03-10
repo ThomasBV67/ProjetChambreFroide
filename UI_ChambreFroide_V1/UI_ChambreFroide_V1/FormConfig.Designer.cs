@@ -29,17 +29,10 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.listeCapteurs = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ensemble = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.niv_avertissement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_decouverte = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.b_configSerie = new System.Windows.Forms.Button();
@@ -50,6 +43,13 @@ namespace UI_ChambreFroide_V1
             this.b_up = new System.Windows.Forms.Button();
             this.b_modifyCapteur = new System.Windows.Forms.Button();
             this.b_down = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ensemble = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.niv_avertissement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.listeCapteurs)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -69,80 +69,24 @@ namespace UI_ChambreFroide_V1
             this.ensemble,
             this.niv_avertissement,
             this.niv_alerte});
-            this.listeCapteurs.Location = new System.Drawing.Point(9, 10);
+            this.listeCapteurs.Location = new System.Drawing.Point(6, 19);
             this.listeCapteurs.Margin = new System.Windows.Forms.Padding(2);
             this.listeCapteurs.Name = "listeCapteurs";
             this.listeCapteurs.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listeCapteurs.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listeCapteurs.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.listeCapteurs.RowTemplate.Height = 35;
-            this.listeCapteurs.Size = new System.Drawing.Size(717, 550);
+            this.listeCapteurs.Size = new System.Drawing.Size(797, 550);
             this.listeCapteurs.TabIndex = 0;
             this.listeCapteurs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.valeurChangeTableau);
             // 
-            // ID
-            // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ID.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ID.HeaderText = "Thermomètre";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 125;
-            // 
-            // groupe
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupe.DefaultCellStyle = dataGridViewCellStyle2;
-            this.groupe.HeaderText = "Numéro de Groupe";
-            this.groupe.MinimumWidth = 6;
-            this.groupe.Name = "groupe";
-            this.groupe.ReadOnly = true;
-            this.groupe.Width = 80;
-            // 
-            // numero
-            // 
-            this.numero.HeaderText = "Numéro de Sous-Groupe";
-            this.numero.MinimumWidth = 6;
-            this.numero.Name = "numero";
-            this.numero.ReadOnly = true;
-            this.numero.Width = 80;
-            // 
-            // nom
-            // 
-            this.nom.HeaderText = "Nom de pièce";
-            this.nom.MinimumWidth = 6;
-            this.nom.Name = "nom";
-            this.nom.Width = 125;
-            // 
-            // ensemble
-            // 
-            this.ensemble.HeaderText = "Ensemble";
-            this.ensemble.MinimumWidth = 6;
-            this.ensemble.Name = "ensemble";
-            this.ensemble.Width = 110;
-            // 
-            // niv_avertissement
-            // 
-            this.niv_avertissement.HeaderText = "Niveau d\'avertissement";
-            this.niv_avertissement.MinimumWidth = 6;
-            this.niv_avertissement.Name = "niv_avertissement";
-            this.niv_avertissement.Width = 70;
-            // 
-            // niv_alerte
-            // 
-            this.niv_alerte.HeaderText = "Niveau d\'alerte";
-            this.niv_alerte.MinimumWidth = 6;
-            this.niv_alerte.Name = "niv_alerte";
-            this.niv_alerte.Width = 70;
-            // 
             // b_decouverte
             // 
-            this.b_decouverte.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_decouverte.Location = new System.Drawing.Point(748, 21);
+            this.b_decouverte.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.b_decouverte.Location = new System.Drawing.Point(809, 29);
             this.b_decouverte.Margin = new System.Windows.Forms.Padding(2);
             this.b_decouverte.Name = "b_decouverte";
-            this.b_decouverte.Size = new System.Drawing.Size(130, 75);
+            this.b_decouverte.Size = new System.Drawing.Size(100, 75);
             this.b_decouverte.TabIndex = 1;
             this.b_decouverte.Text = "Découvrir le réseau";
             this.b_decouverte.UseVisualStyleBackColor = true;
@@ -151,10 +95,10 @@ namespace UI_ChambreFroide_V1
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(878, 21);
+            this.btnBack.Location = new System.Drawing.Point(915, 29);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(130, 75);
+            this.btnBack.Size = new System.Drawing.Size(100, 75);
             this.btnBack.TabIndex = 2;
             this.btnBack.Text = "Retour";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -163,11 +107,11 @@ namespace UI_ChambreFroide_V1
             // b_configSerie
             // 
             this.b_configSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_configSerie.Location = new System.Drawing.Point(748, 485);
+            this.b_configSerie.Location = new System.Drawing.Point(809, 485);
             this.b_configSerie.Name = "b_configSerie";
-            this.b_configSerie.Size = new System.Drawing.Size(130, 75);
+            this.b_configSerie.Size = new System.Drawing.Size(100, 75);
             this.b_configSerie.TabIndex = 3;
-            this.b_configSerie.Text = "Configuration du port série";
+            this.b_configSerie.Text = "Config du port série";
             this.b_configSerie.UseVisualStyleBackColor = true;
             this.b_configSerie.Click += new System.EventHandler(this.b_configSerie_Click);
             // 
@@ -197,9 +141,9 @@ namespace UI_ChambreFroide_V1
             // b_ouvertureFermeturePort
             // 
             this.b_ouvertureFermeturePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_ouvertureFermeturePort.Location = new System.Drawing.Point(878, 485);
+            this.b_ouvertureFermeturePort.Location = new System.Drawing.Point(915, 485);
             this.b_ouvertureFermeturePort.Name = "b_ouvertureFermeturePort";
-            this.b_ouvertureFermeturePort.Size = new System.Drawing.Size(130, 75);
+            this.b_ouvertureFermeturePort.Size = new System.Drawing.Size(100, 75);
             this.b_ouvertureFermeturePort.TabIndex = 5;
             this.b_ouvertureFermeturePort.Text = "Ouvrir le port";
             this.b_ouvertureFermeturePort.UseVisualStyleBackColor = true;
@@ -208,11 +152,11 @@ namespace UI_ChambreFroide_V1
             // b_up
             // 
             this.b_up.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_up.Location = new System.Drawing.Point(748, 108);
+            this.b_up.Location = new System.Drawing.Point(809, 108);
             this.b_up.Margin = new System.Windows.Forms.Padding(2);
             this.b_up.Name = "b_up";
             this.b_up.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.b_up.Size = new System.Drawing.Size(260, 130);
+            this.b_up.Size = new System.Drawing.Size(206, 130);
             this.b_up.TabIndex = 7;
             this.b_up.Text = "▲";
             this.b_up.UseVisualStyleBackColor = true;
@@ -221,10 +165,10 @@ namespace UI_ChambreFroide_V1
             // b_modifyCapteur
             // 
             this.b_modifyCapteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_modifyCapteur.Location = new System.Drawing.Point(748, 242);
+            this.b_modifyCapteur.Location = new System.Drawing.Point(809, 242);
             this.b_modifyCapteur.Margin = new System.Windows.Forms.Padding(2);
             this.b_modifyCapteur.Name = "b_modifyCapteur";
-            this.b_modifyCapteur.Size = new System.Drawing.Size(260, 100);
+            this.b_modifyCapteur.Size = new System.Drawing.Size(206, 100);
             this.b_modifyCapteur.TabIndex = 8;
             this.b_modifyCapteur.Text = "Modifier\r\n";
             this.b_modifyCapteur.UseVisualStyleBackColor = true;
@@ -233,15 +177,71 @@ namespace UI_ChambreFroide_V1
             // b_down
             // 
             this.b_down.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_down.Location = new System.Drawing.Point(748, 346);
+            this.b_down.Location = new System.Drawing.Point(809, 346);
             this.b_down.Margin = new System.Windows.Forms.Padding(2);
             this.b_down.Name = "b_down";
             this.b_down.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.b_down.Size = new System.Drawing.Size(260, 130);
+            this.b_down.Size = new System.Drawing.Size(206, 130);
             this.b_down.TabIndex = 9;
             this.b_down.Text = "▼";
             this.b_down.UseVisualStyleBackColor = true;
             this.b_down.Click += new System.EventHandler(this.b_down_Click);
+            // 
+            // ID
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ID.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ID.HeaderText = "Thermomètre";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 200;
+            // 
+            // groupe
+            // 
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupe.DefaultCellStyle = dataGridViewCellStyle5;
+            this.groupe.HeaderText = "# Groupe";
+            this.groupe.MinimumWidth = 6;
+            this.groupe.Name = "groupe";
+            this.groupe.ReadOnly = true;
+            this.groupe.Width = 70;
+            // 
+            // numero
+            // 
+            this.numero.HeaderText = "# Sous-Groupe";
+            this.numero.MinimumWidth = 6;
+            this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
+            this.numero.Width = 70;
+            // 
+            // nom
+            // 
+            this.nom.HeaderText = "Nom de pièce";
+            this.nom.MinimumWidth = 6;
+            this.nom.Name = "nom";
+            this.nom.Width = 150;
+            // 
+            // ensemble
+            // 
+            this.ensemble.HeaderText = "Ensemble";
+            this.ensemble.MinimumWidth = 6;
+            this.ensemble.Name = "ensemble";
+            this.ensemble.Width = 150;
+            // 
+            // niv_avertissement
+            // 
+            this.niv_avertissement.HeaderText = "Niveau d\'avertissement";
+            this.niv_avertissement.MinimumWidth = 6;
+            this.niv_avertissement.Name = "niv_avertissement";
+            this.niv_avertissement.Width = 50;
+            // 
+            // niv_alerte
+            // 
+            this.niv_alerte.HeaderText = "Niveau d\'alerte";
+            this.niv_alerte.MinimumWidth = 6;
+            this.niv_alerte.Name = "niv_alerte";
+            this.niv_alerte.Width = 50;
             // 
             // FormConfig
             // 

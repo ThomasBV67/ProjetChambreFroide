@@ -78,9 +78,10 @@ namespace UI_ChambreFroide_V1
             // 
             // b_historique
             // 
-            this.b_historique.Location = new System.Drawing.Point(301, 434);
+            this.b_historique.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.b_historique.Location = new System.Drawing.Point(279, 425);
             this.b_historique.Name = "b_historique";
-            this.b_historique.Size = new System.Drawing.Size(153, 56);
+            this.b_historique.Size = new System.Drawing.Size(200, 100);
             this.b_historique.TabIndex = 38;
             this.b_historique.Text = "Historique";
             this.b_historique.UseVisualStyleBackColor = true;
@@ -88,37 +89,40 @@ namespace UI_ChambreFroide_V1
             // 
             // b_config
             // 
-            this.b_config.Location = new System.Drawing.Point(569, 435);
+            this.b_config.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.b_config.Location = new System.Drawing.Point(544, 425);
             this.b_config.Name = "b_config";
-            this.b_config.Size = new System.Drawing.Size(152, 55);
+            this.b_config.Size = new System.Drawing.Size(200, 100);
             this.b_config.TabIndex = 39;
-            this.b_config.Text = "Configuration...";
+            this.b_config.Text = "Configuration";
             this.b_config.UseVisualStyleBackColor = true;
             this.b_config.Click += new System.EventHandler(this.b_config_Click);
             // 
             // b_suivant
             // 
-            this.b_suivant.Location = new System.Drawing.Point(826, 435);
+            this.b_suivant.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.b_suivant.Location = new System.Drawing.Point(808, 425);
             this.b_suivant.Name = "b_suivant";
-            this.b_suivant.Size = new System.Drawing.Size(152, 56);
+            this.b_suivant.Size = new System.Drawing.Size(200, 100);
             this.b_suivant.TabIndex = 37;
-            this.b_suivant.Text = "Suivant -->";
+            this.b_suivant.Text = "Suivant →";
             this.b_suivant.UseVisualStyleBackColor = true;
             // 
             // b_precedent
             // 
-            this.b_precedent.Location = new System.Drawing.Point(44, 435);
+            this.b_precedent.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.b_precedent.Location = new System.Drawing.Point(17, 425);
             this.b_precedent.Name = "b_precedent";
-            this.b_precedent.Size = new System.Drawing.Size(153, 56);
+            this.b_precedent.Size = new System.Drawing.Size(200, 100);
             this.b_precedent.TabIndex = 36;
-            this.b_precedent.Text = "<-- Précédent";
+            this.b_precedent.Text = "← Précédent";
             this.b_precedent.UseVisualStyleBackColor = true;
             // 
             // l_tempsRestant
             // 
             this.l_tempsRestant.AutoSize = true;
             this.l_tempsRestant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.l_tempsRestant.Location = new System.Drawing.Point(114, 550);
+            this.l_tempsRestant.Location = new System.Drawing.Point(263, 550);
             this.l_tempsRestant.Name = "l_tempsRestant";
             this.l_tempsRestant.Size = new System.Drawing.Size(329, 24);
             this.l_tempsRestant.TabIndex = 35;
@@ -494,7 +498,7 @@ namespace UI_ChambreFroide_V1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(826, 516);
+            this.button1.Location = new System.Drawing.Point(861, 537);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 54);
             this.button1.TabIndex = 41;
@@ -505,7 +509,7 @@ namespace UI_ChambreFroide_V1
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(19, 503);
+            this.label16.Location = new System.Drawing.Point(14, 537);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(41, 13);
             this.label16.TabIndex = 42;
@@ -514,7 +518,7 @@ namespace UI_ChambreFroide_V1
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(19, 516);
+            this.label17.Location = new System.Drawing.Point(14, 550);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(41, 13);
             this.label17.TabIndex = 43;
@@ -523,7 +527,7 @@ namespace UI_ChambreFroide_V1
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(19, 529);
+            this.label18.Location = new System.Drawing.Point(14, 563);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(41, 13);
             this.label18.TabIndex = 44;
