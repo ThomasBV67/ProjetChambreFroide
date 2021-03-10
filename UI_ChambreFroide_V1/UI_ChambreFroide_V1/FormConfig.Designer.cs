@@ -29,9 +29,9 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.listeCapteurs = new System.Windows.Forms.DataGridView();
             this.b_decouverte = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -73,8 +73,8 @@ namespace UI_ChambreFroide_V1
             this.listeCapteurs.Margin = new System.Windows.Forms.Padding(2);
             this.listeCapteurs.Name = "listeCapteurs";
             this.listeCapteurs.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listeCapteurs.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listeCapteurs.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.listeCapteurs.RowTemplate.Height = 35;
             this.listeCapteurs.Size = new System.Drawing.Size(797, 550);
             this.listeCapteurs.TabIndex = 0;
@@ -189,8 +189,8 @@ namespace UI_ChambreFroide_V1
             // 
             // ID
             // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ID.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ID.DefaultCellStyle = dataGridViewCellStyle1;
             this.ID.HeaderText = "Thermomètre";
             this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
@@ -199,8 +199,8 @@ namespace UI_ChambreFroide_V1
             // 
             // groupe
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupe.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupe.DefaultCellStyle = dataGridViewCellStyle2;
             this.groupe.HeaderText = "# Groupe";
             this.groupe.MinimumWidth = 6;
             this.groupe.Name = "groupe";
