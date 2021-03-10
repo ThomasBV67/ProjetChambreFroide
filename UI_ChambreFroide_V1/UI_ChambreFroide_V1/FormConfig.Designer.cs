@@ -69,9 +69,10 @@ namespace UI_ChambreFroide_V1
             this.ensemble,
             this.niv_avertissement,
             this.niv_alerte});
-            this.listeCapteurs.Location = new System.Drawing.Point(6, 19);
+            this.listeCapteurs.Location = new System.Drawing.Point(7, 26);
             this.listeCapteurs.Margin = new System.Windows.Forms.Padding(2);
             this.listeCapteurs.Name = "listeCapteurs";
+            this.listeCapteurs.RowHeadersVisible = false;
             this.listeCapteurs.RowHeadersWidth = 51;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listeCapteurs.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -195,25 +196,25 @@ namespace UI_ChambreFroide_V1
             this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
-            this.ID.Width = 200;
+            this.ID.Width = 300;
             // 
             // groupe
             // 
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupe.DefaultCellStyle = dataGridViewCellStyle2;
-            this.groupe.HeaderText = "# Groupe";
+            this.groupe.HeaderText = "# Gr";
             this.groupe.MinimumWidth = 6;
             this.groupe.Name = "groupe";
             this.groupe.ReadOnly = true;
-            this.groupe.Width = 70;
+            this.groupe.Width = 45;
             // 
             // numero
             // 
-            this.numero.HeaderText = "# Sous-Groupe";
+            this.numero.HeaderText = "# Sous-Gr";
             this.numero.MinimumWidth = 6;
             this.numero.Name = "numero";
             this.numero.ReadOnly = true;
-            this.numero.Width = 70;
+            this.numero.Width = 45;
             // 
             // nom
             // 
