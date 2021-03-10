@@ -29,7 +29,7 @@ namespace UI_ChambreFroide_V1
             Hide();
         }
 
-        private void FormModifCapteur_Load(object sender, EventArgs e)
+        public void FormModifCapteur_Load(object sender, EventArgs e)
         {
             lbNom.Text = "Nom : " + m_name;
             lbGroupe.Text = "Groupe : " + m_group;
