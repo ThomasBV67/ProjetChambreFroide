@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="AccesDB.cs" />
     <Compile Include="Capteur.cs" />
+    <Compile Include="Case.cs" />
     <Compile Include="Configuration.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -21,6 +21,7 @@ namespace UI_ChambreFroide_V1
         int capteurEnCours = 0;
         int nbModules = 1;
         int nbErr = 0;
+        int page = 0;
 
         ///////////////////////////////////////Marqueurs temporaires
         int e = 0;
@@ -36,6 +37,7 @@ namespace UI_ChambreFroide_V1
         RichTextBox[] m_RTB_temp = new RichTextBox[NB_BOITES_AFFICHAGE];
         public List<Capteur> lst_Capteurs = new List<Capteur>();
         public List<Capteur> lst_CapteursDB = new List<Capteur>();
+        private List<Case> lst_cases = new List<Case>();
 
 
 
@@ -61,7 +63,7 @@ namespace UI_ChambreFroide_V1
             objFormConfig.Hide();
             objFormHistorique.Hide();
             objFormConfig.pagePrincipale = this;//Envoi de la page en cours à pa page de config pour que les deux puissent s'échanger des informations
-            
+           
         }
         /// <summary>
         /// Mets tout les labels de noms des pieces et les labels de température dans un tableau. Leur donne ensuite un nom par défaut unique
@@ -87,6 +89,9 @@ namespace UI_ChambreFroide_V1
                     m_RTB_temp[(int)(i / 2)].Text = "--";//Température par défaut
                 }
             }
+
+            b_precedent.Enabled = false;
+            b_suivant.Enabled = false;
         }
         /// <summary>
         /// Devine
@@ -167,26 +172,28 @@ namespace UI_ChambreFroide_V1
                     if (temperature != -127)//Si aucun code d'erreur
                     {
                         nbErr = 0;
-                        m_RTB_temp[capteurEnCours].Text = Convert.ToString(Math.Round(temperature, 1)) + "°";//Écrit la temp. dans sa case
-                        m_label_pieces[capteurEnCours].Text = m_label_pieces[capteurEnCours].Text.Replace("*", "");//Supprime le marqueur d'erreur si présent
+                        //m_RTB_temp[capteurEnCours].Text = Convert.ToString(Math.Round(temperature, 1)) + "°";//Écrit la temp. dans sa case
+                        //lst_Capteurs[capteurEnCours].Name = lst_Capteurs[capteurEnCours].Name.Replace("*", "");//Supprime le marqueur d'erreur si présent
+                        
                         if (temperature < lst_Capteurs[capteurEnCours].AlertLow)//Si temp. est ok
                         {
-                            m_RTB_temp[capteurEnCours].BackColor = Color.LightGreen;
+                            lst_cases.Add(new Case(Color.Green, temperature, lst_Capteurs[capteurEnCours].Name));
                             AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 0);
                         }
                         else if (temperature >= lst_Capteurs[capteurEnCours].AlertHigh)//alerte haute
                         {
-                            m_RTB_temp[capteurEnCours].BackColor = Color.Red;
+                            lst_cases.Add(new Case(Color.Red, temperature, lst_Capteurs[capteurEnCours].Name));
                             AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 2);
                         }
                         else if (temperature >= lst_Capteurs[capteurEnCours].AlertLow)//Alerte moyen
                         {
-                            m_RTB_temp[capteurEnCours].BackColor = Color.Yellow;
+                            lst_cases.Add(new Case(Color.Yellow, temperature, lst_Capteurs[capteurEnCours].Name));
                             AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 1);
                         }
+                        MAJAffichageTemps();
 
                         capteurEnCours++;//prochain capteur
-                        if (capteurEnCours < NB_BOITES_AFFICHAGE && capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
+                        if (capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
                         {
                             reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);//Envoie la prochaine requete
                         }
@@ -243,18 +250,7 @@ namespace UI_ChambreFroide_V1
                 lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[5].Value);
                 lst_Capteurs[i].AlertHigh = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[6].Value);
             }
-
-            for (int i = 0; i < NB_BOITES_AFFICHAGE; i++)//Affiche les noms existants sinon, mets ND
-            {
-                try
-                {
-                    m_label_pieces[i].Text = lst_Capteurs[i].Name;
-                }
-                catch
-                {
-                    m_label_pieces[i].Text = "ND";
-                }
-            }
+            MAJAffichageTemps();
         }
 
         private void t_checkTemps_Tick(object sender, EventArgs e)
@@ -273,6 +269,7 @@ namespace UI_ChambreFroide_V1
             capteurEnCours = 0;
             reqTemp(lst_Capteurs[0].Module, lst_Capteurs[0].ModuleIndex);
             t_checkTemps.Stop();
+            lst_cases.Clear();
         }
 
         private void reqTemp(int module, int capteur)
@@ -295,11 +292,12 @@ namespace UI_ChambreFroide_V1
             {
                 reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
             }
-            else//Apres 3mets une * au titre
+            else//Apres 3 mets une * au titre
             {
-                if (!m_label_pieces[capteurEnCours].Text.Contains("*"))
+                if (!lst_Capteurs[capteurEnCours].Name.Contains("*"))
                 {
-                    m_label_pieces[capteurEnCours].Text += "*";
+                    lst_Capteurs[capteurEnCours].Name += "*";
+                    MAJAffichageTemps();
                 }
                 nbErr = 0;
                 eCrit++;
@@ -348,6 +346,87 @@ namespace UI_ChambreFroide_V1
         private void lireMaintenant(object sender, EventArgs e)
         {
             tempsAttente = 1;
+        }
+
+        private void b_precedent_Click(object sender, EventArgs e)
+        {
+            if (page > 0)
+            {
+                page--;
+                b_suivant.Enabled = true;
+                MAJAffichageTemps();
+                if (page == 0)
+                {
+                    b_precedent.Enabled = false;
+                }
+            }
+            MAJTemoinPage();
+        }
+
+        private void b_suivant_Click(object sender, EventArgs e)
+        {
+            if (NB_BOITES_AFFICHAGE * (page + 1) < lst_Capteurs.Count)
+            {
+                page++;
+                b_precedent.Enabled = true;
+                MAJAffichageTemps();
+                if (page > lst_Capteurs.Count / NB_BOITES_AFFICHAGE || lst_Capteurs.Count <= 1)
+                {
+                    b_suivant.Enabled = false;
+                }
+            }
+            MAJTemoinPage();
+        }
+
+        public void MAJAffichageTemps()
+        {
+            for (int i = 0; i < NB_BOITES_AFFICHAGE; i++)
+            {
+                try
+                {
+                    m_label_pieces[i].Text = lst_cases[i + NB_BOITES_AFFICHAGE*page].nomPiece;
+                    m_RTB_temp[i].Text = Convert.ToString(Math.Round(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature, 1)) + "°";
+                    m_RTB_temp[i].BackColor = lst_cases[i + NB_BOITES_AFFICHAGE * page].couleurCase;
+                }
+                catch
+                {
+                    //m_label_pieces[i].Text = "ND";
+                    try
+                    {
+                        m_label_pieces[i].Text = lst_Capteurs[i + NB_BOITES_AFFICHAGE * page].Name;
+
+                    }
+                    catch {
+                        if (lst_Capteurs.Count <= i + NB_BOITES_AFFICHAGE * page)
+                        {
+                            m_label_pieces[i].Text = "";
+                            m_RTB_temp[i].Text = "";
+                            m_RTB_temp[i].BackColor = Color.White;
+                        }
+                    }
+                    
+                }
+            }
+            MAJTemoinPage();
+            MAJEtatBoutonsPage();
+        }
+        private void MAJTemoinPage()
+        {
+            l_page.Text = "Page " + Convert.ToString(page + 1) + "/" + Convert.ToString((lst_Capteurs.Count / NB_BOITES_AFFICHAGE) + 1);
+        }
+        private void MAJEtatBoutonsPage()
+        {
+
+            b_suivant.Enabled = true;
+            if (NB_BOITES_AFFICHAGE * (page + 1) > lst_Capteurs.Count)
+            {
+                b_suivant.Enabled = false;
+            }
+
+            if (page == 0)
+            {
+                b_precedent.Enabled = false;
+            }
         }
     }
 }
