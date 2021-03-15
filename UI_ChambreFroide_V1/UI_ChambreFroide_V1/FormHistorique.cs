@@ -52,6 +52,7 @@ namespace UI_ChambreFroide_V1
                 selectedName = objFormChoixCapteur.returnName;
                 selectedIsGroup = objFormChoixCapteur.isGroup;
             }
+            objFormChoixCapteur.DialogResult = DialogResult.None;
         }
 
         /// <summary>
@@ -103,11 +104,11 @@ namespace UI_ChambreFroide_V1
             AccesDB accesDB = new AccesDB();
             listCapteurs = AccesDB.GetSetCapteurs();
 
-            if (selectedIsGroup)
+            if (objFormChoixCapteur.isGroup)
             {
                 foreach(Capteur cap in listCapteurs)
                 {
-                    if(cap.GroupCapteur == selectedName)
+                    if(cap.GroupCapteur == objFormChoixCapteur.returnName)
                     {
                         listTemp = accesDB.GetTemperatures(endTime, startTime, cap.Address);
                     }                   
@@ -117,7 +118,7 @@ namespace UI_ChambreFroide_V1
             {
                 foreach (Capteur cap in listCapteurs)
                 {
-                    if (cap.Name == selectedName)
+                    if (cap.Name == objFormChoixCapteur.returnName)
                     {
                         listTemp = accesDB.GetTemperatures(endTime, startTime, cap.Address);
                     }
