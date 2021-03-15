@@ -75,19 +75,9 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void btnSelect_Click(object sender, EventArgs e)
         {
-
             this.returnName = listBoxChoixCapteur.SelectedItem.ToString();
-            if(btnGroupName.Text == "Groupes")
-            {
-                this.isGroup = false;
-            }
-            else
-            {
-                this.isGroup = true;
-            }
-            
             this.DialogResult = DialogResult.OK;
-            this.Close();
+            this.Hide();
         }
 
         /// <summary>
@@ -117,7 +107,7 @@ namespace UI_ChambreFroide_V1
             {
                 btnGroupName.Text = "Noms"; // met Noms comme texte dans le bouton
                 labelTitre.Text = "Choix du groupe à étudier";
-
+                isGroup = true;
                 m_listGroups = AccesDB.GetGroups(); // Update la liste de groupes via de la db
 
                 foreach (String str in m_listGroups) // Affiche les groupes dans le listbox
@@ -129,7 +119,7 @@ namespace UI_ChambreFroide_V1
             {
                 btnGroupName.Text = "Groupes";// met Groupes comme texte dans le bouton
                 labelTitre.Text = "Choix du capteur à étudier";
-
+                isGroup = false;
                 m_listCapteurs = AccesDB.GetSetCapteurs(); // Update la liste de capteurs via la db
 
                 foreach (Capteur cap in m_listCapteurs) // Affiche les capteurs dans le listbox
