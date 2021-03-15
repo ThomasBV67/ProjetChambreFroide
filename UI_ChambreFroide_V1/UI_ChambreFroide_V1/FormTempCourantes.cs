@@ -249,6 +249,10 @@ namespace UI_ChambreFroide_V1
             for (int i = 0; i < lst_Capteurs.Count; i++)//Ajoute les noms aux objets
             {
                 lst_Capteurs[i].Name = (string)objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[3].Value;//ordre de la grille par rapport à la liste inversé. 
+                if (lst_Capteurs[i].Name == null)
+                {
+                    lst_Capteurs[i].Name = "";
+                }
                 //Doit passer pas soustraction pour que les noms correspondent.
                 lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[5].Value);
                 lst_Capteurs[i].AlertHigh = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[6].Value);
