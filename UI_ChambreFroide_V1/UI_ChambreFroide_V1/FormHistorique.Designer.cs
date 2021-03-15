@@ -48,7 +48,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.lbTitreHistorique.AutoSize = true;
             this.lbTitreHistorique.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitreHistorique.Location = new System.Drawing.Point(40, 30);
+            this.lbTitreHistorique.Location = new System.Drawing.Point(173, 30);
             this.lbTitreHistorique.Name = "lbTitreHistorique";
             this.lbTitreHistorique.Size = new System.Drawing.Size(486, 42);
             this.lbTitreHistorique.TabIndex = 0;
