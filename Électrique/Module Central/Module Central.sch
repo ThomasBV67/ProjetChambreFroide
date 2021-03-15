@@ -789,7 +789,7 @@ Wire Wire Line
 	6300 4350 7150 4350
 Wire Wire Line
 	6300 3300 6300 4350
-Text GLabel 8350 3600 2    50   Input ~ 0
+Text GLabel 8350 3000 2    50   Input ~ 0
 3V3
 NoConn ~ 7150 3950
 NoConn ~ 7150 4150
@@ -799,56 +799,6 @@ Wire Wire Line
 	8850 2600 8850 3400
 Wire Wire Line
 	8850 3400 9450 3400
-$Comp
-L Device:R R108
-U 1 1 60571DFE
-P 8050 4900
-F 0 "R108" H 8120 4946 50  0000 L CNN
-F 1 "1K" H 8120 4855 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 7980 4900 50  0001 C CNN
-F 3 "~" H 8050 4900 50  0001 C CNN
-	1    8050 4900
-	1    0    0    -1  
-$EndComp
-Connection ~ 8050 4750
-Wire Wire Line
-	8050 4750 7950 4750
-$Comp
-L power:GND #PWR0119
-U 1 1 605744CB
-P 8050 5050
-F 0 "#PWR0119" H 8050 4800 50  0001 C CNN
-F 1 "GND" H 8055 4877 50  0000 C CNN
-F 2 "" H 8050 5050 50  0001 C CNN
-F 3 "" H 8050 5050 50  0001 C CNN
-	1    8050 5050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R107
-U 1 1 605746AE
-P 8050 3150
-F 0 "R107" H 8120 3196 50  0000 L CNN
-F 1 "1K" H 8120 3105 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 7980 3150 50  0001 C CNN
-F 3 "~" H 8050 3150 50  0001 C CNN
-	1    8050 3150
-	1    0    0    -1  
-$EndComp
-Connection ~ 8050 3000
-Wire Wire Line
-	8050 3000 7950 3000
-$Comp
-L power:GND #PWR0118
-U 1 1 605770D2
-P 8050 3300
-F 0 "#PWR0118" H 8050 3050 50  0001 C CNN
-F 1 "GND" H 8055 3127 50  0000 C CNN
-F 2 "" H 8050 3300 50  0001 C CNN
-F 3 "" H 8050 3300 50  0001 C CNN
-	1    8050 3300
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	10700 3900 10300 3900
 Wire Wire Line
@@ -865,32 +815,10 @@ Wire Wire Line
 	7950 4350 9000 4350
 Wire Wire Line
 	7950 4550 9150 4550
-$Comp
-L Device:Jumper JP104
-U 1 1 6058F414
-P 8350 3300
-F 0 "JP104" V 8304 3427 50  0000 L CNN
-F 1 "Jumper" V 8395 3427 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 8350 3300 50  0001 C CNN
-F 3 "~" H 8350 3300 50  0001 C CNN
-	1    8350 3300
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	8050 3000 8350 3000
-Text GLabel 8300 5350 2    50   Input ~ 0
+Text GLabel 8300 4750 2    50   Input ~ 0
 3V3
-$Comp
-L Device:Jumper JP103
-U 1 1 6059448D
-P 8300 5050
-F 0 "JP103" V 8254 5177 50  0000 L CNN
-F 1 "Jumper" V 8345 5177 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 8300 5050 50  0001 C CNN
-F 3 "~" H 8300 5050 50  0001 C CNN
-	1    8300 5050
-	0    1    1    0   
-$EndComp
 Wire Wire Line
-	8050 4750 8300 4750
+	7950 4750 8300 4750
+Wire Wire Line
+	7950 3000 8350 3000
 $EndSCHEMATC
