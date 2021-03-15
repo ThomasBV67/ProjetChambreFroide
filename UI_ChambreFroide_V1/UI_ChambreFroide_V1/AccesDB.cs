@@ -256,22 +256,30 @@ namespace UI_ChambreFroide_V1
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="addrCap"></param>
+        /// <returns></returns>
         public List<MesureTemp> GetTemperatures(DateTime startTime, DateTime endTime, string addrCap)
         {
             List<MesureTemp> listTemp = new List<MesureTemp>();
+            
 
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
             {
                 conn.Open();
-                //String sql = "SELECT * FROM Historique WHERE TimeStamp > @startTime AND TimeStamp < @endTime AND Capteur = @addrCap";
-                String sql = "SELECT * FROM Historique WHERE Capteur = @addrCap";
+                String sql = "SELECT * FROM Historique WHERE TimeStamp > @startTime AND TimeStamp < @endTime AND Capteur = @addrCap";
+                //String sql = "SELECT * FROM Historique WHERE Capteur = @addrCap";
                 SQLiteCommand sqlite_cmd = new SQLiteCommand(sql, conn);
 
-               /* sqlite_cmd.Parameters.Add("@startTime", DbType.String, -1);
+                sqlite_cmd.Parameters.Add("@startTime", DbType.String, -1);
                 sqlite_cmd.Parameters["@startTime"].Value = startTime;
 
                 sqlite_cmd.Parameters.Add("@endTime", DbType.String, -1);
-                sqlite_cmd.Parameters["@endTime"].Value = endTime;*/
+                sqlite_cmd.Parameters["@endTime"].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
                 sqlite_cmd.Parameters.Add("@addrCap", DbType.String, -1);
                 sqlite_cmd.Parameters["@addrCap"].Value = addrCap;

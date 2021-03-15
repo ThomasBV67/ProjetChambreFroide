@@ -21,7 +21,7 @@ namespace UI_ChambreFroide_V1
 
         public List<Capteur> listCapteurs = new List<Capteur>();
         public List<MesureTemp> listTemp = new List<MesureTemp>();
-
+        
         public enum timeFrameChoice {Day, Week, Month, Other};
         public timeFrameChoice timeFrame = timeFrameChoice.Day;
 
@@ -103,6 +103,7 @@ namespace UI_ChambreFroide_V1
         {
             AccesDB accesDB = new AccesDB();
             listCapteurs = AccesDB.GetSetCapteurs();
+            listTemp.Clear();
 
             if (objFormChoixCapteur.isGroup)
             {
@@ -110,7 +111,7 @@ namespace UI_ChambreFroide_V1
                 {
                     if(cap.GroupCapteur == objFormChoixCapteur.returnName)
                     {
-                        listTemp = accesDB.GetTemperatures(endTime, startTime, cap.Address);
+                        listTemp.AddRange(accesDB.GetTemperatures(endTime, startTime, cap.Address));
                     }                   
                 }                
             }
@@ -120,7 +121,7 @@ namespace UI_ChambreFroide_V1
                 {
                     if (cap.Name == objFormChoixCapteur.returnName)
                     {
-                        listTemp = accesDB.GetTemperatures(endTime, startTime, cap.Address);
+                        listTemp.AddRange(accesDB.GetTemperatures(endTime, startTime, cap.Address));
                     }
                 }
             }
