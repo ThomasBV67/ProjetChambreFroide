@@ -33,6 +33,13 @@ namespace UI_ChambreFroide_V1
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.listeCapteurs = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ensemble = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.niv_avertissement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_decouverte = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.b_configSerie = new System.Windows.Forms.Button();
@@ -43,13 +50,6 @@ namespace UI_ChambreFroide_V1
             this.b_up = new System.Windows.Forms.Button();
             this.b_modifyCapteur = new System.Windows.Forms.Button();
             this.b_down = new System.Windows.Forms.Button();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ensemble = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.niv_avertissement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.niv_alerte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.listeCapteurs)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +80,62 @@ namespace UI_ChambreFroide_V1
             this.listeCapteurs.Size = new System.Drawing.Size(797, 550);
             this.listeCapteurs.TabIndex = 0;
             this.listeCapteurs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.valeurChangeTableau);
+            // 
+            // ID
+            // 
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ID.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ID.HeaderText = "Thermomètre";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 300;
+            // 
+            // groupe
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupe.DefaultCellStyle = dataGridViewCellStyle2;
+            this.groupe.HeaderText = "# Gr";
+            this.groupe.MinimumWidth = 6;
+            this.groupe.Name = "groupe";
+            this.groupe.ReadOnly = true;
+            this.groupe.Width = 45;
+            // 
+            // numero
+            // 
+            this.numero.HeaderText = "# Sous-Gr";
+            this.numero.MinimumWidth = 6;
+            this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
+            this.numero.Width = 45;
+            // 
+            // nom
+            // 
+            this.nom.HeaderText = "Nom de pièce";
+            this.nom.MinimumWidth = 6;
+            this.nom.Name = "nom";
+            this.nom.Width = 150;
+            // 
+            // ensemble
+            // 
+            this.ensemble.HeaderText = "Ensemble";
+            this.ensemble.MinimumWidth = 6;
+            this.ensemble.Name = "ensemble";
+            this.ensemble.Width = 150;
+            // 
+            // niv_avertissement
+            // 
+            this.niv_avertissement.HeaderText = "Niveau d\'avertissement";
+            this.niv_avertissement.MinimumWidth = 6;
+            this.niv_avertissement.Name = "niv_avertissement";
+            this.niv_avertissement.Width = 50;
+            // 
+            // niv_alerte
+            // 
+            this.niv_alerte.HeaderText = "Niveau d\'alerte";
+            this.niv_alerte.MinimumWidth = 6;
+            this.niv_alerte.Name = "niv_alerte";
+            this.niv_alerte.Width = 50;
             // 
             // b_decouverte
             // 
@@ -187,62 +243,6 @@ namespace UI_ChambreFroide_V1
             this.b_down.Text = "▼";
             this.b_down.UseVisualStyleBackColor = true;
             this.b_down.Click += new System.EventHandler(this.b_down_Click);
-            // 
-            // ID
-            // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ID.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ID.HeaderText = "Thermomètre";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 300;
-            // 
-            // groupe
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupe.DefaultCellStyle = dataGridViewCellStyle2;
-            this.groupe.HeaderText = "# Gr";
-            this.groupe.MinimumWidth = 6;
-            this.groupe.Name = "groupe";
-            this.groupe.ReadOnly = true;
-            this.groupe.Width = 45;
-            // 
-            // numero
-            // 
-            this.numero.HeaderText = "# Sous-Gr";
-            this.numero.MinimumWidth = 6;
-            this.numero.Name = "numero";
-            this.numero.ReadOnly = true;
-            this.numero.Width = 45;
-            // 
-            // nom
-            // 
-            this.nom.HeaderText = "Nom de pièce";
-            this.nom.MinimumWidth = 6;
-            this.nom.Name = "nom";
-            this.nom.Width = 150;
-            // 
-            // ensemble
-            // 
-            this.ensemble.HeaderText = "Ensemble";
-            this.ensemble.MinimumWidth = 6;
-            this.ensemble.Name = "ensemble";
-            this.ensemble.Width = 150;
-            // 
-            // niv_avertissement
-            // 
-            this.niv_avertissement.HeaderText = "Niveau d\'avertissement";
-            this.niv_avertissement.MinimumWidth = 6;
-            this.niv_avertissement.Name = "niv_avertissement";
-            this.niv_avertissement.Width = 50;
-            // 
-            // niv_alerte
-            // 
-            this.niv_alerte.HeaderText = "Niveau d\'alerte";
-            this.niv_alerte.MinimumWidth = 6;
-            this.niv_alerte.Name = "niv_alerte";
-            this.niv_alerte.Width = 50;
             // 
             // FormConfig
             // 

@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnLastDay = new System.Windows.Forms.Button();
-            this.btnLastWeek = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnLastDay
+            // button1
             // 
-            this.btnLastDay.Location = new System.Drawing.Point(49, 131);
-            this.btnLastDay.Name = "btnLastDay";
-            this.btnLastDay.Size = new System.Drawing.Size(199, 90);
-            this.btnLastDay.TabIndex = 0;
-            this.btnLastDay.Text = "Dernier jour";
-            this.btnLastDay.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(56, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // btnLastWeek
+            // button2
             // 
-            this.btnLastWeek.Location = new System.Drawing.Point(49, 227);
-            this.btnLastWeek.Name = "btnLastWeek";
-            this.btnLastWeek.Size = new System.Drawing.Size(199, 90);
-            this.btnLastWeek.TabIndex = 1;
-            this.btnLastWeek.Text = "Dernière semaine";
-            this.btnLastWeek.UseVisualStyleBackColor = true;
+            this.button2.Location = new System.Drawing.Point(56, 105);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(49, 323);
+            this.button3.Location = new System.Drawing.Point(56, 134);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(199, 90);
+            this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Dernier mois";
+            this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // FormChoixPlageTemps
@@ -66,8 +66,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.btnLastWeek);
-            this.Controls.Add(this.btnLastDay);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormChoixPlageTemps";
             this.Text = "FormChoixPlageTemps";
@@ -78,8 +78,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnLastDay;
-        private System.Windows.Forms.Button btnLastWeek;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
     }
 }
