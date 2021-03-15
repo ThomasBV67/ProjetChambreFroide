@@ -76,6 +76,7 @@ namespace UI_ChambreFroide_V1
             this.l_page = new System.Windows.Forms.Label();
             this.lbErrMod1 = new System.Windows.Forms.Label();
             this.lbCritErrMod2 = new System.Windows.Forms.Label();
+            this.lbNbCycles = new System.Windows.Forms.Label();
             this.panelTemp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -513,7 +514,7 @@ namespace UI_ChambreFroide_V1
             // lbErr
             // 
             this.lbErr.AutoSize = true;
-            this.lbErr.Location = new System.Drawing.Point(14, 521);
+            this.lbErr.Location = new System.Drawing.Point(12, 513);
             this.lbErr.Name = "lbErr";
             this.lbErr.Size = new System.Drawing.Size(28, 13);
             this.lbErr.TabIndex = 42;
@@ -522,7 +523,7 @@ namespace UI_ChambreFroide_V1
             // lbErrMod2
             // 
             this.lbErrMod2.AutoSize = true;
-            this.lbErrMod2.Location = new System.Drawing.Point(14, 550);
+            this.lbErrMod2.Location = new System.Drawing.Point(12, 542);
             this.lbErrMod2.Name = "lbErrMod2";
             this.lbErrMod2.Size = new System.Drawing.Size(55, 13);
             this.lbErrMod2.TabIndex = 43;
@@ -531,7 +532,7 @@ namespace UI_ChambreFroide_V1
             // lbCritErrMod1
             // 
             this.lbCritErrMod1.AutoSize = true;
-            this.lbCritErrMod1.Location = new System.Drawing.Point(14, 563);
+            this.lbCritErrMod1.Location = new System.Drawing.Point(12, 555);
             this.lbCritErrMod1.Name = "lbCritErrMod1";
             this.lbCritErrMod1.Size = new System.Drawing.Size(70, 13);
             this.lbCritErrMod1.TabIndex = 44;
@@ -551,7 +552,7 @@ namespace UI_ChambreFroide_V1
             // lbErrMod1
             // 
             this.lbErrMod1.AutoSize = true;
-            this.lbErrMod1.Location = new System.Drawing.Point(14, 534);
+            this.lbErrMod1.Location = new System.Drawing.Point(12, 526);
             this.lbErrMod1.Name = "lbErrMod1";
             this.lbErrMod1.Size = new System.Drawing.Size(55, 13);
             this.lbErrMod1.TabIndex = 46;
@@ -560,17 +561,27 @@ namespace UI_ChambreFroide_V1
             // lbCritErrMod2
             // 
             this.lbCritErrMod2.AutoSize = true;
-            this.lbCritErrMod2.Location = new System.Drawing.Point(14, 578);
+            this.lbCritErrMod2.Location = new System.Drawing.Point(12, 570);
             this.lbCritErrMod2.Name = "lbCritErrMod2";
             this.lbCritErrMod2.Size = new System.Drawing.Size(70, 13);
             this.lbCritErrMod2.TabIndex = 47;
             this.lbCritErrMod2.Text = "lbCritErrMod2";
+            // 
+            // lbNbCycles
+            // 
+            this.lbNbCycles.AutoSize = true;
+            this.lbNbCycles.Location = new System.Drawing.Point(12, 583);
+            this.lbNbCycles.Name = "lbNbCycles";
+            this.lbNbCycles.Size = new System.Drawing.Size(60, 13);
+            this.lbNbCycles.TabIndex = 48;
+            this.lbNbCycles.Text = "lbNbCycles";
             // 
             // FormTempCourantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.lbNbCycles);
             this.Controls.Add(this.lbCritErrMod2);
             this.Controls.Add(this.lbErrMod1);
             this.Controls.Add(this.l_page);
@@ -644,6 +655,7 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.Label l_page;
         private System.Windows.Forms.Label lbErrMod1;
         private System.Windows.Forms.Label lbCritErrMod2;
+        private System.Windows.Forms.Label lbNbCycles;
     }
 }
 

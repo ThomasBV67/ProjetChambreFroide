@@ -268,7 +268,7 @@ namespace UI_ChambreFroide_V1
 
         public void startGetTemp()
         {
-            lbCritErrMod1.Text = "Combre de cycles : " + Convert.ToString(++nbCycles);
+            lbNbCycles.Text = "Combre de cycles : " + Convert.ToString(++nbCycles);
             capteurEnCours = 0;
             reqTemp(lst_Capteurs[0].Module, lst_Capteurs[0].ModuleIndex);
             t_checkTemps.Stop();
@@ -335,6 +335,7 @@ namespace UI_ChambreFroide_V1
             lbErrMod2.Text = "Erreurs Module 2 : " + Convert.ToString(eMod2);
             lbCritErrMod1.Text = "Erreurs Critiques Module 1: " + Convert.ToString(eCritMod1);
             lbCritErrMod2.Text = "Erreurs Critiques Module 2: " + Convert.ToString(eCritMod2);
+
         }
 
         /// <summary>
