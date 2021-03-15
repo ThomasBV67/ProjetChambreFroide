@@ -25,7 +25,10 @@ namespace UI_ChambreFroide_V1
 
         ///////////////////////////////////////Marqueurs temporaires
         int e = 0;
-        int eCrit = 0;
+        int eMod1 = 0;
+        int eMod2 = 0;
+        int eCritMod1 = 0;
+        int eCritMod2 = 0;
         int nbCycles = 0;
 
         int tempsAttente = 40;
@@ -265,7 +268,7 @@ namespace UI_ChambreFroide_V1
 
         public void startGetTemp()
         {
-            label18.Text = "Combre de cycles : " + Convert.ToString(++nbCycles);
+            lbCritErrMod1.Text = "Combre de cycles : " + Convert.ToString(++nbCycles);
             capteurEnCours = 0;
             reqTemp(lst_Capteurs[0].Module, lst_Capteurs[0].ModuleIndex);
             t_checkTemps.Stop();
@@ -288,6 +291,14 @@ namespace UI_ChambreFroide_V1
             t_timeoutScan.Stop();
             nbErr++;
             e++;
+            if(lst_Capteurs[capteurEnCours].Module == 1)
+            {
+                eMod1++;
+            }
+            else
+            {
+                eMod2++;
+            }
             if (nbErr < 4)//3 tentatives
             {
                 reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
@@ -300,7 +311,15 @@ namespace UI_ChambreFroide_V1
                     MAJAffichageTemps();
                 }
                 nbErr = 0;
-                eCrit++;
+
+                if (lst_Capteurs[capteurEnCours].Module == 1)
+                {
+                    eCritMod1++;
+                }
+                else
+                {
+                    eCritMod2++;
+                }
 
                 if (++capteurEnCours >= lst_Capteurs.Count)//Si est à la fin de la liste, redémarre l'attente
                 {
@@ -311,8 +330,11 @@ namespace UI_ChambreFroide_V1
                     reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
                 }
             }
-            label16.Text = "Erreurs : " + Convert.ToString(e);
-            label17.Text = "Erreurs Critiques : " + Convert.ToString(eCrit);
+            lbErr.Text = "Erreurs : " + Convert.ToString(e);
+            lbErrMod1.Text = "Erreurs Module 1 : " + Convert.ToString(eMod1);
+            lbErrMod2.Text = "Erreurs Module 2 : " + Convert.ToString(eMod2);
+            lbCritErrMod1.Text = "Erreurs Critiques Module 1: " + Convert.ToString(eCritMod1);
+            lbCritErrMod2.Text = "Erreurs Critiques Module 2: " + Convert.ToString(eCritMod2);
         }
 
         /// <summary>
@@ -345,6 +367,7 @@ namespace UI_ChambreFroide_V1
 
         private void lireMaintenant(object sender, EventArgs e)
         {
+            t_checkTemps.Enabled = true;
             tempsAttente = 1;
         }
 

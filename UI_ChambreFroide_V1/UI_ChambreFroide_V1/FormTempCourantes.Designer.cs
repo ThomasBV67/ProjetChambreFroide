@@ -70,19 +70,21 @@ namespace UI_ChambreFroide_V1
             this.t_timeoutScan = new System.Windows.Forms.Timer(this.components);
             this.t_checkTemps = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.lbErr = new System.Windows.Forms.Label();
+            this.lbErrMod2 = new System.Windows.Forms.Label();
+            this.lbCritErrMod1 = new System.Windows.Forms.Label();
             this.l_page = new System.Windows.Forms.Label();
+            this.lbErrMod1 = new System.Windows.Forms.Label();
+            this.lbCritErrMod2 = new System.Windows.Forms.Label();
             this.panelTemp.SuspendLayout();
             this.SuspendLayout();
             // 
             // b_historique
             // 
             this.b_historique.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_historique.Location = new System.Drawing.Point(301, 434);
+            this.b_historique.Location = new System.Drawing.Point(234, 409);
             this.b_historique.Name = "b_historique";
-            this.b_historique.Size = new System.Drawing.Size(153, 56);
+            this.b_historique.Size = new System.Drawing.Size(200, 100);
             this.b_historique.TabIndex = 38;
             this.b_historique.Text = "Historique";
             this.b_historique.UseVisualStyleBackColor = true;
@@ -91,9 +93,9 @@ namespace UI_ChambreFroide_V1
             // b_config
             // 
             this.b_config.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_config.Location = new System.Drawing.Point(569, 435);
+            this.b_config.Location = new System.Drawing.Point(595, 409);
             this.b_config.Name = "b_config";
-            this.b_config.Size = new System.Drawing.Size(152, 55);
+            this.b_config.Size = new System.Drawing.Size(200, 100);
             this.b_config.TabIndex = 39;
             this.b_config.Text = "Configuration";
             this.b_config.UseVisualStyleBackColor = true;
@@ -102,9 +104,9 @@ namespace UI_ChambreFroide_V1
             // b_suivant
             // 
             this.b_suivant.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_suivant.Location = new System.Drawing.Point(826, 435);
+            this.b_suivant.Location = new System.Drawing.Point(808, 409);
             this.b_suivant.Name = "b_suivant";
-            this.b_suivant.Size = new System.Drawing.Size(152, 56);
+            this.b_suivant.Size = new System.Drawing.Size(200, 100);
             this.b_suivant.TabIndex = 37;
             this.b_suivant.Text = "Suivant -->";
             this.b_suivant.UseVisualStyleBackColor = true;
@@ -113,9 +115,9 @@ namespace UI_ChambreFroide_V1
             // b_precedent
             // 
             this.b_precedent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_precedent.Location = new System.Drawing.Point(44, 435);
+            this.b_precedent.Location = new System.Drawing.Point(15, 409);
             this.b_precedent.Name = "b_precedent";
-            this.b_precedent.Size = new System.Drawing.Size(153, 56);
+            this.b_precedent.Size = new System.Drawing.Size(200, 100);
             this.b_precedent.TabIndex = 36;
             this.b_precedent.Text = "<-- Précédent";
             this.b_precedent.UseVisualStyleBackColor = true;
@@ -125,7 +127,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.l_tempsRestant.AutoSize = true;
             this.l_tempsRestant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.l_tempsRestant.Location = new System.Drawing.Point(114, 550);
+            this.l_tempsRestant.Location = new System.Drawing.Point(279, 555);
             this.l_tempsRestant.Name = "l_tempsRestant";
             this.l_tempsRestant.Size = new System.Drawing.Size(329, 24);
             this.l_tempsRestant.TabIndex = 35;
@@ -164,7 +166,7 @@ namespace UI_ChambreFroide_V1
             this.panelTemp.Controls.Add(this.label1);
             this.panelTemp.Controls.Add(this.richTextBox1);
             this.panelTemp.Location = new System.Drawing.Point(4, 11);
-            this.panelTemp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTemp.Margin = new System.Windows.Forms.Padding(2);
             this.panelTemp.Name = "panelTemp";
             this.panelTemp.Size = new System.Drawing.Size(1009, 409);
             this.panelTemp.TabIndex = 40;
@@ -184,7 +186,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox11.Location = new System.Drawing.Point(822, 307);
-            this.richTextBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox11.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox11.Name = "richTextBox11";
             this.richTextBox11.Size = new System.Drawing.Size(182, 73);
             this.richTextBox11.TabIndex = 29;
@@ -205,7 +207,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox12.Location = new System.Drawing.Point(618, 307);
-            this.richTextBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox12.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox12.Name = "richTextBox12";
             this.richTextBox12.Size = new System.Drawing.Size(180, 73);
             this.richTextBox12.TabIndex = 27;
@@ -226,7 +228,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox13.Location = new System.Drawing.Point(415, 307);
-            this.richTextBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox13.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox13.Name = "richTextBox13";
             this.richTextBox13.Size = new System.Drawing.Size(180, 73);
             this.richTextBox13.TabIndex = 25;
@@ -247,7 +249,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox14.Location = new System.Drawing.Point(208, 307);
-            this.richTextBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox14.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox14.Name = "richTextBox14";
             this.richTextBox14.Size = new System.Drawing.Size(180, 73);
             this.richTextBox14.TabIndex = 23;
@@ -268,7 +270,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox15.Location = new System.Drawing.Point(11, 307);
-            this.richTextBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox15.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox15.Name = "richTextBox15";
             this.richTextBox15.Size = new System.Drawing.Size(180, 73);
             this.richTextBox15.TabIndex = 21;
@@ -289,7 +291,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox6.Location = new System.Drawing.Point(822, 184);
-            this.richTextBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox6.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox6.Name = "richTextBox6";
             this.richTextBox6.Size = new System.Drawing.Size(182, 73);
             this.richTextBox6.TabIndex = 19;
@@ -310,7 +312,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox7.Location = new System.Drawing.Point(618, 184);
-            this.richTextBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox7.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox7.Name = "richTextBox7";
             this.richTextBox7.Size = new System.Drawing.Size(180, 73);
             this.richTextBox7.TabIndex = 17;
@@ -331,7 +333,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox8.Location = new System.Drawing.Point(415, 184);
-            this.richTextBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox8.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox8.Name = "richTextBox8";
             this.richTextBox8.Size = new System.Drawing.Size(180, 73);
             this.richTextBox8.TabIndex = 15;
@@ -352,7 +354,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox9.Location = new System.Drawing.Point(208, 184);
-            this.richTextBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox9.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox9.Name = "richTextBox9";
             this.richTextBox9.Size = new System.Drawing.Size(180, 73);
             this.richTextBox9.TabIndex = 13;
@@ -373,7 +375,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox10.Location = new System.Drawing.Point(13, 184);
-            this.richTextBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox10.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox10.Name = "richTextBox10";
             this.richTextBox10.Size = new System.Drawing.Size(180, 73);
             this.richTextBox10.TabIndex = 11;
@@ -394,7 +396,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox5.Location = new System.Drawing.Point(822, 68);
-            this.richTextBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox5.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.Size = new System.Drawing.Size(182, 73);
             this.richTextBox5.TabIndex = 9;
@@ -415,7 +417,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox4.Location = new System.Drawing.Point(618, 68);
-            this.richTextBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox4.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox4.Name = "richTextBox4";
             this.richTextBox4.Size = new System.Drawing.Size(180, 73);
             this.richTextBox4.TabIndex = 7;
@@ -436,7 +438,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox3.Location = new System.Drawing.Point(415, 68);
-            this.richTextBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox3.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(180, 73);
             this.richTextBox3.TabIndex = 5;
@@ -457,7 +459,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox2.Location = new System.Drawing.Point(208, 68);
-            this.richTextBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(180, 73);
             this.richTextBox2.TabIndex = 3;
@@ -478,7 +480,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 42.75F);
             this.richTextBox1.Location = new System.Drawing.Point(13, 68);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(180, 73);
             this.richTextBox1.TabIndex = 1;
@@ -495,13 +497,12 @@ namespace UI_ChambreFroide_V1
             // 
             // t_checkTemps
             // 
-            this.t_checkTemps.Enabled = true;
             this.t_checkTemps.Interval = 1000;
             this.t_checkTemps.Tick += new System.EventHandler(this.t_checkTemps_Tick);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(826, 516);
+            this.button1.Location = new System.Drawing.Point(835, 534);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 54);
             this.button1.TabIndex = 41;
@@ -509,52 +510,73 @@ namespace UI_ChambreFroide_V1
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.lireMaintenant);
             // 
-            // label16
+            // lbErr
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(19, 503);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(41, 13);
-            this.label16.TabIndex = 42;
-            this.label16.Text = "label16";
+            this.lbErr.AutoSize = true;
+            this.lbErr.Location = new System.Drawing.Point(14, 521);
+            this.lbErr.Name = "lbErr";
+            this.lbErr.Size = new System.Drawing.Size(28, 13);
+            this.lbErr.TabIndex = 42;
+            this.lbErr.Text = "lbErr";
             // 
-            // label17
+            // lbErrMod2
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(19, 516);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(41, 13);
-            this.label17.TabIndex = 43;
-            this.label17.Text = "label17";
+            this.lbErrMod2.AutoSize = true;
+            this.lbErrMod2.Location = new System.Drawing.Point(14, 550);
+            this.lbErrMod2.Name = "lbErrMod2";
+            this.lbErrMod2.Size = new System.Drawing.Size(55, 13);
+            this.lbErrMod2.TabIndex = 43;
+            this.lbErrMod2.Text = "lbErrMod2";
             // 
-            // label18
+            // lbCritErrMod1
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(19, 529);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(41, 13);
-            this.label18.TabIndex = 44;
-            this.label18.Text = "label18";
+            this.lbCritErrMod1.AutoSize = true;
+            this.lbCritErrMod1.Location = new System.Drawing.Point(14, 563);
+            this.lbCritErrMod1.Name = "lbCritErrMod1";
+            this.lbCritErrMod1.Size = new System.Drawing.Size(70, 13);
+            this.lbCritErrMod1.TabIndex = 44;
+            this.lbCritErrMod1.Text = "lbCritErrMod1";
             // 
             // l_page
             // 
             this.l_page.AutoSize = true;
-            this.l_page.Location = new System.Drawing.Point(485, 456);
+            this.l_page.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.l_page.Location = new System.Drawing.Point(464, 447);
             this.l_page.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_page.Name = "l_page";
-            this.l_page.Size = new System.Drawing.Size(54, 13);
+            this.l_page.Size = new System.Drawing.Size(103, 25);
             this.l_page.TabIndex = 45;
             this.l_page.Text = "Page X/Y";
+            // 
+            // lbErrMod1
+            // 
+            this.lbErrMod1.AutoSize = true;
+            this.lbErrMod1.Location = new System.Drawing.Point(14, 534);
+            this.lbErrMod1.Name = "lbErrMod1";
+            this.lbErrMod1.Size = new System.Drawing.Size(55, 13);
+            this.lbErrMod1.TabIndex = 46;
+            this.lbErrMod1.Text = "lbErrMod1";
+            // 
+            // lbCritErrMod2
+            // 
+            this.lbCritErrMod2.AutoSize = true;
+            this.lbCritErrMod2.Location = new System.Drawing.Point(14, 578);
+            this.lbCritErrMod2.Name = "lbCritErrMod2";
+            this.lbCritErrMod2.Size = new System.Drawing.Size(70, 13);
+            this.lbCritErrMod2.TabIndex = 47;
+            this.lbCritErrMod2.Text = "lbCritErrMod2";
             // 
             // FormTempCourantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.lbCritErrMod2);
+            this.Controls.Add(this.lbErrMod1);
             this.Controls.Add(this.l_page);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label16);
+            this.Controls.Add(this.lbCritErrMod1);
+            this.Controls.Add(this.lbErrMod2);
+            this.Controls.Add(this.lbErr);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.b_historique);
             this.Controls.Add(this.b_config);
@@ -616,10 +638,12 @@ namespace UI_ChambreFroide_V1
         public System.Windows.Forms.Timer t_timeoutScan;
         private System.Windows.Forms.Timer t_checkTemps;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lbErr;
+        private System.Windows.Forms.Label lbErrMod2;
+        private System.Windows.Forms.Label lbCritErrMod1;
         private System.Windows.Forms.Label l_page;
+        private System.Windows.Forms.Label lbErrMod1;
+        private System.Windows.Forms.Label lbCritErrMod2;
     }
 }
 
