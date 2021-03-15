@@ -131,8 +131,6 @@ F 3 "~" H 6300 2250 50  0001 C CNN
 	1    6300 2250
 	1    0    0    -1  
 $EndComp
-Text Label 4450 3600 0    50   ~ 0
-SCK_D13
 Wire Wire Line
 	4450 3300 6300 3300
 Wire Wire Line
@@ -168,8 +166,6 @@ Text GLabel 6600 2150 2    50   Input ~ 0
 5V
 Text Label 4950 4600 0    50   ~ 0
 RST
-Text Label 8950 3500 2    50   ~ 0
-SCK_D13
 $Comp
 L Device:Jumper JP101
 U 1 1 60072B85
@@ -744,7 +740,6 @@ F 3 "http://www.onsemi.com/pub/Collateral/FXMA108-D.pdf" H 7600 3500 50  0001 C 
 	1    7600 3450
 	1    0    0    -1  
 $EndComp
-NoConn ~ 7200 3650
 NoConn ~ 7200 3750
 NoConn ~ 7200 3850
 Wire Wire Line
@@ -757,7 +752,6 @@ Wire Wire Line
 	8300 3450 8000 3450
 Wire Wire Line
 	8250 3550 8000 3550
-NoConn ~ 8000 3650
 NoConn ~ 8000 3750
 NoConn ~ 8000 3850
 $Comp
@@ -796,4 +790,14 @@ Wire Wire Line
 Connection ~ 6200 6350
 Wire Wire Line
 	6200 6350 6600 6350
+Text Label 4450 3600 0    50   ~ 0
+SCK_D13
+Text Label 7200 3650 2    50   ~ 0
+SCK_D13
+Wire Wire Line
+	8000 3650 8450 3650
+Wire Wire Line
+	8450 3650 8450 3500
+Wire Wire Line
+	8450 3500 8950 3500
 $EndSCHEMATC
