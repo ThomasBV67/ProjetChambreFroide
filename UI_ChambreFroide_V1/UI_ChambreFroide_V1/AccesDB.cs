@@ -256,6 +256,13 @@ namespace UI_ChambreFroide_V1
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="addrCap"></param>
+        /// <returns></returns>
         public List<MesureTemp> GetTemperatures(DateTime startTime, DateTime endTime, string addrCap)
         {
             List<MesureTemp> listTemp = new List<MesureTemp>();

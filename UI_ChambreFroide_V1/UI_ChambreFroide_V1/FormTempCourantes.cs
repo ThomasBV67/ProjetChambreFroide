@@ -289,16 +289,19 @@ namespace UI_ChambreFroide_V1
         private void reqFailed()
         {
             t_timeoutScan.Stop();
-            nbErr++;
-            e++;
-            if(lst_Capteurs[capteurEnCours].Module == 1)
+            nbErr++;    //nombre d'essai faits ++
+            e++;        //nombre d'erreurs totale
+
+            if(lst_Capteurs[capteurEnCours].Module == 1) // Si l'erreur vient du module 1
             {
                 eMod1++;
             }
-            else
+            else    // erreur vient du module 2
             {
                 eMod2++;
             }
+
+
             if (nbErr < 4)//3 tentatives
             {
                 reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
@@ -312,11 +315,11 @@ namespace UI_ChambreFroide_V1
                 }
                 nbErr = 0;
 
-                if (lst_Capteurs[capteurEnCours].Module == 1)
+                if (lst_Capteurs[capteurEnCours].Module == 1)   // Erreur vient du module 1
                 {
                     eCritMod1++;
                 }
-                else
+                else    //Erreur vient du module 2
                 {
                     eCritMod2++;
                 }
@@ -330,6 +333,8 @@ namespace UI_ChambreFroide_V1
                     reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
                 }
             }
+
+            // Affichage du nombre d'erreur régulières et critiques de chaque module
             lbErr.Text = "Erreurs : " + Convert.ToString(e);
             lbErrMod1.Text = "Erreurs Module 1 : " + Convert.ToString(eMod1);
             lbErrMod2.Text = "Erreurs Module 2 : " + Convert.ToString(eMod2);
@@ -363,7 +368,7 @@ namespace UI_ChambreFroide_V1
         private void demarreTimerTemp()
         {
             t_checkTemps.Start();//sinon, redémarre l'atente pour le prochain scan
-            tempsAttente = 20;
+            tempsAttente = 1;
         }
 
         private void lireMaintenant(object sender, EventArgs e)

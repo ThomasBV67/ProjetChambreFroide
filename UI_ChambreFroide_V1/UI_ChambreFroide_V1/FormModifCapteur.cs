@@ -24,11 +24,21 @@ namespace UI_ChambreFroide_V1
             objFormZoneTexte.Hide();
         }
 
+        /// <summary>
+        /// Appuyer sur le bouton retour cache le form et nous ramène donc au form précédent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRetour_Click(object sender, EventArgs e)
         {
             Hide();
         }
 
+        /// <summary>
+        /// Fonction de chargement du form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void FormModifCapteur_Load(object sender, EventArgs e)
         {
             lbNom.Text = "Nom : " + m_name;
@@ -36,12 +46,23 @@ namespace UI_ChambreFroide_V1
             lbWarning.Text = "Niveau d'avertissement : " + m_warning.ToString() + "°";
             lbAlerte.Text = "Niveau d'alerte : " + m_alert.ToString() + "°";
         }
+        
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnApply_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifWarning_Click(object sender, EventArgs e)
         {
             objFormZoneTexte.chgMode(1);
@@ -53,6 +74,12 @@ namespace UI_ChambreFroide_V1
             }
             FormModifCapteur_Load(sender, e);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifAlerte_Click(object sender, EventArgs e)
         {
             objFormZoneTexte.chgMode(1);
@@ -64,6 +91,12 @@ namespace UI_ChambreFroide_V1
             }
             FormModifCapteur_Load(sender, e);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifNom_Click(object sender, EventArgs e)
         {
             objFormZoneTexte.chgMode(0);
@@ -75,6 +108,12 @@ namespace UI_ChambreFroide_V1
             }
             FormModifCapteur_Load(sender, e);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifGroupe_Click(object sender, EventArgs e)
         {
             objFormZoneTexte.chgMode(0);
