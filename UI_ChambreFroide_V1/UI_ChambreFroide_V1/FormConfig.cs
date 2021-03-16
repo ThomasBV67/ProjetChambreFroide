@@ -241,6 +241,11 @@ namespace UI_ChambreFroide_V1
                 listeCapteurs.Rows[selectedIndex].Selected = false;
                 selectedIndex--;
                 listeCapteurs.Rows[selectedIndex].Selected = true;
+
+                if (!listeCapteurs.Rows[selectedIndex].Displayed)
+                {
+                    listeCapteurs.FirstDisplayedScrollingRowIndex = selectedIndex;
+                }
             }
         }
 
@@ -251,6 +256,15 @@ namespace UI_ChambreFroide_V1
                 listeCapteurs.Rows[selectedIndex].Selected = false;
                 selectedIndex++;
                 listeCapteurs.Rows[selectedIndex].Selected = true;
+
+                if(listeCapteurs.Rows.Count - selectedIndex > 1)
+                {
+                    if (!listeCapteurs.Rows[selectedIndex + 1].Displayed)
+                    {
+                        listeCapteurs.FirstDisplayedScrollingRowIndex = selectedIndex;
+                    }
+                }
+                
             }
         }
     }
