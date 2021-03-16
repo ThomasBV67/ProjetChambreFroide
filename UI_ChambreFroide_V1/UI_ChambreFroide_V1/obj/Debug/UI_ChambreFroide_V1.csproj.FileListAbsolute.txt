@@ -83,6 +83,7 @@ C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreF
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\LiveCharts.WinForms.xml
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\dbTestProjet.db
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe.config
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe
@@ -117,4 +118,3 @@ C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CoreCompileInputs.cache
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
-C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb

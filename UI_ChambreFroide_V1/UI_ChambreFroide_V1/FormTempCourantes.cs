@@ -131,7 +131,7 @@ namespace UI_ChambreFroide_V1
 
                 if (!lst_Capteurs.Exists(x => x.Address == c.Address))//Ajoute les capteurs à la liste interne seulement si ils n'y sont pas déjà
                 {
-                    lst_Capteurs.Add(new Capteur(c.Address, c.ModuleIndex, c.Module, c.Name, c.GroupCapteur, c.AlertLow, c.AlertHigh));
+                    lst_Capteurs.Add(new Capteur(c.Address, c.Module, c.ModuleIndex, c.Name, c.GroupCapteur, c.AlertLow, c.AlertHigh));
                 }
             }
             objFormConfig.temoinOuverture();
