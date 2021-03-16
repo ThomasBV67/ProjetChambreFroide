@@ -41,13 +41,14 @@ namespace UI_ChambreFroide_V1
             this.btnRetour = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.b_suppCapt = new System.Windows.Forms.Button();
+            this.b_ping = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnModifNom
             // 
             this.btnModifNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifNom.Location = new System.Drawing.Point(67, 124);
-            this.btnModifNom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModifNom.Margin = new System.Windows.Forms.Padding(4);
             this.btnModifNom.Name = "btnModifNom";
             this.btnModifNom.Size = new System.Drawing.Size(480, 111);
             this.btnModifNom.TabIndex = 0;
@@ -81,7 +82,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnModifGroupe.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifGroupe.Location = new System.Drawing.Point(67, 242);
-            this.btnModifGroupe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModifGroupe.Margin = new System.Windows.Forms.Padding(4);
             this.btnModifGroupe.Name = "btnModifGroupe";
             this.btnModifGroupe.Size = new System.Drawing.Size(480, 111);
             this.btnModifGroupe.TabIndex = 3;
@@ -93,7 +94,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnModifWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifWarning.Location = new System.Drawing.Point(67, 361);
-            this.btnModifWarning.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModifWarning.Margin = new System.Windows.Forms.Padding(4);
             this.btnModifWarning.Name = "btnModifWarning";
             this.btnModifWarning.Size = new System.Drawing.Size(480, 111);
             this.btnModifWarning.TabIndex = 4;
@@ -105,7 +106,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnModifAlerte.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifAlerte.Location = new System.Drawing.Point(67, 479);
-            this.btnModifAlerte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModifAlerte.Margin = new System.Windows.Forms.Padding(4);
             this.btnModifAlerte.Name = "btnModifAlerte";
             this.btnModifAlerte.Size = new System.Drawing.Size(480, 111);
             this.btnModifAlerte.TabIndex = 5;
@@ -150,7 +151,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnRetour.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRetour.Location = new System.Drawing.Point(1025, 16);
-            this.btnRetour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRetour.Margin = new System.Windows.Forms.Padding(4);
             this.btnRetour.Name = "btnRetour";
             this.btnRetour.Size = new System.Drawing.Size(324, 106);
             this.btnRetour.TabIndex = 9;
@@ -162,7 +163,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApply.Location = new System.Drawing.Point(67, 597);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnApply.Margin = new System.Windows.Forms.Padding(4);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(480, 111);
             this.btnApply.TabIndex = 10;
@@ -181,11 +182,23 @@ namespace UI_ChambreFroide_V1
             this.b_suppCapt.UseVisualStyleBackColor = true;
             this.b_suppCapt.Click += new System.EventHandler(this.b_suppCapt_Click);
             // 
+            // b_ping
+            // 
+            this.b_ping.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.b_ping.Location = new System.Drawing.Point(710, 597);
+            this.b_ping.Name = "b_ping";
+            this.b_ping.Size = new System.Drawing.Size(175, 111);
+            this.b_ping.TabIndex = 12;
+            this.b_ping.Text = "Ping";
+            this.b_ping.UseVisualStyleBackColor = true;
+            this.b_ping.Click += new System.EventHandler(this.b_ping_Click);
+            // 
             // FormModifCapteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1365, 738);
+            this.Controls.Add(this.b_ping);
             this.Controls.Add(this.b_suppCapt);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnRetour);
@@ -199,7 +212,7 @@ namespace UI_ChambreFroide_V1
             this.Controls.Add(this.lbTitre);
             this.Controls.Add(this.btnModifNom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormModifCapteur";
             this.Text = "FormModifCapteur";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -223,5 +236,6 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Button b_suppCapt;
+        private System.Windows.Forms.Button b_ping;
     }
 }

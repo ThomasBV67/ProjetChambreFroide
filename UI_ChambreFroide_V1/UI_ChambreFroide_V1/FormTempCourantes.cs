@@ -18,6 +18,7 @@ namespace UI_ChambreFroide_V1
     public partial class FormTempCourantes : Form
     {
         public bool decouverteEnCours = false;
+        bool pingEnCours = false;
         int capteurEnCours = 0;
         int nbModules = 1;
         int nbErr = 0;
@@ -66,7 +67,7 @@ namespace UI_ChambreFroide_V1
             objFormConfig.Hide();
             objFormHistorique.Hide();
             objFormConfig.pagePrincipale = this;//Envoi de la page en cours à pa page de config pour que les deux puissent s'échanger des informations
-           
+            objFormConfig.objFormModifCapteur.pagePrincipale = this;
         }
         /// <summary>
         /// Mets tout les labels de noms des pieces et les labels de température dans un tableau. Leur donne ensuite un nom par défaut unique
@@ -121,8 +122,8 @@ namespace UI_ChambreFroide_V1
             {
                 objFormConfig.listeCapteurs.Rows.Insert(objFormConfig.listeCapteurs.Rows.Count);//Affiche les capteurs dans la liste visible
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[0].Value = c.Address;
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[1].Value = c.ModuleIndex;
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[2].Value = c.Module;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[1].Value = c.Module;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[2].Value = c.ModuleIndex;
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[3].Value = c.Name;
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[4].Value = c.GroupCapteur;
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[5].Value = c.AlertLow;
@@ -184,6 +185,14 @@ namespace UI_ChambreFroide_V1
                     existe = false;
                 }
                 objFormConfig.scanModule(nbModules);//Lit le prochain module
+            }
+            else if(pingEnCours)
+            {
+                String[] trame = new String[20];
+                trame = retourSerie.Split('#');
+                t_timeoutScan.Stop();
+                MessageBox.Show("Le capteur " + trame[1].ToUpper() + " indique une température de " + trame[0]);
+                pingEnCours = false;
             }
             else//est en mode req. temps.
             {
@@ -253,6 +262,12 @@ namespace UI_ChambreFroide_V1
                 t_timeoutScan.Stop();//Arret du timer
                 decouverteEnCours = false;
                 MessageBox.Show("Découverte terminée");
+            }
+            else if (pingEnCours)
+            {
+                MessageBox.Show("ping échoué");
+                t_timeoutScan.Stop();
+                pingEnCours = false;
             }
             else//Timeout du mode température
             {
@@ -461,8 +476,8 @@ namespace UI_ChambreFroide_V1
             {
                 try//essaie de lire le contenu
                 {
-                    m_label_pieces[i].Text = lst_cases[i + NB_BOITES_AFFICHAGE*page].nomPiece;
-                    if(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature != -127)//affiche erreur si erreur. Sinon affiche température
+                    m_label_pieces[i].Text = lst_cases[i + NB_BOITES_AFFICHAGE * page].nomPiece;
+                    if (lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature != -127)//affiche erreur si erreur. Sinon affiche température
                     {
                         m_RTB_temp[i].Text = Convert.ToString(Math.Round(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature, 1)) + "°";
                     }
@@ -474,11 +489,17 @@ namespace UI_ChambreFroide_V1
                 }
                 catch//sinon on est probablement à la fin de la liste
                 {
-                    if (lst_Capteurs.Count <= i + NB_BOITES_AFFICHAGE * page)//Si à la fin, vide les cases restantes
+                    try{
+                        m_label_pieces[i].Text = lst_Capteurs[i + NB_BOITES_AFFICHAGE * page].Name;//Si la config a été faite mais aucune donnée à afficher, affiche seulement le nom
+                    }
+                    catch
                     {
-                        m_label_pieces[i].Text = "";
-                        m_RTB_temp[i].Text = "";
-                        m_RTB_temp[i].BackColor = Color.White;
+                        if (lst_Capteurs.Count <= i + NB_BOITES_AFFICHAGE * page)
+                        {
+                            m_label_pieces[i].Text = "";
+                            m_RTB_temp[i].Text = "";
+                            m_RTB_temp[i].BackColor = Color.White;
+                        }
                     }
                 }
             }
@@ -518,6 +539,13 @@ namespace UI_ChambreFroide_V1
             AccesDB.DeleteCapteur(lst_Capteurs[index].Address);
             lst_Capteurs.RemoveAt(index);
             objFormConfig.listeCapteurs.Rows.RemoveAt(index);//Supprime du gridview pour pas qu'il ne revienne apres avoir appuyé sur retour
+        }
+
+        public void ping(int module, int capteur)
+        {
+
+            pingEnCours = true;
+            reqTemp(module, capteur);
         }
     }
 }

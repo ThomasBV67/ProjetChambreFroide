@@ -14,8 +14,12 @@ namespace UI_ChambreFroide_V1
     {
         public String m_name = "", m_group = "";
         public double m_warning = 0.0, m_alert = 0.0;
+        public int m_module = 0, m_capteur = 0;
+
         public enum properties { name, group, warning, alert };
         FormZoneTexte objFormZoneTexte = new FormZoneTexte();
+
+        public FormTempCourantes pagePrincipale;
 
         public FormModifCapteur()
         {
@@ -123,6 +127,11 @@ namespace UI_ChambreFroide_V1
                 }
             }
             FormModifCapteur_Load(sender, e);
+        }
+
+        private void b_ping_Click(object sender, EventArgs e)
+        {
+            pagePrincipale.ping(m_module, m_capteur);
         }
 
         /// <summary>

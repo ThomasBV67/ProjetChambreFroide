@@ -16,13 +16,12 @@ namespace UI_ChambreFroide_V1
     public partial class FormConfig : Form
     {
         public FormTempCourantes pagePrincipale;
-        FormModifCapteur objFormModifCapteur = new FormModifCapteur();
+        public FormModifCapteur objFormModifCapteur = new FormModifCapteur();
         int selectedIndex = 0;
 
         public FormConfig()
         {
             InitializeComponent();
-
             objFormModifCapteur.Hide();
         }
 
@@ -35,6 +34,8 @@ namespace UI_ChambreFroide_V1
         {
             pagePrincipale.MAJListeCapteurs();
             this.Hide();
+            pagePrincipale.Show();
+            pagePrincipale.BringToFront();
         }
 
         /// <summary>
@@ -223,6 +224,9 @@ namespace UI_ChambreFroide_V1
             {
                 objFormModifCapteur.m_alert = 8;
             }
+            objFormModifCapteur.m_module = Convert.ToInt32(listeCapteurs.Rows[selectedIndex].Cells[1].Value);
+            objFormModifCapteur.m_capteur = Convert.ToInt32(listeCapteurs.Rows[selectedIndex].Cells[2].Value);
+
             objFormModifCapteur.FormModifCapteur_Load(sender, e);
             objFormModifCapteur.ShowDialog();
             if(objFormModifCapteur.DialogResult == DialogResult.OK)//Bouton Appliquer
