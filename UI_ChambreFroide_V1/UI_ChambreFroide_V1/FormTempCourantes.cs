@@ -275,6 +275,7 @@ namespace UI_ChambreFroide_V1
                 //Doit passer pas soustraction pour que les noms correspondent.
                 lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[5].Value);
                 lst_Capteurs[i].AlertHigh = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[6].Value);
+                AccesDB.SetCapteur(lst_Capteurs[i]);
             }
             MAJAffichageTemps();
         }
