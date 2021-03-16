@@ -113,6 +113,25 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void b_config_Click(object sender, EventArgs e)
         {
+            List<Capteur> configSauvegardee = new List<Capteur>();
+            configSauvegardee = AccesDB.GetCapteurs();
+
+            objFormConfig.listeCapteurs.Rows.Clear();
+            foreach(Capteur c in configSauvegardee)
+            {
+                objFormConfig.listeCapteurs.Rows.Insert(0);//Affiche les capteurs dans la liste visible
+                objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = c.Address;
+                objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = c.ModuleIndex;
+                objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = c.Module;
+                objFormConfig.listeCapteurs.Rows[0].Cells[3].Value = c.Name;
+                objFormConfig.listeCapteurs.Rows[0].Cells[4].Value = c.GroupCapteur;
+                objFormConfig.listeCapteurs.Rows[0].Cells[5].Value = c.AlertLow;
+                objFormConfig.listeCapteurs.Rows[0].Cells[6].Value = c.AlertHigh;
+                if (!lst_Capteurs.Exists(x => x.Address == c.Address))//Ajoute les capteurs à la liste interne seulement si ils n'y sont pas déjà
+                {
+                    lst_Capteurs.Add(new Capteur(c.Address, c.ModuleIndex, c.Module, c.Name, c.GroupCapteur, c.AlertLow, c.AlertHigh));
+                }
+            }
             objFormConfig.temoinOuverture();
             objFormConfig.Show();
         }
