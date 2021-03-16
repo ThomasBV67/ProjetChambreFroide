@@ -36,6 +36,8 @@ namespace UI_ChambreFroide_V1
             InitializeComponent();
 
             objFormChoixCapteur.Hide();
+
+            
         }
 
         /// <summary>
@@ -125,10 +127,10 @@ namespace UI_ChambreFroide_V1
                     }
                 }
             }
-            listBox1.Items.Clear();
+            //chartHistorique.ChartAreas.
             foreach(MesureTemp temp in listTemp)
             {
-                listBox1.Items.Add(temp.TimeStamp);
+                //listBox1.Items.Add(temp.TimeStamp);
             }
             
         }
