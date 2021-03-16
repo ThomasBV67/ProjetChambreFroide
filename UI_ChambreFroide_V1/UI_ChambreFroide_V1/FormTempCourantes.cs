@@ -195,9 +195,6 @@ namespace UI_ChambreFroide_V1
                     if (temperature != -127)//Si aucun code d'erreur
                     {
                         nbErr = 0;
-                        //m_RTB_temp[capteurEnCours].Text = Convert.ToString(Math.Round(temperature, 1)) + "°";//Écrit la temp. dans sa case
-                        //lst_Capteurs[capteurEnCours].Name = lst_Capteurs[capteurEnCours].Name.Replace("*", "");//Supprime le marqueur d'erreur si présent
-                        
                         if (temperature < lst_Capteurs[capteurEnCours].AlertLow)//Si temp. est ok
                         {
                             lst_cases.Add(new Case(Color.Green, temperature, lst_Capteurs[capteurEnCours].Name));
@@ -213,7 +210,7 @@ namespace UI_ChambreFroide_V1
                             lst_cases.Add(new Case(Color.Yellow, temperature, lst_Capteurs[capteurEnCours].Name));
                             AccesDB.EnregistreTemp(lst_Capteurs[capteurEnCours].Address, temperature, 1);
                         }
-                        MAJAffichageTemps();
+                        MAJAffichageTemps();//Affiche les températures mises à jour apres chaque nouveau capteur
 
                         capteurEnCours++;//prochain capteur
                         if (capteurEnCours < lst_Capteurs.Count)//Lit le prochain si existe
@@ -263,7 +260,9 @@ namespace UI_ChambreFroide_V1
             }
             
         }
-
+        /// <summary>
+        /// Met à jour la liste des capteurs ainsi que la BD qui y est associé à partir du datagridview dans formConfig
+        /// </summary>
         public void MAJListeCapteurs()
         {
             for (int i = 0; i < lst_Capteurs.Count; i++)//Ajoute les noms aux objets
@@ -273,14 +272,18 @@ namespace UI_ChambreFroide_V1
                 {
                     lst_Capteurs[i].Name = "";
                 }
-                //Doit passer pas soustraction pour que les noms correspondent.
-                lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[i].Cells[5].Value);
+                lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[i].Cells[5].Value);//Ajoute les limites aux objets
                 lst_Capteurs[i].AlertHigh = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[i].Cells[6].Value);
                 AccesDB.SetCapteur(lst_Capteurs[i]);
             }
             MAJAffichageTemps();
         }
 
+        /// <summary>
+        /// Décrémente le timer principal de 1 sec et démarre la prise de température si arrive à 0
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void t_checkTemps_Tick(object sender, EventArgs e)
         {
             tempsAttente--;
@@ -290,16 +293,22 @@ namespace UI_ChambreFroide_V1
                 startGetTemp();
             }
         }
-
+        /// <summary>
+        /// Démarre le cycle de prise de température
+        /// </summary>
         public void startGetTemp()
         {
             lbNbCycles.Text = "Combre de cycles : " + Convert.ToString(++nbCycles);
-            capteurEnCours = 0;
+            capteurEnCours = 0;//commence au c. 0
             reqTemp(lst_Capteurs[0].Module, lst_Capteurs[0].ModuleIndex);
-            t_checkTemps.Stop();
-            lst_cases.Clear();
+            t_checkTemps.Stop();//Arrete le timer principal
+            lst_cases.Clear();//Prépare la liste de cases à recevoir les nouvelles valeurs
         }
-
+        /// <summary>
+        /// Requete de température sur un capteur spécifique
+        /// </summary>
+        /// <param name="module"></param>
+        /// <param name="capteur"></param>
         private void reqTemp(int module, int capteur)
         {
             l_tempsRestant.Text = "Mise à jour du capteur # " + Convert.ToString(module) + " : " + Convert.ToString(capteur);
@@ -384,28 +393,38 @@ namespace UI_ChambreFroide_V1
             }
             catch{}
             
-            return -127;
+            return -127;//retourne code d'erreur au besoin
         }
-
+        /// <summary>
+        /// Démarre le timer principal et reset le délais d'attente
+        /// </summary>
         private void demarreTimerTemp()
         {
             t_checkTemps.Start();//sinon, redémarre l'atente pour le prochain scan
             tempsAttente = 1;
         }
-
+        /// <summary>
+        /// devine
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lireMaintenant(object sender, EventArgs e)
         {
             t_checkTemps.Enabled = true;
             tempsAttente = 1;
         }
-
+        /// <summary>
+        /// Page de capteurs précédente, verouille le bouton si ne peut aller plus loin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_precedent_Click(object sender, EventArgs e)
         {
             if (page > 0)
             {
                 page--;
                 b_suivant.Enabled = true;
-                MAJAffichageTemps();
+                MAJAffichageTemps();//Affiche les températures de la nouvelle page
                 if (page == 0)
                 {
                     b_precedent.Enabled = false;
@@ -413,14 +432,18 @@ namespace UI_ChambreFroide_V1
             }
             MAJTemoinPage();
         }
-
+        /// <summary>
+        /// Page de capteurs suivante, verouille le bouton si ne peut aller plus loin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_suivant_Click(object sender, EventArgs e)
         {
             if (NB_BOITES_AFFICHAGE * (page + 1) < lst_Capteurs.Count)
             {
                 page++;
                 b_precedent.Enabled = true;
-                MAJAffichageTemps();
+                MAJAffichageTemps();//Affiche les températures de la nouvelle page
                 if (page > lst_Capteurs.Count / NB_BOITES_AFFICHAGE || lst_Capteurs.Count <= 1)
                 {
                     b_suivant.Enabled = false;
@@ -429,14 +452,17 @@ namespace UI_ChambreFroide_V1
             MAJTemoinPage();
         }
 
+        /// <summary>
+        /// Affiche les températures dans la page spécifiée
+        /// </summary>
         public void MAJAffichageTemps()
         {
-            for (int i = 0; i < NB_BOITES_AFFICHAGE; i++)
+            for (int i = 0; i < NB_BOITES_AFFICHAGE; i++)//pour toutes les cases
             {
-                try
+                try//essaie de lire le contenu
                 {
                     m_label_pieces[i].Text = lst_cases[i + NB_BOITES_AFFICHAGE*page].nomPiece;
-                    if(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature != -127)
+                    if(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature != -127)//affiche erreur si erreur. Sinon affiche température
                     {
                         m_RTB_temp[i].Text = Convert.ToString(Math.Round(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature, 1)) + "°";
                     }
@@ -446,32 +472,29 @@ namespace UI_ChambreFroide_V1
                     }
                     m_RTB_temp[i].BackColor = lst_cases[i + NB_BOITES_AFFICHAGE * page].couleurCase;
                 }
-                catch
+                catch//sinon on est probablement à la fin de la liste
                 {
-                    //m_label_pieces[i].Text = "ND";
-                    try
+                    if (lst_Capteurs.Count <= i + NB_BOITES_AFFICHAGE * page)//Si à la fin, vide les cases restantes
                     {
-                        m_label_pieces[i].Text = lst_Capteurs[i + NB_BOITES_AFFICHAGE * page].Name;
-
+                        m_label_pieces[i].Text = "";
+                        m_RTB_temp[i].Text = "";
+                        m_RTB_temp[i].BackColor = Color.White;
                     }
-                    catch {
-                        if (lst_Capteurs.Count <= i + NB_BOITES_AFFICHAGE * page)
-                        {
-                            m_label_pieces[i].Text = "";
-                            m_RTB_temp[i].Text = "";
-                            m_RTB_temp[i].BackColor = Color.White;
-                        }
-                    }
-                    
                 }
             }
             MAJTemoinPage();
             MAJEtatBoutonsPage();
         }
+        /// <summary>
+        /// Met à jour l'affichage de x/y page
+        /// </summary>
         private void MAJTemoinPage()
         {
             l_page.Text = "Page " + Convert.ToString(page + 1) + "/" + Convert.ToString((lst_Capteurs.Count / NB_BOITES_AFFICHAGE) + 1);
         }
+        /// <summary>
+        /// Active ou désactive les boutons de page dépendamment de l'index de page et du nombre de pages disponibles
+        /// </summary>
         private void MAJEtatBoutonsPage()
         {
 
@@ -486,12 +509,15 @@ namespace UI_ChambreFroide_V1
                 b_precedent.Enabled = false;
             }
         }
-
+        /// <summary>
+        /// Suprime le capteur de la BD et de la liste
+        /// </summary>
+        /// <param name="index"></param>
         public void supprimeCapteur(int index)
         {
             AccesDB.DeleteCapteur(lst_Capteurs[index].Address);
             lst_Capteurs.RemoveAt(index);
-            objFormConfig.listeCapteurs.Rows.RemoveAt(index);
+            objFormConfig.listeCapteurs.Rows.RemoveAt(index);//Supprime du gridview pour pas qu'il ne revienne apres avoir appuyé sur retour
         }
     }
 }

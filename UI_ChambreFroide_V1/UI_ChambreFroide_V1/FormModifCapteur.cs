@@ -87,7 +87,15 @@ namespace UI_ChambreFroide_V1
             objFormZoneTexte.ShowDialog();
             if (objFormZoneTexte.DialogResult == DialogResult.OK)
             {
-                m_alert = Convert.ToDouble(objFormZoneTexte.retour);
+                try
+                {
+                    m_alert = Convert.ToDouble(objFormZoneTexte.retour);
+                }
+                catch
+                {
+                    MessageBox.Show("Valeur Invalide");
+                }
+               
             }
             FormModifCapteur_Load(sender, e);
         }
@@ -106,7 +114,13 @@ namespace UI_ChambreFroide_V1
             objFormZoneTexte.ShowDialog();
             if (objFormZoneTexte.DialogResult == DialogResult.OK)
             {
-                m_name = objFormZoneTexte.retour;
+                try { 
+                    m_name = objFormZoneTexte.retour;
+                }
+                catch
+                {
+                    MessageBox.Show("Valeur Invalide");
+                }
             }
             FormModifCapteur_Load(sender, e);
         }
