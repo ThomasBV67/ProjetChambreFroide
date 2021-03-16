@@ -39,6 +39,17 @@ namespace UI_ChambreFroide_V1
             AlertHigh = 0;
         }
 
+        public Capteur(String pAddresse, int pModule, int pIndex, String pNom, String pGroupe, double pLow, double pHigh)
+        {
+            Address = pAddresse;
+            Module = pModule;
+            ModuleIndex = pIndex;
+            Name = pNom;
+            GroupCapteur = pGroupe;
+            AlertLow = pLow;
+            AlertHigh = pHigh;
+        }
+
         public Capteur() { }
         
         /// <summary>
