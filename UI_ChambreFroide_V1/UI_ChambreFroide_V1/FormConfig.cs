@@ -192,6 +192,15 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void b_modifyCapteur_Click(object sender, EventArgs e)
         {
+
+            if (listeCapteurs.Rows.Count == 0)
+                return;
+
+            if (selectedIndex >= listeCapteurs.Rows.Count)
+            {
+                selectedIndex = listeCapteurs.Rows.Count - 1;
+            }
+
             if (listeCapteurs.Rows[selectedIndex].Cells[3].Value != null)
             {
                 objFormModifCapteur.m_name = listeCapteurs.Rows[selectedIndex].Cells[3].Value.ToString();
