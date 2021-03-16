@@ -128,7 +128,7 @@ namespace UI_ChambreFroide_V1
 
                     // Crée la commande SQL
                     sqlite_cmd = conn.CreateCommand();
-                    sqlite_cmd.CommandText = "UPDATE Capteurs SET Name = @Name, GroupCapteur = @GroupCapteur, AlertHigh = @AlertHigh, AlertLow = @AlertLow, Ready = 1 WHERE Id = @Id";
+                    sqlite_cmd.CommandText = "UPDATE Capteurs SET Name = @Name, GroupCapteur = @GroupCapteur, AlertHigh = @AlertHigh, AlertLow = @AlertLow, Ready = 1 WHERE Address = @Address";
 
                     // Set les valeurs à celles voulues
                     sqlite_cmd.Parameters.Add("@Name", DbType.String, -1);
@@ -143,8 +143,8 @@ namespace UI_ChambreFroide_V1
                     sqlite_cmd.Parameters.Add("@AlertLow", DbType.Double, -1);
                     sqlite_cmd.Parameters["@AlertLow"].Value = capToSet.AlertLow;
 
-                    sqlite_cmd.Parameters.Add("@Id", DbType.Int64, -1);
-                    sqlite_cmd.Parameters["@Id"].Value = capToSet.Id;
+                    sqlite_cmd.Parameters.Add("@Address", DbType.String, -1);
+                    sqlite_cmd.Parameters["@Address"].Value = capToSet.Address;
 
                     sqlite_cmd.ExecuteNonQuery();
                     conn.Close();
@@ -266,30 +266,15 @@ namespace UI_ChambreFroide_V1
         public List<MesureTemp> GetTemperatures(DateTime startTime, DateTime endTime, string addrCap)
         {
             List<MesureTemp> listTemp = new List<MesureTemp>();
-            
 
-            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
+
+            String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "' AND TimeStamp > '" + startTime.ToString("yyyy-MM-dd HH:mm:ss")
+                + "' AND TimeStamp < '" + endTime.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
             {
-                conn.Open();
-                String sql = "SELECT * FROM Historique WHERE TimeStamp > @startTime AND TimeStamp < @endTime AND Capteur = @addrCap";
-                //String sql = "SELECT * FROM Historique WHERE Capteur = @addrCap";
-                SQLiteCommand sqlite_cmd = new SQLiteCommand(sql, conn);
-
-                sqlite_cmd.Parameters.Add("@startTime", DbType.String, -1);
-                sqlite_cmd.Parameters["@startTime"].Value = startTime;
-
-                sqlite_cmd.Parameters.Add("@endTime", DbType.String, -1);
-                sqlite_cmd.Parameters["@endTime"].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-                sqlite_cmd.Parameters.Add("@addrCap", DbType.String, -1);
-                sqlite_cmd.Parameters["@addrCap"].Value = addrCap;
-
-                SQLiteDataReader reader = sqlite_cmd.ExecuteReader();
-                foreach(DataRow row in reader)
-                {
-                    listTemp.Add(new MesureTemp(Convert.ToInt32(row["Id"]), Convert.ToString(row["Capteur"]), Convert.ToDouble(row["Temperature"]),
-                        Convert.ToInt32(row["Alert"]), Convert.ToString(row["TimeStamp"])));
-                }
+                // Get tous les groupes uniques
+                var output = conn.Query<MesureTemp>(sql);
+                listTemp = output.ToList();
             }
             return listTemp;
         }

@@ -121,7 +121,7 @@ namespace UI_ChambreFroide_V1
                 {
                     if (cap.Name == objFormChoixCapteur.returnName)
                     {
-                        listTemp.AddRange(accesDB.GetTemperatures(endTime, startTime, cap.Address));
+                        listTemp.AddRange(accesDB.GetTemperatures(startTime, endTime, cap.Address));
                     }
                 }
             }
