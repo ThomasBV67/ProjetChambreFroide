@@ -31,7 +31,7 @@ namespace UI_ChambreFroide_V1
         int eCritMod2 = 0;
         int nbCycles = 0;
 
-        int tempsAttente = 40;
+        int tempsAttente = 20;
 
         const int NB_BOITES_AFFICHAGE = 15;
 
@@ -310,13 +310,10 @@ namespace UI_ChambreFroide_V1
             {
                 reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
             }
-            else//Apres 3 mets une * au titre
+            else//Apres 3 affiche le thermometre comme étant défectueux
             {
-                if (!lst_Capteurs[capteurEnCours].Name.Contains("*"))
-                {
-                    lst_Capteurs[capteurEnCours].Name += "*";
-                    MAJAffichageTemps();
-                }
+                lst_cases.Add(new Case(Color.Purple, -127, lst_Capteurs[capteurEnCours].Name));
+                MAJAffichageTemps();
                 nbErr = 0;
 
                 if (lst_Capteurs[capteurEnCours].Module == 1)   // Erreur vient du module 1
@@ -418,7 +415,14 @@ namespace UI_ChambreFroide_V1
                 try
                 {
                     m_label_pieces[i].Text = lst_cases[i + NB_BOITES_AFFICHAGE*page].nomPiece;
-                    m_RTB_temp[i].Text = Convert.ToString(Math.Round(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature, 1)) + "°";
+                    if(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature != -127)
+                    {
+                        m_RTB_temp[i].Text = Convert.ToString(Math.Round(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature, 1)) + "°";
+                    }
+                    else
+                    {
+                        m_RTB_temp[i].Text = "ERR";
+                    }
                     m_RTB_temp[i].BackColor = lst_cases[i + NB_BOITES_AFFICHAGE * page].couleurCase;
                 }
                 catch
