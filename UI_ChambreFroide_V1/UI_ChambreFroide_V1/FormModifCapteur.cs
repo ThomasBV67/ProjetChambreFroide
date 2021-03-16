@@ -92,6 +92,8 @@ namespace UI_ChambreFroide_V1
             FormModifCapteur_Load(sender, e);
         }
 
+        
+
         /// <summary>
         /// 
         /// </summary>
@@ -124,6 +126,11 @@ namespace UI_ChambreFroide_V1
                 m_group = objFormZoneTexte.retour;
             }
             FormModifCapteur_Load(sender, e);
+        }
+
+        private void b_suppCapt_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Abort;
         }
     }
 }

@@ -119,14 +119,15 @@ namespace UI_ChambreFroide_V1
             objFormConfig.listeCapteurs.Rows.Clear();
             foreach(Capteur c in configSauvegardee)
             {
-                objFormConfig.listeCapteurs.Rows.Insert(0);//Affiche les capteurs dans la liste visible
-                objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = c.Address;
-                objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = c.ModuleIndex;
-                objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = c.Module;
-                objFormConfig.listeCapteurs.Rows[0].Cells[3].Value = c.Name;
-                objFormConfig.listeCapteurs.Rows[0].Cells[4].Value = c.GroupCapteur;
-                objFormConfig.listeCapteurs.Rows[0].Cells[5].Value = c.AlertLow;
-                objFormConfig.listeCapteurs.Rows[0].Cells[6].Value = c.AlertHigh;
+                objFormConfig.listeCapteurs.Rows.Insert(objFormConfig.listeCapteurs.Rows.Count);//Affiche les capteurs dans la liste visible
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[0].Value = c.Address;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[1].Value = c.ModuleIndex;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[2].Value = c.Module;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[3].Value = c.Name;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[4].Value = c.GroupCapteur;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[5].Value = c.AlertLow;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[6].Value = c.AlertHigh;
+
                 if (!lst_Capteurs.Exists(x => x.Address == c.Address))//Ajoute les capteurs à la liste interne seulement si ils n'y sont pas déjà
                 {
                     lst_Capteurs.Add(new Capteur(c.Address, c.ModuleIndex, c.Module, c.Name, c.GroupCapteur, c.AlertLow, c.AlertHigh));
@@ -172,12 +173,12 @@ namespace UI_ChambreFroide_V1
                     if (!existe)//si n'existe pas déjà, est ajouté avec les propriétés par défaut
                     {
                         lst_Capteurs.Add(new Capteur(capteursModule[i], nbModules - 1, i));//nouvel objet et ajout dans la grille
-                        objFormConfig.listeCapteurs.Rows.Insert(0);
-                        objFormConfig.listeCapteurs.Rows[0].Cells[0].Value = lst_Capteurs[lst_Capteurs.Count - 1].Address.ToUpper();//Addresse
-                        objFormConfig.listeCapteurs.Rows[0].Cells[1].Value = lst_Capteurs[lst_Capteurs.Count - 1].Module;//Numéro de module
-                        objFormConfig.listeCapteurs.Rows[0].Cells[2].Value = lst_Capteurs[lst_Capteurs.Count - 1].ModuleIndex;//Numéro de capteur
-                        objFormConfig.listeCapteurs.Rows[0].Cells[5].Value = "5";//Valeur avertissement par défaut
-                        objFormConfig.listeCapteurs.Rows[0].Cells[6].Value = "10";//Valeur alerte par défaut
+                        objFormConfig.listeCapteurs.Rows.Insert(objFormConfig.listeCapteurs.Rows.Count);
+                        objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[0].Value = lst_Capteurs[lst_Capteurs.Count - 1].Address.ToUpper();//Addresse
+                        objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[1].Value = lst_Capteurs[lst_Capteurs.Count - 1].Module;//Numéro de module
+                        objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[2].Value = lst_Capteurs[lst_Capteurs.Count - 1].ModuleIndex;//Numéro de capteur
+                        objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[5].Value = "5";//Valeur avertissement par défaut
+                        objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[6].Value = "10";//Valeur alerte par défaut
                         AccesDB.AddNewCapteur(lst_Capteurs[lst_Capteurs.Count - 1]);
                     }
                     existe = false;
@@ -267,14 +268,14 @@ namespace UI_ChambreFroide_V1
         {
             for (int i = 0; i < lst_Capteurs.Count; i++)//Ajoute les noms aux objets
             {
-                lst_Capteurs[i].Name = (string)objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[3].Value;//ordre de la grille par rapport à la liste inversé. 
+                lst_Capteurs[i].Name = (string)objFormConfig.listeCapteurs.Rows[i].Cells[3].Value;
                 if (lst_Capteurs[i].Name == null)
                 {
                     lst_Capteurs[i].Name = "";
                 }
                 //Doit passer pas soustraction pour que les noms correspondent.
-                lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[5].Value);
-                lst_Capteurs[i].AlertHigh = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[lst_Capteurs.Count - 1 - i].Cells[6].Value);
+                lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[i].Cells[5].Value);
+                lst_Capteurs[i].AlertHigh = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[i].Cells[6].Value);
                 AccesDB.SetCapteur(lst_Capteurs[i]);
             }
             MAJAffichageTemps();
@@ -484,6 +485,13 @@ namespace UI_ChambreFroide_V1
             {
                 b_precedent.Enabled = false;
             }
+        }
+
+        public void supprimeCapteur(int index)
+        {
+            AccesDB.DeleteCapteur(lst_Capteurs[index].Address);
+            lst_Capteurs.RemoveAt(index);
+            objFormConfig.listeCapteurs.Rows.RemoveAt(index);
         }
     }
 }

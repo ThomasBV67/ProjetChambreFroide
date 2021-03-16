@@ -225,12 +225,15 @@ namespace UI_ChambreFroide_V1
             }
             objFormModifCapteur.FormModifCapteur_Load(sender, e);
             objFormModifCapteur.ShowDialog();
-            if(objFormModifCapteur.DialogResult == DialogResult.OK)
+            if(objFormModifCapteur.DialogResult == DialogResult.OK)//Bouton Appliquer
             {
                 listeCapteurs.Rows[selectedIndex].Cells[3].Value = objFormModifCapteur.m_name;
                 listeCapteurs.Rows[selectedIndex].Cells[4].Value = objFormModifCapteur.m_group;
                 listeCapteurs.Rows[selectedIndex].Cells[5].Value = objFormModifCapteur.m_warning;
                 listeCapteurs.Rows[selectedIndex].Cells[6].Value = objFormModifCapteur.m_alert;
+            }else if(objFormModifCapteur.DialogResult == DialogResult.Abort)//Bouton supprimer capteur
+            {
+                pagePrincipale.supprimeCapteur(selectedIndex);
             }
         }
 

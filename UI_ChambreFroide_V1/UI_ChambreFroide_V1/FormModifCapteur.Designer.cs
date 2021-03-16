@@ -40,14 +40,16 @@ namespace UI_ChambreFroide_V1
             this.lbAlerte = new System.Windows.Forms.Label();
             this.btnRetour = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
+            this.b_suppCapt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnModifNom
             // 
             this.btnModifNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifNom.Location = new System.Drawing.Point(50, 101);
+            this.btnModifNom.Location = new System.Drawing.Point(67, 124);
+            this.btnModifNom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModifNom.Name = "btnModifNom";
-            this.btnModifNom.Size = new System.Drawing.Size(360, 90);
+            this.btnModifNom.Size = new System.Drawing.Size(480, 111);
             this.btnModifNom.TabIndex = 0;
             this.btnModifNom.Text = "Nom du capteur\r\n";
             this.btnModifNom.UseVisualStyleBackColor = true;
@@ -57,9 +59,10 @@ namespace UI_ChambreFroide_V1
             // 
             this.lbTitre.AutoSize = true;
             this.lbTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitre.Location = new System.Drawing.Point(40, 29);
+            this.lbTitre.Location = new System.Drawing.Point(53, 36);
+            this.lbTitre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTitre.Name = "lbTitre";
-            this.lbTitre.Size = new System.Drawing.Size(670, 55);
+            this.lbTitre.Size = new System.Drawing.Size(832, 69);
             this.lbTitre.TabIndex = 1;
             this.lbTitre.Text = "Choix du paramètre à modifier";
             // 
@@ -67,18 +70,20 @@ namespace UI_ChambreFroide_V1
             // 
             this.lbNom.AutoSize = true;
             this.lbNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNom.Location = new System.Drawing.Point(459, 138);
+            this.lbNom.Location = new System.Drawing.Point(612, 170);
+            this.lbNom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNom.Name = "lbNom";
-            this.lbNom.Size = new System.Drawing.Size(113, 37);
+            this.lbNom.Size = new System.Drawing.Size(138, 46);
             this.lbNom.TabIndex = 2;
             this.lbNom.Text = "Nom : ";
             // 
             // btnModifGroupe
             // 
             this.btnModifGroupe.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifGroupe.Location = new System.Drawing.Point(50, 197);
+            this.btnModifGroupe.Location = new System.Drawing.Point(67, 242);
+            this.btnModifGroupe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModifGroupe.Name = "btnModifGroupe";
-            this.btnModifGroupe.Size = new System.Drawing.Size(360, 90);
+            this.btnModifGroupe.Size = new System.Drawing.Size(480, 111);
             this.btnModifGroupe.TabIndex = 3;
             this.btnModifGroupe.Text = "Groupe du capteur\r\n";
             this.btnModifGroupe.UseVisualStyleBackColor = true;
@@ -87,9 +92,10 @@ namespace UI_ChambreFroide_V1
             // btnModifWarning
             // 
             this.btnModifWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifWarning.Location = new System.Drawing.Point(50, 293);
+            this.btnModifWarning.Location = new System.Drawing.Point(67, 361);
+            this.btnModifWarning.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModifWarning.Name = "btnModifWarning";
-            this.btnModifWarning.Size = new System.Drawing.Size(360, 90);
+            this.btnModifWarning.Size = new System.Drawing.Size(480, 111);
             this.btnModifWarning.TabIndex = 4;
             this.btnModifWarning.Text = "Niveau d\'avertissement";
             this.btnModifWarning.UseVisualStyleBackColor = true;
@@ -98,9 +104,10 @@ namespace UI_ChambreFroide_V1
             // btnModifAlerte
             // 
             this.btnModifAlerte.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifAlerte.Location = new System.Drawing.Point(50, 389);
+            this.btnModifAlerte.Location = new System.Drawing.Point(67, 479);
+            this.btnModifAlerte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModifAlerte.Name = "btnModifAlerte";
-            this.btnModifAlerte.Size = new System.Drawing.Size(360, 90);
+            this.btnModifAlerte.Size = new System.Drawing.Size(480, 111);
             this.btnModifAlerte.TabIndex = 5;
             this.btnModifAlerte.Text = "Niveau d\'alerte";
             this.btnModifAlerte.UseVisualStyleBackColor = true;
@@ -110,9 +117,10 @@ namespace UI_ChambreFroide_V1
             // 
             this.lbGroupe.AutoSize = true;
             this.lbGroupe.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGroupe.Location = new System.Drawing.Point(459, 234);
+            this.lbGroupe.Location = new System.Drawing.Point(612, 288);
+            this.lbGroupe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbGroupe.Name = "lbGroupe";
-            this.lbGroupe.Size = new System.Drawing.Size(151, 37);
+            this.lbGroupe.Size = new System.Drawing.Size(186, 46);
             this.lbGroupe.TabIndex = 6;
             this.lbGroupe.Text = "Groupe : ";
             // 
@@ -120,9 +128,10 @@ namespace UI_ChambreFroide_V1
             // 
             this.lbWarning.AutoSize = true;
             this.lbWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbWarning.Location = new System.Drawing.Point(459, 330);
+            this.lbWarning.Location = new System.Drawing.Point(612, 406);
+            this.lbWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbWarning.Name = "lbWarning";
-            this.lbWarning.Size = new System.Drawing.Size(374, 37);
+            this.lbWarning.Size = new System.Drawing.Size(464, 46);
             this.lbWarning.TabIndex = 7;
             this.lbWarning.Text = "Niveau d\'avertissement : ";
             // 
@@ -130,18 +139,20 @@ namespace UI_ChambreFroide_V1
             // 
             this.lbAlerte.AutoSize = true;
             this.lbAlerte.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAlerte.Location = new System.Drawing.Point(459, 426);
+            this.lbAlerte.Location = new System.Drawing.Point(612, 524);
+            this.lbAlerte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAlerte.Name = "lbAlerte";
-            this.lbAlerte.Size = new System.Drawing.Size(256, 37);
+            this.lbAlerte.Size = new System.Drawing.Size(317, 46);
             this.lbAlerte.TabIndex = 8;
             this.lbAlerte.Text = "Niveau d\'alerte : ";
             // 
             // btnRetour
             // 
             this.btnRetour.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRetour.Location = new System.Drawing.Point(769, 13);
+            this.btnRetour.Location = new System.Drawing.Point(1025, 16);
+            this.btnRetour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRetour.Name = "btnRetour";
-            this.btnRetour.Size = new System.Drawing.Size(243, 86);
+            this.btnRetour.Size = new System.Drawing.Size(324, 106);
             this.btnRetour.TabIndex = 9;
             this.btnRetour.Text = "Retour";
             this.btnRetour.UseVisualStyleBackColor = true;
@@ -150,19 +161,32 @@ namespace UI_ChambreFroide_V1
             // btnApply
             // 
             this.btnApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApply.Location = new System.Drawing.Point(50, 485);
+            this.btnApply.Location = new System.Drawing.Point(67, 597);
+            this.btnApply.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(360, 90);
+            this.btnApply.Size = new System.Drawing.Size(480, 111);
             this.btnApply.TabIndex = 10;
             this.btnApply.Text = "Appliquer";
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
+            // b_suppCapt
+            // 
+            this.b_suppCapt.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.b_suppCapt.Location = new System.Drawing.Point(1099, 597);
+            this.b_suppCapt.Name = "b_suppCapt";
+            this.b_suppCapt.Size = new System.Drawing.Size(250, 111);
+            this.b_suppCapt.TabIndex = 11;
+            this.b_suppCapt.Text = "Supprimer Capteur";
+            this.b_suppCapt.UseVisualStyleBackColor = true;
+            this.b_suppCapt.Click += new System.EventHandler(this.b_suppCapt_Click);
+            // 
             // FormModifCapteur
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.ClientSize = new System.Drawing.Size(1365, 738);
+            this.Controls.Add(this.b_suppCapt);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.lbAlerte);
@@ -175,6 +199,7 @@ namespace UI_ChambreFroide_V1
             this.Controls.Add(this.lbTitre);
             this.Controls.Add(this.btnModifNom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormModifCapteur";
             this.Text = "FormModifCapteur";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -197,5 +222,6 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.Label lbAlerte;
         private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Button b_suppCapt;
     }
 }

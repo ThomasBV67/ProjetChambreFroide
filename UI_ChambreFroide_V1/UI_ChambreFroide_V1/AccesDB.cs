@@ -287,7 +287,7 @@ namespace UI_ChambreFroide_V1
         /// Cette fonction supprime le capteur lié à une certaine addresse de la base de données
         /// </summary>
         /// <param name="addrCap"></param>
-        public void DeleteCapteur(String addrCap)
+        public static void DeleteCapteur(String addrCap)
         {
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
             {
