@@ -257,7 +257,9 @@ namespace UI_ChambreFroide_V1
         }
 
         /// <summary>
-        /// 
+        /// Cette fonction retourne une liste d'objets de mesures de températures qui contient toutes 
+        /// les mesures prises par un capteur dans la période de temps entre les deux valeurs de dateTime
+        /// demandées en entrée.
         /// </summary>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
@@ -265,11 +267,13 @@ namespace UI_ChambreFroide_V1
         /// <returns></returns>
         public List<MesureTemp> GetTemperatures(DateTime startTime, DateTime endTime, string addrCap)
         {
-            List<MesureTemp> listTemp = new List<MesureTemp>();
+            List<MesureTemp> listTemp = new List<MesureTemp>(); // Liste pour le retour
 
-
+            // Commande sql montée avec les variables
             String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "' AND TimeStamp > '" + startTime.ToString("yyyy-MM-dd HH:mm:ss")
                 + "' AND TimeStamp < '" + endTime.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+
+            // Execute la commande
             using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
             {
                 // Get tous les groupes uniques
@@ -279,6 +283,29 @@ namespace UI_ChambreFroide_V1
             return listTemp;
         }
 
+        /// <summary>
+        /// Cette fonction supprime le capteur lié à une certaine addresse de la base de données
+        /// </summary>
+        /// <param name="addrCap"></param>
+        public void DeleteCapteur(String addrCap)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
+            {
+                SQLiteCommand sqlite_cmd;
+                conn.Open();
+
+                // Crée la commande SQL
+                sqlite_cmd = conn.CreateCommand();
+                sqlite_cmd.CommandText = "DELETE FROM Capteurs WHERE Address = @addr";
+
+                // Set les valeurs à celles voulues
+                sqlite_cmd.Parameters.Add("@addr", DbType.String, -1);
+                sqlite_cmd.Parameters["@addr"].Value = addrCap;
+
+                sqlite_cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
         /// <summary>
         /// Cette fonction permet d'avoir acces au connection string de la db (contient le path du fichier .db
         /// </summary>
