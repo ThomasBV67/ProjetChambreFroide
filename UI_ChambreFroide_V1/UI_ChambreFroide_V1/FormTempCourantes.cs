@@ -19,7 +19,8 @@ namespace UI_ChambreFroide_V1
     {
         public bool decouverteEnCours = false;
         bool pingEnCours = false;
-        int capteurEnCours = 0;
+        bool demandeArret = false;
+        int capteurEnCours = -1;//Valeur à -1 pour signifier au programme qu'aucun scan est en cours
         int nbModules = 1;
         int nbErr = 0;
         int page = 0;
@@ -35,6 +36,7 @@ namespace UI_ChambreFroide_V1
         int tempsAttente = 20;
 
         const int NB_BOITES_AFFICHAGE = 15;
+        const int TEMPS_ATTENTE = 20;
 
 
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
@@ -68,6 +70,8 @@ namespace UI_ChambreFroide_V1
             objFormHistorique.Hide();
             objFormConfig.pagePrincipale = this;//Envoi de la page en cours à pa page de config pour que les deux puissent s'échanger des informations
             objFormConfig.objFormModifCapteur.pagePrincipale = this;
+            
+            
         }
         /// <summary>
         /// Mets tout les labels de noms des pieces et les labels de température dans un tableau. Leur donne ensuite un nom par défaut unique
@@ -96,6 +100,22 @@ namespace UI_ChambreFroide_V1
 
             b_precedent.Enabled = false;
             b_suivant.Enabled = false;
+
+            serialPort1.BaudRate = 115200;
+            serialPort1.PortName = "COM3";
+
+            l_state.Text = "Système à l'arret";
+            loadCapteursFromDB();
+
+            try
+            {
+                serialPort1.Open();
+                demarreTimerTemp();
+            }
+            catch {
+                l_state.Text = "Configuration requise";
+            }
+
         }
         /// <summary>
         /// Devine
@@ -114,26 +134,7 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void b_config_Click(object sender, EventArgs e)
         {
-            List<Capteur> configSauvegardee = new List<Capteur>();
-            configSauvegardee = AccesDB.GetCapteurs();
-
-            objFormConfig.listeCapteurs.Rows.Clear();
-            foreach(Capteur c in configSauvegardee)
-            {
-                objFormConfig.listeCapteurs.Rows.Insert(objFormConfig.listeCapteurs.Rows.Count);//Affiche les capteurs dans la liste visible
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[0].Value = c.Address;
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[1].Value = c.Module;
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[2].Value = c.ModuleIndex;
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[3].Value = c.Name;
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[4].Value = c.GroupCapteur;
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[5].Value = c.AlertLow;
-                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[6].Value = c.AlertHigh;
-
-                if (!lst_Capteurs.Exists(x => x.Address == c.Address))//Ajoute les capteurs à la liste interne seulement si ils n'y sont pas déjà
-                {
-                    lst_Capteurs.Add(new Capteur(c.Address, c.Module, c.ModuleIndex, c.Name, c.GroupCapteur, c.AlertLow, c.AlertHigh));
-                }
-            }
+            loadCapteursFromDB();
             objFormConfig.temoinOuverture();
             objFormConfig.Show();
         }
@@ -229,6 +230,11 @@ namespace UI_ChambreFroide_V1
                         else
                         {
                             demarreTimerTemp();//Sinon, est arrivé à la fin et démarre le minuteur pour le prochain scan
+                            capteurEnCours = -1;
+                            if (demandeArret)
+                            {
+                                arretDepartLecture(null, null);
+                            }
                         }
 
                     }
@@ -302,7 +308,7 @@ namespace UI_ChambreFroide_V1
         private void t_checkTemps_Tick(object sender, EventArgs e)
         {
             tempsAttente--;
-            l_tempsRestant.Text = "Temps avant la prochaine mise à jour: " + Convert.ToString(tempsAttente);
+            l_state.Text = "Temps avant la prochaine mise à jour: " + Convert.ToString(tempsAttente);
             if (tempsAttente == 0)
             {
                 startGetTemp();
@@ -326,8 +332,22 @@ namespace UI_ChambreFroide_V1
         /// <param name="capteur"></param>
         private void reqTemp(int module, int capteur)
         {
-            l_tempsRestant.Text = "Mise à jour du capteur # " + Convert.ToString(module) + " : " + Convert.ToString(capteur);
-            serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
+            l_state.Text = "Mise à jour du capteur # " + Convert.ToString(module) + " : " + Convert.ToString(capteur);
+            try
+            {
+                serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
+            }
+            catch
+            {
+                try
+                {
+                    serialPort1.Open();
+                }
+                catch
+                {
+                    l_state.Text = "Échec de mise à jour du capteur # " + Convert.ToString(module) + " : " + Convert.ToString(capteur);
+                }
+            }
             t_timeoutScan.Start();
         }
 
@@ -411,22 +431,57 @@ namespace UI_ChambreFroide_V1
             return -127;//retourne code d'erreur au besoin
         }
         /// <summary>
-        /// Démarre le timer principal et reset le délais d'attente
+        /// Démarre le timer principal et reset le délais d'attente 
         /// </summary>
         private void demarreTimerTemp()
         {
-            t_checkTemps.Start();//sinon, redémarre l'atente pour le prochain scan
-            tempsAttente = 1;
+            if(lst_Capteurs.Count > 0 && serialPort1.IsOpen)//Si des capteurs sont présents et port pret
+            {
+                t_checkTemps.Start();
+                tempsAttente = TEMPS_ATTENTE;
+            }
         }
         /// <summary>
         /// devine
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void lireMaintenant(object sender, EventArgs e)
+        private void arretDepartLecture(object sender, EventArgs e)
         {
-            t_checkTemps.Enabled = true;
-            tempsAttente = 1;
+            if(capteurEnCours != -1 && !demandeArret)
+            {
+                demandeArret = true;
+                b_arretDepart.Text = "Arret à la fin du cycle\nAppuyer pour annuler";
+            }else if (capteurEnCours != -1 && demandeArret)
+            {
+                demandeArret = false;
+                b_arretDepart.Text = "Arreter";
+            }
+            else
+            {
+                if (!t_checkTemps.Enabled)
+                {
+                    demarreTimerTemp();
+                    b_arretDepart.Text = "Démarrage...";
+                    if (!t_checkTemps.Enabled)
+                    {
+                        b_arretDepart.Text = "Démarrer";
+                        l_state.Text = "Système à l'arret";
+                        MessageBox.Show("Une erreur s'est produite au démarrage du cycle de lecture");
+                    }
+                    else
+                    {
+                        b_arretDepart.Text = "Arreter";
+                    }
+                }
+                else
+                {
+                    b_arretDepart.Text = "Démarrer";
+                    t_checkTemps.Stop();
+                    l_state.Text = "Système à l'arret";
+                }
+            }
+            
         }
         /// <summary>
         /// Page de capteurs précédente, verouille le bouton si ne peut aller plus loin
@@ -543,9 +598,35 @@ namespace UI_ChambreFroide_V1
 
         public void ping(int module, int capteur)
         {
-
             pingEnCours = true;
             reqTemp(module, capteur);
+        }
+
+        private void loadCapteursFromDB()
+        {
+            List<Capteur> configSauvegardee = new List<Capteur>();
+            configSauvegardee = AccesDB.GetCapteurs();
+
+            objFormConfig.listeCapteurs.Rows.Clear();
+            foreach (Capteur c in configSauvegardee)
+            {
+                objFormConfig.listeCapteurs.Rows.Insert(objFormConfig.listeCapteurs.Rows.Count);//Affiche les capteurs dans la liste visible
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[0].Value = c.Address;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[1].Value = c.Module;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[2].Value = c.ModuleIndex;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[3].Value = c.Name;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[4].Value = c.GroupCapteur;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[5].Value = c.AlertLow;
+                objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[6].Value = c.AlertHigh;
+
+                if (!lst_Capteurs.Exists(x => x.Address == c.Address))//Ajoute les capteurs à la liste interne seulement si ils n'y sont pas déjà
+                {
+                    lst_Capteurs.Add(new Capteur(c.Address, c.Module, c.ModuleIndex, c.Name, c.GroupCapteur, c.AlertLow, c.AlertHigh));
+                }
+            }
+
+            MAJAffichageTemps();
+
         }
     }
 }
