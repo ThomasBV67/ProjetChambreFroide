@@ -111,6 +111,7 @@ namespace UI_ChambreFroide_V1
             {
                 serialPort1.Open();
                 demarreTimerTemp();
+                b_arretDepart.Text = "Arreter";
             }
             catch {
                 l_state.Text = "Configuration requise";
