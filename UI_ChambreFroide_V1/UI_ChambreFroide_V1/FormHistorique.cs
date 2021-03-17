@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,7 +40,7 @@ namespace UI_ChambreFroide_V1
 
             objFormChoixCapteur.Hide();
 
-            
+            chartTemp.Series.Clear();
         }
 
         /// <summary>
@@ -104,6 +107,9 @@ namespace UI_ChambreFroide_V1
         private void UpdateGraphique()
         {
             AccesDB accesDB = new AccesDB();
+            List<String> listTime = new List<String>();
+            ChartValues<double> valuesChart = new ChartValues<double>();
+
             listCapteurs = AccesDB.GetSetCapteurs();
             listTemp.Clear();
 
@@ -111,28 +117,52 @@ namespace UI_ChambreFroide_V1
             {
                 foreach(Capteur cap in listCapteurs)
                 {
-                    if(cap.GroupCapteur == objFormChoixCapteur.returnName)
+                    valuesChart.Clear();
+                    if (cap.GroupCapteur == objFormChoixCapteur.returnName)
                     {
                         listTemp.AddRange(accesDB.GetTemperatures(endTime, startTime, cap.Address));
-                    }                   
+                    }
+
+                    
+
+                    foreach (MesureTemp temp in listTemp)
+                    {
+                        valuesChart.Add(temp.Temperature);
+                        listTime.Add(temp.TimeStamp);
+                    }
+
+                    createLineSeries(valuesChart, cap.Name);
                 }                
             }
             else
             {
                 foreach (Capteur cap in listCapteurs)
                 {
+                    valuesChart.Clear();
                     if (cap.Name == objFormChoixCapteur.returnName)
                     {
                         listTemp.AddRange(accesDB.GetTemperatures(startTime, endTime, cap.Address));
                     }
+
+                    foreach(MesureTemp temp in listTemp)
+                    {
+                        valuesChart.Add(temp.Temperature);
+                        listTime.Add(temp.TimeStamp);
+                    }
+                    createLineSeries(valuesChart, cap.Name);
                 }
-            }
-            //chartHistorique.ChartAreas.
-            foreach(MesureTemp temp in listTemp)
-            {
-                //listBox1.Items.Add(temp.TimeStamp);
-            }
-            
+            }          
         }
+        void createLineSeries(ChartValues<double> values, String name)
+        {
+            LineSeries series = new LineSeries
+            {
+                Title = name,
+                Fill = System.Windows.Media.Brushes.Transparent,
+                Values = values
+            };
+            chartTemp.Series.Add(series);
+        }
+
     }
 }

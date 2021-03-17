@@ -36,6 +36,7 @@ namespace UI_ChambreFroide_V1
             this.btnLastDay = new System.Windows.Forms.Button();
             this.btnLastWeek = new System.Windows.Forms.Button();
             this.btnLastMonth = new System.Windows.Forms.Button();
+            this.chartTemp = new LiveCharts.WinForms.CartesianChart();
             this.SuspendLayout();
             // 
             // lbTitreHistorique
@@ -114,11 +115,20 @@ namespace UI_ChambreFroide_V1
             this.btnLastMonth.UseVisualStyleBackColor = true;
             this.btnLastMonth.Click += new System.EventHandler(this.timeframeBtns_Click);
             // 
+            // chartTemp
+            // 
+            this.chartTemp.Location = new System.Drawing.Point(12, 85);
+            this.chartTemp.Name = "chartTemp";
+            this.chartTemp.Size = new System.Drawing.Size(844, 503);
+            this.chartTemp.TabIndex = 9;
+            this.chartTemp.Text = "chartTemp";
+            // 
             // FormHistorique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.chartTemp);
             this.Controls.Add(this.btnLastMonth);
             this.Controls.Add(this.btnLastWeek);
             this.Controls.Add(this.btnLastDay);
@@ -144,5 +154,6 @@ namespace UI_ChambreFroide_V1
         private System.Windows.Forms.Button btnLastDay;
         private System.Windows.Forms.Button btnLastWeek;
         private System.Windows.Forms.Button btnLastMonth;
+        private LiveCharts.WinForms.CartesianChart chartTemp;
     }
 }
