@@ -132,6 +132,9 @@ C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreF
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\thoma\Desktop\fINAL\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
