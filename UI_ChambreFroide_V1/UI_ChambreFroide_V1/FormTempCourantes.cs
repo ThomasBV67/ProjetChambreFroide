@@ -102,7 +102,7 @@ namespace UI_ChambreFroide_V1
             b_suivant.Enabled = false;
 
             serialPort1.BaudRate = 115200;
-            serialPort1.PortName = "COM3";
+            serialPort1.PortName = "COM5";
 
             l_state.Text = "Système à l'arret";
             loadCapteursFromDB();
@@ -343,6 +343,7 @@ namespace UI_ChambreFroide_V1
                 try
                 {
                     serialPort1.Open();
+                    serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
                 }
                 catch
                 {
@@ -440,6 +441,14 @@ namespace UI_ChambreFroide_V1
             {
                 t_checkTemps.Start();
                 tempsAttente = TEMPS_ATTENTE;
+                b_config.Enabled = false;
+            }
+            else
+            {
+                b_arretDepart.Text = "Démarrer";
+                l_state.Text = "Système à l'arret";
+                capteurEnCours = -1;
+                b_config.Enabled = true;
             }
         }
         /// <summary>
@@ -449,6 +458,14 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void arretDepartLecture(object sender, EventArgs e)
         {
+            if (!serialPort1.IsOpen)
+            {
+                try
+                {
+                    serialPort1.Open();
+                }
+                catch { }
+            }
             if(capteurEnCours != -1 && !demandeArret)
             {
                 demandeArret = true;
@@ -460,12 +477,14 @@ namespace UI_ChambreFroide_V1
             }
             else
             {
+                demandeArret = false;
                 if (!t_checkTemps.Enabled)
                 {
                     demarreTimerTemp();
                     b_arretDepart.Text = "Démarrage...";
                     if (!t_checkTemps.Enabled)
                     {
+                        b_config.Enabled = true;
                         b_arretDepart.Text = "Démarrer";
                         l_state.Text = "Système à l'arret";
                         MessageBox.Show("Une erreur s'est produite au démarrage du cycle de lecture");
@@ -477,6 +496,7 @@ namespace UI_ChambreFroide_V1
                 }
                 else
                 {
+                    b_config.Enabled = true;
                     b_arretDepart.Text = "Démarrer";
                     t_checkTemps.Stop();
                     l_state.Text = "Système à l'arret";
