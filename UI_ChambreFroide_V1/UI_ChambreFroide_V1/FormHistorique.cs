@@ -23,7 +23,6 @@ namespace UI_ChambreFroide_V1
         public bool selectedIsGroup;
 
         public List<Capteur> listCapteurs = new List<Capteur>();
-        public List<MesureTemp> listTemp = new List<MesureTemp>();
         
         public enum timeFrameChoice {Day, Week, Month, Other};
         public timeFrameChoice timeFrame = timeFrameChoice.Day;
@@ -108,59 +107,58 @@ namespace UI_ChambreFroide_V1
         {
             AccesDB accesDB = new AccesDB();
             List<String> listTime = new List<String>();
+            List<MesureTemp> listTemp = new List<MesureTemp>();
             ChartValues<double> valuesChart = new ChartValues<double>();
 
-            listCapteurs = AccesDB.GetSetCapteurs();
-            listTemp.Clear();
+            chartTemp.Series.Clear();
 
-            if (objFormChoixCapteur.isGroup)
+            listCapteurs = AccesDB.GetSetCapteurs();
+
+            
+            foreach(Capteur cap in listCapteurs)
             {
-                foreach(Capteur cap in listCapteurs)
+                valuesChart.Clear();
+                if (objFormChoixCapteur.isGroup)
                 {
-                    valuesChart.Clear();
                     if (cap.GroupCapteur == objFormChoixCapteur.returnName)
                     {
                         listTemp.AddRange(accesDB.GetTemperatures(endTime, startTime, cap.Address));
+                        foreach (MesureTemp temp in listTemp)
+                        {
+                            valuesChart.Add(temp.Temperature);
+                            listTime.Add(temp.TimeStamp);
+                        }
+                        createLineSeries(valuesChart, cap.Name);
                     }
-
-                    
-
-                    foreach (MesureTemp temp in listTemp)
-                    {
-                        valuesChart.Add(temp.Temperature);
-                        listTime.Add(temp.TimeStamp);
-                    }
-
-                    createLineSeries(valuesChart, cap.Name);
-                }                
-            }
-            else
-            {
-                foreach (Capteur cap in listCapteurs)
+                }
+                else
                 {
-                    valuesChart.Clear();
                     if (cap.Name == objFormChoixCapteur.returnName)
                     {
                         listTemp.AddRange(accesDB.GetTemperatures(startTime, endTime, cap.Address));
+                        foreach (MesureTemp temp in listTemp)
+                        {
+                            valuesChart.Add(temp.Temperature);
+                            listTime.Add(temp.TimeStamp);
+                        }
+                        createLineSeries(valuesChart, cap.Name);
                     }
-
-                    foreach(MesureTemp temp in listTemp)
-                    {
-                        valuesChart.Add(temp.Temperature);
-                        listTime.Add(temp.TimeStamp);
-                    }
-                    createLineSeries(valuesChart, cap.Name);
                 }
-            }          
+                listTemp.Clear();
+               
+            }                
         }
+
         void createLineSeries(ChartValues<double> values, String name)
         {
-            LineSeries series = new LineSeries
-            {
+            LineSeries series = new LineSeries();
+            series.Values = values;
+            series.Fill = System.Windows.Media.Brushes.Transparent;
+            /*{
                 Title = name,
                 Fill = System.Windows.Media.Brushes.Transparent,
                 Values = values
-            };
+            };*/
             chartTemp.Series.Add(series);
         }
 
