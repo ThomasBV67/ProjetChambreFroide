@@ -69,14 +69,14 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void btnModifWarning_Click(object sender, EventArgs e)
         {
-            objFormZoneTexte.chgMode(1);
-            objFormZoneTexte.tbModif.Text = Convert.ToString(m_warning);
-            objFormZoneTexte.ShowDialog();
+            objFormZoneTexte.chgMode(1);//clavier texte
+            objFormZoneTexte.tbModif.Text = Convert.ToString(m_warning);//Met le la valeur en cours dans le texte de départ
+            objFormZoneTexte.ShowDialog();//ouvre le clavier
             if(objFormZoneTexte.DialogResult == DialogResult.OK)
             {
-                m_warning = Convert.ToDouble(objFormZoneTexte.retour);
+                m_warning = Convert.ToDouble(objFormZoneTexte.retour);//Integre les changements
             }
-            FormModifCapteur_Load(sender, e);
+            FormModifCapteur_Load(sender, e);//met à jour l'affichage des informations
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModifAlerte_Click(object sender, EventArgs e)
+        private void btnModifAlerte_Click(object sender, EventArgs e)//voir btnModifWarning_Click
         {
             objFormZoneTexte.chgMode(1);
             objFormZoneTexte.tbModif.Text = Convert.ToString(m_alert);
@@ -111,7 +111,7 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModifNom_Click(object sender, EventArgs e)
+        private void btnModifNom_Click(object sender, EventArgs e)//voir btnModifWarning_Click
         {
             objFormZoneTexte.chgMode(0);
             objFormZoneTexte.tbModif.Text = m_name;
@@ -128,7 +128,11 @@ namespace UI_ChambreFroide_V1
             }
             FormModifCapteur_Load(sender, e);
         }
-
+        /// <summary>
+        /// Ping le capteur sélectionné pour voir sa température
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_ping_Click(object sender, EventArgs e)
         {
             pagePrincipale.ping(m_module, m_capteur);
@@ -139,7 +143,7 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModifGroupe_Click(object sender, EventArgs e)
+        private void btnModifGroupe_Click(object sender, EventArgs e)//voir btnModifWarning_Click
         {
             objFormZoneTexte.chgMode(0);
             objFormZoneTexte.tbModif.Text = Convert.ToString(m_group);

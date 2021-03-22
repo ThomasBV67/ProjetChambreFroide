@@ -69,7 +69,7 @@ namespace UI_ChambreFroide_V1
             objFormConfig.Hide();
             objFormHistorique.Hide();
             objFormConfig.pagePrincipale = this;//Envoi de la page en cours à pa page de config pour que les deux puissent s'échanger des informations
-            objFormConfig.objFormModifCapteur.pagePrincipale = this;
+            objFormConfig.objFormModifCapteur.pagePrincipale = this;//Pour le ping
             
             
         }
@@ -98,22 +98,22 @@ namespace UI_ChambreFroide_V1
                 }
             }
 
-            b_precedent.Enabled = false;
+            b_precedent.Enabled = false;//Désactive les boutons de page, il n'y a pas de capteur d'actif
             b_suivant.Enabled = false;
 
             serialPort1.BaudRate = 115200;
-            serialPort1.PortName = "COM5";
+            serialPort1.PortName = "COM3";//Tente d'ouvrir le port série au démarrage
 
             l_state.Text = "Système à l'arret";
-            loadCapteursFromDB();
+            loadCapteursFromDB();//Lit la configuration sauvegardée
 
-            try
+            try//Tente un démarrage automatique
             {
                 serialPort1.Open();
                 demarreTimerTemp();
                 b_arretDepart.Text = "Arreter";
             }
-            catch {
+            catch {//Si ne réussi pas, indique à l'utilisateur qu'une configuration est requise pour continuer
                 l_state.Text = "Configuration requise";
             }
 
@@ -188,13 +188,13 @@ namespace UI_ChambreFroide_V1
                 }
                 objFormConfig.scanModule(nbModules);//Lit le prochain module
             }
-            else if(pingEnCours)
+            else if(pingEnCours)//Réception d'un ping
             {
                 String[] trame = new String[20];
-                trame = retourSerie.Split('#');
-                t_timeoutScan.Stop();
-                MessageBox.Show("Le capteur " + trame[1].ToUpper() + " indique une température de " + trame[0]);
-                pingEnCours = false;
+                trame = retourSerie.Split('#');//Divise l'adresse de la température
+                t_timeoutScan.Stop();//donnée reçue, plus de timeout possible
+                MessageBox.Show("Le capteur " + trame[1].ToUpper() + " indique une température de " + trame[0]);//Affiche l'adresse du capteur et la temp.
+                pingEnCours = false;//désactive le marqueur de ping
             }
             else//est en mode req. temps.
             {
@@ -231,8 +231,8 @@ namespace UI_ChambreFroide_V1
                         else
                         {
                             demarreTimerTemp();//Sinon, est arrivé à la fin et démarre le minuteur pour le prochain scan
-                            capteurEnCours = -1;
-                            if (demandeArret)
+                            capteurEnCours = -1;//plus de scan
+                            if (demandeArret)//Arrete le systeme si une demande était en attente
                             {
                                 arretDepartLecture(null, null);
                             }
@@ -343,7 +343,6 @@ namespace UI_ChambreFroide_V1
                 try
                 {
                     serialPort1.Open();
-                    serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
                 }
                 catch
                 {
@@ -433,70 +432,51 @@ namespace UI_ChambreFroide_V1
             return -127;//retourne code d'erreur au besoin
         }
         /// <summary>
-        /// Démarre le timer principal et reset le délais d'attente 
+        /// Démarre le timer principal et reset le délais d'attente. Le timer déparre seulement si le port série est ouvert et des capteurs sont chargés
         /// </summary>
         private void demarreTimerTemp()
         {
             if(lst_Capteurs.Count > 0 && serialPort1.IsOpen)//Si des capteurs sont présents et port pret
             {
                 t_checkTemps.Start();
-                tempsAttente = TEMPS_ATTENTE;
-                b_config.Enabled = false;
-            }
-            else
-            {
-                b_arretDepart.Text = "Démarrer";
-                l_state.Text = "Système à l'arret";
-                capteurEnCours = -1;
-                b_config.Enabled = true;
+                tempsAttente = TEMPS_ATTENTE;//Temps d'attente par défaut
             }
         }
         /// <summary>
-        /// devine
+        /// Controle de l'arret / départ du cycle de lecture des capteurs
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void arretDepartLecture(object sender, EventArgs e)
-        {
-            if (!serialPort1.IsOpen)
+        {//La variable capteurEnCours est à -1 si aucun scan est en cours
+            if(capteurEnCours != -1 && !demandeArret)//Si un scan est en cours et aucun arret est en cours
             {
-                try
-                {
-                    serialPort1.Open();
-                }
-                catch { }
-            }
-            if(capteurEnCours != -1 && !demandeArret)
-            {
-                demandeArret = true;
+                demandeArret = true;//Définit un arret comme étant en attente
                 b_arretDepart.Text = "Arret à la fin du cycle\nAppuyer pour annuler";
-            }else if (capteurEnCours != -1 && demandeArret)
+            }else if (capteurEnCours != -1 && demandeArret)//Annule la demande d'arret
             {
                 demandeArret = false;
                 b_arretDepart.Text = "Arreter";
             }
-            else
+            else//Si pas de scan en cours
             {
-                demandeArret = false;
-                if (!t_checkTemps.Enabled)
+                if (!t_checkTemps.Enabled)//Activer/désactiver(activer:)
                 {
-                    demarreTimerTemp();
+                    demarreTimerTemp();//démarre
                     b_arretDepart.Text = "Démarrage...";
-                    if (!t_checkTemps.Enabled)
-                    {
-                        b_config.Enabled = true;
+                    if (!t_checkTemps.Enabled)//vérifie si le démarrage a reussi
+                    {//Si n'a pas réussi:
                         b_arretDepart.Text = "Démarrer";
                         l_state.Text = "Système à l'arret";
                         MessageBox.Show("Une erreur s'est produite au démarrage du cycle de lecture");
                     }
-                    else
+                    else//reussi:
                     {
                         b_arretDepart.Text = "Arreter";
                     }
                 }
-                else
+                else//désactiver:
                 {
-                    b_config.Enabled = true;
                     b_arretDepart.Text = "Démarrer";
                     t_checkTemps.Stop();
                     l_state.Text = "Système à l'arret";
@@ -552,7 +532,7 @@ namespace UI_ChambreFroide_V1
             {
                 try//essaie de lire le contenu
                 {
-                    m_label_pieces[i].Text = lst_cases[i + NB_BOITES_AFFICHAGE * page].nomPiece;
+                    m_label_pieces[i].Text = lst_cases[i + NB_BOITES_AFFICHAGE * page].nomPiece;//Titre
                     if (lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature != -127)//affiche erreur si erreur. Sinon affiche température
                     {
                         m_RTB_temp[i].Text = Convert.ToString(Math.Round(lst_cases[i + NB_BOITES_AFFICHAGE * page].temperature, 1)) + "°";
@@ -561,16 +541,16 @@ namespace UI_ChambreFroide_V1
                     {
                         m_RTB_temp[i].Text = "ERR";
                     }
-                    m_RTB_temp[i].BackColor = lst_cases[i + NB_BOITES_AFFICHAGE * page].couleurCase;
+                    m_RTB_temp[i].BackColor = lst_cases[i + NB_BOITES_AFFICHAGE * page].couleurCase;//couleur
                 }
                 catch//sinon on est probablement à la fin de la liste
                 {
                     try{
-                        m_label_pieces[i].Text = lst_Capteurs[i + NB_BOITES_AFFICHAGE * page].Name;//Si la config a été faite mais aucune donnée à afficher, affiche seulement le nom
+                        m_label_pieces[i].Text = lst_Capteurs[i + NB_BOITES_AFFICHAGE * page].Name;//Si la config a été faite mais aucune donnée à afficher, affiche seulement le nom sans afficher la température(qui n'existe pas encore)
                     }
-                    catch
+                    catch//Dans le cas que le programme ait passé tout les capteurs et il reste des cases à traiter, vide les cases. Permet d'éviter que des températures soient affichées en double
                     {
-                        if (lst_Capteurs.Count <= i + NB_BOITES_AFFICHAGE * page)
+                        if (lst_Capteurs.Count <= i + NB_BOITES_AFFICHAGE * page)//Vide la case seulement si la case est passée le nombre de capteurs
                         {
                             m_label_pieces[i].Text = "";
                             m_RTB_temp[i].Text = "";
@@ -590,7 +570,7 @@ namespace UI_ChambreFroide_V1
             l_page.Text = "Page " + Convert.ToString(page + 1) + "/" + Convert.ToString((lst_Capteurs.Count / NB_BOITES_AFFICHAGE) + 1);
         }
         /// <summary>
-        /// Active ou désactive les boutons de page dépendamment de l'index de page et du nombre de pages disponibles
+        /// Active ou désactive les boutons de page dépendamment de l'index de page et du nombre de pages disponibles. 
         /// </summary>
         private void MAJEtatBoutonsPage()
         {
@@ -616,22 +596,28 @@ namespace UI_ChambreFroide_V1
             lst_Capteurs.RemoveAt(index);
             objFormConfig.listeCapteurs.Rows.RemoveAt(index);//Supprime du gridview pour pas qu'il ne revienne apres avoir appuyé sur retour
         }
-
+        /// <summary>
+        /// Envoie un "Ping" au capteur
+        /// </summary>
+        /// <param name="module"></param>
+        /// <param name="capteur"></param>
         public void ping(int module, int capteur)
         {
-            pingEnCours = true;
+            pingEnCours = true;//Prépare le programme à recevoir un ping puis envoie la commande 
             reqTemp(module, capteur);
         }
-
+        /// <summary>
+        /// Lit les capteurs disponibles dans la BD et les ajoute à la liste de capteurs actifs
+        /// </summary>
         private void loadCapteursFromDB()
         {
-            List<Capteur> configSauvegardee = new List<Capteur>();
+            List<Capteur> configSauvegardee = new List<Capteur>();//Ouvre la liste de capteurs dans la BD
             configSauvegardee = AccesDB.GetCapteurs();
 
-            objFormConfig.listeCapteurs.Rows.Clear();
+            objFormConfig.listeCapteurs.Rows.Clear();//Efface la liste des capteurs dans le datagridview...
             foreach (Capteur c in configSauvegardee)
             {
-                objFormConfig.listeCapteurs.Rows.Insert(objFormConfig.listeCapteurs.Rows.Count);//Affiche les capteurs dans la liste visible
+                objFormConfig.listeCapteurs.Rows.Insert(objFormConfig.listeCapteurs.Rows.Count);//... et les réaffiche 
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[0].Value = c.Address;
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[1].Value = c.Module;
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[2].Value = c.ModuleIndex;
@@ -640,13 +626,13 @@ namespace UI_ChambreFroide_V1
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[5].Value = c.AlertLow;
                 objFormConfig.listeCapteurs.Rows[objFormConfig.listeCapteurs.Rows.Count - 1].Cells[6].Value = c.AlertHigh;
 
-                if (!lst_Capteurs.Exists(x => x.Address == c.Address))//Ajoute les capteurs à la liste interne seulement si ils n'y sont pas déjà
+                if (!lst_Capteurs.Exists(x => x.Address == c.Address))//Ajoute le capteurs à la liste interne seulement si il n'y est pas déjà
                 {
                     lst_Capteurs.Add(new Capteur(c.Address, c.Module, c.ModuleIndex, c.Name, c.GroupCapteur, c.AlertLow, c.AlertHigh));
                 }
             }
 
-            MAJAffichageTemps();
+            MAJAffichageTemps();//Affiche la grille avec les vouveaux capteurs
 
         }
     }

@@ -22,10 +22,10 @@ namespace UI_ChambreFroide_V1
         /// <returns></returns>
         public static List<Capteur> GetCapteurs()
         {
-            using(IDbConnection conn = new SQLiteConnection(GetConnectionString()))
+            using(IDbConnection conn = new SQLiteConnection(GetConnectionString())) 
             {
-                var output = conn.Query<Capteur>("SELECT * FROM Capteurs");
-                return output.ToList();
+                var output = conn.Query<Capteur>("SELECT * FROM Capteurs"); // Get tous les capteurs de la db
+                return output.ToList(); // Retourne une liste d'objets capteurs
             }
         }
 
@@ -41,12 +41,12 @@ namespace UI_ChambreFroide_V1
 
             foreach(Capteur cap in capteurs) // filtre la liste
             {
-                if(cap.Ready == 0)
+                if(cap.Ready == 0) // vérifie si le capteur est set
                 {
-                    setCapteurs.Add(cap);
+                    setCapteurs.Add(cap); // si pas set, ajoute a la liste a return
                 }
             }
-            return setCapteurs;
+            return setCapteurs; 
         }
 
         /// <summary>
@@ -60,10 +60,10 @@ namespace UI_ChambreFroide_V1
 
             foreach (Capteur cap in capteurs) // filtre la liste
             {
-                if (cap.Ready == 1)
+                if (cap.Ready == 1) // Vérifie si le capteur est set
                 {
-                    setCapteurs.Add(cap);
-                }
+                    setCapteurs.Add(cap); // si set, ajoute a la lsite a return
+                } 
             }
             return setCapteurs;
         }
@@ -81,7 +81,7 @@ namespace UI_ChambreFroide_V1
 
             foreach (Capteur cap in capteurs)   // Vérifie si le capteur existe déja
             {
-                if (newCap.Address == cap.Address)
+                if (newCap.Address == cap.Address) // comme l'addresse est unique, on compare avec elle
                 {
                     return false;
                 }
@@ -89,14 +89,15 @@ namespace UI_ChambreFroide_V1
 
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
             {
-                SQLiteCommand sqlite_cmd;
-                conn.Open();
+                SQLiteCommand sqlite_cmd; // cré un objet de commande sql
+                conn.Open();    // open une connection sql
 
                 // Crée la commande SQL
-                sqlite_cmd = conn.CreateCommand();
-                sqlite_cmd.CommandText = "INSERT INTO Capteurs(Address, Ready, Module, ModuleIndex) VALUES (@Address, 0, @Module, @ModuleIndex)";
+                sqlite_cmd = conn.CreateCommand(); // cré une commande pour l'objet de commande
+                sqlite_cmd.CommandText = "INSERT INTO Capteurs(Address, Ready, Module, ModuleIndex) VALUES (@Address, 0, @Module, @ModuleIndex)"; // commande sql                            
+                //les @ définissent des parametres dans la commande
 
-                // Set les valeurs à celles voulues
+                // Set les valeurs des paramettres de la commande
                 sqlite_cmd.Parameters.Add("@Address", DbType.String, -1);
                 sqlite_cmd.Parameters["@Address"].Value = newCap.Address; 
 
@@ -106,8 +107,8 @@ namespace UI_ChambreFroide_V1
                 sqlite_cmd.Parameters.Add("@ModuleIndex", DbType.Int64, -1);
                 sqlite_cmd.Parameters["@ModuleIndex"].Value = newCap.ModuleIndex;
 
-                sqlite_cmd.ExecuteNonQuery();
-                conn.Close();
+                sqlite_cmd.ExecuteNonQuery(); // execute la commande sql
+                conn.Close(); // ferme la connection
             }
             return true;
         }
@@ -291,21 +292,22 @@ namespace UI_ChambreFroide_V1
         {
             using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString())) // ouvre une connection
             {
-                SQLiteCommand sqlite_cmd;
-                conn.Open();
+                SQLiteCommand sqlite_cmd; // objet de commande sql
+                conn.Open(); // ouvre la connection
 
                 // Crée la commande SQL
                 sqlite_cmd = conn.CreateCommand();
-                sqlite_cmd.CommandText = "DELETE FROM Capteurs WHERE Address = @addr";
+                sqlite_cmd.CommandText = "DELETE FROM Capteurs WHERE Address = @addr"; // @ = parametre
 
                 // Set les valeurs à celles voulues
                 sqlite_cmd.Parameters.Add("@addr", DbType.String, -1);
                 sqlite_cmd.Parameters["@addr"].Value = addrCap;
 
-                sqlite_cmd.ExecuteNonQuery();
-                conn.Close();
+                sqlite_cmd.ExecuteNonQuery(); // execute la commande
+                conn.Close(); // ferme la connection
             }
         }
+
         /// <summary>
         /// Cette fonction permet d'avoir acces au connection string de la db (contient le path du fichier .db
         /// </summary>
