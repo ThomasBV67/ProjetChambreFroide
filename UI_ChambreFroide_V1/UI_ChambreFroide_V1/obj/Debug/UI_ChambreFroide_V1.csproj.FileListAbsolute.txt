@@ -34,7 +34,6 @@ C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_C
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\dbTestProjet.db
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe.config
 C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\UI_ChambreFroide_V1.exe
@@ -73,6 +72,4 @@ C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_
 =======
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
 >>>>>>> Stashed changes
-=======
-C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
->>>>>>> Stashed changes
+C:\Users\elian\Desktop\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
