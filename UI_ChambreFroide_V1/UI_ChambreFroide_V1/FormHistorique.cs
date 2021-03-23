@@ -1,5 +1,5 @@
 ﻿using LiveCharts;
-using LiveCharts.Defaults;
+using LiveCharts.WinForms;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,9 @@ namespace UI_ChambreFroide_V1
         public bool selectedIsGroup;
 
         public List<Capteur> listCapteurs = new List<Capteur>();
-        
+        public ChartValues<double> valuesChart = new ChartValues<double>();
+
+        private int divFactor = 0;
         public enum timeFrameChoice {Day, Week, Month, Other};
         public timeFrameChoice timeFrame = timeFrameChoice.Day;
 
@@ -38,8 +40,17 @@ namespace UI_ChambreFroide_V1
             InitializeComponent();
 
             objFormChoixCapteur.Hide();
-
-            chartTemp.Series.Clear();
+/*
+            chartTemp.Series.Add(new LineSeries
+            {
+                Values = new ChartValues<double> { 3, 4, 6, 3, 2, 6 },
+                StrokeThickness = 4,
+                StrokeDashArray = new System.Windows.Media.DoubleCollection(20),
+                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(107, 185, 69)),
+                Fill = System.Windows.Media.Brushes.Transparent,
+                LineSmoothness = 0,
+                PointGeometry = null
+            });*/
         }
 
         /// <summary>
@@ -81,6 +92,7 @@ namespace UI_ChambreFroide_V1
                 timeFrame = timeFrameChoice.Day;
                 endTime = DateTime.Now;
                 startTime = DateTime.Now.AddDays(-1);
+                
             }
             else if(sender.Equals(btnLastWeek))
             {
@@ -101,6 +113,9 @@ namespace UI_ChambreFroide_V1
                 startTime = DateTime.Now.AddDays(-1);
             }
             UpdateGraphique();
+
+            FormChart test = new FormChart(valuesChart);
+            test.Show();
         }
 
         private void UpdateGraphique()
@@ -108,16 +123,15 @@ namespace UI_ChambreFroide_V1
             AccesDB accesDB = new AccesDB();
             List<String> listTime = new List<String>();
             List<MesureTemp> listTemp = new List<MesureTemp>();
-            ChartValues<double> valuesChart = new ChartValues<double>();
-
-            chartTemp.Series.Clear();
 
             listCapteurs = AccesDB.GetSetCapteurs();
 
-            
+            valuesChart.Clear();
+            //divFactor = 0;
+
             foreach(Capteur cap in listCapteurs)
             {
-                valuesChart.Clear();
+                
                 if (objFormChoixCapteur.isGroup)
                 {
                     if (cap.GroupCapteur == objFormChoixCapteur.returnName)
@@ -128,7 +142,7 @@ namespace UI_ChambreFroide_V1
                             valuesChart.Add(temp.Temperature);
                             listTime.Add(temp.TimeStamp);
                         }
-                        createLineSeries(valuesChart, cap.Name);
+                       
                     }
                 }
                 else
@@ -138,29 +152,21 @@ namespace UI_ChambreFroide_V1
                         listTemp.AddRange(accesDB.GetTemperatures(startTime, endTime, cap.Address));
                         foreach (MesureTemp temp in listTemp)
                         {
-                            valuesChart.Add(temp.Temperature);
-                            listTime.Add(temp.TimeStamp);
+                            //if(divFactor >= 10)
+                            //{
+                                valuesChart.Add(temp.Temperature);
+                                listTime.Add(temp.TimeStamp);
+                                divFactor = 0;
+                            //}
+                            
+                            //divFactor++;
                         }
-                        createLineSeries(valuesChart, cap.Name);
+                     
                     }
                 }
                 listTemp.Clear();
                
             }                
         }
-
-        void createLineSeries(ChartValues<double> values, String name)
-        {
-            LineSeries series = new LineSeries();
-            series.Values = values;
-            series.Fill = System.Windows.Media.Brushes.Transparent;
-            /*{
-                Title = name,
-                Fill = System.Windows.Media.Brushes.Transparent,
-                Values = values
-            };*/
-            chartTemp.Series.Add(series);
-        }
-
     }
 }

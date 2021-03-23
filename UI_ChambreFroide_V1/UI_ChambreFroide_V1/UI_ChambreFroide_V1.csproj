@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesDB.cs" />
+    <Compile Include="AdditionalStuff.cs" />
     <Compile Include="Capteur.cs" />
     <Compile Include="Case.cs" />
     <Compile Include="Configuration.cs">
@@ -86,6 +87,12 @@
     </Compile>
     <Compile Include="Configuration.designer.cs">
       <DependentUpon>Configuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChart.Designer.cs">
+      <DependentUpon>FormChart.cs</DependentUpon>
     </Compile>
     <Compile Include="FormChoixCapteur.cs">
       <SubType>Form</SubType>
@@ -134,6 +141,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Configuration.resx">
       <DependentUpon>Configuration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChart.resx">
+      <DependentUpon>FormChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChoixCapteur.resx">
       <DependentUpon>FormChoixCapteur.cs</DependentUpon>
