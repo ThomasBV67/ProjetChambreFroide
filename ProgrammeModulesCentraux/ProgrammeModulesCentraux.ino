@@ -1,4 +1,5 @@
 #include <OneWire.h> 
+#include <avr/wdt.h>
 
 #include <DallasTemperature.h> 
 
@@ -44,6 +45,7 @@ void setup(void)
   }
   LoRa.setSyncWord(0x45);
   deviceCount = sensors.getDeviceCount(); 
+  wdt_enable(WDTO_8S);
 } 
 
   
@@ -103,6 +105,7 @@ void loop(void) {
       }
     }
   }
+  wdt_reset();
 } 
 
   

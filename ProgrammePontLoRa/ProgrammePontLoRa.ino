@@ -1,5 +1,6 @@
 #include <SPI.h>
 #include <LoRa.h>
+#include <avr/wdt.h>
 
 //define the pins used by the transceiver module
 #define ss 10
@@ -27,6 +28,7 @@ void setup() {
   // The sync word assures you don't get LoRa messages from other LoRa transceivers
   // ranges from 0-0xFF
   LoRa.setSyncWord(0x45);
+  wdt_enable(WDTO_8S);
 }
 void loop(){
   int packetSize = LoRa.parsePacket();
@@ -40,5 +42,5 @@ void loop(){
     LoRa.print(Serial.readString());
     LoRa.endPacket();
   }
-  
+  wdt_reset();
 }
