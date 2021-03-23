@@ -342,6 +342,7 @@ namespace UI_ChambreFroide_V1
             {
                 try
                 {
+                    serialPort1.Write(Convert.ToString(module) + "getTemp-" + Convert.ToString(capteur));
                     serialPort1.Open();
                 }
                 catch
@@ -440,6 +441,14 @@ namespace UI_ChambreFroide_V1
             {
                 t_checkTemps.Start();
                 tempsAttente = TEMPS_ATTENTE;//Temps d'attente par défaut
+                b_config.Enabled = false;
+            }
+            else
+            {
+                b_arretDepart.Text = "Démarrer";
+                l_state.Text = "Système à l'arret";
+                capteurEnCours = -1;
+                b_config.Enabled = true;
             }
         }
         /// <summary>
@@ -448,8 +457,17 @@ namespace UI_ChambreFroide_V1
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void arretDepartLecture(object sender, EventArgs e)
-        {//La variable capteurEnCours est à -1 si aucun scan est en cours
-            if(capteurEnCours != -1 && !demandeArret)//Si un scan est en cours et aucun arret est en cours
+        {
+            if (!serialPort1.IsOpen)
+            {
+                try
+                {
+                    serialPort1.Open();
+                }
+                catch { }
+            }
+            //La variable capteurEnCours est à -1 si aucun scan est en cours
+            if (capteurEnCours != -1 && !demandeArret)//Si un scan est en cours et aucun arret est en cours
             {
                 demandeArret = true;//Définit un arret comme étant en attente
                 b_arretDepart.Text = "Arret à la fin du cycle\nAppuyer pour annuler";
@@ -460,12 +478,14 @@ namespace UI_ChambreFroide_V1
             }
             else//Si pas de scan en cours
             {
+                demandeArret = false;
                 if (!t_checkTemps.Enabled)//Activer/désactiver(activer:)
                 {
                     demarreTimerTemp();//démarre
                     b_arretDepart.Text = "Démarrage...";
                     if (!t_checkTemps.Enabled)//vérifie si le démarrage a reussi
                     {//Si n'a pas réussi:
+                        b_config.Enabled = true;
                         b_arretDepart.Text = "Démarrer";
                         l_state.Text = "Système à l'arret";
                         MessageBox.Show("Une erreur s'est produite au démarrage du cycle de lecture");
@@ -477,6 +497,7 @@ namespace UI_ChambreFroide_V1
                 }
                 else//désactiver:
                 {
+                    b_config.Enabled = true;
                     b_arretDepart.Text = "Démarrer";
                     t_checkTemps.Stop();
                     l_state.Text = "Système à l'arret";
