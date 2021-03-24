@@ -22,6 +22,7 @@ namespace UI_ChambreFroide_V1
        
             foreach(ChartValues<double> values in vals)
             {
+<<<<<<< Updated upstream
                 chartTemp.Series.Add(new LineSeries
                 {
                     Values = values,
@@ -29,6 +30,12 @@ namespace UI_ChambreFroide_V1
                 }) ;
             }
             
+=======
+                Values = val,
+                PointGeometry = null,
+                
+            }) ;
+>>>>>>> Stashed changes
         }
 
         private void btnBack_Click(object sender, EventArgs e)
