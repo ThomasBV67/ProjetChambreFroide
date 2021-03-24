@@ -29,35 +29,17 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbTitreHistorique = new System.Windows.Forms.Label();
-            this.btnSelectCapteur = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnMoreOptions = new System.Windows.Forms.Button();
             this.btnLastDay = new System.Windows.Forms.Button();
             this.btnLastWeek = new System.Windows.Forms.Button();
             this.btnLastMonth = new System.Windows.Forms.Button();
+            this.labelTitre = new System.Windows.Forms.Label();
+            this.btnGroupName = new System.Windows.Forms.Button();
+            this.listBoxChoixCapteur = new System.Windows.Forms.ListBox();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // lbTitreHistorique
-            // 
-            this.lbTitreHistorique.AutoSize = true;
-            this.lbTitreHistorique.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitreHistorique.Location = new System.Drawing.Point(173, 30);
-            this.lbTitreHistorique.Name = "lbTitreHistorique";
-            this.lbTitreHistorique.Size = new System.Drawing.Size(486, 42);
-            this.lbTitreHistorique.TabIndex = 0;
-            this.lbTitreHistorique.Text = "Historique des températures";
-            // 
-            // btnSelectCapteur
-            // 
-            this.btnSelectCapteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectCapteur.Location = new System.Drawing.Point(862, 103);
-            this.btnSelectCapteur.Name = "btnSelectCapteur";
-            this.btnSelectCapteur.Size = new System.Drawing.Size(150, 85);
-            this.btnSelectCapteur.TabIndex = 3;
-            this.btnSelectCapteur.Text = "Sélection du capteur";
-            this.btnSelectCapteur.UseVisualStyleBackColor = true;
-            this.btnSelectCapteur.Click += new System.EventHandler(this.btnSelectCapteur_Click);
             // 
             // btnBack
             // 
@@ -73,7 +55,7 @@ namespace UI_ChambreFroide_V1
             // btnMoreOptions
             // 
             this.btnMoreOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoreOptions.Location = new System.Drawing.Point(862, 503);
+            this.btnMoreOptions.Location = new System.Drawing.Point(862, 438);
             this.btnMoreOptions.Name = "btnMoreOptions";
             this.btnMoreOptions.Size = new System.Drawing.Size(150, 85);
             this.btnMoreOptions.TabIndex = 5;
@@ -84,7 +66,7 @@ namespace UI_ChambreFroide_V1
             // btnLastDay
             // 
             this.btnLastDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLastDay.Location = new System.Drawing.Point(862, 230);
+            this.btnLastDay.Location = new System.Drawing.Point(862, 165);
             this.btnLastDay.Name = "btnLastDay";
             this.btnLastDay.Size = new System.Drawing.Size(150, 85);
             this.btnLastDay.TabIndex = 6;
@@ -95,7 +77,7 @@ namespace UI_ChambreFroide_V1
             // btnLastWeek
             // 
             this.btnLastWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLastWeek.Location = new System.Drawing.Point(862, 321);
+            this.btnLastWeek.Location = new System.Drawing.Point(862, 256);
             this.btnLastWeek.Name = "btnLastWeek";
             this.btnLastWeek.Size = new System.Drawing.Size(150, 85);
             this.btnLastWeek.TabIndex = 7;
@@ -106,7 +88,7 @@ namespace UI_ChambreFroide_V1
             // btnLastMonth
             // 
             this.btnLastMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLastMonth.Location = new System.Drawing.Point(862, 412);
+            this.btnLastMonth.Location = new System.Drawing.Point(862, 347);
             this.btnLastMonth.Name = "btnLastMonth";
             this.btnLastMonth.Size = new System.Drawing.Size(150, 85);
             this.btnLastMonth.TabIndex = 8;
@@ -114,18 +96,79 @@ namespace UI_ChambreFroide_V1
             this.btnLastMonth.UseVisualStyleBackColor = true;
             this.btnLastMonth.Click += new System.EventHandler(this.timeframeBtns_Click);
             // 
+            // labelTitre
+            // 
+            this.labelTitre.AutoSize = true;
+            this.labelTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitre.Location = new System.Drawing.Point(36, 24);
+            this.labelTitre.Name = "labelTitre";
+            this.labelTitre.Size = new System.Drawing.Size(784, 73);
+            this.labelTitre.TabIndex = 15;
+            this.labelTitre.Text = "Choix du capteur à étudier";
+            // 
+            // btnGroupName
+            // 
+            this.btnGroupName.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnGroupName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGroupName.Location = new System.Drawing.Point(713, 299);
+            this.btnGroupName.Name = "btnGroupName";
+            this.btnGroupName.Size = new System.Drawing.Size(143, 89);
+            this.btnGroupName.TabIndex = 14;
+            this.btnGroupName.Text = "Groupes";
+            this.btnGroupName.UseVisualStyleBackColor = true;
+            this.btnGroupName.Click += new System.EventHandler(this.btnGroupName_Click);
+            // 
+            // listBoxChoixCapteur
+            // 
+            this.listBoxChoixCapteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxChoixCapteur.FormattingEnabled = true;
+            this.listBoxChoixCapteur.ItemHeight = 42;
+            this.listBoxChoixCapteur.Location = new System.Drawing.Point(12, 115);
+            this.listBoxChoixCapteur.Name = "listBoxChoixCapteur";
+            this.listBoxChoixCapteur.Size = new System.Drawing.Size(695, 466);
+            this.listBoxChoixCapteur.TabIndex = 13;
+            // 
+            // btnDown
+            // 
+            this.btnDown.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDown.Location = new System.Drawing.Point(713, 394);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnDown.Size = new System.Drawing.Size(143, 86);
+            this.btnDown.TabIndex = 11;
+            this.btnDown.Text = "▼";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUp.Location = new System.Drawing.Point(713, 210);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnUp.Size = new System.Drawing.Size(143, 86);
+            this.btnUp.TabIndex = 10;
+            this.btnUp.Text = "▲";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
             // FormHistorique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.labelTitre);
+            this.Controls.Add(this.btnGroupName);
+            this.Controls.Add(this.listBoxChoixCapteur);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnLastMonth);
             this.Controls.Add(this.btnLastWeek);
             this.Controls.Add(this.btnLastDay);
             this.Controls.Add(this.btnMoreOptions);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnSelectCapteur);
-            this.Controls.Add(this.lbTitreHistorique);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormHistorique";
             this.Text = "Form2";
@@ -136,13 +179,15 @@ namespace UI_ChambreFroide_V1
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbTitreHistorique;
-        private System.Windows.Forms.Button btnSelectCapteur;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnMoreOptions;
         private System.Windows.Forms.Button btnLastDay;
         private System.Windows.Forms.Button btnLastWeek;
         private System.Windows.Forms.Button btnLastMonth;
+        private System.Windows.Forms.Label labelTitre;
+        private System.Windows.Forms.Button btnGroupName;
+        private System.Windows.Forms.ListBox listBoxChoixCapteur;
+        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Button btnUp;
     }
 }

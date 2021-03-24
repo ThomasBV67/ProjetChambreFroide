@@ -16,16 +16,19 @@ namespace UI_ChambreFroide_V1
     public partial class FormChart : Form
     {
 
-        public FormChart(ChartValues<double> val)
+        public FormChart(List<ChartValues<double>> vals)
         {
             InitializeComponent();
-
-
-            chartTemp.Series.Add(new LineSeries
+       
+            foreach(ChartValues<double> values in vals)
             {
-                Values = val,
-                PointGeometry = null
-            }) ;
+                chartTemp.Series.Add(new LineSeries
+                {
+                    Values = values,
+                    PointGeometry = null
+                }) ;
+            }
+            
         }
 
         private void btnBack_Click(object sender, EventArgs e)

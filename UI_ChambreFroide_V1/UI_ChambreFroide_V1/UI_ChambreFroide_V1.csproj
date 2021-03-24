@@ -94,12 +94,6 @@
     <Compile Include="FormChart.Designer.cs">
       <DependentUpon>FormChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormChoixCapteur.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormChoixCapteur.Designer.cs">
-      <DependentUpon>FormChoixCapteur.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormChoixPlageTemps.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,9 +138,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormChart.resx">
       <DependentUpon>FormChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormChoixCapteur.resx">
-      <DependentUpon>FormChoixCapteur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChoixPlageTemps.resx">
       <DependentUpon>FormChoixPlageTemps.cs</DependentUpon>

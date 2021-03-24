@@ -271,9 +271,9 @@ namespace UI_ChambreFroide_V1
             List<MesureTemp> listTemp = new List<MesureTemp>(); // Liste pour le retour
 
             // Commande sql montée avec les variables
-            /*String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "' AND TimeStamp > '" + startTime.ToString("yyyy-MM-dd HH:mm:ss")
-                + "' AND TimeStamp < '" + endTime.ToString("yyyy-MM-dd HH:mm:ss") + "'";*/
-            String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "'";
+            String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "' AND TimeStamp > '" + startTime.ToString("yyyy-MM-dd HH:mm:ss")
+                + "' AND TimeStamp < '" + endTime.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            //String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "'";
 
             // Execute la commande
             using (IDbConnection conn = new SQLiteConnection(GetConnectionString()))
