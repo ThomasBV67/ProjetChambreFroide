@@ -22,7 +22,6 @@ namespace UI_ChambreFroide_V1
        
             foreach(ChartValues<double> values in vals)
             {
-<<<<<<< Updated upstream
                 chartTemp.Series.Add(new LineSeries
                 {
                     Values = values,
@@ -30,17 +29,41 @@ namespace UI_ChambreFroide_V1
                 }) ;
             }
             
-=======
-                Values = val,
-                PointGeometry = null,
-                
-            }) ;
->>>>>>> Stashed changes
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private ChartValues<double> GetAveragedValues(ChartValues<double> vals, int numberReturnVals)
+        {
+            ChartValues<double> avgVals = new ChartValues<double>();
+            double coefficient = 0, total = 0, reste = 0, count = 0, modifCoefficient =0, roundedCoefficient =0; 
+
+            coefficient = (double)vals.Count / (double)numberReturnVals;
+
+            modifCoefficient = coefficient + reste;
+            roundedCoefficient = Math.Round(modifCoefficient);
+            reste = modifCoefficient - roundedCoefficient;
+
+            for (int i = 0; i < vals.Count; i++)
+            {
+                count++;
+                if (count < roundedCoefficient)
+                {
+                    total += vals[i];
+                }
+                else
+                {
+                    avgVals.Add(total / roundedCoefficient);
+                    total = 0;
+                    count = 0;
+                    modifCoefficient = coefficient + reste;
+                    roundedCoefficient = Math.Round(modifCoefficient);
+                }
+            }
+            return avgVals;
         }
     }
 }
