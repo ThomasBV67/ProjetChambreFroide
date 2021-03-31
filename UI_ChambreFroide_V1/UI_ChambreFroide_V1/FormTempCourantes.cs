@@ -29,8 +29,10 @@ namespace UI_ChambreFroide_V1
         int e = 0;
         int eMod1 = 0;
         int eMod2 = 0;
+        int eMod3 = 0;
         int eCritMod1 = 0;
         int eCritMod2 = 0;
+        int eCritMod3 = 0;
         int nbCycles = 0;
 
         int tempsAttente = 20;
@@ -367,9 +369,13 @@ namespace UI_ChambreFroide_V1
             {
                 eMod1++;
             }
-            else    // erreur vient du module 2
+            else if(lst_Capteurs[capteurEnCours].Module == 2)    // erreur vient du module 2
             {
                 eMod2++;
+            }
+            else //Erreur vient du module 3
+            {
+                eMod3++;
             }
 
 
@@ -387,9 +393,13 @@ namespace UI_ChambreFroide_V1
                 {
                     eCritMod1++;
                 }
-                else    //Erreur vient du module 2
+                else if(lst_Capteurs[capteurEnCours].Module == 2) //Erreur vient du module 2
                 {
                     eCritMod2++;
+                }
+                else    //Erreur vient du module 3
+                {
+                    eCritMod3++;
                 }
 
                 if (++capteurEnCours >= lst_Capteurs.Count)//Si est à la fin de la liste, redémarre l'attente
@@ -406,8 +416,10 @@ namespace UI_ChambreFroide_V1
             lbErr.Text = "Erreurs : " + Convert.ToString(e);
             lbErrMod1.Text = "Erreurs Module 1 : " + Convert.ToString(eMod1);
             lbErrMod2.Text = "Erreurs Module 2 : " + Convert.ToString(eMod2);
+            lbErrMod3.Text = "Erreurs Module 3 : " + Convert.ToString(eMod3);
             lbCritErrMod1.Text = "Erreurs Critiques Module 1: " + Convert.ToString(eCritMod1);
             lbCritErrMod2.Text = "Erreurs Critiques Module 2: " + Convert.ToString(eCritMod2);
+            lbCritErrMod3.Text = "Erreurs Critiques Module 3: " + Convert.ToString(eCritMod3);
 
         }
 
