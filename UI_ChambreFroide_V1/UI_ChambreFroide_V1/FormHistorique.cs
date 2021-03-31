@@ -25,6 +25,9 @@ namespace UI_ChambreFroide_V1
         public List<Capteur> m_listCapteurs = new List<Capteur>();
         public List<String> m_listGroups = new List<String>();
         public List<ChartValues<double>> m_valuesChart = new List<ChartValues<double>>();
+        public List<string> m_selectedCapteurs = new List<string>();
+        public List<List<DateTime>> m_dateTimes = new List<List<DateTime>>();
+
 
         private int divFactor = 0;
         public enum timeFrameChoice {Day, Week, Month, Other};
@@ -91,7 +94,7 @@ namespace UI_ChambreFroide_V1
             }
             UpdateGraphique();
 
-            FormChart test = new FormChart(m_valuesChart);
+            FormChart test = new FormChart(m_valuesChart, m_dateTimes, m_selectedCapteurs);
             test.Show();
         }
 
@@ -101,44 +104,48 @@ namespace UI_ChambreFroide_V1
         private void UpdateGraphique()
         {
             AccesDB accesDB = new AccesDB();
-            List<String> listTime = new List<String>();
+            List<DateTime> listTime = new List<DateTime>();
             List<MesureTemp> listTemp = new List<MesureTemp>();
 
             m_listCapteurs = AccesDB.GetSetCapteurs();
 
             m_valuesChart.Clear();
-            //divFactor = 0;
+            m_selectedCapteurs.Clear();
+            m_dateTimes.Clear();
 
-            foreach(Capteur cap in m_listCapteurs)
+            foreach (Capteur cap in m_listCapteurs)
             {
                 
                 if (btnGroupName.Text == "Capteurs")
                 {
                     if (cap.GroupCapteur == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
+                        m_selectedCapteurs.Add(cap.Name);
                         listTemp.AddRange(accesDB.GetTemperatures(startTime, endTime, cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature);
-                            listTime.Add(temperature.TimeStamp);
+                            listTime.Add(Convert.ToDateTime(temperature.TimeStamp));
                         }
                         m_valuesChart.Add(temp);
+                        m_dateTimes.Add(listTime);
                     }
                 }
                 else
                 {
                     if (cap.Name == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
+                        m_selectedCapteurs.Add(cap.Name);
                         listTemp.AddRange(accesDB.GetTemperatures(startTime, endTime, cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature);
-                            listTime.Add(temperature.TimeStamp);
+                            listTime.Add(Convert.ToDateTime(temperature.TimeStamp));
                         }
                         m_valuesChart.Add(temp);
-
+                        m_dateTimes.Add(listTime);
                     }
                 }
                 listTemp.Clear();
