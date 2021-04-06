@@ -15,9 +15,9 @@ namespace UI_ChambreFroide_V1
     /// </summary>
     public partial class FormConfig : Form
     {
-        public FormTempCourantes pagePrincipale;
-        public FormModifCapteur objFormModifCapteur = new FormModifCapteur();
-        int selectedIndex = 0;
+        public FormTempCourantes pagePrincipale; // lien vers le formTempCourantes
+        public FormModifCapteur objFormModifCapteur = new FormModifCapteur();  
+        int selectedIndex = 0; // valeur utilisée pour déterminer quel capteur est sélectionné dans le dataGridView
 
         public FormConfig()
         {
@@ -188,53 +188,63 @@ namespace UI_ChambreFroide_V1
         }
 
         /// <summary>
-        /// 
+        /// Appuyer sur le bouton de modification affiche le formModifCapteur avec les valeurs
+        /// du capteur qui est sélectionné dans le dataGridView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void b_modifyCapteur_Click(object sender, EventArgs e)
         {
-
+            // fait rien si aucun capteurs ne sont dans le dataGridView
             if (listeCapteurs.Rows.Count == 0)
                 return;
 
+            // si erreur de sélection, prends le dernier
             if (selectedIndex >= listeCapteurs.Rows.Count)
             {
                 selectedIndex = listeCapteurs.Rows.Count - 1;
             }
 
+            // si déja un nom associé : transfert le nom
             if (listeCapteurs.Rows[selectedIndex].Cells[3].Value != null)
             {
                 objFormModifCapteur.m_name = listeCapteurs.Rows[selectedIndex].Cells[3].Value.ToString();
             }
-            else
+            else // si pas de nom, laisse le champ vide
             {
                 objFormModifCapteur.m_name = "";
             }
+
+            // si déja un nom de groupe : transfert le nom de groupe
             if (listeCapteurs.Rows[selectedIndex].Cells[4].Value != null)
             {
                 objFormModifCapteur.m_group = listeCapteurs.Rows[selectedIndex].Cells[4].Value.ToString();
             }
-            else
+            else // si pas de nom de groupe, laisse le champ vide
             {
                 objFormModifCapteur.m_group = "";
             }
+
+            // si déja un niveau d'avertissement : transfert la valeur
             if (listeCapteurs.Rows[selectedIndex].Cells[5].Value != null)
             {
                 objFormModifCapteur.m_warning = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[5].Value);
             }
-            else
+            else // si pas de valeur d'avertissement : met 5 de base 
             {
                 objFormModifCapteur.m_warning = 5;
             }
+
+            // si déja un niveau d'alerte : transfert la valeur
             if (listeCapteurs.Rows[selectedIndex].Cells[6].Value != null)
             {
                 objFormModifCapteur.m_alert = Convert.ToDouble(listeCapteurs.Rows[selectedIndex].Cells[6].Value);
             }
-            else
+            else // si pas de valeur d'alerte : met 8 de base 
             {
                 objFormModifCapteur.m_alert = 8;
             }
+
             objFormModifCapteur.m_module = Convert.ToInt32(listeCapteurs.Rows[selectedIndex].Cells[1].Value);
             objFormModifCapteur.m_capteur = Convert.ToInt32(listeCapteurs.Rows[selectedIndex].Cells[2].Value);
 
@@ -252,6 +262,12 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Évenement de click du bouton haut. Lorsque le bouton est appuyé, si le capteur sélectionné
+        /// n'est pas celui le plus haut, on monte de 1 dans la liste de capteurs.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_up_Click(object sender, EventArgs e)
         {
             if(selectedIndex>0)

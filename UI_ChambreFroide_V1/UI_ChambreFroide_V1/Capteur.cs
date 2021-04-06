@@ -25,7 +25,7 @@ namespace UI_ChambreFroide_V1
         public int Id, Module, ModuleIndex, Ready;
 
         /// <summary>
-        /// Constructeur
+        /// Constructeur par défaut
         /// </summary>
         /// <param name="pAddresse"></param>
         /// <param name="pModule"></param>
@@ -39,6 +39,16 @@ namespace UI_ChambreFroide_V1
             AlertHigh = 0;
         }
 
+        /// <summary>
+        /// Constructeur complet
+        /// </summary>
+        /// <param name="pAddresse"></param>
+        /// <param name="pModule"></param>
+        /// <param name="pIndex"></param>
+        /// <param name="pNom"></param>
+        /// <param name="pGroupe"></param>
+        /// <param name="pLow"></param>
+        /// <param name="pHigh"></param>
         public Capteur(String pAddresse, int pModule, int pIndex, String pNom, String pGroupe, double pLow, double pHigh)
         {
             Address = pAddresse;
@@ -50,6 +60,9 @@ namespace UI_ChambreFroide_V1
             AlertHigh = pHigh;
         }
 
+        /// <summary>
+        /// Constructeur vide pour la db
+        /// </summary>
         public Capteur() { }
         
         /// <summary>
