@@ -4,8 +4,7 @@
 #include <DallasTemperature.h> 
 
 #include <SPI.h>
-#include <LoRa.h>
-
+#include <LoRa.h> 
 String NUM_MODULE = "1";
 
 //define the pins used by the transceiver module
@@ -13,7 +12,7 @@ String NUM_MODULE = "1";
 #define rst 9
 #define dio0 2
 // Data wire is plugged into port 2 on the Arduino 
-#define ONE_WIRE_BUS 4
+#define ONE_WIRE_BUS 3
 
 // Setup a oneWire instance to communicate with any OneWire devices 
 OneWire oneWire(ONE_WIRE_BUS); 
