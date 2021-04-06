@@ -4,9 +4,8 @@
 #include <DallasTemperature.h> 
 
 #include <SPI.h>
-#include <LoRa.h>
-
-String NUM_MODULE = "4";
+#include <LoRa.h> 
+String NUM_MODULE = "1";
 
 //define the pins used by the transceiver module
 #define ss 10
