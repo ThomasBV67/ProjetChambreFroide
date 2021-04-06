@@ -46,9 +46,10 @@ namespace UI_ChambreFroide_V1
             InitializeComponent();
 
             // permet d'associer au graphique le format DateModel déclaré plus haut
+            /*
             var dayConfig = Mappers.Xy<DateModel>()
                 .X(dayModel => (double)dayModel.DateTime.Ticks / TimeSpan.FromHours(1).Ticks)
-                .Y(dayModel => dayModel.Value);
+                .Y(dayModel => dayModel.Value);*/
 
             // ajoute une légende en haut du graphique
             chartTemp.LegendLocation = LegendLocation.Top;
@@ -58,8 +59,10 @@ namespace UI_ChambreFroide_V1
             // passe dans la boucle pour chaque capteur à afficher
             for(int i = 0; i < values.Count; i++)
             {
-                for (int j = 0; j < values[i].Count; j++)
+                /*for (int j = 0; j < values[i].Count; j++)
                 {
+                    // Final
+                    
                     chartTemp.Series.Add(new LineSeries
                     {
                         // on ajuste les données pour obtenir un nombre de points affichables
@@ -71,13 +74,23 @@ namespace UI_ChambreFroide_V1
                         // ajoute un titre lié au nom du capteur
                         Title = nameSeries[i]
                     });
-                }
+                    // Test
+                    
+                }*/
+                chartTemp.Series.Add(new LineSeries
+                    {
+                        Values = GetAveragedValues(values[i], 500),
+                        PointGeometry = null,
+                        Fill = Brushes.Transparent,
+                        Title = nameSeries[i]
+                    }) ;
             }
             // on associe l'axe des x du graphique a un format de temps
+            /*
             chartTemp.AxisX.Add(new Axis
             {
                 LabelFormatter = value => new System.DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("t")
-            });
+            });*/
         }
 
         /// <summary>
