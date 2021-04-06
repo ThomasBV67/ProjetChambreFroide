@@ -296,6 +296,11 @@ namespace UI_ChambreFroide_V1
                 {
                     lst_Capteurs[i].Name = "";
                 }
+                lst_Capteurs[i].GroupCapteur = (string)objFormConfig.listeCapteurs.Rows[i].Cells[4].Value;
+                if (lst_Capteurs[i].GroupCapteur == null)
+                {
+                    lst_Capteurs[i].GroupCapteur = "";
+                }
                 lst_Capteurs[i].AlertLow = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[i].Cells[5].Value);//Ajoute les limites aux objets
                 lst_Capteurs[i].AlertHigh = Convert.ToDouble(objFormConfig.listeCapteurs.Rows[i].Cells[6].Value);
                 AccesDB.SetCapteur(lst_Capteurs[i]);
