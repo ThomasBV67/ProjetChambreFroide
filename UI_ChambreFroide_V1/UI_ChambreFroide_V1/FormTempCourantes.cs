@@ -128,6 +128,7 @@ namespace UI_ChambreFroide_V1
         private void b_historique_Click(object sender, EventArgs e)
         {
             objFormHistorique.Show();
+            objFormHistorique.reloadList();
         }
 
         /// <summary>
