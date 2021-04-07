@@ -19,27 +19,24 @@ namespace UI_ChambreFroide_V1
     /// </summary>
     public partial class FormHistorique : Form
     {
-        public String selectedName; // variables ayant une valeur donnée par le form de choix de capteur
-        public bool selectedIsGroup;
-
-        public List<Capteur> m_listCapteurs = new List<Capteur>();
-        public List<String> m_listGroups = new List<String>();
-        public List<ChartValues<double>> m_valuesChart = new List<ChartValues<double>>();
-        public List<string> m_selectedCapteurs = new List<string>();
-        public List<List<DateTime>> m_dateTimes = new List<List<DateTime>>();
+        public List<Capteur> m_listCapteurs = new List<Capteur>(); // liste des capteurs dans la db
+        public List<String> m_listGroups = new List<String>();  // liste des groupes dans la db
+        public List<ChartValues<double>> m_valuesChart = new List<ChartValues<double>>();   // liste de listes contenant des valeurs double de température
+        public List<string> m_selectedCapteurs = new List<string>();    // liste des noms de capteurs sélectionnés
+        public List<List<DateTime>> m_dateTimes = new List<List<DateTime>>(); //liste de listes de timestamp
 
 
-        private int divFactor = 0;
-        public enum timeFrameChoice {Day, Week, Month, Other};
-        public timeFrameChoice timeFrame = timeFrameChoice.Day;
-
-        DateTime endTime = DateTime.Now;
-        DateTime startTime = DateTime.Now.AddDays(-1);
+        // variables tempon pour les time stamps limite du graphique
+        DateTime m_endTime = DateTime.Now;
+        DateTime m_startTime = DateTime.Now.AddDays(-1);
         
-
+        /// <summary>
+        /// Constructeur
+        /// </summary>
         public FormHistorique()
         {
             InitializeComponent();
+
             m_listCapteurs = AccesDB.GetSetCapteurs(); // Update la liste de capteurs via la db
 
             foreach (Capteur cap in m_listCapteurs) // Affiche les capteurs dans le listbox
@@ -48,7 +45,6 @@ namespace UI_ChambreFroide_V1
             }
 
         }
-
 
         /// <summary>
         /// Retourn au form précédent
@@ -61,41 +57,46 @@ namespace UI_ChambreFroide_V1
         }
 
         /// <summary>
-        /// 
+        /// Évènement de click des boutons offrant des options pour le temps. Cette fonction set les timeStamps
+        /// utilisés pour aller chercher les données de la database, lance une demande de données puis génère le
+        /// form de graphique avec ces données
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void timeframeBtns_Click(object sender, EventArgs e)
         {
-            if(sender.Equals(btnLastDay))
+            if(sender.Equals(btnLastDay)) // dernier 24h
             {
-                timeFrame = timeFrameChoice.Day;
-                endTime = DateTime.Now;
-                startTime = DateTime.Now.AddDays(-1);
+                m_endTime = DateTime.Now;
+                m_startTime = DateTime.Now.AddDays(-1);
                 
             }
-            else if(sender.Equals(btnLastWeek))
+            else if(sender.Equals(btnLastWeek)) // dernier 7 jours
             {
-                timeFrame = timeFrameChoice.Week;
-                endTime = DateTime.Now;
-                startTime = DateTime.Now.AddDays(-7);
+                m_endTime = DateTime.Now;
+                m_startTime = DateTime.Now.AddDays(-7);
             }
-            else if (sender.Equals(btnLastMonth))
+            else if (sender.Equals(btnLastMonth)) // dernier mois
             {
-                timeFrame = timeFrameChoice.Month;
-                endTime = DateTime.Now;
-                startTime = DateTime.Now.AddMonths(-1);
+                m_endTime = DateTime.Now;
+                m_startTime = DateTime.Now.AddMonths(-1);
             }
-            else if (sender.Equals(btnMoreOptions))
+            else if (sender.Equals(btnMoreOptions)) // autre, ouvre le form ayant plus de choix
             {
-                timeFrame = timeFrameChoice.Other;
-                endTime = DateTime.Now;
-                startTime = DateTime.Now.AddDays(-1);
+                m_endTime = DateTime.Now;
+                m_startTime = DateTime.Now.AddDays(-1);
             }
-            UpdateGraphique();
 
-            FormChart test = new FormChart(m_valuesChart, m_dateTimes, m_selectedCapteurs);
-            test.Show();
+            try
+            {
+                UpdateGraphique();
+                FormChart test = new FormChart(m_valuesChart, m_dateTimes, m_selectedCapteurs);
+                test.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Veuillez sélectionner un capteur.");
+            }
         }
 
         /// <summary>
@@ -115,13 +116,12 @@ namespace UI_ChambreFroide_V1
 
             foreach (Capteur cap in m_listCapteurs)
             {
-                
                 if (btnGroupName.Text == "Capteurs")
                 {
                     if (cap.GroupCapteur == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
                         m_selectedCapteurs.Add(cap.Name);
-                        listTemp.AddRange(accesDB.GetTemperatures(startTime, endTime, cap.Address));
+                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
                         foreach (MesureTemp temperature in listTemp)
                         {
@@ -137,7 +137,7 @@ namespace UI_ChambreFroide_V1
                     if (cap.Name == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
                         m_selectedCapteurs.Add(cap.Name);
-                        listTemp.AddRange(accesDB.GetTemperatures(startTime, endTime, cap.Address));
+                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
                         foreach (MesureTemp temperature in listTemp)
                         {
@@ -149,7 +149,6 @@ namespace UI_ChambreFroide_V1
                     }
                 }
                 listTemp.Clear();
-               
             }                
         }
 
@@ -173,14 +172,11 @@ namespace UI_ChambreFroide_V1
         /// <param name="e"></param>
         private void btnDown_Click(object sender, EventArgs e)
         {
-
             if (listBoxChoixCapteur.SelectedIndex < listBoxChoixCapteur.Items.Count - 1)
             {
                 listBoxChoixCapteur.SelectedIndex += 1;
             }
         }
-
-
 
         /// <summary>
         /// Ce bouton permet de changer la sélection de capteur en sélection de groupe et vice-versa.
@@ -211,6 +207,33 @@ namespace UI_ChambreFroide_V1
                 foreach (Capteur cap in m_listCapteurs) // Affiche les capteurs dans le listbox
                 {
                     listBoxChoixCapteur.Items.Add(cap.Name);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Fonction servant a mettre a jour la liste dans le cas ou les noms ai été modifiés par le form de config
+        /// </summary>
+        public void reloadList()
+        {
+            listBoxChoixCapteur.Items.Clear();
+
+            if (btnGroupName.Text == "Groupes") // en mode capteur
+            {
+                m_listCapteurs = AccesDB.GetSetCapteurs(); // Update la liste de capteurs via la db
+
+                foreach (Capteur cap in m_listCapteurs) // Affiche les capteurs dans le listbox
+                {
+                    listBoxChoixCapteur.Items.Add(cap.Name);
+                }
+            }
+            else // en mode groupe
+            {
+                m_listGroups = AccesDB.GetGroups(); // Update la liste de groupes via de la db
+
+                foreach (String str in m_listGroups) // Affiche les groupes dans le listbox
+                {
+                    listBoxChoixCapteur.Items.Add(str);
                 }
             }
         }

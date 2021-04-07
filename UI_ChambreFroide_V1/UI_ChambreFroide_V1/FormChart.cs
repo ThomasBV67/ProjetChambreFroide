@@ -25,7 +25,7 @@ namespace UI_ChambreFroide_V1
         /// </summary>
         public class DateModel
         {
-            public System.DateTime DateTime { get; set; }
+            public DateTime DateTime { get; set; }
             public double Value { get; set; }
 
             public DateModel(DateTime time, double val)
@@ -46,45 +46,71 @@ namespace UI_ChambreFroide_V1
             InitializeComponent();
 
             // permet d'associer au graphique le format DateModel déclaré plus haut
-            /*
+            
             var dayConfig = Mappers.Xy<DateModel>()
                 .X(dayModel => (double)dayModel.DateTime.Ticks / TimeSpan.FromHours(1).Ticks)
-                .Y(dayModel => dayModel.Value);*/
+                .Y(dayModel => dayModel.Value);
+
+            LiveCharts.Charting.For<DateModel>(dayConfig, SeriesOrientation.Horizontal);
 
             // ajoute une légende en haut du graphique
             chartTemp.LegendLocation = LegendLocation.Top;
             chartTemp.DefaultLegend.Visibility = System.Windows.Visibility.Visible;
+            
 
             // boucle servant à ajouter les séries de points au graphique
             // passe dans la boucle pour chaque capteur à afficher
             for(int i = 0; i < values.Count; i++)
             {
-                /*for (int j = 0; j < values[i].Count; j++)
-                {
-                    // Final
+                // Final
                     
-                    chartTemp.Series.Add(new LineSeries
-                    {
-                        // on ajuste les données pour obtenir un nombre de points affichables
-                        Values = GetDateModels(GetAveragedValues(values[i], 250), GetAverageDateTime(timeStamps[i], 250)),
-                        // juste la ligne, pas de points
-                        PointGeometry = null,
-                        // pas de remplissage
-                        Fill = Brushes.Transparent,
-                        // ajoute un titre lié au nom du capteur
-                        Title = nameSeries[i]
-                    });
-                    // Test
-                    
-                }*/
                 chartTemp.Series.Add(new LineSeries
+                {
+                    // on ajuste les données pour obtenir un nombre de points affichables
+                    Values = GetDateModels(GetAveragedValues(values[i], 250), GetAverageDateTime(timeStamps[i], 250)),
+                    // juste la ligne, pas de points
+                    PointGeometry = DefaultGeometries.Circle,
+                    // pas de remplissage
+                    Fill = Brushes.Transparent,
+                    // ajoute un titre lié au nom du capteur
+                    Title = nameSeries[i]
+                });
+
+                // Test
+                    
+                /*chartTemp.Series.Add(new LineSeries
                     {
                         Values = GetAveragedValues(values[i], 500),
                         PointGeometry = null,
                         Fill = Brushes.Transparent,
                         Title = nameSeries[i]
-                    }) ;
+                    }) ;*/
             }
+
+            Axis yAxis = new Axis();
+            yAxis.Name = "AxisY";
+            yAxis.Title = "Température (oC)";
+            yAxis.FontSize = 20;
+            yAxis.Foreground = Brushes.Black;
+            yAxis.Separator.Step = 0.5;
+            yAxis.LabelFormatter = val => val + "°C";
+            chartTemp.AxisY.Add(yAxis);
+
+            Axis xAxis = new Axis();
+            xAxis.Name = "AxisX";
+            xAxis.Title = "Temps";
+            xAxis.FontSize = 20;
+            xAxis.Foreground = Brushes.Black;
+            xAxis.LabelFormatter = value => new DateTime((long)value).ToString("yyyy-MM-dd HH:mm:ss");
+
+            chartTemp.AxisX.Add(xAxis);
+
+            AxisSection yAxisSection = new AxisSection();
+            yAxisSection.Value = 0;
+            yAxisSection.SectionWidth = 25;
+            yAxisSection.StrokeThickness = 2;
+            chartTemp.AxisY[0].Sections.Add(yAxisSection);
+      
             // on associe l'axe des x du graphique a un format de temps
             /*
             chartTemp.AxisX.Add(new Axis
@@ -161,14 +187,15 @@ namespace UI_ChambreFroide_V1
         private List<DateTime> GetAverageDateTime(List<DateTime> times, int numberReturnVals)
         {
             List<DateTime> avgTimes = new List<DateTime>(); // liste de toutes les valeurs à retourner
-            double coefficient = 0, // nombre utilisé pour calculer le nombre de valeurs à prendre en compte pour les moyennes
-                total = 0, // variable tempon pour les moyennes
+            decimal coefficient = 0, // nombre utilisé pour calculer le nombre de valeurs à prendre en compte pour les moyennes
+                
                 reste = 0, // variable pour ajuster le coefficient
                 count = 0, // compte de combien de valeurs sont déja dans le tempon
                 modifCoefficient = 0, // coefficient modifié par rapport a la variable reste
                 roundedCoefficient = 0; // coefficient arrondi pour faire les calculs
+            decimal total = 0; // variable tempon pour les moyennes
 
-            coefficient = (double)times.Count / (double)numberReturnVals;
+            coefficient = (decimal)times.Count / (decimal)numberReturnVals;
 
             modifCoefficient = coefficient + reste; // calcul du coefficient modifié 
             roundedCoefficient = Math.Round(modifCoefficient); // calcul du coefficient arrondi (donc utilisable)
@@ -185,8 +212,9 @@ namespace UI_ChambreFroide_V1
                 }
                 else // si assez de valeurs en tempon, calcule la moyenne et recalcule tous les coefficients
                 {
+                    total = Math.Round(total);
                     avgTimes.Add(new DateTime((long)total));
-                    total = 0D;
+                    total = 0;
                     count = 0;
                     modifCoefficient = coefficient + reste;
                     roundedCoefficient = Math.Round(modifCoefficient);
