@@ -9,6 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Le form sert de clavier visuel. Il peut etre ouvert de deux façons: en mode texte ou en mode numérique.
+/// Le mode est choisi en fonction de l'utilisation désirée du clavier.
+/// 
+/// Clavier textuel:
+/// Le clavier permet d'écrire de a-z , effacer, changer mode majuscule/minuscule et d'insérer des espaces.
+/// 
+/// Clavier numérique:
+/// le clavier permet d'écrire de 0-9, d'effacer et de changer de signe.
+/// 
+/// </summary>
 namespace UI_ChambreFroide_V1
 {
     public partial class FormZoneTexte : Form
@@ -250,6 +261,10 @@ namespace UI_ChambreFroide_V1
                 {
                     bouton.Text = "⇧";
                 }
+            }
+            else if(bouton.Text == "|_____|")
+            {
+                tbModif.Text += " ";
             }
             else
             {
