@@ -8,7 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Forms;
-
+/// <summary>
+/// Classe comprenant toutes les instructions pour les boutons de controle présents sur la page.
+/// La classe est aussi chargée de gérer les communications série ainsi que de l'affichage des températures
+/// reçues dans le tableau d'affichage principal.
+/// 
+/// Controles présents sur la page:
+/// L'ouverture des différents menus sont gérés par la classe. Le menu de configuration ainsi que le menu d'historique.
+/// Les boutons de changement de page de capteurs y sont gérés. Ces boutons permettent de changer de placge de capteurs 
+/// si le nombre de capteurs présents dépasse la capacité d'affichage du programme.
+/// 
+/// Gestion du port série:
+/// La classe gère les entrées et sorties du port série. Elle gère aussi l'ouverture automatique du port au démarrage du programme.
+/// Les sorties sont gérées par des fonctions spécifiques(reqTemp)
+/// Les entrées sont gérées par la fonction delegate_getLoRa. Cette fonction gère tout les types d'entrée(découverte de réseau, 
+/// température entrante et ping)
+/// 
+/// Affichage des températures:
+/// La fonction MAJAffichageTemps est la principale responsable de l'affichage des températures dans le tableau principal.
+/// 
+/// </summary>
 namespace UI_ChambreFroide_V1
 {
     /// <summary>

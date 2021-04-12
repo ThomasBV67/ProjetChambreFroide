@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Permet de choisir entre les différents paramètres à appliquer au capteur associé.
+/// 
+/// Le menu permet de soit modifier les valeurs du capteur(nom, groupe et niveaux d'alerte), soit envoyer une requete unique de température (ping) ou de supprimer le capteur
+/// </summary>
 namespace UI_ChambreFroide_V1
 {
     public partial class FormModifCapteur : Form

@@ -8,6 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Permet de configuere le port série et l'ensemble des capteurs sur le réseau.
+/// La page de configuration regroupe les paramètres du port série ainsi que les paramètres de découverte/modification de capteurs.
+/// Il est possible pour l'utilisateur de découvrir les capteurs disponibles sur le réseau. Il est aussi possible de naviguer parmi
+/// les capteurs présents pour modifier leur configuration individuelle.
+/// </summary>
 namespace UI_ChambreFroide_V1
 {
     /// <summary>
