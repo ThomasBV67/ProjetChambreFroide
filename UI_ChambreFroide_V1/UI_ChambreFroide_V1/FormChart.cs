@@ -88,6 +88,7 @@ namespace UI_ChambreFroide_V1
                     }) ;*/
             }
 
+            // Section de personnalisation de l'axe des Y
             Axis yAxis = new Axis();
             yAxis.Name = "AxisY";
             yAxis.Title = "Température (oC)";
@@ -97,6 +98,7 @@ namespace UI_ChambreFroide_V1
             yAxis.LabelFormatter = val => val + "°C";
             chartTemp.AxisY.Add(yAxis);
 
+            // Section de personnalisation de l'axe des X
             Axis xAxis = new Axis();
             xAxis.Name = "AxisX";
             xAxis.Title = "Temps";
@@ -108,6 +110,7 @@ namespace UI_ChambreFroide_V1
 
             chartTemp.AxisX.Add(xAxis);
 
+            // Section d'ajout des niveaux de warning
             AxisSection yAxisSection = new AxisSection();
             yAxisSection.Value = 0;
             yAxisSection.SectionWidth = 25;
