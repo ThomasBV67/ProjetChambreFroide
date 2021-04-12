@@ -48,7 +48,8 @@ namespace UI_ChambreFroide_V1
             // permet d'associer au graphique le format DateModel déclaré plus haut
             
             var dayConfig = Mappers.Xy<DateModel>()
-                .X(dayModel => (double)dayModel.DateTime.Ticks / TimeSpan.FromHours(1).Ticks)
+                .X(dayModel => (double)dayModel.DateTime.Ticks / TimeSpan.FromDays(1).Ticks)
+                //.X(dayModel => dayModel.DateTime.Ticks / TimeSpan.FromHours(1).Ticks)
                 .Y(dayModel => dayModel.Value);
 
             LiveCharts.Charting.For<DateModel>(dayConfig, SeriesOrientation.Horizontal);
@@ -101,7 +102,9 @@ namespace UI_ChambreFroide_V1
             xAxis.Title = "Temps";
             xAxis.FontSize = 20;
             xAxis.Foreground = Brushes.Black;
-            xAxis.LabelFormatter = value => new DateTime((long)value).ToString("yyyy-MM-dd HH:mm:ss");
+            //xAxis.LabelFormatter = value => new DateTime((long)value).ToString("s");
+            xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd/MM/yy");
+
 
             chartTemp.AxisX.Add(xAxis);
 
@@ -208,12 +211,12 @@ namespace UI_ChambreFroide_V1
                 // si nombre de valeurs pour la moyenne pas atteint
                 if (count < roundedCoefficient)
                 {
-                    total += times[i].Ticks / roundedCoefficient;
+                    //total += times[i].Ticks / roundedCoefficient;
                 }
                 else // si assez de valeurs en tempon, calcule la moyenne et recalcule tous les coefficients
                 {
                     total = Math.Round(total);
-                    avgTimes.Add(new DateTime((long)total));
+                    avgTimes.Add(times[i - (int)roundedCoefficient/2]);
                     total = 0;
                     count = 0;
                     modifCoefficient = coefficient + reste;
