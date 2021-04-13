@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UI_ChambreFroide_V1
-{
+{   
     /// <summary>
     /// Ce form permet d'accéder à un historique de températures lié à un capteur ou un groupe de capteurs.
     /// La sélection se fait via le bouton Sélection du capteur.
@@ -24,11 +24,13 @@ namespace UI_ChambreFroide_V1
         public List<ChartValues<double>> m_valuesChart = new List<ChartValues<double>>();   // liste de listes contenant des valeurs double de température
         public List<string> m_selectedCapteurs = new List<string>();    // liste des noms de capteurs sélectionnés
         public List<List<DateTime>> m_dateTimes = new List<List<DateTime>>(); //liste de listes de timestamp
-
+        public WarningAlert m_warningAlertLevels = new WarningAlert(0,0);
+        public timeFrame m_timeFrame = timeFrame.LastDay;
 
         // variables tempon pour les time stamps limite du graphique
-        DateTime m_endTime = DateTime.Now;
-        DateTime m_startTime = DateTime.Now.AddDays(-1);
+        public DateTime m_endTime = DateTime.Now;
+        public DateTime m_startTime = DateTime.Now.AddDays(-1);
+
         
         /// <summary>
         /// Constructeur
@@ -69,7 +71,6 @@ namespace UI_ChambreFroide_V1
             {
                 m_endTime = DateTime.Now;
                 m_startTime = DateTime.Now.AddDays(-1);
-                
             }
             else if(sender.Equals(btnLastWeek)) // dernier 7 jours
             {
@@ -87,16 +88,16 @@ namespace UI_ChambreFroide_V1
                 m_startTime = DateTime.Now.AddDays(-1);
             }
 
-            try
-            {
+            //try
+            //{
                 UpdateGraphique();
-                FormChart test = new FormChart(m_valuesChart, m_dateTimes, m_selectedCapteurs);
+                FormChart test = new FormChart(m_valuesChart, m_dateTimes, m_selectedCapteurs, m_warningAlertLevels, m_startTime);
                 test.Show();
-            }
-            catch
-            {
-                MessageBox.Show("Veuillez sélectionner un capteur.");
-            }
+            //}
+            //catch
+            //{
+              //  MessageBox.Show("Veuillez sélectionner un capteur.");
+            //}
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace UI_ChambreFroide_V1
         private void UpdateGraphique()
         {
             AccesDB accesDB = new AccesDB();
-            List<DateTime> listTime = new List<DateTime>();
+            List<List<DateTime>> listTime = new List<List<DateTime>>();
             List<MesureTemp> listTemp = new List<MesureTemp>();
 
             m_listCapteurs = AccesDB.GetSetCapteurs();
@@ -121,15 +122,18 @@ namespace UI_ChambreFroide_V1
                     if (cap.GroupCapteur == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
                         m_selectedCapteurs.Add(cap.Name);
+                        m_warningAlertLevels.alert = cap.AlertHigh;
+                        m_warningAlertLevels.warning = cap.AlertLow;
                         listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
+                        List<DateTime> lstDate = new List<DateTime>();
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature);
-                            listTime.Add(Convert.ToDateTime(temperature.TimeStamp));
+                            lstDate.Add(Convert.ToDateTime(temperature.TimeStamp));
                         }
                         m_valuesChart.Add(temp);
-                        m_dateTimes.Add(listTime);
+                        m_dateTimes.Add(lstDate);
                     }
                 }
                 else
@@ -137,15 +141,18 @@ namespace UI_ChambreFroide_V1
                     if (cap.Name == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
                         m_selectedCapteurs.Add(cap.Name);
+                        m_warningAlertLevels.alert = cap.AlertHigh;
+                        m_warningAlertLevels.warning = cap.AlertLow;
                         listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
+                        List<DateTime> lstDate = new List<DateTime>();
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature);
-                            listTime.Add(Convert.ToDateTime(temperature.TimeStamp));
+                            lstDate.Add(Convert.ToDateTime(temperature.TimeStamp));
                         }
                         m_valuesChart.Add(temp);
-                        m_dateTimes.Add(listTime);
+                        m_dateTimes.Add(lstDate);
                     }
                 }
                 listTemp.Clear();
@@ -238,4 +245,17 @@ namespace UI_ChambreFroide_V1
             }
         }
     }
+    public class WarningAlert
+    {
+        public double warning, alert;
+        public WarningAlert(double warningLevel, double alertLevel)
+        {
+            warning = warningLevel;
+            alert = alertLevel;
+        }
+    }
+    public enum timeFrame
+    {
+        LastDay, LastWeek, LastMonth, Other
+    };
 }

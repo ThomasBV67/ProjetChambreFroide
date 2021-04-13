@@ -55,12 +55,10 @@ C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_C
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\bin\Debug\System.Data.SQLite.xml
-C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.Configuration.resources
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormChart.resources
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormChoixPlageTemps.resources
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormConfig.resources
-C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormHistorique.resources
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormModifCapteur.resources
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormTempCourantes.resources
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormZoneTexte.resources
@@ -70,3 +68,5 @@ C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_C
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csproj.CopyComplete
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.exe
 C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.pdb
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.csprojAssemblyReference.cache
+C:\Users\Thomas\Desktop\Cegep\Final\ProjetChambreFroide\UI_ChambreFroide_V1\UI_ChambreFroide_V1\obj\Debug\UI_ChambreFroide_V1.FormHistorique.resources

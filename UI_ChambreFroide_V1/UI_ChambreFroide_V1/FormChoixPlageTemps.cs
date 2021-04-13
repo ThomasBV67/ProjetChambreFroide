@@ -16,5 +16,11 @@ namespace UI_ChambreFroide_V1
         {
             InitializeComponent();
         }
+
+        private void btnStartDay_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            //if (btn.Text.)
+        }
     }
 }
