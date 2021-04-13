@@ -82,7 +82,7 @@
             this.btnStartDayUp.TabIndex = 0;
             this.btnStartDayUp.Text = "+";
             this.btnStartDayUp.UseVisualStyleBackColor = true;
-            this.btnStartDayUp.Click += new System.EventHandler(this.btnStartDay_Click);
+            this.btnStartDayUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // tbDateStart
             // 
@@ -188,6 +188,7 @@
             this.btnStartMinDown.TabIndex = 29;
             this.btnStartMinDown.Text = "-";
             this.btnStartMinDown.UseVisualStyleBackColor = true;
+            this.btnStartMinDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnStartHourDown
             // 
@@ -200,6 +201,7 @@
             this.btnStartHourDown.TabIndex = 28;
             this.btnStartHourDown.Text = "-";
             this.btnStartHourDown.UseVisualStyleBackColor = true;
+            this.btnStartHourDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnStartYearDown
             // 
@@ -212,6 +214,7 @@
             this.btnStartYearDown.TabIndex = 27;
             this.btnStartYearDown.Text = "-";
             this.btnStartYearDown.UseVisualStyleBackColor = true;
+            this.btnStartYearDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnStartMonthDown
             // 
@@ -224,6 +227,7 @@
             this.btnStartMonthDown.TabIndex = 26;
             this.btnStartMonthDown.Text = "-";
             this.btnStartMonthDown.UseVisualStyleBackColor = true;
+            this.btnStartMonthDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnStartMinUp
             // 
@@ -236,6 +240,7 @@
             this.btnStartMinUp.TabIndex = 25;
             this.btnStartMinUp.Text = "+";
             this.btnStartMinUp.UseVisualStyleBackColor = true;
+            this.btnStartMinUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnStartHourUp
             // 
@@ -248,6 +253,7 @@
             this.btnStartHourUp.TabIndex = 24;
             this.btnStartHourUp.Text = "+";
             this.btnStartHourUp.UseVisualStyleBackColor = true;
+            this.btnStartHourUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnStartYearUp
             // 
@@ -260,6 +266,7 @@
             this.btnStartYearUp.TabIndex = 23;
             this.btnStartYearUp.Text = "+";
             this.btnStartYearUp.UseVisualStyleBackColor = true;
+            this.btnStartYearUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnStartMonthUp
             // 
@@ -272,6 +279,7 @@
             this.btnStartMonthUp.TabIndex = 22;
             this.btnStartMonthUp.Text = "+";
             this.btnStartMonthUp.UseVisualStyleBackColor = true;
+            this.btnStartMonthUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnStartDayDown
             // 
@@ -284,7 +292,7 @@
             this.btnStartDayDown.TabIndex = 21;
             this.btnStartDayDown.Text = "-";
             this.btnStartDayDown.UseVisualStyleBackColor = true;
-            this.btnStartDayDown.Click += new System.EventHandler(this.btnStartDay_Click);
+            this.btnStartDayDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnBack
             // 
@@ -295,6 +303,7 @@
             this.btnBack.TabIndex = 12;
             this.btnBack.Text = "Retour";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // panel2
             // 
@@ -331,6 +340,7 @@
             this.btnEndMinDown.TabIndex = 33;
             this.btnEndMinDown.Text = "-";
             this.btnEndMinDown.UseVisualStyleBackColor = true;
+            this.btnEndMinDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnEndHourDown
             // 
@@ -343,6 +353,7 @@
             this.btnEndHourDown.TabIndex = 32;
             this.btnEndHourDown.Text = "-";
             this.btnEndHourDown.UseVisualStyleBackColor = true;
+            this.btnEndHourDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnEndYearDown
             // 
@@ -355,6 +366,7 @@
             this.btnEndYearDown.TabIndex = 31;
             this.btnEndYearDown.Text = "-";
             this.btnEndYearDown.UseVisualStyleBackColor = true;
+            this.btnEndYearDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnEndMonthDown
             // 
@@ -367,6 +379,7 @@
             this.btnEndMonthDown.TabIndex = 30;
             this.btnEndMonthDown.Text = "-";
             this.btnEndMonthDown.UseVisualStyleBackColor = true;
+            this.btnEndMonthDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnEndMinUp
             // 
@@ -379,6 +392,7 @@
             this.btnEndMinUp.TabIndex = 25;
             this.btnEndMinUp.Text = "+";
             this.btnEndMinUp.UseVisualStyleBackColor = true;
+            this.btnEndMinUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnEndHourUp
             // 
@@ -391,6 +405,7 @@
             this.btnEndHourUp.TabIndex = 24;
             this.btnEndHourUp.Text = "+";
             this.btnEndHourUp.UseVisualStyleBackColor = true;
+            this.btnEndHourUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnEndYearUp
             // 
@@ -403,6 +418,7 @@
             this.btnEndYearUp.TabIndex = 23;
             this.btnEndYearUp.Text = "+";
             this.btnEndYearUp.UseVisualStyleBackColor = true;
+            this.btnEndYearUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnEndMonthUp
             // 
@@ -415,6 +431,7 @@
             this.btnEndMonthUp.TabIndex = 22;
             this.btnEndMonthUp.Text = "+";
             this.btnEndMonthUp.UseVisualStyleBackColor = true;
+            this.btnEndMonthUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnEndDayDown
             // 
@@ -427,6 +444,7 @@
             this.btnEndDayDown.TabIndex = 21;
             this.btnEndDayDown.Text = "-";
             this.btnEndDayDown.UseVisualStyleBackColor = true;
+            this.btnEndDayDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // lbEndMin
             // 
@@ -508,6 +526,7 @@
             this.btnEndDayUp.TabIndex = 0;
             this.btnEndDayUp.Text = "+";
             this.btnEndDayUp.UseVisualStyleBackColor = true;
+            this.btnEndDayUp.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
             // btnConfirm
             // 
@@ -518,6 +537,7 @@
             this.btnConfirm.TabIndex = 27;
             this.btnConfirm.Text = "Confirmer";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // lbPageTitle
             // 

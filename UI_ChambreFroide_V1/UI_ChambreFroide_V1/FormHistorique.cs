@@ -84,8 +84,19 @@ namespace UI_ChambreFroide_V1
             }
             else if (sender.Equals(btnMoreOptions)) // autre, ouvre le form ayant plus de choix
             {
-                m_endTime = DateTime.Now;
-                m_startTime = DateTime.Now.AddDays(-1);
+                FormChoixPlageTemps formGetTime = new FormChoixPlageTemps();
+                formGetTime.ShowDialog();
+                if (formGetTime.DialogResult == DialogResult.OK)
+                {
+                    m_startTime = formGetTime.startDateTime;
+                    m_endTime = formGetTime.endDateTime;
+                }
+                else
+                {
+                    return;
+                }
+                
+
             }
 
             //try
@@ -96,7 +107,7 @@ namespace UI_ChambreFroide_V1
             //}
             //catch
             //{
-              //  MessageBox.Show("Veuillez sélectionner un capteur.");
+              //  MessageBox.Show("Une erreur est survenue lors de l'affichage du graphique");
             //}
         }
 
@@ -114,6 +125,11 @@ namespace UI_ChambreFroide_V1
             m_valuesChart.Clear();
             m_selectedCapteurs.Clear();
             m_dateTimes.Clear();
+
+            if(listBoxChoixCapteur.SelectedIndex==-1)
+            {
+                listBoxChoixCapteur.SelectedIndex = 0;
+            }
 
             foreach (Capteur cap in m_listCapteurs)
             {
