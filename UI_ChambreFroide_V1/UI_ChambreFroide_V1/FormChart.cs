@@ -12,6 +12,7 @@ using LiveCharts.WinForms;
 using LiveCharts.Wpf;
 using LiveCharts.Configurations;
 using Brushes = System.Windows.Media.Brushes;
+using System.Windows.Media;
 
 /// <summary>
 /// Ce form fait l'affichage des données sélectionnées dans FormHistorique sous forme de graphique
@@ -20,6 +21,12 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormChart : Form
     {
+        public DateTime m_timeStartGraph;
+        private List<double> m_worstTemp = new List<double>();
+        private List<int> m_indexWorstTime = new List<int>();
+
+        Label[] tabLabels;
+
         /// <summary>
         /// Classe utilisée pour lier les données de températures à un DateTime
         /// </summary>
@@ -35,33 +42,35 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+
         /// <summary>
         /// Form contenant le bouton de retour et le graphique
         /// </summary>
         /// <param name="values"></param>
         /// <param name="timeStamps"></param>
         /// <param name="nameSeries"></param>
-        public FormChart(List<ChartValues<double>> values, List<List<DateTime>> timeStamps, List<String> nameSeries)
+        public FormChart(List<ChartValues<double>> values, List<List<DateTime>> timeStamps, List<String> nameSeries, WarningAlert warningAlertLevels, DateTime graphTime)
         {
             InitializeComponent();
 
+            m_worstTemp.Clear();
+            m_indexWorstTime.Clear();
             // permet d'associer au graphique le format DateModel déclaré plus haut
-            
+
             var dayConfig = Mappers.Xy<DateModel>()
                 .X(dayModel => (double)dayModel.DateTime.Ticks / TimeSpan.FromDays(1).Ticks)
-                //.X(dayModel => dayModel.DateTime.Ticks / TimeSpan.FromHours(1).Ticks)
                 .Y(dayModel => dayModel.Value);
-
-            LiveCharts.Charting.For<DateModel>(dayConfig, SeriesOrientation.Horizontal);
+            Charting.For<DateModel>(dayConfig, SeriesOrientation.Horizontal);
 
             // ajoute une légende en haut du graphique
             chartTemp.LegendLocation = LegendLocation.Top;
             chartTemp.DefaultLegend.Visibility = System.Windows.Visibility.Visible;
-            
+
+            m_timeStartGraph = graphTime;
 
             // boucle servant à ajouter les séries de points au graphique
             // passe dans la boucle pour chaque capteur à afficher
-            for(int i = 0; i < values.Count; i++)
+            for (int i = 0; i < values.Count; i++)
             {
                 // Final
                     
@@ -70,24 +79,16 @@ namespace UI_ChambreFroide_V1
                     // on ajuste les données pour obtenir un nombre de points affichables
                     Values = GetDateModels(GetAveragedValues(values[i], 250), GetAverageDateTime(timeStamps[i], 250)),
                     // juste la ligne, pas de points
-                    PointGeometry = DefaultGeometries.Circle,
+                    //PointGeometry = DefaultGeometries.Circle,
+                    PointGeometry = null,
                     // pas de remplissage
                     Fill = Brushes.Transparent,
                     // ajoute un titre lié au nom du capteur
                     Title = nameSeries[i]
                 });
-
-                // Test
-                    
-                /*chartTemp.Series.Add(new LineSeries
-                    {
-                        Values = GetAveragedValues(values[i], 500),
-                        PointGeometry = null,
-                        Fill = Brushes.Transparent,
-                        Title = nameSeries[i]
-                    }) ;*/
             }
 
+            /*************** Personnalisation des axes *******************/
             // Section de personnalisation de l'axe des Y
             Axis yAxis = new Axis();
             yAxis.Name = "AxisY";
@@ -104,25 +105,75 @@ namespace UI_ChambreFroide_V1
             xAxis.Title = "Temps";
             xAxis.FontSize = 20;
             xAxis.Foreground = Brushes.Black;
-            //xAxis.LabelFormatter = value => new DateTime((long)value).ToString("s");
-            xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd/MM/yy");
-
-
+            if(m_timeStartGraph >= DateTime.Now.AddDays(-2))
+            {
+                xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("HH:mm");
+            }
+            else if(m_timeStartGraph <= DateTime.Now.AddDays(-1) && m_timeStartGraph >= DateTime.Now.AddDays(-3))
+            {
+                xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd/MM/yy HH:mm");
+            }
+            else
+            {
+                xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd/MM/yy");
+            }
             chartTemp.AxisX.Add(xAxis);
 
-            // Section d'ajout des niveaux de warning
-            AxisSection yAxisSection = new AxisSection();
-            yAxisSection.Value = 0;
-            yAxisSection.SectionWidth = 25;
-            yAxisSection.StrokeThickness = 2;
-            chartTemp.AxisY[0].Sections.Add(yAxisSection);
-      
-            // on associe l'axe des x du graphique a un format de temps
-            /*
-            chartTemp.AxisX.Add(new Axis
+
+            /*********** Section d'ajout des niveaux de warning *****************/
+            // Alerte
+            AxisSection alertSection = new AxisSection();
+            alertSection.Value = warningAlertLevels.alert;
+            alertSection.SectionWidth = warningAlertLevels.alert+50;
+            alertSection.StrokeThickness = 1;
+            SolidColorBrush brushRed = new SolidColorBrush();
+            brushRed.Color = Colors.Red;
+            alertSection.Fill = brushRed;
+            alertSection.Fill.Opacity = 0.2;
+            alertSection.Stroke = brushRed;
+            alertSection.StrokeThickness = 0;
+            chartTemp.AxisY[0].Sections.Add(alertSection);
+
+            // Warning
+            AxisSection warningSection = new AxisSection();
+            warningSection.Value = warningAlertLevels.warning;
+            warningSection.SectionWidth = Math.Abs(warningAlertLevels.alert - warningAlertLevels.warning);
+            warningSection.StrokeThickness = 1;
+            SolidColorBrush brushYellow = new SolidColorBrush();
+            brushYellow.Color = Colors.Yellow;
+            warningSection.Fill = brushYellow;
+            warningSection.Fill.Opacity = 0.25;
+            warningSection.Stroke = brushYellow;
+            warningSection.StrokeThickness = 0;
+            chartTemp.AxisY[0].Sections.Add(warningSection);
+
+            // Safe
+            AxisSection safeSection = new AxisSection();
+            safeSection.Value = -50;
+            safeSection.SectionWidth = 50 + warningAlertLevels.warning;
+            safeSection.StrokeThickness = 1;
+            SolidColorBrush brushGreen = new SolidColorBrush();
+            brushGreen.Color = Colors.Green;
+            safeSection.Fill = brushGreen;
+            safeSection.Fill.Opacity = 0.3;
+            safeSection.Stroke = brushGreen;
+            safeSection.StrokeThickness = 0;
+            chartTemp.AxisY[0].Sections.Add(safeSection);
+
+            /************* Section des labels des pires températures ******************/
+            tabLabels = new Label[m_worstTemp.Count];
+            for(int i =0; i < m_worstTemp.Count; i++)
             {
-                LabelFormatter = value => new System.DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("t")
-            });*/
+                tabLabels[i] = new Label();
+                tabLabels[i].Text = nameSeries[i] + " : " + m_worstTemp[i].ToString() + "°C @" + Environment.NewLine + timeStamps[i][m_indexWorstTime[i]].ToString("HH:mm:ss dd/MM/yy");
+                tabLabels[i].Name = "lbWorst" + i;
+                tabLabels[i].Font = new Font("Microsoft Sans Serif", (float)12.25, FontStyle.Regular);
+                tabLabels[i].Height = 50;
+                tabLabels[i].Width = 150;
+                tabLabels[i].Visible = true;
+                tabLabels[i].Location = new Point(860, 150 + i * 50);
+                Controls.Add(tabLabels[i]);
+            }
         }
 
         /// <summary>
@@ -151,8 +202,25 @@ namespace UI_ChambreFroide_V1
                 total = 0, // variable tempon pour les moyennes
                 reste = 0, // variable pour ajuster le coefficient
                 count = 0, // compte de combien de valeurs sont déja dans le tempon
+                worstTemp = 0, // température la plus haute enregistrée
                 modifCoefficient =0, // coefficient modifié par rapport a la variable reste
                 roundedCoefficient =0; // coefficient arrondi pour faire les calculs
+            int indexWorstTemp = 0; // index de la température la plus élevée
+
+            if (vals.Count <= numberReturnVals)
+            {
+                for (int i = 0; i < vals.Count; i++)
+                {
+                    if (vals[i] > worstTemp)
+                    {
+                        worstTemp = vals[i];
+                        indexWorstTemp = i;
+                    }
+                }
+                m_worstTemp.Add(worstTemp);
+                m_indexWorstTime.Add(indexWorstTemp);
+                return vals;
+            }
 
             coefficient = (double)vals.Count / (double)numberReturnVals; // Calcul du coefficient de base
 
@@ -164,6 +232,11 @@ namespace UI_ChambreFroide_V1
             for (int i = 0; i < vals.Count; i++)
             {
                 count++;
+                if(vals[i] > worstTemp)
+                {
+                    worstTemp = vals[i];
+                    indexWorstTemp = i;
+                }
                 // si nombre de valeurs pour la moyenne pas atteint
                 if (count < roundedCoefficient)
                 {
@@ -178,6 +251,8 @@ namespace UI_ChambreFroide_V1
                     roundedCoefficient = Math.Round(modifCoefficient);
                 }
             }
+            m_worstTemp.Add(worstTemp);
+            m_indexWorstTime.Add(indexWorstTemp);
             return avgVals; // retourne la liste moyennée
         }
 
@@ -200,6 +275,11 @@ namespace UI_ChambreFroide_V1
                 modifCoefficient = 0, // coefficient modifié par rapport a la variable reste
                 roundedCoefficient = 0; // coefficient arrondi pour faire les calculs
             decimal total = 0; // variable tempon pour les moyennes
+
+            if(times.Count <= numberReturnVals)
+            {
+                return times;
+            }
 
             coefficient = (decimal)times.Count / (decimal)numberReturnVals;
 
@@ -242,9 +322,16 @@ namespace UI_ChambreFroide_V1
             //ajout des valeurs dans la liste
             for(int i = 0; i < vals.Count; i++)
             {
-                dateModels.Add(new DateModel(times[i], vals[i]));
-            }
+                try
+                {
+                    dateModels.Add(new DateModel(times[i], vals[i]));
+                }
+                catch
+                {
 
+                }
+                
+            }
             return dateModels;
         }
     }
