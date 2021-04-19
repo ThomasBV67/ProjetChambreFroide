@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Forms;
+using System.IO.Ports;
 /// <summary>
 /// Classe comprenant toutes les instructions pour les boutons de controle présents sur la page.
 /// La classe est aussi chargée de gérer les communications série ainsi que de l'affichage des températures
@@ -57,7 +58,7 @@ namespace UI_ChambreFroide_V1
         int tempsAttente = 20;
 
         const int NB_BOITES_AFFICHAGE = 15;
-        const int TEMPS_ATTENTE = 1;
+        const int TEMPS_ATTENTE = 60;
 
 
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
@@ -123,13 +124,13 @@ namespace UI_ChambreFroide_V1
             b_suivant.Enabled = false;
 
             serialPort1.BaudRate = 115200;
-            serialPort1.PortName = "COM3";//Tente d'ouvrir le port série au démarrage
 
             l_state.Text = "Système à l'arret";
             loadCapteursFromDB();//Lit la configuration sauvegardée
 
             try//Tente un démarrage automatique
             {
+                serialPort1.PortName = SerialPort.GetPortNames()[0];
                 serialPort1.Open();
                 demarreTimerTemp();
                 b_arretDepart.Text = "Arreter";
