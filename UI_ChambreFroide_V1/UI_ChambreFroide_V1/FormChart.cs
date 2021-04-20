@@ -21,7 +21,9 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormChart : Form
     {
-        public DateTime m_timeStartGraph;
+        public int m_timeStartGraph;
+        public int m_timeEndGraph;
+
         private List<double> m_worstTemp = new List<double>();
         private List<int> m_indexWorstTime = new List<int>();
 
@@ -49,7 +51,7 @@ namespace UI_ChambreFroide_V1
         /// <param name="values"></param>
         /// <param name="timeStamps"></param>
         /// <param name="nameSeries"></param>
-        public FormChart(List<ChartValues<double>> values, List<List<DateTime>> timeStamps, List<String> nameSeries, WarningAlert warningAlertLevels, DateTime graphTime)
+        public FormChart(List<ChartValues<double>> values, List<List<DateTime>> timeStamps, List<String> nameSeries, WarningAlert warningAlertLevels, int graphStart, int graphEnd)
         {
             InitializeComponent();
 
@@ -66,7 +68,8 @@ namespace UI_ChambreFroide_V1
             chartTemp.LegendLocation = LegendLocation.Top;
             chartTemp.DefaultLegend.Visibility = System.Windows.Visibility.Visible;
 
-            m_timeStartGraph = graphTime;
+            m_timeStartGraph = graphStart;
+            m_timeEndGraph = graphEnd;
 
             // boucle servant à ajouter les séries de points au graphique
             // passe dans la boucle pour chaque capteur à afficher
@@ -105,11 +108,12 @@ namespace UI_ChambreFroide_V1
             xAxis.Title = "Temps";
             xAxis.FontSize = 20;
             xAxis.Foreground = Brushes.Black;
-            if(m_timeStartGraph >= DateTime.Now.AddDays(-2))
+            if(FormHistorique.UnixTimeStampToDateTime(m_timeStartGraph) >= FormHistorique.UnixTimeStampToDateTime(m_timeEndGraph).AddDays(-1))
             {
                 xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("HH:mm");
             }
-            else if(m_timeStartGraph <= DateTime.Now.AddDays(-1) && m_timeStartGraph >= DateTime.Now.AddDays(-3))
+            else if (FormHistorique.UnixTimeStampToDateTime(m_timeStartGraph) <= FormHistorique.UnixTimeStampToDateTime(m_timeEndGraph).AddDays(-1) 
+                && FormHistorique.UnixTimeStampToDateTime(m_timeStartGraph) >= FormHistorique.UnixTimeStampToDateTime(m_timeEndGraph).AddDays(-3))
             {
                 xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd/MM/yy HH:mm");
             }
