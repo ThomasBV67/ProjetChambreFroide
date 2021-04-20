@@ -32,10 +32,12 @@ namespace UI_ChambreFroide_V1
         public WarningAlert m_warningAlertLevels = new WarningAlert(0,0); // Niveaux d'alertes et de warning à envoyer au form de graphique
 
         // variables tempon pour les time stamps limite du graphique
-        public DateTime m_endTime = DateTime.Now;
-        public DateTime m_startTime = DateTime.Now.AddDays(-1);
+        public int m_endTime = DateTimeToUnixTimeStamp(DateTime.UtcNow);
+        public int m_startTime = DateTimeToUnixTimeStamp(DateTime.UtcNow.AddDays(-1));
 
-        
+        public int toUnix = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+
         /// <summary>
         /// Constructeur
         /// </summary>
@@ -73,18 +75,18 @@ namespace UI_ChambreFroide_V1
         {
             if(sender.Equals(btnLastDay)) // dernier 24h
             {
-                m_endTime = DateTime.Now;
-                m_startTime = DateTime.Now.AddDays(-1);
+                m_endTime = DateTimeToUnixTimeStamp(DateTime.UtcNow);
+                m_startTime = DateTimeToUnixTimeStamp(DateTime.UtcNow.AddDays(-1));
             }
             else if(sender.Equals(btnLastWeek)) // dernier 7 jours
             {
-                m_endTime = DateTime.Now;
-                m_startTime = DateTime.Now.AddDays(-7);
+                m_endTime = DateTimeToUnixTimeStamp(DateTime.UtcNow);
+                m_startTime = DateTimeToUnixTimeStamp(DateTime.UtcNow.AddDays(-7));
             }
             else if (sender.Equals(btnLastMonth)) // dernier mois
             {
-                m_endTime = DateTime.Now;
-                m_startTime = DateTime.Now.AddMonths(-1);
+                m_endTime = DateTimeToUnixTimeStamp(DateTime.UtcNow);
+                m_startTime = DateTimeToUnixTimeStamp(DateTime.UtcNow.AddMonths(-1));
             }
             else if (sender.Equals(btnMoreOptions)) // autre, ouvre le form ayant plus de choix
             {
@@ -94,8 +96,8 @@ namespace UI_ChambreFroide_V1
                 // Si sélection réussie et form fermé via le bouton de confirmation
                 if (formGetTime.DialogResult == DialogResult.OK)
                 {
-                    m_startTime = formGetTime.startDateTime;
-                    m_endTime = formGetTime.endDateTime;
+                    m_startTime = DateTimeToUnixTimeStamp(formGetTime.startDateTime.ToUniversalTime());
+                    m_endTime = DateTimeToUnixTimeStamp(formGetTime.endDateTime.ToUniversalTime());
                 }
                 // Si sélection échoue / bouton retour utilisé
                 else
@@ -109,7 +111,7 @@ namespace UI_ChambreFroide_V1
                 
                 UpdateGraphique(); // Get les données à afficher
                 // Essai de charger le graph avec les données
-                FormChart test = new FormChart(m_valuesChart, m_dateTimes, m_selectedCapteurs, m_warningAlertLevels, m_startTime); 
+                FormChart test = new FormChart(m_valuesChart, m_dateTimes, m_selectedCapteurs, m_warningAlertLevels, m_startTime, m_endTime); 
                 test.Show();
             }
             catch // Si graphique encontre un problème, affiche un message
@@ -155,7 +157,7 @@ namespace UI_ChambreFroide_V1
                         m_selectedCapteurs.Add(cap.Name);
                         m_warningAlertLevels.alert = cap.AlertHigh;
                         m_warningAlertLevels.warning = cap.AlertLow;
-                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
+                        listTemp.AddRange(accesDB.GetTemperatures(UnixTimeStampToDateTime(m_startTime), UnixTimeStampToDateTime(m_endTime), cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
                         List<DateTime> lstDate = new List<DateTime>();
                         foreach (MesureTemp temperature in listTemp)
@@ -176,7 +178,7 @@ namespace UI_ChambreFroide_V1
                         m_selectedCapteurs.Add(cap.Name);
                         m_warningAlertLevels.alert = cap.AlertHigh;
                         m_warningAlertLevels.warning = cap.AlertLow;
-                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
+                        listTemp.AddRange(accesDB.GetTemperatures(UnixTimeStampToDateTime(m_startTime), UnixTimeStampToDateTime(m_endTime), cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
                         List<DateTime> lstDate = new List<DateTime>();
                         foreach (MesureTemp temperature in listTemp)
@@ -283,6 +285,11 @@ namespace UI_ChambreFroide_V1
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
+        }
+        public static int DateTimeToUnixTimeStamp(DateTime datetime)
+        {
+            int toUnix = (Int32)(datetime.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            return toUnix;
         }
     }
     public class WarningAlert
