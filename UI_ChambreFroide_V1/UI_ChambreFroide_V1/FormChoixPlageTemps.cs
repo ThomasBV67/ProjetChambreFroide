@@ -146,7 +146,7 @@ namespace UI_ChambreFroide_V1
                             startHour = 0;
                         }
                     }
-                    else
+                    else if(btn.Name.EndsWith("Down"))
                     {
                         startHour--;
                         if(startHour < 0)
@@ -165,7 +165,7 @@ namespace UI_ChambreFroide_V1
                             startMin = 0;
                         }
                     }
-                    else
+                    else if(btn.Name.EndsWith("Down"))
                     {
                         startMin--;
                         if (startMin < 0)
@@ -173,6 +173,11 @@ namespace UI_ChambreFroide_V1
                             startMin = 59;
                         }
                     }
+                }
+                else if (btn.Name.Equals("btnStartZero"))
+                {
+                    startMin = 0;
+                    startHour = 0;
                 }
             }
             else
@@ -254,7 +259,7 @@ namespace UI_ChambreFroide_V1
                             endHour = 0;
                         }
                     }
-                    else
+                    else if(btn.Name.EndsWith("Down"))
                     {
                         endHour--;
                         if (endHour < 0)
@@ -273,7 +278,7 @@ namespace UI_ChambreFroide_V1
                             endMin = 0;
                         }
                     }
-                    else
+                    else if(btn.Name.EndsWith("Down"))
                     {
                         endMin--;
                         if (endMin < 0)
@@ -281,6 +286,11 @@ namespace UI_ChambreFroide_V1
                             endMin = 59;
                         }
                     }
+                }
+                else if(btn.Name.Equals("btnEndZero"))
+                {
+                    endMin = 0;
+                    endHour = 0;
                 }
             }
             UpdateDates();

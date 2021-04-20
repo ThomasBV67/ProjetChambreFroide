@@ -249,7 +249,7 @@ namespace UI_ChambreFroide_V1
                 sqlite_cmd.Parameters["@Alert"].Value = alert;
 
                 sqlite_cmd.Parameters.Add("@TimeStamp", DbType.String, -1);
-                sqlite_cmd.Parameters["@TimeStamp"].Value = DateTime.Now.ToString();
+                sqlite_cmd.Parameters["@TimeStamp"].Value = DateTime.Now;
 
                 sqlite_cmd.ExecuteNonQuery();
                 conn.Close();

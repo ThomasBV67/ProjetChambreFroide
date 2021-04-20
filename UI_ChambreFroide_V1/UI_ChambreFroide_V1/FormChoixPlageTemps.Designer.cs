@@ -67,6 +67,8 @@
             this.btnEndDayUp = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.lbPageTitle = new System.Windows.Forms.Label();
+            this.btnStartZero = new System.Windows.Forms.Button();
+            this.btnEndZero = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -155,6 +157,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnStartZero);
             this.panel1.Controls.Add(this.btnStartMinDown);
             this.panel1.Controls.Add(this.btnStartHourDown);
             this.panel1.Controls.Add(this.btnStartYearDown);
@@ -181,12 +184,13 @@
             // 
             this.btnStartMinDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartMinDown.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnStartMinDown.Location = new System.Drawing.Point(328, 323);
+            this.btnStartMinDown.Location = new System.Drawing.Point(328, 278);
             this.btnStartMinDown.Name = "btnStartMinDown";
-            this.btnStartMinDown.Padding = new System.Windows.Forms.Padding(10, 0, 0, 20);
-            this.btnStartMinDown.Size = new System.Drawing.Size(70, 150);
+            this.btnStartMinDown.Padding = new System.Windows.Forms.Padding(10, 0, 0, 25);
+            this.btnStartMinDown.Size = new System.Drawing.Size(70, 105);
             this.btnStartMinDown.TabIndex = 29;
             this.btnStartMinDown.Text = "-";
+            this.btnStartMinDown.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnStartMinDown.UseVisualStyleBackColor = true;
             this.btnStartMinDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
@@ -194,12 +198,13 @@
             // 
             this.btnStartHourDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartHourDown.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnStartHourDown.Location = new System.Drawing.Point(252, 323);
+            this.btnStartHourDown.Location = new System.Drawing.Point(252, 278);
             this.btnStartHourDown.Name = "btnStartHourDown";
-            this.btnStartHourDown.Padding = new System.Windows.Forms.Padding(10, 0, 0, 20);
-            this.btnStartHourDown.Size = new System.Drawing.Size(70, 150);
+            this.btnStartHourDown.Padding = new System.Windows.Forms.Padding(10, 0, 0, 25);
+            this.btnStartHourDown.Size = new System.Drawing.Size(70, 105);
             this.btnStartHourDown.TabIndex = 28;
             this.btnStartHourDown.Text = "-";
+            this.btnStartHourDown.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnStartHourDown.UseVisualStyleBackColor = true;
             this.btnStartHourDown.Click += new System.EventHandler(this.btnUpDown_Click);
             // 
@@ -236,7 +241,7 @@
             this.btnStartMinUp.Location = new System.Drawing.Point(328, 167);
             this.btnStartMinUp.Name = "btnStartMinUp";
             this.btnStartMinUp.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnStartMinUp.Size = new System.Drawing.Size(70, 150);
+            this.btnStartMinUp.Size = new System.Drawing.Size(70, 105);
             this.btnStartMinUp.TabIndex = 25;
             this.btnStartMinUp.Text = "+";
             this.btnStartMinUp.UseVisualStyleBackColor = true;
@@ -248,8 +253,8 @@
             this.btnStartHourUp.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnStartHourUp.Location = new System.Drawing.Point(252, 167);
             this.btnStartHourUp.Name = "btnStartHourUp";
-            this.btnStartHourUp.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnStartHourUp.Size = new System.Drawing.Size(70, 150);
+            this.btnStartHourUp.Padding = new System.Windows.Forms.Padding(10, 0, 0, 10);
+            this.btnStartHourUp.Size = new System.Drawing.Size(70, 105);
             this.btnStartHourUp.TabIndex = 24;
             this.btnStartHourUp.Text = "+";
             this.btnStartHourUp.UseVisualStyleBackColor = true;
@@ -307,6 +312,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnEndZero);
             this.panel2.Controls.Add(this.btnEndMinDown);
             this.panel2.Controls.Add(this.btnEndHourDown);
             this.panel2.Controls.Add(this.btnEndYearDown);
@@ -333,10 +339,10 @@
             // 
             this.btnEndMinDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEndMinDown.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnEndMinDown.Location = new System.Drawing.Point(326, 323);
+            this.btnEndMinDown.Location = new System.Drawing.Point(326, 278);
             this.btnEndMinDown.Name = "btnEndMinDown";
             this.btnEndMinDown.Padding = new System.Windows.Forms.Padding(10, 0, 0, 20);
-            this.btnEndMinDown.Size = new System.Drawing.Size(70, 150);
+            this.btnEndMinDown.Size = new System.Drawing.Size(70, 105);
             this.btnEndMinDown.TabIndex = 33;
             this.btnEndMinDown.Text = "-";
             this.btnEndMinDown.UseVisualStyleBackColor = true;
@@ -346,10 +352,10 @@
             // 
             this.btnEndHourDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEndHourDown.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnEndHourDown.Location = new System.Drawing.Point(250, 323);
+            this.btnEndHourDown.Location = new System.Drawing.Point(250, 278);
             this.btnEndHourDown.Name = "btnEndHourDown";
             this.btnEndHourDown.Padding = new System.Windows.Forms.Padding(10, 0, 0, 20);
-            this.btnEndHourDown.Size = new System.Drawing.Size(70, 150);
+            this.btnEndHourDown.Size = new System.Drawing.Size(70, 105);
             this.btnEndHourDown.TabIndex = 32;
             this.btnEndHourDown.Text = "-";
             this.btnEndHourDown.UseVisualStyleBackColor = true;
@@ -388,7 +394,7 @@
             this.btnEndMinUp.Location = new System.Drawing.Point(326, 167);
             this.btnEndMinUp.Name = "btnEndMinUp";
             this.btnEndMinUp.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnEndMinUp.Size = new System.Drawing.Size(70, 150);
+            this.btnEndMinUp.Size = new System.Drawing.Size(70, 105);
             this.btnEndMinUp.TabIndex = 25;
             this.btnEndMinUp.Text = "+";
             this.btnEndMinUp.UseVisualStyleBackColor = true;
@@ -401,7 +407,7 @@
             this.btnEndHourUp.Location = new System.Drawing.Point(250, 167);
             this.btnEndHourUp.Name = "btnEndHourUp";
             this.btnEndHourUp.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnEndHourUp.Size = new System.Drawing.Size(70, 150);
+            this.btnEndHourUp.Size = new System.Drawing.Size(70, 105);
             this.btnEndHourUp.TabIndex = 24;
             this.btnEndHourUp.Text = "+";
             this.btnEndHourUp.UseVisualStyleBackColor = true;
@@ -549,6 +555,32 @@
             this.lbPageTitle.TabIndex = 28;
             this.lbPageTitle.Text = "Choix de la plage de temps";
             // 
+            // btnStartZero
+            // 
+            this.btnStartZero.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartZero.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnStartZero.Location = new System.Drawing.Point(252, 389);
+            this.btnStartZero.Name = "btnStartZero";
+            this.btnStartZero.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnStartZero.Size = new System.Drawing.Size(146, 84);
+            this.btnStartZero.TabIndex = 31;
+            this.btnStartZero.Text = "Zéro";
+            this.btnStartZero.UseVisualStyleBackColor = true;
+            this.btnStartZero.Click += new System.EventHandler(this.btnUpDown_Click);
+            // 
+            // btnEndZero
+            // 
+            this.btnEndZero.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEndZero.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnEndZero.Location = new System.Drawing.Point(250, 389);
+            this.btnEndZero.Name = "btnEndZero";
+            this.btnEndZero.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnEndZero.Size = new System.Drawing.Size(146, 84);
+            this.btnEndZero.TabIndex = 34;
+            this.btnEndZero.Text = "Zéro";
+            this.btnEndZero.UseVisualStyleBackColor = true;
+            this.btnEndZero.Click += new System.EventHandler(this.btnUpDown_Click);
+            // 
             // FormChoixPlageTemps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -613,5 +645,7 @@
         private System.Windows.Forms.Button btnEndDayUp;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label lbPageTitle;
+        private System.Windows.Forms.Button btnStartZero;
+        private System.Windows.Forms.Button btnEndZero;
     }
 }

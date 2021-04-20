@@ -135,6 +135,7 @@ namespace UI_ChambreFroide_V1
             //clear toutes les anciennes données
             m_valuesChart.Clear();
             m_dateTimes.Clear();
+            m_selectedCapteurs.Clear();
 
             // Si aucun capteur sélectionné, prends le premier
             if(listBoxChoixCapteur.SelectedIndex==-1)
@@ -151,6 +152,7 @@ namespace UI_ChambreFroide_V1
                     // regarde si le groupe voulu est le même que le capteur
                     if (cap.GroupCapteur == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
+                        m_selectedCapteurs.Add(cap.Name);
                         m_warningAlertLevels.alert = cap.AlertHigh;
                         m_warningAlertLevels.warning = cap.AlertLow;
                         listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
@@ -171,6 +173,7 @@ namespace UI_ChambreFroide_V1
                     // regarde si le nom du capteur est le nom de capteur voulu
                     if (cap.Name == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
+                        m_selectedCapteurs.Add(cap.Name);
                         m_warningAlertLevels.alert = cap.AlertHigh;
                         m_warningAlertLevels.warning = cap.AlertLow;
                         listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
