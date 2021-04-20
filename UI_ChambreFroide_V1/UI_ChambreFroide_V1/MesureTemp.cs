@@ -8,8 +8,8 @@ namespace UI_ChambreFroide_V1
 {
     public class MesureTemp
     {
-        public int Id, Alert;
-        public String TimeStamp, Capteur;
+        public int Id, Alert, TimeStamp;
+        public String Capteur;
         public double Temperature;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace UI_ChambreFroide_V1
         /// <summary>
         /// Contructeur manuel
         /// </summary>
-        public MesureTemp(int newId, String newCapteur, double newTemperature, int newAlert, String newTimeStamp)
+        public MesureTemp(int newId, String newCapteur, double newTemperature, int newAlert, int newTimeStamp)
         {
             Id = newId;
             Alert = newAlert;

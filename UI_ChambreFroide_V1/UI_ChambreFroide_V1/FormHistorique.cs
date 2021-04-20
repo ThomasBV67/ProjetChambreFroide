@@ -161,7 +161,7 @@ namespace UI_ChambreFroide_V1
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature);
-                            lstDate.Add(Convert.ToDateTime(temperature.TimeStamp));
+                            lstDate.Add(UnixTimeStampToDateTime(temperature.TimeStamp));
                         }
                         m_valuesChart.Add(temp);
                         m_dateTimes.Add(lstDate);
@@ -182,7 +182,7 @@ namespace UI_ChambreFroide_V1
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature);
-                            lstDate.Add(Convert.ToDateTime(temperature.TimeStamp));
+                            lstDate.Add(UnixTimeStampToDateTime(temperature.TimeStamp));
                         }
                         m_valuesChart.Add(temp);
                         m_dateTimes.Add(lstDate);
@@ -277,6 +277,13 @@ namespace UI_ChambreFroide_V1
                 }
             }
         }
+        public static DateTime UnixTimeStampToDateTime(int unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
+        }
     }
     public class WarningAlert
     {
@@ -287,4 +294,6 @@ namespace UI_ChambreFroide_V1
             alert = alertLevel;
         }
     }
+
+
 }
