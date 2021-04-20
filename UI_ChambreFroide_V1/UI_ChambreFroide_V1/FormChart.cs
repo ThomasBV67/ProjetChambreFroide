@@ -238,7 +238,7 @@ namespace UI_ChambreFroide_V1
                     indexWorstTemp = i;
                 }
                 // si nombre de valeurs pour la moyenne pas atteint
-                if (count < roundedCoefficient)
+                if (count <= roundedCoefficient)
                 {
                     total += vals[i];
                 }
