@@ -8,7 +8,7 @@ namespace UI_ChambreFroide_V1
 {
     public class MesureTemp
     {
-        public int Id, Alert, TimeStamp;
+        public int Id, Alert, UnixTime;
         public String Capteur;
         public double Temperature;
 
@@ -24,7 +24,7 @@ namespace UI_ChambreFroide_V1
         {
             Id = newId;
             Alert = newAlert;
-            TimeStamp = newTimeStamp;
+            UnixTime = newTimeStamp;
             Capteur = newCapteur;
             Temperature = newTemperature;
         }

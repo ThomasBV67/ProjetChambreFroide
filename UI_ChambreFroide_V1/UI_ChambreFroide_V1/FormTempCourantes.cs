@@ -58,7 +58,7 @@ namespace UI_ChambreFroide_V1
         int tempsAttente = 20; // Valeur incrémentée par le timer
 
         const int NB_BOITES_AFFICHAGE = 15;
-        const int TEMPS_ATTENTE = 1;
+        const int TEMPS_ATTENTE = 10;
 
 
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];

@@ -163,7 +163,7 @@ namespace UI_ChambreFroide_V1
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature);
-                            lstDate.Add(UnixTimeStampToDateTime(temperature.TimeStamp));
+                            lstDate.Add(UnixTimeStampToDateTime(temperature.UnixTime));
                         }
                         m_valuesChart.Add(temp);
                         m_dateTimes.Add(lstDate);
@@ -184,7 +184,7 @@ namespace UI_ChambreFroide_V1
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature);
-                            lstDate.Add(UnixTimeStampToDateTime(temperature.TimeStamp));
+                            lstDate.Add(UnixTimeStampToDateTime(temperature.UnixTime));
                         }
                         m_valuesChart.Add(temp);
                         m_dateTimes.Add(lstDate);
