@@ -157,7 +157,7 @@ namespace UI_ChambreFroide_V1
                         m_selectedCapteurs.Add(cap.Name);
                         m_warningAlertLevels.alert = cap.AlertHigh;
                         m_warningAlertLevels.warning = cap.AlertLow;
-                        listTemp.AddRange(accesDB.GetTemperatures(UnixTimeStampToDateTime(m_startTime), UnixTimeStampToDateTime(m_endTime), cap.Address));
+                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
                         List<DateTime> lstDate = new List<DateTime>();
                         foreach (MesureTemp temperature in listTemp)
@@ -178,7 +178,7 @@ namespace UI_ChambreFroide_V1
                         m_selectedCapteurs.Add(cap.Name);
                         m_warningAlertLevels.alert = cap.AlertHigh;
                         m_warningAlertLevels.warning = cap.AlertLow;
-                        listTemp.AddRange(accesDB.GetTemperatures(UnixTimeStampToDateTime(m_startTime), UnixTimeStampToDateTime(m_endTime), cap.Address));
+                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
                         ChartValues<double> temp = new ChartValues<double>();
                         List<DateTime> lstDate = new List<DateTime>();
                         foreach (MesureTemp temperature in listTemp)

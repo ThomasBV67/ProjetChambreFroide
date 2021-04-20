@@ -266,13 +266,13 @@ namespace UI_ChambreFroide_V1
         /// <param name="endTime"></param>
         /// <param name="addrCap"></param>
         /// <returns></returns>
-        public List<MesureTemp> GetTemperatures(DateTime startTime, DateTime endTime, string addrCap)
+        public List<MesureTemp> GetTemperatures(int startTime, int endTime, string addrCap)
         {
             List<MesureTemp> listTemp = new List<MesureTemp>(); // Liste pour le retour
 
             // Commande sql montée avec les variables
-            String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "' AND TimeStamp > '" + startTime.ToString("yyyy-MM-dd HH:mm:ss")
-                + "' AND TimeStamp < '" + endTime.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "' AND UnixTime > " + startTime
+                + " AND UnixTime < " + endTime;
             //String sql = "SELECT * FROM Historique WHERE Capteur = '" + addrCap + "'";
 
             // Execute la commande
