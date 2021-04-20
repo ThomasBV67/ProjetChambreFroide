@@ -15,19 +15,24 @@ using Brushes = System.Windows.Media.Brushes;
 using System.Windows.Media;
 
 /// <summary>
-/// Ce form fait l'affichage des données sélectionnées dans FormHistorique sous forme de graphique
+/// Ce form fait automatiquement l'affichage des données sélectionnées dans FormHistorique sous forme de graphique.
+/// Le graphique charge automatiquement lors de la création du form. Une légende est présente dans le haut du graphique
+/// pour savoir quelle ligne représente quel capteur lorsqu'un groupe est observé. Les zones d'avertissement et d'alertes 
+/// sont affichées en arrière plan. Le fond vert est la zone acceptable, la jaune la zone d'avertissement et la rouge la
+/// zone d'alerte. Sur la droite, on peut voir la pire température enregistrée pour chaque capteur lors de la plage de temps.
+/// Le bouton retour retourne, bien évidement, au form d'avant.
 /// </summary>
 namespace UI_ChambreFroide_V1
 {
     public partial class FormChart : Form
     {
-        public int m_timeStartGraph;
+        public int m_timeStartGraph; // Timestamp Unix pour le début et la fin de la plage de temps à étudier
         public int m_timeEndGraph;
 
-        private List<double> m_worstTemp = new List<double>();
+        private List<double> m_worstTemp = new List<double>(); // Listes contenant les températures les plus hautes de chaque capteur
         private List<int> m_indexWorstTime = new List<int>();
 
-        Label[] tabLabels;
+        Label[] tabLabels;  // tableau de label pour afficher dynamiquement les labels de pires temp
 
         /// <summary>
         /// Classe utilisée pour lier les données de températures à un DateTime

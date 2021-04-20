@@ -79,7 +79,6 @@ namespace UI_ChambreFroide_V1
             this.listeCapteurs.RowTemplate.Height = 35;
             this.listeCapteurs.Size = new System.Drawing.Size(797, 534);
             this.listeCapteurs.TabIndex = 0;
-            this.listeCapteurs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.valeurChangeTableau);
             // 
             // ID
             // 
@@ -263,7 +262,6 @@ namespace UI_ChambreFroide_V1
             this.Name = "FormConfig";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listeCapteurs)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

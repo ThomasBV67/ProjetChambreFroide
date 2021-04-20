@@ -154,18 +154,20 @@ namespace UI_ChambreFroide_V1
                     // regarde si le groupe voulu est le même que le capteur
                     if (cap.GroupCapteur == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
-                        m_selectedCapteurs.Add(cap.Name);
-                        m_warningAlertLevels.alert = cap.AlertHigh;
+                        m_selectedCapteurs.Add(cap.Name); // Ajoute le nom du capteur à la liste
+                        m_warningAlertLevels.alert = cap.AlertHigh; // garde en mémoire ses niveaux
                         m_warningAlertLevels.warning = cap.AlertLow;
-                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
-                        ChartValues<double> temp = new ChartValues<double>();
+                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address)); // Fait la requete pour les temps à la db
+
+                        ChartValues<double> temp = new ChartValues<double>(); // cré des listes temporaires
                         List<DateTime> lstDate = new List<DateTime>();
+
                         foreach (MesureTemp temperature in listTemp)
                         {
-                            temp.Add(temperature.Temperature);
+                            temp.Add(temperature.Temperature); // ajoute les températures et les timestamps aux listes temporaires
                             lstDate.Add(UnixTimeStampToDateTime(temperature.UnixTime));
                         }
-                        m_valuesChart.Add(temp);
+                        m_valuesChart.Add(temp); // Ajoute les listes temporaires aux series à afficher
                         m_dateTimes.Add(lstDate);
                     }
                 }
@@ -175,22 +177,24 @@ namespace UI_ChambreFroide_V1
                     // regarde si le nom du capteur est le nom de capteur voulu
                     if (cap.Name == listBoxChoixCapteur.Items[listBoxChoixCapteur.SelectedIndex].ToString())
                     {
-                        m_selectedCapteurs.Add(cap.Name);
-                        m_warningAlertLevels.alert = cap.AlertHigh;
+                        m_selectedCapteurs.Add(cap.Name);   // Ajoute le nom du capteur à la liste
+                        m_warningAlertLevels.alert = cap.AlertHigh;  // garde en mémoire ses niveaux
                         m_warningAlertLevels.warning = cap.AlertLow;
-                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address));
-                        ChartValues<double> temp = new ChartValues<double>();
+                        listTemp.AddRange(accesDB.GetTemperatures(m_startTime, m_endTime, cap.Address)); // Fait la requete pour les temps à la db
+
+                        ChartValues<double> temp = new ChartValues<double>(); // cré des listes temporaires
                         List<DateTime> lstDate = new List<DateTime>();
+
                         foreach (MesureTemp temperature in listTemp)
                         {
-                            temp.Add(temperature.Temperature);
+                            temp.Add(temperature.Temperature); // ajoute les températures et les timestamps aux listes temporaires
                             lstDate.Add(UnixTimeStampToDateTime(temperature.UnixTime));
                         }
-                        m_valuesChart.Add(temp);
+                        m_valuesChart.Add(temp); // Ajoute les listes temporaires aux series à afficher
                         m_dateTimes.Add(lstDate);
                     }
                 }
-                listTemp.Clear();
+                listTemp.Clear(); // Clear la liste contenant les données de la requete sql
             }                
         }
 
@@ -279,6 +283,12 @@ namespace UI_ChambreFroide_V1
                 }
             }
         }
+
+        /// <summary>
+        /// Cette fonction permet de convertir un timeStamp unix en datetime local
+        /// </summary>
+        /// <param name="unixTimeStamp"></param>
+        /// <returns></returns>
         public static DateTime UnixTimeStampToDateTime(int unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
@@ -286,12 +296,22 @@ namespace UI_ChambreFroide_V1
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
         }
+
+        /// <summary>
+        /// Cette fonction permet de convertir un DateTime en temps unix
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <returns></returns>
         public static int DateTimeToUnixTimeStamp(DateTime datetime)
         {
             int toUnix = (Int32)(datetime.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             return toUnix;
         }
     }
+
+    /// <summary>
+    /// Cette classe permet de combiner les deux niveaux d'alertes en un seul objet
+    /// </summary>
     public class WarningAlert
     {
         public double warning, alert;

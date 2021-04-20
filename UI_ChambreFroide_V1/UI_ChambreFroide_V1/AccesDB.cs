@@ -12,7 +12,16 @@ using System.Threading.Tasks;
 namespace UI_ChambreFroide_V1
 {
     /// <summary>
-    /// Cette classe permet d'avoir acces à la database SQLite3 du projet.
+    /// Cette classe permet d'avoir acces à la database SQLite3 du projet. 
+    /// GetCapteurs : Cette fonction retrourne tous les capteurs
+    /// GetSetCapteurs : Cette fonction retourne les capteurs qui sont bien entrés dans la db
+    /// AddNewCapteur : Ajout d'un capteur à la db
+    /// SetCapteur : Applique des valeurs aux capteur
+    /// GetGroups : Retourne une liste de tous les groupes existants
+    /// EnregistreTemp : Enregistre une température dans la db
+    /// GetTemperatures : Retourne des températures en fonctions des inputs
+    /// DeleteCapteur : Delete un capteur de la db
+    /// GetConnectionString : Fonction utilisées par les autres fonctions pour acceder a la db
     /// </summary>
     public class AccesDB
     {
@@ -27,26 +36,6 @@ namespace UI_ChambreFroide_V1
                 var output = conn.Query<Capteur>("SELECT * FROM Capteurs"); // Get tous les capteurs de la db
                 return output.ToList(); // Retourne une liste d'objets capteurs
             }
-        }
-
-        /// <summary>
-        /// Cette fonction retourne la liste de tous les capteurs connectés qui n'ont pas encore 
-        /// été mis en place dans le système (pas de nom / alertes)
-        /// </summary>
-        /// <returns> Retourne la liste des capteurs non-initialisés </returns>
-        public static List<Capteur> GetUnsetCapteurs()
-        {
-            List<Capteur> capteurs, setCapteurs = new List<Capteur>();
-            capteurs = GetCapteurs(); // get la liste complete
-
-            foreach(Capteur cap in capteurs) // filtre la liste
-            {
-                if(cap.Ready == 0) // vérifie si le capteur est set
-                {
-                    setCapteurs.Add(cap); // si pas set, ajoute a la liste a return
-                }
-            }
-            return setCapteurs; 
         }
 
         /// <summary>
@@ -146,42 +135,6 @@ namespace UI_ChambreFroide_V1
 
                     sqlite_cmd.Parameters.Add("@Address", DbType.String, -1);
                     sqlite_cmd.Parameters["@Address"].Value = capToSet.Address;
-
-                    sqlite_cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Cette fonction permet de changer le nom d'un capteur dans la base de donnée
-        /// </summary>
-        /// <param name="capToSet"></param>
-        /// <returns></returns>
-        public static bool ChangeName(Capteur capToSet)
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
-            {
-                try
-                {
-                    conn.Open();
-
-                    // Cré une commande SQL
-                    SQLiteCommand sqlite_cmd;
-                    sqlite_cmd = conn.CreateCommand();
-                    sqlite_cmd.CommandText = "UPDATE Capteurs SET Name = @Name WHERE Id = @Id";
-
-                    // Set les valeurs à celles voulues
-                    sqlite_cmd.Parameters.Add("@Name", DbType.String, -1);
-                    sqlite_cmd.Parameters["@Name"].Value = capToSet.Name;
-
-                    sqlite_cmd.Parameters.Add("@Id", DbType.Int64, -1);
-                    sqlite_cmd.Parameters["@Id"].Value = capToSet.Id;
 
                     sqlite_cmd.ExecuteNonQuery();
                     conn.Close();
