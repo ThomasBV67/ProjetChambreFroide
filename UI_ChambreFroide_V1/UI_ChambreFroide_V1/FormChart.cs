@@ -26,9 +26,6 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormChart : Form
     {
-        public int m_timeStartGraph; // Timestamp Unix pour le début et la fin de la plage de temps à étudier
-        public int m_timeEndGraph;
-
         private List<double> m_worstTemp = new List<double>(); // Listes contenant les températures les plus hautes de chaque capteur
         private List<int> m_indexWorstTime = new List<int>();
 
@@ -49,9 +46,8 @@ namespace UI_ChambreFroide_V1
             }
         }
 
-
         /// <summary>
-        /// Form contenant le bouton de retour et le graphique
+        /// Constructeur du form contenant le graphique
         /// </summary>
         /// <param name="values"></param>
         /// <param name="timeStamps"></param>
@@ -72,9 +68,6 @@ namespace UI_ChambreFroide_V1
             // ajoute une légende en haut du graphique
             chartTemp.LegendLocation = LegendLocation.Top;
             chartTemp.DefaultLegend.Visibility = System.Windows.Visibility.Visible;
-
-            m_timeStartGraph = graphStart;
-            m_timeEndGraph = graphEnd;
 
             // boucle servant à ajouter les séries de points au graphique
             // passe dans la boucle pour chaque capteur à afficher
@@ -113,12 +106,12 @@ namespace UI_ChambreFroide_V1
             xAxis.Title = "Temps";
             xAxis.FontSize = 20;
             xAxis.Foreground = Brushes.Black;
-            if(FormHistorique.UnixTimeStampToDateTime(m_timeStartGraph) >= FormHistorique.UnixTimeStampToDateTime(m_timeEndGraph).AddDays(-1))
+            if(FormHistorique.UnixTimeStampToDateTime(graphStart) >= FormHistorique.UnixTimeStampToDateTime(graphEnd).AddDays(-1))
             {
                 xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("HH:mm");
             }
-            else if (FormHistorique.UnixTimeStampToDateTime(m_timeStartGraph) <= FormHistorique.UnixTimeStampToDateTime(m_timeEndGraph).AddDays(-1) 
-                && FormHistorique.UnixTimeStampToDateTime(m_timeStartGraph) >= FormHistorique.UnixTimeStampToDateTime(m_timeEndGraph).AddDays(-3))
+            else if (FormHistorique.UnixTimeStampToDateTime(graphStart) <= FormHistorique.UnixTimeStampToDateTime(graphEnd).AddDays(-1) 
+                && FormHistorique.UnixTimeStampToDateTime(graphStart) >= FormHistorique.UnixTimeStampToDateTime(graphEnd).AddDays(-3))
             {
                 xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd/MM/yy HH:mm");
             }
@@ -335,11 +328,7 @@ namespace UI_ChambreFroide_V1
                 {
                     dateModels.Add(new DateModel(times[i], vals[i]));
                 }
-                catch
-                {
-
-                }
-                
+                catch{}     
             }
             return dateModels;
         }
