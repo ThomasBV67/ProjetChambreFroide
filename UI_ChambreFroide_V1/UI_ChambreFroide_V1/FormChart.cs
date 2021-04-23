@@ -15,17 +15,21 @@ using Brushes = System.Windows.Media.Brushes;
 using System.Windows.Media;
 
 /// <summary>
-/// Ce form fait l'affichage des données sélectionnées dans FormHistorique sous forme de graphique
+/// Ce form fait automatiquement l'affichage des données sélectionnées dans FormHistorique sous forme de graphique.
+/// Le graphique charge automatiquement lors de la création du form. Une légende est présente dans le haut du graphique
+/// pour savoir quelle ligne représente quel capteur lorsqu'un groupe est observé. Les zones d'avertissement et d'alertes 
+/// sont affichées en arrière plan. Le fond vert est la zone acceptable, la jaune la zone d'avertissement et la rouge la
+/// zone d'alerte. Sur la droite, on peut voir la pire température enregistrée pour chaque capteur lors de la plage de temps.
+/// Le bouton retour retourne, bien évidement, au form d'avant.
 /// </summary>
 namespace UI_ChambreFroide_V1
 {
     public partial class FormChart : Form
     {
-        public DateTime m_timeStartGraph;
-        private List<double> m_worstTemp = new List<double>();
+        private List<double> m_worstTemp = new List<double>(); // Listes contenant les températures les plus hautes de chaque capteur
         private List<int> m_indexWorstTime = new List<int>();
 
-        Label[] tabLabels;
+        Label[] tabLabels;  // tableau de label pour afficher dynamiquement les labels de pires temp
 
         /// <summary>
         /// Classe utilisée pour lier les données de températures à un DateTime
@@ -42,14 +46,13 @@ namespace UI_ChambreFroide_V1
             }
         }
 
-
         /// <summary>
-        /// Form contenant le bouton de retour et le graphique
+        /// Constructeur du form contenant le graphique
         /// </summary>
         /// <param name="values"></param>
         /// <param name="timeStamps"></param>
         /// <param name="nameSeries"></param>
-        public FormChart(List<ChartValues<double>> values, List<List<DateTime>> timeStamps, List<String> nameSeries, WarningAlert warningAlertLevels, DateTime graphTime)
+        public FormChart(List<ChartValues<double>> values, List<List<DateTime>> timeStamps, List<String> nameSeries, WarningAlert warningAlertLevels, int graphStart, int graphEnd)
         {
             InitializeComponent();
 
@@ -65,8 +68,6 @@ namespace UI_ChambreFroide_V1
             // ajoute une légende en haut du graphique
             chartTemp.LegendLocation = LegendLocation.Top;
             chartTemp.DefaultLegend.Visibility = System.Windows.Visibility.Visible;
-
-            m_timeStartGraph = graphTime;
 
             // boucle servant à ajouter les séries de points au graphique
             // passe dans la boucle pour chaque capteur à afficher
@@ -105,11 +106,12 @@ namespace UI_ChambreFroide_V1
             xAxis.Title = "Temps";
             xAxis.FontSize = 20;
             xAxis.Foreground = Brushes.Black;
-            if(m_timeStartGraph >= DateTime.Now.AddDays(-2))
+            if(FormHistorique.UnixTimeStampToDateTime(graphStart) >= FormHistorique.UnixTimeStampToDateTime(graphEnd).AddDays(-1))
             {
                 xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("HH:mm");
             }
-            else if(m_timeStartGraph <= DateTime.Now.AddDays(-1) && m_timeStartGraph >= DateTime.Now.AddDays(-3))
+            else if (FormHistorique.UnixTimeStampToDateTime(graphStart) <= FormHistorique.UnixTimeStampToDateTime(graphEnd).AddDays(-1) 
+                && FormHistorique.UnixTimeStampToDateTime(graphStart) >= FormHistorique.UnixTimeStampToDateTime(graphEnd).AddDays(-3))
             {
                 xAxis.LabelFormatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd/MM/yy HH:mm");
             }
@@ -238,7 +240,7 @@ namespace UI_ChambreFroide_V1
                     indexWorstTemp = i;
                 }
                 // si nombre de valeurs pour la moyenne pas atteint
-                if (count < roundedCoefficient)
+                if (count <= roundedCoefficient)
                 {
                     total += vals[i];
                 }
@@ -326,11 +328,7 @@ namespace UI_ChambreFroide_V1
                 {
                     dateModels.Add(new DateModel(times[i], vals[i]));
                 }
-                catch
-                {
-
-                }
-                
+                catch{}     
             }
             return dateModels;
         }

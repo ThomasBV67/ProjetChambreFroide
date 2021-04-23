@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Forms;
+using System.IO.Ports;
 /// <summary>
 /// Classe comprenant toutes les instructions pour les boutons de controle présents sur la page.
 /// La classe est aussi chargée de gérer les communications série ainsi que de l'affichage des températures
@@ -36,13 +37,13 @@ namespace UI_ChambreFroide_V1
     /// </summary>
     public partial class FormTempCourantes : Form
     {
-        public bool decouverteEnCours = false;
-        bool pingEnCours = false;
-        bool demandeArret = false;
-        int capteurEnCours = -1;//Valeur à -1 pour signifier au programme qu'aucun scan est en cours
-        int nbModules = 1;
-        int nbErr = 0;
-        int page = 0;
+        public bool decouverteEnCours = false;  // Variable utilisée pour effectuer des actions lors de la découverte du réseau de capteurs
+        bool pingEnCours = false;   // Variable utilisée pour effectuer des action lors d'une requète de ping
+        bool demandeArret = false;  // Variable utilisée pour arrêter les requètes de températures à la demande de l'usager
+        int capteurEnCours = -1;    // Valeur à -1 pour signifier au programme qu'aucun scan est en cours
+        int nbModules = 1;  // Variable utilisée pour passer au travers de tous les capteurs lors de la découverte du réseau
+        int nbErr = 0;      // Variable utilisée pour compter le nombre de requètes échouées
+        int page = 0;       // Variable gardant en mémoire la page de capteurs affichée
 
         ///////////////////////////////////////Marqueurs temporaires
         int e = 0;
@@ -54,10 +55,10 @@ namespace UI_ChambreFroide_V1
         int eCritMod3 = 0;
         int nbCycles = 0;
 
-        int tempsAttente = 20;
+        int tempsAttente = 20; // Valeur incrémentée par le timer
 
         const int NB_BOITES_AFFICHAGE = 15;
-        const int TEMPS_ATTENTE = 1;
+        const int TEMPS_ATTENTE = 60;
 
 
         Label[] m_label_pieces = new Label[NB_BOITES_AFFICHAGE];
@@ -67,16 +68,10 @@ namespace UI_ChambreFroide_V1
         private List<Case> lst_cases = new List<Case>();
 
 
-
-        FormZoneTexte objFormZoneTexte = new FormZoneTexte();
-
-
-        FormConfig objFormConfig = new FormConfig();
-        FormHistorique objFormHistorique = new FormHistorique();
-
+        FormConfig objFormConfig = new FormConfig();                // Objet du form de configuration
+        FormHistorique objFormHistorique = new FormHistorique();    // Objet du form d'historique
 
         String retourSerie = "";
-        List<String> debug = new List<String>();
 
         private delegate void monProtoDelegate();//définir prototype de fonction... paramètres d'entrée et de retour
         monProtoDelegate objDelegate;//on se déclare un objet delegate. (i.e. un pointeur de fonction ayant ce prototype)
@@ -86,8 +81,8 @@ namespace UI_ChambreFroide_V1
         {
             InitializeComponent();
 
-            objDelegate = delegate_getLoRa;
-            objFormConfig.Hide();
+            objDelegate = delegate_getLoRa; // Lie l'objet de delegate à sa fonction
+            objFormConfig.Hide();   // Hide les forms autres que le principal
             objFormHistorique.Hide();
             objFormConfig.pagePrincipale = this;//Envoi de la page en cours à pa page de config pour que les deux puissent s'échanger des informations
             objFormConfig.objFormModifCapteur.pagePrincipale = this;//Pour le ping
@@ -123,13 +118,13 @@ namespace UI_ChambreFroide_V1
             b_suivant.Enabled = false;
 
             serialPort1.BaudRate = 115200;
-            serialPort1.PortName = "COM3";//Tente d'ouvrir le port série au démarrage
 
             l_state.Text = "Système à l'arret";
             loadCapteursFromDB();//Lit la configuration sauvegardée
 
             try//Tente un démarrage automatique
             {
+                serialPort1.PortName = SerialPort.GetPortNames()[0];
                 serialPort1.Open();
                 demarreTimerTemp();
                 b_arretDepart.Text = "Arreter";

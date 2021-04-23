@@ -55,7 +55,12 @@ namespace UI_ChambreFroide_V1
             if (config.ShowDialog() == DialogResult.OK)//Si l'utilisateur confirme
             {
                 if (pagePrincipale.serialPort1.IsOpen)//vérifie la validité des parametres et les appliques
+                { 
                     pagePrincipale.serialPort1.Close();
+                    etatPortActuel.ForeColor = Color.Red;//affiche Fermé en rouge
+                    etatPortActuel.Text = "Fermé";
+                    b_ouvertureFermeturePort.Text = "Ouvrir le port";
+                }
                 try
                 {
                     pagePrincipale.serialPort1.PortName = config.m_nom;
@@ -170,30 +175,6 @@ namespace UI_ChambreFroide_V1
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void valeurChangeTableau(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FormConfig_Load(object sender, EventArgs e)
-        {
-            /*
-            pagePrincipale.serialPort1.BaudRate = 115200;
-            pagePrincipale.serialPort1.PortName = "COM3";
-            b_ouvertureFermeturePort_Click(sender, e);
-            */
-        }
-
-        /// <summary>
         /// Appuyer sur le bouton de modification affiche le formModifCapteur avec les valeurs
         /// du capteur qui est sélectionné dans le dataGridView
         /// </summary>
@@ -289,6 +270,12 @@ namespace UI_ChambreFroide_V1
             }
         }
 
+        /// <summary>
+        /// Évenement de click du bouton bas. Lorsque le bouton est appuyé, si le capteur sélectionné
+        /// n'est pas celui le plus bas, on descend de 1 dans la liste de capteurs.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void b_down_Click(object sender, EventArgs e)
         {
             if(selectedIndex < listeCapteurs.Rows.Count-1)
