@@ -27,7 +27,11 @@ namespace UI_ChambreFroide_V1
     public partial class FormChart : Form
     {
         private List<double> m_worstTemp = new List<double>(); // Listes contenant les températures les plus hautes de chaque capteur
+        private List<double> m_bestTemp = new List<double>();
+        private double m_maxTemp = 0;
+        private double m_minTemp = 0;
         private List<int> m_indexWorstTime = new List<int>();
+        private List<int> m_indexBestTime = new List<int>();
 
         Label[] tabLabels;  // tableau de label pour afficher dynamiquement les labels de pires temp
 
@@ -96,7 +100,40 @@ namespace UI_ChambreFroide_V1
             yAxis.Title = "Température (oC)";
             yAxis.FontSize = 20;
             yAxis.Foreground = Brushes.Black;
-            yAxis.Separator.Step = 0.5;
+
+            m_maxTemp = m_worstTemp[0];
+            foreach(double d in m_worstTemp)
+            {
+                if(d > m_maxTemp)
+                {
+                    m_maxTemp = d;
+                }
+            }
+            m_minTemp = m_bestTemp[0];
+            foreach (double d in m_bestTemp)
+            {
+                if (d < m_minTemp)
+                {
+                    m_minTemp = d;
+                }
+            }
+
+            if ((m_maxTemp - m_minTemp) <= 5)
+            {
+                yAxis.Separator.Step = 0.5;
+            }
+            else if ((m_maxTemp - m_minTemp) > 5 && ((m_maxTemp - m_minTemp) <= 10))
+            {
+                yAxis.Separator.Step = 1;
+            }
+            else if ((m_maxTemp - m_minTemp) > 10 && ((m_maxTemp - m_minTemp) <= 20))
+            {
+                yAxis.Separator.Step = 2;
+            }
+            else
+            {
+                yAxis.Separator.Step = 5;
+            }
             yAxis.LabelFormatter = val => val + "°C";
             chartTemp.AxisY.Add(yAxis);
 
@@ -189,150 +226,16 @@ namespace UI_ChambreFroide_V1
         }
 
         /// <summary>
-        /// Cette fonction prends en entrée une liste contenant des valeurs double et un nombre. 
-        /// La fonction fait des moyennes de valeurs pour retourner un nombre de valeur défini par
-        /// le nombre qui lui est donné en entrée. Ces valeurs sont retournées dans un format prêt à
-        /// ajouter au graphique
-        /// </summary>
-        /// <param name="vals"></param>
-        /// <param name="numberReturnVals"></param>
-        /// <returns></returns>
-        private ChartValues<double> GetAveragedValues(ChartValues<double> vals, int numberReturnVals)
-        {
-            ChartValues<double> avgVals = new ChartValues<double>(); // liste de toutes les valeurs a retourner
-            double coefficient = 0, // nombre utilisé pour calculer le nombre de valeurs à prendre en compte pour les moyennes
-                total = 0, // variable tempon pour les moyennes
-                reste = 0, // variable pour ajuster le coefficient
-                count = 0, // compte de combien de valeurs sont déja dans le tempon
-                worstTemp = 0, // température la plus haute enregistrée
-                modifCoefficient =0, // coefficient modifié par rapport a la variable reste
-                roundedCoefficient =0; // coefficient arrondi pour faire les calculs
-            int indexWorstTemp = 0; // index de la température la plus élevée
-
-            if (vals.Count <= numberReturnVals)
-            {
-                for (int i = 0; i < vals.Count; i++)
-                {
-                    if (vals[i] > worstTemp)
-                    {
-                        worstTemp = vals[i];
-                        indexWorstTemp = i;
-                    }
-                }
-                m_worstTemp.Add(worstTemp);
-                m_indexWorstTime.Add(indexWorstTemp);
-                return vals;
-            }
-
-            coefficient = (double)vals.Count / (double)numberReturnVals; // Calcul du coefficient de base
-
-            modifCoefficient = coefficient + reste; // calcul du coefficient modifié 
-            roundedCoefficient = Math.Round(modifCoefficient); // calcul du coefficient arrondi (donc utilisable)
-            reste = modifCoefficient - roundedCoefficient; // calcul du reste
-
-            // boucle qui passe au travers de toutes les valeurs données en entrée
-            for (int i = 0; i < vals.Count; i++)
-            {
-                count++;
-                if(vals[i] > worstTemp)
-                {
-                    worstTemp = vals[i];
-                    indexWorstTemp = i;
-                }
-                // si nombre de valeurs pour la moyenne pas atteint
-                if (count <= roundedCoefficient)
-                {
-                    total += vals[i];
-                }
-                else // si assez de valeurs en tempon, calcule la moyenne et recalcule tous les coefficients
-                {
-                    avgVals.Add(Math.Round(total / roundedCoefficient,2));
-                    total = 0;
-                    count = 0;
-                    modifCoefficient = coefficient + reste;
-                    roundedCoefficient = Math.Round(modifCoefficient);
-                }
-            }
-            m_worstTemp.Add(worstTemp);
-            m_indexWorstTime.Add(indexWorstTemp);
-            return avgVals; // retourne la liste moyennée
-        }
-
-        /// <summary>
-        /// Cette fonction prends en entrée une liste contenant des valeurs de temps et un nombre. 
-        /// La fonction fait des moyennes de valeurs pour retourner un nombre de valeur défini par
-        /// le nombre qui lui est donné en entrée. Ces valeurs sont retournées dans un format prêt à
-        /// ajouter au graphique
-        /// </summary>
-        /// <param name="times"></param>
-        /// <param name="numberReturnVals"></param>
-        /// <returns></returns>
-        private List<DateTime> GetAverageDateTime(List<DateTime> times, int numberReturnVals)
-        {
-            List<DateTime> avgTimes = new List<DateTime>(); // liste de toutes les valeurs à retourner
-            decimal coefficient = 0, // nombre utilisé pour calculer le nombre de valeurs à prendre en compte pour les moyennes
-                
-                reste = 0, // variable pour ajuster le coefficient
-                count = 0, // compte de combien de valeurs sont déja dans le tempon
-                modifCoefficient = 0, // coefficient modifié par rapport a la variable reste
-                roundedCoefficient = 0; // coefficient arrondi pour faire les calculs
-            decimal total = 0; // variable tempon pour les moyennes
-
-            if(times.Count <= numberReturnVals)
-            {
-                return times;
-            }
-
-            coefficient = (decimal)times.Count / (decimal)numberReturnVals;
-
-            modifCoefficient = coefficient + reste; // calcul du coefficient modifié 
-            roundedCoefficient = Math.Round(modifCoefficient); // calcul du coefficient arrondi (donc utilisable)
-            reste = modifCoefficient - roundedCoefficient; // calcul du reste
-
-            // boucle qui passe au travers de toutes les valeurs données en entrée
-            for (int i = 0; i < times.Count; i++)
-            {
-                count++;
-                // si nombre de valeurs pour la moyenne pas atteint
-                if (count < roundedCoefficient)
-                {
-                    //total += times[i].Ticks / roundedCoefficient;
-                }
-                else // si assez de valeurs en tempon, calcule la moyenne et recalcule tous les coefficients
-                {
-                    total = Math.Round(total);
-                    avgTimes.Add(times[i - (int)roundedCoefficient/2]);
-                    total = 0;
-                    count = 0;
-                    modifCoefficient = coefficient + reste;
-                    roundedCoefficient = Math.Round(modifCoefficient);
-                }
-            }
-            return avgTimes;// retourne la liste moyennée
-        }
-
-        /// <summary>
-        /// Fonction qui crée et retourne une liste de valeurs de graphique dans le format : double en y et DateTime en x
-        /// Cette liste prends les valeurs de deux listes de ces types données en entrée
+        /// Cette fonction prends en entrée une liste contenant des valeurs double, une liste de temps Unix et un nombre. 
+        /// La fonction ignore les valeurs répétées pour réduire la quantité de valeurs inutiles et fait des moyennes de 
+        /// valeurs et des temps Unix si il y en a plus que la valeur entrée en paramêtre. Après ces filtres, la fonction
+        /// retourne une liste d'objets contenant les valeurs et les timestamps associés, prêts à êtres affichés par le
+        /// graphique. 
         /// </summary>
         /// <param name="vals"></param>
         /// <param name="times"></param>
+        /// <param name="numberReturnVals"></param>
         /// <returns></returns>
-        private ChartValues<DateModel> GetDateModels(ChartValues<double> vals, List<DateTime> times)
-        {
-            ChartValues<DateModel> dateModels = new ChartValues<DateModel>(); // création de la liste
-            //ajout des valeurs dans la liste
-            for(int i = 0; i < vals.Count; i++)
-            {
-                try
-                {
-                    dateModels.Add(new DateModel(times[i], vals[i]));
-                }
-                catch{}     
-            }
-            return dateModels;
-        }
-
         ChartValues<DateModel> GetDateModels2(ChartValues<double> vals, List<int> times, int numberReturnVals)
         {
             ChartValues<double> avgVals = new ChartValues<double>(); // liste de toutes les valeurs a retourner
@@ -346,37 +249,18 @@ namespace UI_ChambreFroide_V1
                 reste = 0, // variable pour ajuster le coefficient
                 count = 0, // compte de combien de valeurs sont déja dans le tempon
                 worstTemp = 0, // température la plus haute enregistrée
+                bestTemp = 50,
                 modifCoefficient = 0, // coefficient modifié par rapport a la variable reste
                 roundedCoefficient = 0; // coefficient arrondi pour faire les calculs
-            int indexWorstTemp = 0; // index de la température la plus élevée
-
-            if (vals.Count < numberReturnVals)
-            {
-                for (int i = 0; i < vals.Count; i++)
-                {
-                    dataGraph.Add(new DateModel(FormHistorique.UnixTimeStampToDateTime(times[i]),vals[i]));
-                    if (vals[i] > worstTemp)
-                    {
-                        worstTemp = vals[i];
-                        indexWorstTemp = i;
-                    }
-                }
-                m_worstTemp.Add(worstTemp);
-                m_indexWorstTime.Add(indexWorstTemp);
-                return dataGraph;
-            }
-
-            coefficient = (double)vals.Count / (double)numberReturnVals; // Calcul du coefficient de base
-            modifCoefficient = coefficient + reste; // calcul du coefficient modifié 
-            roundedCoefficient = Math.Round(modifCoefficient); // calcul du coefficient arrondi (donc utilisable)
-            reste = modifCoefficient - roundedCoefficient; // calcul du reste
+            int indexWorstTemp = 0, // index de la température la plus élevée
+                indexBestTemp = 0;
 
             avgVals.Add(vals[0]);
             avgTimes.Add(times[0]);
 
-            for(int i = 1; i < vals.Count; i++)
+            for (int i = 1; i < vals.Count; i++)
             {
-                if(vals[i]!=vals[i-1])
+                if (vals[i] != vals[i - 1])
                 {
                     avgVals.Add(vals[i]);
                     avgTimes.Add(times[i]);
@@ -386,8 +270,33 @@ namespace UI_ChambreFroide_V1
                         worstTemp = vals[i];
                         indexWorstTemp = i;
                     }
+                    else if( vals[i] < bestTemp)
+                    {
+                        bestTemp = vals[i];
+                        indexBestTemp = i;
+                    }
                 }
             }
+
+            if (avgVals.Count < numberReturnVals)
+            {
+                for (int i = 0; i < avgVals.Count; i++)
+                {
+                    dataGraph.Add(new DateModel(FormHistorique.UnixTimeStampToDateTime(avgTimes[i]), avgVals[i]));
+                }
+                m_worstTemp.Add(worstTemp);
+                m_bestTemp.Add(bestTemp);
+                m_indexWorstTime.Add(indexWorstTemp);
+                m_indexBestTime.Add(indexBestTemp);
+                return dataGraph;
+            }
+
+            coefficient = (double)vals.Count / (double)numberReturnVals; // Calcul du coefficient de base
+            modifCoefficient = coefficient + reste; // calcul du coefficient modifié 
+            roundedCoefficient = Math.Round(modifCoefficient); // calcul du coefficient arrondi (donc utilisable)
+            reste = modifCoefficient - roundedCoefficient; // calcul du reste
+
+            
             // boucle qui passe au travers de toutes les valeurs données en entrée
             for (int i = 0; i < avgVals.Count; i++)
             {
@@ -411,7 +320,9 @@ namespace UI_ChambreFroide_V1
             }
 
             m_worstTemp.Add(worstTemp);
+            m_bestTemp.Add(bestTemp);
             m_indexWorstTime.Add(indexWorstTemp);
+            m_indexBestTime.Add(indexBestTemp);
 
             return dataGraph; // retourne la liste moyennée
         }

@@ -138,6 +138,7 @@ namespace UI_ChambreFroide_V1
             //clear toutes les anciennes données
             m_valuesChart.Clear();
             m_dateTimes.Clear();
+            m_unixTimes.Clear();
             m_selectedCapteurs.Clear();
 
             // Si aucun capteur sélectionné, prends le premier
