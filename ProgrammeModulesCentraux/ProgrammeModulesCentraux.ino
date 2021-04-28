@@ -22,6 +22,7 @@ DallasTemperature sensors(&oneWire);
 DeviceAddress Thermometer; 
 
 int deviceCount = 0; 
+unsigned long previousMillis = 0;
 
 void setup(void) 
 
@@ -47,23 +48,19 @@ void setup(void)
   wdt_enable(WDTO_8S);
 } 
 
-  
-
 void loop(void) {
   String addresse;
       // try to parse packet
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
-    Serial.println("recu");
     // received a packet
-    
-
+    previousMillis = millis();
     // read packet
     while (LoRa.available()) {
       String LoRaData = LoRa.readString();
-      Serial.println(LoRaData);
+      //Serial.println(LoRaData);
       if(LoRaData == (NUM_MODULE + "getAddr\n")){
-        Serial.println("Requete d'addressage...");
+        //Serial.println("Requete d'addressage...");
         addresse = "";
         for (int i = 0;  i < deviceCount;  i++) 
         { 
@@ -84,7 +81,7 @@ void loop(void) {
         addresse = "";
         LoRaData.replace(NUM_MODULE + "getTemp-", "");
         LoRaData.trim();
-        Serial.println(LoRaData.toInt());
+        //Serial.println(LoRaData.toInt());
         sensors.requestTemperatures();
 
         addresse += (String)sensors.getTempCByIndex(LoRaData.toInt());
@@ -105,6 +102,10 @@ void loop(void) {
     }
   }
   wdt_reset();
+  if (millis()- previousMillis  >= 120000){
+    while(1);
+  }
+  delay(50);
 } 
 
   
@@ -117,16 +118,16 @@ void printAddress(DeviceAddress deviceAddress)
 
   { 
 
-    Serial.print("0x"); 
+    //Serial.print("0x"); 
 
-    if (deviceAddress[i] < 0x10) Serial.print("0"); 
+    //if (deviceAddress[i] < 0x10) Serial.print("0"); 
 
-    Serial.print(deviceAddress[i], HEX); 
+    //Serial.print(deviceAddress[i], HEX); 
 
-    if (i < 7) Serial.print(", "); 
+    //if (i < 7) Serial.print(", "); 
 
   } 
 
-  Serial.println(""); 
+ // Serial.println(""); 
 
 } 
