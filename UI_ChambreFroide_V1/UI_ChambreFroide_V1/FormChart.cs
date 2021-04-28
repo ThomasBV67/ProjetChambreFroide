@@ -26,12 +26,14 @@ namespace UI_ChambreFroide_V1
 {
     public partial class FormChart : Form
     {
-        private List<double> m_worstTemp = new List<double>(); // Listes contenant les températures les plus hautes de chaque capteur
-        private List<double> m_bestTemp = new List<double>();
-        private double m_maxTemp = 0;
-        private double m_minTemp = 0;
-        private List<int> m_indexWorstTime = new List<int>();
-        private List<int> m_indexBestTime = new List<int>();
+        private List<double> m_worstTemp = new List<double>();  // Listes contenant les températures les plus hautes 
+        private List<double> m_bestTemp = new List<double>();   // et les plus basses de chaque capteur
+
+        private List<int> m_worstTime = new List<int>();   // Timestamps lié aux valeurs les plus hautes et plus basses
+        private List<int> m_bestTime = new List<int>();    
+
+        private double m_maxTemp = 0;   // Variables contenant la température la plus 
+        private double m_minTemp = 0;   // haute et plus basse à afficher sur le graphique
 
         Label[] tabLabels;  // tableau de label pour afficher dynamiquement les labels de pires temp
 
@@ -61,7 +63,7 @@ namespace UI_ChambreFroide_V1
             InitializeComponent();
 
             m_worstTemp.Clear();
-            m_indexWorstTime.Clear();
+            m_worstTime.Clear();
             // permet d'associer au graphique le format DateModel déclaré plus haut
 
             var dayConfig = Mappers.Xy<DateModel>()
@@ -204,9 +206,10 @@ namespace UI_ChambreFroide_V1
             for(int i =0; i < m_worstTemp.Count; i++)
             {
                 tabLabels[i] = new Label();
-                tabLabels[i].Text = nameSeries[i] + " : " + m_worstTemp[i].ToString() + "°C @" + Environment.NewLine + FormHistorique.UnixTimeStampToDateTime(timeStamps[i][m_indexWorstTime[i]]).ToString("HH:mm:ss dd/MM/yy");
+                tabLabels[i].Text = nameSeries[i] + " : " + m_worstTemp[i].ToString() + "°C @" + Environment.NewLine + 
+                    FormHistorique.UnixTimeStampToDateTime(m_worstTime[i]).ToString("HH:mm:ss dd/MM/yy");
                 tabLabels[i].Name = "lbWorst" + i;
-                tabLabels[i].Font = new Font("Microsoft Sans Serif", (float)12.25, FontStyle.Regular);
+                tabLabels[i].Font = new Font("Microsoft Sans Serif", (float)11.25, FontStyle.Regular);
                 tabLabels[i].Height = 50;
                 tabLabels[i].Width = 150;
                 tabLabels[i].Visible = true;
@@ -268,12 +271,12 @@ namespace UI_ChambreFroide_V1
                     if (vals[i] > worstTemp)
                     {
                         worstTemp = vals[i];
-                        indexWorstTemp = i;
+                        indexWorstTemp = times[i];
                     }
                     else if( vals[i] < bestTemp)
                     {
                         bestTemp = vals[i];
-                        indexBestTemp = i;
+                        indexBestTemp = times[i];
                     }
                 }
             }
@@ -286,8 +289,8 @@ namespace UI_ChambreFroide_V1
                 }
                 m_worstTemp.Add(worstTemp);
                 m_bestTemp.Add(bestTemp);
-                m_indexWorstTime.Add(indexWorstTemp);
-                m_indexBestTime.Add(indexBestTemp);
+                m_worstTime.Add(indexWorstTemp);
+                m_bestTime.Add(indexBestTemp);
                 return dataGraph;
             }
 
@@ -321,8 +324,8 @@ namespace UI_ChambreFroide_V1
 
             m_worstTemp.Add(worstTemp);
             m_bestTemp.Add(bestTemp);
-            m_indexWorstTime.Add(indexWorstTemp);
-            m_indexBestTime.Add(indexBestTemp);
+            m_worstTime.Add(indexWorstTemp);
+            m_bestTime.Add(indexBestTemp);
 
             return dataGraph; // retourne la liste moyennée
         }
