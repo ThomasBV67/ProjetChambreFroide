@@ -35,6 +35,8 @@ namespace UI_ChambreFroide_V1
         private double m_maxTemp = 0;   // Variables contenant la température la plus 
         private double m_minTemp = 0;   // haute et plus basse à afficher sur le graphique
 
+        private int m_nbValuesGraph = 1000;
+
         Label[] tabLabels;  // tableau de label pour afficher dynamiquement les labels de pires temp
 
         /// <summary>
@@ -65,7 +67,15 @@ namespace UI_ChambreFroide_V1
             m_worstTemp.Clear();
             m_worstTime.Clear();
             // permet d'associer au graphique le format DateModel déclaré plus haut
-
+            if(nameSeries.Count==1)
+            {
+                m_nbValuesGraph = 500;
+            }
+            else
+            {
+                m_nbValuesGraph = 1000;
+            }
+            
             var dayConfig = Mappers.Xy<DateModel>()
                 .X(dayModel => (double)dayModel.DateTime.Ticks / TimeSpan.FromDays(1).Ticks)
                 .Y(dayModel => dayModel.Value);
@@ -84,7 +94,7 @@ namespace UI_ChambreFroide_V1
                 chartTemp.Series.Add(new LineSeries
                 {
                     // on ajuste les données pour obtenir un nombre de points affichables
-                    Values = GetDateModels2(values[i], timeStamps[i], 1000 / nameSeries.Count),
+                    Values = GetDateModels2(values[i], timeStamps[i], m_nbValuesGraph / nameSeries.Count),
                     // juste la ligne, pas de points
                     //PointGeometry = DefaultGeometries.Circle,
                     PointGeometry = null,

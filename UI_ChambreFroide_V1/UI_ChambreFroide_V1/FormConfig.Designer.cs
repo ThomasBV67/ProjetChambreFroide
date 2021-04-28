@@ -69,14 +69,17 @@ namespace UI_ChambreFroide_V1
             this.ensemble,
             this.niv_avertissement,
             this.niv_alerte});
+            this.listeCapteurs.Cursor = System.Windows.Forms.Cursors.Cross;
             this.listeCapteurs.Location = new System.Drawing.Point(7, 26);
-            this.listeCapteurs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listeCapteurs.Margin = new System.Windows.Forms.Padding(2);
+            this.listeCapteurs.MultiSelect = false;
             this.listeCapteurs.Name = "listeCapteurs";
             this.listeCapteurs.RowHeadersVisible = false;
             this.listeCapteurs.RowHeadersWidth = 51;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listeCapteurs.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.listeCapteurs.RowTemplate.Height = 35;
+            this.listeCapteurs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listeCapteurs.Size = new System.Drawing.Size(797, 534);
             this.listeCapteurs.TabIndex = 0;
             // 
@@ -87,7 +90,6 @@ namespace UI_ChambreFroide_V1
             this.ID.HeaderText = "Thermomètre";
             this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
             this.ID.Width = 300;
             // 
             // groupe
@@ -97,7 +99,6 @@ namespace UI_ChambreFroide_V1
             this.groupe.HeaderText = "# Gr";
             this.groupe.MinimumWidth = 6;
             this.groupe.Name = "groupe";
-            this.groupe.ReadOnly = true;
             this.groupe.Width = 45;
             // 
             // numero
@@ -105,7 +106,6 @@ namespace UI_ChambreFroide_V1
             this.numero.HeaderText = "# Sous-Gr";
             this.numero.MinimumWidth = 6;
             this.numero.Name = "numero";
-            this.numero.ReadOnly = true;
             this.numero.Width = 45;
             // 
             // nom
@@ -140,7 +140,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.b_decouverte.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.b_decouverte.Location = new System.Drawing.Point(809, 29);
-            this.b_decouverte.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_decouverte.Margin = new System.Windows.Forms.Padding(2);
             this.b_decouverte.Name = "b_decouverte";
             this.b_decouverte.Size = new System.Drawing.Size(100, 75);
             this.b_decouverte.TabIndex = 1;
@@ -152,7 +152,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Location = new System.Drawing.Point(915, 29);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 75);
             this.btnBack.TabIndex = 2;
@@ -210,7 +210,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.b_up.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.b_up.Location = new System.Drawing.Point(809, 108);
-            this.b_up.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_up.Margin = new System.Windows.Forms.Padding(2);
             this.b_up.Name = "b_up";
             this.b_up.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.b_up.Size = new System.Drawing.Size(206, 130);
@@ -223,7 +223,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.b_modifyCapteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.b_modifyCapteur.Location = new System.Drawing.Point(809, 242);
-            this.b_modifyCapteur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_modifyCapteur.Margin = new System.Windows.Forms.Padding(2);
             this.b_modifyCapteur.Name = "b_modifyCapteur";
             this.b_modifyCapteur.Size = new System.Drawing.Size(206, 100);
             this.b_modifyCapteur.TabIndex = 8;
@@ -235,7 +235,7 @@ namespace UI_ChambreFroide_V1
             // 
             this.b_down.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.b_down.Location = new System.Drawing.Point(809, 346);
-            this.b_down.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_down.Margin = new System.Windows.Forms.Padding(2);
             this.b_down.Name = "b_down";
             this.b_down.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.b_down.Size = new System.Drawing.Size(206, 130);
