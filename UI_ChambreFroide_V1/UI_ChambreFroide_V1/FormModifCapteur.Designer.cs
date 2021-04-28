@@ -149,23 +149,23 @@ namespace UI_ChambreFroide_V1
             // 
             // btnRetour
             // 
-            this.btnRetour.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRetour.Location = new System.Drawing.Point(1025, 16);
+            this.btnRetour.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.btnRetour.Location = new System.Drawing.Point(1146, 132);
             this.btnRetour.Margin = new System.Windows.Forms.Padding(4);
             this.btnRetour.Name = "btnRetour";
-            this.btnRetour.Size = new System.Drawing.Size(324, 106);
+            this.btnRetour.Size = new System.Drawing.Size(206, 106);
             this.btnRetour.TabIndex = 9;
-            this.btnRetour.Text = "Retour";
+            this.btnRetour.Text = "Annuler";
             this.btnRetour.UseVisualStyleBackColor = true;
             this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
             // btnApply
             // 
             this.btnApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApply.Location = new System.Drawing.Point(67, 597);
+            this.btnApply.Location = new System.Drawing.Point(1146, 13);
             this.btnApply.Margin = new System.Windows.Forms.Padding(4);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(480, 111);
+            this.btnApply.Size = new System.Drawing.Size(206, 111);
             this.btnApply.TabIndex = 10;
             this.btnApply.Text = "Appliquer";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -185,9 +185,9 @@ namespace UI_ChambreFroide_V1
             // b_ping
             // 
             this.b_ping.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.b_ping.Location = new System.Drawing.Point(710, 597);
+            this.b_ping.Location = new System.Drawing.Point(67, 597);
             this.b_ping.Name = "b_ping";
-            this.b_ping.Size = new System.Drawing.Size(175, 111);
+            this.b_ping.Size = new System.Drawing.Size(480, 111);
             this.b_ping.TabIndex = 12;
             this.b_ping.Text = "Ping";
             this.b_ping.UseVisualStyleBackColor = true;

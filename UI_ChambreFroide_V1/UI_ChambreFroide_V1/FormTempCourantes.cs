@@ -399,11 +399,11 @@ namespace UI_ChambreFroide_V1
             }
 
 
-            if (nbErr < 4)//3 tentatives
+            if (nbErr < 4)//4 tentatives
             {
                 reqTemp(lst_Capteurs[capteurEnCours].Module, lst_Capteurs[capteurEnCours].ModuleIndex);
             }
-            else//Apres 3 affiche le thermometre comme étant défectueux
+            else//Apres 4 affiche le thermometre comme étant défectueux
             {
                 lst_cases.Add(new Case(Color.Purple, -127, lst_Capteurs[capteurEnCours].Name));
                 MAJAffichageTemps();
@@ -444,7 +444,7 @@ namespace UI_ChambreFroide_V1
         }
 
         /// <summary>
-        /// Vérifie la validité de la valeur de température, si est valide, retopurne la température. Sinon retourne -127 pour signifier l'erreur
+        /// Vérifie la validité de la valeur de température, si est valide, retourne la température. Sinon retourne -127 pour signifier l'erreur
         /// </summary>
         /// <param name="retour"></param>
         /// <param name="capteur"></param>
@@ -464,6 +464,7 @@ namespace UI_ChambreFroide_V1
             
             return -127;//retourne code d'erreur au besoin
         }
+
         /// <summary>
         /// Démarre le timer principal et reset le délais d'attente. Le timer déparre seulement si le port série est ouvert et des capteurs sont chargés
         /// </summary>
