@@ -42,6 +42,7 @@ namespace UI_ChambreFroide_V1
             this.Hide();
             pagePrincipale.Show();
             pagePrincipale.BringToFront();
+            pagePrincipale.MAJAffichageTemps();
         }
 
         /// <summary>
