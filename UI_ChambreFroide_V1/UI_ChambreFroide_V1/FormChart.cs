@@ -52,7 +52,7 @@ namespace UI_ChambreFroide_V1
         /// <param name="values"></param>
         /// <param name="timeStamps"></param>
         /// <param name="nameSeries"></param>
-        public FormChart(List<ChartValues<double>> values, List<List<DateTime>> timeStamps, List<String> nameSeries, WarningAlert warningAlertLevels, int graphStart, int graphEnd)
+        public FormChart(List<ChartValues<double>> values, List<List<int>> timeStamps, List<String> nameSeries, WarningAlert warningAlertLevels, int graphStart, int graphEnd)
         {
             InitializeComponent();
 
@@ -78,7 +78,7 @@ namespace UI_ChambreFroide_V1
                 chartTemp.Series.Add(new LineSeries
                 {
                     // on ajuste les données pour obtenir un nombre de points affichables
-                    Values = GetDateModels(GetAveragedValues(values[i], 250), GetAverageDateTime(timeStamps[i], 250)),
+                    Values = GetDateModels2(values[i], timeStamps[i], 1000 / nameSeries.Count),
                     // juste la ligne, pas de points
                     //PointGeometry = DefaultGeometries.Circle,
                     PointGeometry = null,
@@ -167,7 +167,7 @@ namespace UI_ChambreFroide_V1
             for(int i =0; i < m_worstTemp.Count; i++)
             {
                 tabLabels[i] = new Label();
-                tabLabels[i].Text = nameSeries[i] + " : " + m_worstTemp[i].ToString() + "°C @" + Environment.NewLine + timeStamps[i][m_indexWorstTime[i]].ToString("HH:mm:ss dd/MM/yy");
+                tabLabels[i].Text = nameSeries[i] + " : " + m_worstTemp[i].ToString() + "°C @" + Environment.NewLine + FormHistorique.UnixTimeStampToDateTime(timeStamps[i][m_indexWorstTime[i]]).ToString("HH:mm:ss dd/MM/yy");
                 tabLabels[i].Name = "lbWorst" + i;
                 tabLabels[i].Font = new Font("Microsoft Sans Serif", (float)12.25, FontStyle.Regular);
                 tabLabels[i].Height = 50;
@@ -331,6 +331,89 @@ namespace UI_ChambreFroide_V1
                 catch{}     
             }
             return dateModels;
+        }
+
+        ChartValues<DateModel> GetDateModels2(ChartValues<double> vals, List<int> times, int numberReturnVals)
+        {
+            ChartValues<double> avgVals = new ChartValues<double>(); // liste de toutes les valeurs a retourner
+            List<int> avgTimes = new List<int>();
+            ChartValues<DateModel> dataGraph = new ChartValues<DateModel>();
+
+
+            double coefficient = 0, // nombre utilisé pour calculer le nombre de valeurs à prendre en compte pour les moyennes
+                totalVals = 0, // variable tempon pour les moyennes
+                totalTimes = 0,
+                reste = 0, // variable pour ajuster le coefficient
+                count = 0, // compte de combien de valeurs sont déja dans le tempon
+                worstTemp = 0, // température la plus haute enregistrée
+                modifCoefficient = 0, // coefficient modifié par rapport a la variable reste
+                roundedCoefficient = 0; // coefficient arrondi pour faire les calculs
+            int indexWorstTemp = 0; // index de la température la plus élevée
+
+            if (vals.Count < numberReturnVals)
+            {
+                for (int i = 0; i < vals.Count; i++)
+                {
+                    dataGraph.Add(new DateModel(FormHistorique.UnixTimeStampToDateTime(times[i]),vals[i]));
+                    if (vals[i] > worstTemp)
+                    {
+                        worstTemp = vals[i];
+                        indexWorstTemp = i;
+                    }
+                }
+                m_worstTemp.Add(worstTemp);
+                m_indexWorstTime.Add(indexWorstTemp);
+                return dataGraph;
+            }
+
+            coefficient = (double)vals.Count / (double)numberReturnVals; // Calcul du coefficient de base
+            modifCoefficient = coefficient + reste; // calcul du coefficient modifié 
+            roundedCoefficient = Math.Round(modifCoefficient); // calcul du coefficient arrondi (donc utilisable)
+            reste = modifCoefficient - roundedCoefficient; // calcul du reste
+
+            avgVals.Add(vals[0]);
+            avgTimes.Add(times[0]);
+
+            for(int i = 1; i < vals.Count; i++)
+            {
+                if(vals[i]!=vals[i-1])
+                {
+                    avgVals.Add(vals[i]);
+                    avgTimes.Add(times[i]);
+
+                    if (vals[i] > worstTemp)
+                    {
+                        worstTemp = vals[i];
+                        indexWorstTemp = i;
+                    }
+                }
+            }
+            // boucle qui passe au travers de toutes les valeurs données en entrée
+            for (int i = 0; i < avgVals.Count; i++)
+            {
+                count++;
+                
+                // si nombre de valeurs pour la moyenne pas atteint
+                if (count <= roundedCoefficient)
+                {
+                    totalVals += avgVals[i];
+                    totalTimes += avgTimes[i];
+                }
+                else // si assez de valeurs en tempon, calcule la moyenne et recalcule tous les coefficients
+                {
+                    dataGraph.Add(new DateModel(FormHistorique.UnixTimeStampToDateTime((int)(totalTimes / roundedCoefficient)), Math.Round(totalVals / roundedCoefficient, 2)));
+                    totalVals = 0;
+                    totalTimes = 0;
+                    count = 0;
+                    modifCoefficient = coefficient + reste;
+                    roundedCoefficient = Math.Round(modifCoefficient);
+                }
+            }
+
+            m_worstTemp.Add(worstTemp);
+            m_indexWorstTime.Add(indexWorstTemp);
+
+            return dataGraph; // retourne la liste moyennée
         }
     }
 }

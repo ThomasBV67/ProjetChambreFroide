@@ -29,6 +29,7 @@ namespace UI_ChambreFroide_V1
         public List<ChartValues<double>> m_valuesChart = new List<ChartValues<double>>();   // liste de listes contenant des valeurs double de température
         public List<string> m_selectedCapteurs = new List<string>();    // liste des noms de capteurs sélectionnés
         public List<List<DateTime>> m_dateTimes = new List<List<DateTime>>(); //liste de listes de timestamp
+        public List<List<int>> m_unixTimes = new List<List<int>>();
         public WarningAlert m_warningAlertLevels = new WarningAlert(0,0); // Niveaux d'alertes et de warning à envoyer au form de graphique
 
         // variables tempon pour les time stamps limite du graphique
@@ -106,18 +107,18 @@ namespace UI_ChambreFroide_V1
                 }
             }
 
-            try
-            {
+            //try
+            //{
                 
                 UpdateGraphique(); // Get les données à afficher
                 // Essai de charger le graph avec les données
-                FormChart test = new FormChart(m_valuesChart, m_dateTimes, m_selectedCapteurs, m_warningAlertLevels, m_startTime, m_endTime); 
+                FormChart test = new FormChart(m_valuesChart, m_unixTimes, m_selectedCapteurs, m_warningAlertLevels, m_startTime, m_endTime); 
                 test.Show();
-            }
+            /*}
             catch // Si graphique encontre un problème, affiche un message
             {
                 MessageBox.Show("Une erreur est survenue lors de l'affichage du graphique");
-            }
+            }*/
         }
 
         /// <summary>
@@ -161,14 +162,17 @@ namespace UI_ChambreFroide_V1
 
                         ChartValues<double> temp = new ChartValues<double>(); // cré des listes temporaires
                         List<DateTime> lstDate = new List<DateTime>();
+                        List<int> lstTime = new List<int>();
 
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature); // ajoute les températures et les timestamps aux listes temporaires
                             lstDate.Add(UnixTimeStampToDateTime(temperature.UnixTime));
+                            lstTime.Add(temperature.UnixTime);
                         }
                         m_valuesChart.Add(temp); // Ajoute les listes temporaires aux series à afficher
                         m_dateTimes.Add(lstDate);
+                        m_unixTimes.Add(lstTime);
                     }
                 }
                 // si mode capteur individuel
@@ -184,14 +188,17 @@ namespace UI_ChambreFroide_V1
 
                         ChartValues<double> temp = new ChartValues<double>(); // cré des listes temporaires
                         List<DateTime> lstDate = new List<DateTime>();
+                        List<int> lstTime = new List<int>();
 
                         foreach (MesureTemp temperature in listTemp)
                         {
                             temp.Add(temperature.Temperature); // ajoute les températures et les timestamps aux listes temporaires
                             lstDate.Add(UnixTimeStampToDateTime(temperature.UnixTime));
+                            lstTime.Add(temperature.UnixTime);
                         }
                         m_valuesChart.Add(temp); // Ajoute les listes temporaires aux series à afficher
                         m_dateTimes.Add(lstDate);
+                        m_unixTimes.Add(lstTime);
                     }
                 }
                 listTemp.Clear(); // Clear la liste contenant les données de la requete sql
