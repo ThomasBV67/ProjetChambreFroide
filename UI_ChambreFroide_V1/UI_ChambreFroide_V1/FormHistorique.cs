@@ -107,18 +107,18 @@ namespace UI_ChambreFroide_V1
                 }
             }
 
-            //try
-            //{
+            try
+            {
                 
                 UpdateGraphique(); // Get les données à afficher
                 // Essai de charger le graph avec les données
                 FormChart test = new FormChart(m_valuesChart, m_unixTimes, m_selectedCapteurs, m_warningAlertLevels, m_startTime, m_endTime); 
                 test.Show();
-            /*}
+            }
             catch // Si graphique encontre un problème, affiche un message
             {
                 MessageBox.Show("Une erreur est survenue lors de l'affichage du graphique");
-            }*/
+            }
         }
 
         /// <summary>
